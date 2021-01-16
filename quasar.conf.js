@@ -7,7 +7,7 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 
-module.exports = function (/* ctx */) {
+module.exports = function ( ctx ) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -19,9 +19,10 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
       'i18n',
-      'axios'
+      'axios',
+      'vuex-router-sync',
+      'fontawesome-v5'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -33,7 +34,7 @@ module.exports = function (/* ctx */) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v5',
+       'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -65,27 +66,32 @@ module.exports = function (/* ctx */) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack (cfg) {
-        cfg.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /node_modules/
-        })
+
+        cfg.resolve.alias["@"] = cfg.resolve.alias.src;
+
+        // cfg.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /node_modules/
+        // })
+
       }
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 8080,
+      port: 8888,
       open: true // opens browser window automatically
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      iconSet: 'material-icons', // Quasar icon set
-      lang: 'en-us', // Quasar language pack
-      config: {},
+      iconSet: 'fontawesome-v5', //'material-icons', // Quasar icon set
+      lang: "en-us", // Quasar language pack
+
+
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
@@ -100,7 +106,21 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ["Notify", "Cookies", "Loading", 'LoadingBar'],
+
+      config: {
+        notify: {
+          /* look at QUASARCONFOPTIONS from the API card (bottom of page) */
+        },
+        loading: {
+          /* look at QUASARCONFOPTIONS from the API card (bottom of page) */
+        },
+        loadingBar: {
+          position: "bottom",
+          color: "primary",
+          size: "10px"
+        }
+      },
     },
 
     // animations: 'all', // --- includes all animations

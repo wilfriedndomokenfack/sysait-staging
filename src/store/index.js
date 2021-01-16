@@ -1,29 +1,34 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-
-// import example from './module-example'
+import Vuex, { Store } from 'vuex'
 
 Vue.use(Vuex)
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
+const initialState = () => {
+  const startState = {
+    currentUser: null
+  }
 
-export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
-    modules: {
-      // example
-    },
-
-    // enable strict mode (adds overhead!)
-    // for dev mode only
-    strict: process.env.DEBUGGING
-  })
-
-  return Store
+  return startState
 }
+
+export default new Store({
+  namespaced: true,
+  strict: true,
+  state: initialState(),
+
+  mutations: {
+    setCurrentUser (state, data) {
+      state.breadcrumbsData.push(data)
+    }
+  },
+  getters: {
+    currentUser: state => state.currentUser,
+    currentRoute: state => (state.route ? state.route.name : null),
+    previousRoute: state => (state.route ? state.route.from.name : null)
+  },
+  actions: {
+    setCurrentUser ({ commit }, payload) {
+      commit('setCurrentUser', payload)
+    }
+  }
+})
