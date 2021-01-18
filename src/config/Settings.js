@@ -13,11 +13,12 @@ const EnvironmentSettings = {
     sysaitHost: "https://www.sysait.com",
   },
   development: {
-    apiHost: "localhost:3300/api/v1", //"https://api.sysait.test/api/v1",
+    apiHost: "localhost:3001/api/v1", //"https://api.sysait.test/api/v1",
     sysaitHost: "https://www.sysait.test",
   },
-}[env()];
 
+}[env()];
+ 
 export default {
   ...EnvironmentSettings
 };

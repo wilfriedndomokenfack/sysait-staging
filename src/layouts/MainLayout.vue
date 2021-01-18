@@ -1,20 +1,23 @@
 <template>
   <q-layout class="bg-grey-1">
 
-    <Header :company="propCompany" />
+    <Header :propCompany="propCompany" />
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <Footer :company="propCompany"/>
+    <Footer :propCompany="propCompany"/>
   </q-layout>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import { getCompany } from '@/models/company'
+import { company } from '@/models/company'
+import { mapGetters } from 'vuex'
+import { notify } from "@/models/utils/notifyUser"
+import store from "@/store";
 
 export default {
   name: 'MyLayout',
@@ -28,9 +31,9 @@ export default {
     }
   },
   mounted(){
-    if(!this.company){
+    /* if(!this.company){
       this.getCompany()
-    }
+    }*/
     this.propCompany = { ...this.company }
   },
   computed: {
@@ -39,6 +42,22 @@ export default {
         'company',
       ]),
   },
+  methods: {
+   async getCompany(){
+        let temp = null
+        alert("dentro")
+        try{
+            alert("prima")
+            const response = await company()
+            alert("dopo")
+            if(response?.data?.length > 0) temp = { ...response.data[0] }
+        }catch(err){
+            notify('red', 'get company error! ' + err)
+        }
+
+        store.dispatch("setCompany", { ...temp} );
+    }
+  }
 
 }
 </script>

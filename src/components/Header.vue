@@ -52,15 +52,15 @@
 
         <div v-if="$q.screen.gt.sm" class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
           <a href="javascript:void(0)" class="text-white">
-            Pull requests
+            {{ company.denomination }}
           </a>
-         
+
           <a href="javascript:void(0)" class="text-white">
            ROSINE'S component
           </a>
         </div>
         <q-space />
-        
+
 
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
           <q-btn v-if="$q.screen.gt.xs" dense flat round size="sm" icon="notifications" />
@@ -226,10 +226,14 @@ const stringOptions = [
 
 export default {
   name: 'Header',
+  props: {
+    propCompany: Object
+  },
   data () {
     return {
       lang: this.$i18n.locale,
       langOptions: [],
+      company: null,
 
       text: '',
       options: null,
@@ -286,6 +290,7 @@ export default {
     }
   },
   mounted(){
+    this.company = { ...this.propCompany }
      this.updateValues()
   },
   created () {

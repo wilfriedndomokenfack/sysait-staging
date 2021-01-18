@@ -5,17 +5,12 @@ import Settings from "@/config/Settings";
 
 const Api = function() {
 
-  const headers = {
-    'Accept': 'application/json',
-  };
-
   if (!Settings['apiHost']) {
     throw "Could not find api host";
   }
 
   const api = axios.create({
     baseURL: Settings['apiHost'],
-    headers
   });
 
   //api.interceptors.response.use(res => res, apiErrorHandler);
