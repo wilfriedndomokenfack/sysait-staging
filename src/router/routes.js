@@ -80,7 +80,7 @@ const routes = [
             path: "product/edit",
             name: 'editProduct',
             meta: { breadcrumb: 'Edit a product' },
-            component: () => import('pages/Products/EditProduct.vue'),
+            component: () => import('pages/products/EditProduct.vue'),
           }
 
         ]

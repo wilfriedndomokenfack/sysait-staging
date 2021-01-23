@@ -1,350 +1,186 @@
 <template>
- <q-header elevated class="text-white bg_sysait_cerulean" style="" height-hint="61.59">
-      <q-toolbar class="q-py-sm q-px-md">
-        <q-btn round dense flat :ripple="false" icon="add" size="19px" color="white" class="q-mr-sm" no-caps />
+  <q-header elevated class="text-white">
+    <!--elevated class="bg-dark text-white"> -->
+    <div class="row justify-center" style="background:#1d1d1d;height: 45px;">
+      <div class="col-1"></div>
+      <div class="col-1" style="padding-top:10px;">
+        <i class="far fa-envelope color_sysait_cerulean"></i>
+        sysait.com
+      </div>
+      <div class="col-1" style="padding-top:10px;">
+        <i class="fas fa-phone-square-alt color_sysait_cerulean"></i>
+        3206328224
+      </div>
+      <div class="col-6"></div>
+      <div class="col-1" style="padding-top:5px;">
+        <!-- <q-btn-dropdown stretch flat label="EN">
+          <q-list>
+            <q-item clickable v-close-popup tabindex="0">
+              <q-item-section avatar>
+                <q-avatar size="20px">
+                  <img :src="require('@/assets/fr.svg')" />
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>FR</q-item-label>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup tabindex="0">
+              <q-item-section avatar>
+                <q-avatar size="20px">
+                  <img :src="require('@/assets/it.svg')"
+                /></q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>IT</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown> -->
 
         <q-select
-          ref="search" dark dense standout use-input hide-selected
-          class="GL__toolbar-select"
-          color="black" :stack-label="false" label="Search or jump to..."
-          v-model="text" :options="filteredOptions" @filter="filter"
-          style="width: 300px"
+          v-model="lang"
+          :options="langOptions"
+          dense
+          borderless
+          emit-value
+          map-options
+          options-dense
+          style="min-width: 100px; background: white"
         >
-
-          <template v-slot:append>
-            <img src="https://cdn.quasar.dev/img/layout-gallery/img-github-search-key-slash.svg">
-          </template>
-
-          <template v-slot:no-option>
-            <q-item>
-              <q-item-section>
-                <div class="text-center">
-                  <q-spinner-pie
-                    color="grey-5"
-                    size="24px"
-                  />
-                </div>
-              </q-item-section>
-            </q-item>
-          </template>
-
-          <template v-slot:option="scope">
-            <q-item
-              v-bind="scope.itemProps"
-              v-on="scope.itemEvents"
-              class="GL__select-GL__menu-link"
-            >
-              <q-item-section side>
-                <q-icon name="collections_bookmark" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label v-html="scope.opt.label" />
-              </q-item-section>
-              <q-item-section side :class="{ 'default-type': !scope.opt.type }">
-                <q-btn outline dense no-caps text-color="blue-grey-5" size="12px" class="bg-grey-1 q-px-sm">
-                  {{ scope.opt.type || 'Jump to' }}
-                  <q-icon name="subdirectory_arrow_left" size="14px" />
-                </q-btn>
-              </q-item-section>
-            </q-item>
-          </template>
+          <q-tooltip
+            :offset="[10, 10]"
+            transition-show="rotate"
+            transition-hide="rotate"
+          >
+            {{ $t("langChange") }}
+          </q-tooltip>
         </q-select>
+      </div>
+      <div class="col-1" style="padding-top:5px;">
+        <q-btn stretch flat label="Sign in" />
+      </div>
+      <div class="col-1"></div>
+    </div>
 
-        <div v-if="$q.screen.gt.sm" class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
-          <a href="javascript:void(0)" class="text-white" v-if="company">
-            {{ company.denomination }}/
-            {{ company.email }}/
-            {{ company.phone_number }}
-          </a>
+    <q-toolbar
+      class="bg-white text-dark shadow-2 rounded-borders"
+      style="padding-left:95px;"
+    >
+      <!-- <q-img src="logo.jpg" style="width:100px;height:50px;"></q-img> -->
+      <img :src="require('@/assets/logo.jpg')" height="50px" width="100px" />
 
-          <a href="javascript:void(0)" class="text-white" to="courses" >
-           ROSINE'S component
-          </a>
-          <q-btn to="/" >home</q-btn>
-          <q-btn to="/about" >about</q-btn>
-          <q-btn to="/services" >services</q-btn>
-          <q-btn to="/products" >products</q-btn>
-          <q-btn to="#" >clients</q-btn>
-          <q-btn to="/courses" >courses</q-btn>
-          <q-btn to="/jobs" >join us</q-btn>
+      <q-space />
+      <q-btn to="/" stretch flat label="Home" />
+      <q-separator vertical inset />
 
+      <q-btn to="/about" stretch flat label="About" />
+      <q-separator vertical inset />
+      <q-btn to="/services" stretch flat label="Services" />
+      <q-separator vertical inset />
+      <q-btn-dropdown to="/products" stretch flat label="Products">
+        <q-list>
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section>
+              <q-item-label>App mobiles</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section>
+              <q-item-label>Web applications</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section>
+              <q-item-label>Photos</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-btn-dropdown>
 
-
-        </div>
-        <q-space />
-
-
-        <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-          <q-btn v-if="$q.screen.gt.xs" dense flat round size="sm" icon="notifications" />
-
-
-        <q-btn v-if="$q.screen.gt.xs" dense flat>
-            <div class="row items-center no-wrap">
-              <q-icon name="add" size="20px" />
-              <q-icon name="arrow_drop_down" size="16px" style="margin-left: -2px" />
-            </div>
-
-
-
-            <q-menu auto-close>
-              <q-list dense style="min-width: 100px">
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Import repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New gist</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New organization</q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item-label header>This repository</q-item-label>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New issue</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-
-
-            <q-select
-
-              v-model="lang"
-              :options="langOptions"
-              dense
-              borderless
-              emit-value
-              map-options
-              options-dense
-              style="min-width: 100px; background: white"
-            >
-              <q-tooltip :offset="[10, 10]" transition-show="rotate"
-                transition-hide="rotate">
-                {{ $t('langChange') }}
-              </q-tooltip>
-            </q-select>
-
-            <q-btn
-            flat
-              icon="fas fa-power-off"
-              class="clickable transparant"
-              text-color="white"
-            >
-              <q-tooltip
-                :offset="[10, 10]"
-                transition-show="rotate"
-                transition-hide="rotate"
-              >
-                {{ $t('logOut') }}
-              </q-tooltip>
-            </q-btn>
-
-
-          <q-btn v-if="$q.screen.gt.xs" dense flat>
-            <div class="row items-center no-wrap">
-              <q-icon name="add" size="20px" />
-              <q-icon name="arrow_drop_down" size="16px" style="margin-left: -2px" />
-            </div>
-
-
-
-            <q-menu auto-close>
-              <q-list dense style="min-width: 100px">
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Import repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New gist</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New organization</q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item-label header>This repository</q-item-label>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New issue</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-
-          <q-btn dense flat no-wrap>
-            <q-avatar rounded size="20px">
-              <img src="https://cdn.quasar.dev/img/avatar3.jpg">
-            </q-avatar>
-            <q-icon name="arrow_drop_down" size="16px" />
-
-            <q-menu auto-close>
-              <q-list dense>
-                <q-item class="GL__menu-link-signed-in">
-                  <q-item-section>
-                    <div>Signed in as <strong>Mary</strong></div>
-                  </q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item clickable class="GL__menu-link-status">
-                  <q-item-section>
-                    <div>
-                      <q-icon name="tag_faces" color="blue-9" size="18px" />
-                      Set your status
-                    </div>
-                  </q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Your profile</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Your repositories</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Your projects</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Your stars</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Your gists</q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Help</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Settings</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Sign out</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-        </div>
-      </q-toolbar>
-    </q-header>
+      <q-separator vertical inset />
+      <q-btn stretch flat label="Clients" />
+      <q-separator vertical inset />
+      <q-btn to="/courses" stretch flat label="Courses" />
+      <q-separator vertical inset />
+      <q-btn to="/jobs" stretch flat label="Join us" />
+    </q-toolbar>
+  </q-header>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 const stringOptions = [
-  'quasarframework/quasar',
-  'quasarframework/quasar-awesome'
-]
+  "quasarframework/quasar",
+  "quasarframework/quasar-awesome"
+];
 
 export default {
-  name: 'Header',
-  data () {
+  name: "Header",
+  data() {
     return {
       lang: this.$i18n.locale,
       langOptions: [],
-      text: '',
+      text: "",
       options: null,
       filteredOptions: []
-    }
+    };
   },
   watch: {
     lang(lang) {
-      this.$i18n.locale = lang
-      this.updateValues()
-    },
+      this.$i18n.locale = lang;
+      this.updateValues();
+    }
   },
   computed: {
-    ...mapGetters(
-      [
-        'copmany',
-      ]),
+    ...mapGetters(["copmany"])
   },
-  mounted(){
-     this.updateValues()
+  mounted() {
+    this.updateValues();
   },
   methods: {
-
-     updateValues() {
-      this.langOptions =  [
-        {value: 'it', label: this.$t('italian')},
-        {value: 'en-us', label: this.$t('english')},
-        {value: 'fr', label: this.$t('french')},
-      ]
+    updateValues() {
+      this.langOptions = [
+        { value: "it", label: this.$t("italian") },
+        { value: "en-us", label: this.$t("english") },
+        { value: "fr", label: this.$t("french") }
+      ];
     },
 
-
-    filter (val, update) {
+    filter(val, update) {
       if (this.options === null) {
         // load data
         setTimeout(() => {
-          this.options = stringOptions
-          this.$refs.search.filter('')
-        }, 2000)
-        update()
-        return
+          this.options = stringOptions;
+          this.$refs.search.filter("");
+        }, 2000);
+        update();
+        return;
       }
-      if (val === '') {
+      if (val === "") {
         update(() => {
-          this.filteredOptions = this.options.map(op => ({ label: op }))
-        })
-        return
+          this.filteredOptions = this.options.map(op => ({ label: op }));
+        });
+        return;
       }
       update(() => {
         this.filteredOptions = [
           {
             label: val,
-            type: 'In this repository'
+            type: "In this repository"
           },
           {
             label: val,
-            type: 'All GitHub'
+            type: "All GitHub"
           },
           ...this.options
             .filter(op => op.toLowerCase().includes(val.toLowerCase()))
             .map(op => ({ label: op }))
-        ]
-      })
+        ];
+      });
     }
   },
 
-  created () {
-  }
-}
+  created() {}
+};
 </script>
-
-<style lang="sass">
-.GL
-  &__select-GL__menu-link
-    .default-type
-      visibility: hidden
-    &:hover
-      background: #0366d6
-      color: white
-      .q-item__section--side
-        color: white
-      .default-type
-        visibility: visible
-  &__toolbar-link
-    a
-      color: white
-      text-decoration: none
-      &:hover
-        opacity: 0.7
-  &__menu-link:hover
-    background: #0366d6
-    color: white
-  &__menu-link-signed-in,
-  &__menu-link-status
-    &:hover
-      & > div
-        background: white !important
-  &__menu-link-status
-    color: $blue-grey-6
-    &:hover
-      color: $light-blue-9
-  &__toolbar-select.q-field--focused
-    width: 450px !important
-    .q-field__append
-      display: none
-</style>
