@@ -23,7 +23,8 @@ export default {
   computed: {
     ...mapGetters(
       [
-        'company',
+        'copmany',
+
       ]),
   },
 }

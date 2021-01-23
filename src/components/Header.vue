@@ -239,15 +239,10 @@ const stringOptions = [
 
 export default {
   name: 'Header',
-  props: {
-    propCompany: Object
-  },
   data () {
     return {
       lang: this.$i18n.locale,
       langOptions: [],
-      company: null,
-
       text: '',
       options: null,
       filteredOptions: []
@@ -259,10 +254,17 @@ export default {
       this.updateValues()
     },
   },
+  computed: {
+    ...mapGetters(
+      [
+        'copmany',
+      ]),
+  },
+  mounted(){
+     this.updateValues()
+  },
   methods: {
-    ddd(){
-      this.$router.push({ path: '/services' })
-    },
+
      updateValues() {
       this.langOptions =  [
         {value: 'it', label: this.$t('italian')},
@@ -305,10 +307,7 @@ export default {
       })
     }
   },
-  mounted(){
-    this.company = { ...this.propCompany }
-     this.updateValues()
-  },
+
   created () {
   }
 }

@@ -5,7 +5,17 @@
 
    <!-- comment from here -->
     <div class="">
-     At Your Service
+      <h5>Our Partner</h5>
+
+    </div>
+    <div v-if="customers">
+      <ul>
+        <li v-for="(customer, index) in customers" :key="index" class="row">
+          <div class="" >{{ customer.denomination }} / </div>
+          <div class="" >  {{ customer.description }}</div>
+        </li>
+      </ul>
+
     </div>
     <div>
       <q-icon size="100px" name="home" />
@@ -30,10 +40,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Planing',
   data () {
     return {}
-  }
+  },
+  computed: {
+
+    ...mapGetters(
+      [
+        'customers',
+      ]),
+  },
 }
 </script>

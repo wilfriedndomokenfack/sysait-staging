@@ -33,27 +33,17 @@ const initialState = () => {
     },
     customers: [
       {
-      denomination: 'Università di Ferrara',
+      denomination: 'Institut paul momo',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
+      image_path: 'imp',
       link: 'http://www.unife.it/it'
       },
       {
-      denomination: 'Università di Ferrara',
+      denomination: 'bk service',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
+      image_path: 'bk',
       link: 'http://www.unife.it/it'
-      },{
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },{
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },
+      }
     ],
     sponsors: [
       {
@@ -102,6 +92,8 @@ export default new Store({
     }
   },
   getters: {
+    sponsors: state => state.sponsors,
+    customers: state => state.customers,
     currentUser: state => state.currentUser,
     company: state => state.company,
     products: state => state.products,

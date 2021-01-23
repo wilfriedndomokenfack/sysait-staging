@@ -1,14 +1,14 @@
 <template>
   <q-layout class="bg-grey-1">
 
-    <Header :propCompany="propCompany" />
+    <Header />
 <!-- class="fit row wrap justify-center items-start content-start" -->
     <q-page-container class="q-pa-md" ><br>
       <Breadcrumbs />
       <router-view class="fit row wrap justify-center items-start content-start"/>
     </q-page-container>
 
-    <Footer :propCompany="propCompany"/>
+    <Footer />
   </q-layout>
 </template>
 
