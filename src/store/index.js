@@ -31,6 +31,54 @@ const initialState = () => {
       facebook: 'https://www.facebook.com/wilfried.ndomo',
       linkedin: 'https://www.linkedin.com/in/wilfried-ndomo-kenfack-b44770161/'
     },
+    customers: [
+      {
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },
+      {
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },{
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },{
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },
+    ],
+    sponsors: [
+      {
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },
+      {
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },{
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },{
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'unife',
+      link: 'http://www.unife.it/it'
+      },
+    ],
     products: null,
   }
 

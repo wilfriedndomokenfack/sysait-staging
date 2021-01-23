@@ -1,8 +1,8 @@
 <template>
-  <q-page class="flex-center">
-   <Banner /><br/>
-   <Technologies /><br/>
-   <Planing />
+  <q-page class="flex-center row">
+   <Banner class="col-12"/>
+   <Technologies class="col-12"/>
+   <Planing class="col-12"/>
   </q-page>
 </template>
 

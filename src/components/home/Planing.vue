@@ -1,22 +1,37 @@
-<template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-banner rounded class="bg-grey-3">
-      <template v-slot:avatar>
-        <img
-          src="https://cdn.quasar.dev/img/mountains.jpg"
-          style="width: 100px; height: 64px"
-        >
-      </template>
+<template >
+  <div class="q-pa-md row no-wrap items-center justify-around column">
 
-     Replace me with planing componnent: MICHEL'S component
-     
-    </q-banner>
+     <!-- PUT YOUR COMPONENT HERE -->
+
+   <!-- comment from here -->
+    <div class="">
+     At Your Service
+    </div>
+    <div>
+      <q-icon size="100px" name="home" />
+
+    <q-btn :dense="$q.screen.xs" no-caps label="Face" icon-right="colorize" color="primary">
+      <q-popup-proxy transition-show="scale" transition-hide="scale">
+        <q-color  />
+      </q-popup-proxy>
+    </q-btn>
+
+    <q-btn :dense="$q.screen.xs" no-caps label="Hair" icon-right="colorize" color="secondary">
+      <q-popup-proxy transition-show="scale" transition-hide="scale">
+        <q-color  />
+      </q-popup-proxy>
+    </q-btn>
+  </div>
+  <!-- to here -->
+
+
+
   </div>
 </template>
 
 <script>
 export default {
-  // name: 'ComponentName',
+  name: 'Planing',
   data () {
     return {}
   }

@@ -1,5 +1,5 @@
 <template>
- <q-header elevated class="text-white" style="background: #24292e" height-hint="61.59">
+ <q-header elevated class="text-white bg_sysait_cerulean" style="" height-hint="61.59">
       <q-toolbar class="q-py-sm q-px-md">
         <q-btn round dense flat :ripple="false" icon="add" size="19px" color="white" class="q-mr-sm" no-caps />
 
@@ -51,13 +51,25 @@
         </q-select>
 
         <div v-if="$q.screen.gt.sm" class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
-          <a href="javascript:void(0)" class="text-white">
-            {{ company.denomination }}
+          <a href="javascript:void(0)" class="text-white" v-if="company">
+            {{ company.denomination }}/
+            {{ company.email }}/
+            {{ company.phone_number }}
           </a>
 
-          <a href="javascript:void(0)" class="text-white">
+          <a href="javascript:void(0)" class="text-white" to="courses" >
            ROSINE'S component
           </a>
+          <q-btn to="/" >home</q-btn>
+          <q-btn to="/about" >about</q-btn>
+          <q-btn to="/services" >services</q-btn>
+          <q-btn to="/products" >products</q-btn>
+          <q-btn to="#" >clients</q-btn>
+          <q-btn to="/courses" >courses</q-btn>
+          <q-btn to="/jobs" >join us</q-btn>
+
+
+
         </div>
         <q-space />
 
@@ -219,6 +231,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 const stringOptions = [
   'quasarframework/quasar',
   'quasarframework/quasar-awesome'
@@ -247,6 +260,9 @@ export default {
     },
   },
   methods: {
+    ddd(){
+      this.$router.push({ path: '/services' })
+    },
      updateValues() {
       this.langOptions =  [
         {value: 'it', label: this.$t('italian')},
