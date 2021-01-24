@@ -249,23 +249,24 @@ export default {
     }
   },
   watch: {
-    lang(lang) {
-      this.$i18n.locale = lang
-      this.updateValues()
+    lang() {
+      this.emitLang()
     },
   },
   computed: {
     ...mapGetters(
       [
-        'copmany',
+        'company',
       ]),
   },
   mounted(){
      this.updateValues()
   },
   methods: {
-
-     updateValues() {
+    emitLang(){
+      this.$emit('lang', this.lang)
+    },
+    updateValues() {
       this.langOptions =  [
         {value: 'it', label: this.$t('italian')},
         {value: 'en-us', label: this.$t('english')},

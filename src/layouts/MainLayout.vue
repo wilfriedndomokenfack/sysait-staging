@@ -1,7 +1,7 @@
 <template>
-  <q-layout class="bg-grey-1">
+  <q-layout class="bg-grey-1" :key="myKey">
 
-    <Header />
+    <Header v-on:lang="updateLang" />
 <!-- class="fit row wrap justify-center items-start content-start" -->
     <q-page-container class="q-pa-md" ><br>
       <Breadcrumbs />
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      propCompany: null
+      myKey: 0,
     }
   },
   mounted(){
@@ -59,6 +59,11 @@ export default {
         }
 
         store.dispatch("setCompany", { ...temp} );
+    },
+    updateLang(lang){
+      console.log(lang)
+      this.$i18n.locale = lang
+      this.myKey = !this.myKey
     }
   }
 
