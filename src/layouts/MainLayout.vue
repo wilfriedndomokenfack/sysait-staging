@@ -3,9 +3,10 @@
 
     <Header v-on:lang="updateLang" />
 <!-- class="fit row wrap justify-center items-start content-start" -->
-    <q-page-container class="q-pa-md" ><br>
-      <Breadcrumbs />
-      <router-view class="fit row wrap justify-center items-start content-start"/>
+    <q-page-container class="" >
+
+      <router-view class="fit row wrap items-start content-start"/>
+      <Breadcrumbs class="breadcrumbs" floating/>
     </q-page-container>
 
     <Footer />

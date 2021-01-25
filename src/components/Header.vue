@@ -64,7 +64,7 @@
           <q-btn to="/about" >about</q-btn>
           <q-btn to="/services" >services</q-btn>
           <q-btn to="/products" >products</q-btn>
-          <q-btn to="#" >clients</q-btn>
+          <q-btn to="/customers" >clients</q-btn>
           <q-btn to="/courses" >courses</q-btn>
           <q-btn to="/jobs" >join us</q-btn>
 
@@ -75,40 +75,6 @@
 
 
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-          <q-btn v-if="$q.screen.gt.xs" dense flat round size="sm" icon="notifications" />
-
-
-        <q-btn v-if="$q.screen.gt.xs" dense flat>
-            <div class="row items-center no-wrap">
-              <q-icon name="add" size="20px" />
-              <q-icon name="arrow_drop_down" size="16px" style="margin-left: -2px" />
-            </div>
-
-
-
-            <q-menu auto-close>
-              <q-list dense style="min-width: 100px">
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>Import repository</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New gist</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New organization</q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item-label header>This repository</q-item-label>
-                <q-item clickable class="GL__menu-link">
-                  <q-item-section>New issue</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-
 
             <q-select
               v-model="lang"
