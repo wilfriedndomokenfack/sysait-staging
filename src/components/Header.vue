@@ -111,7 +111,6 @@
 
 
             <q-select
-
               v-model="lang"
               :options="langOptions"
               dense
@@ -138,7 +137,7 @@
                 transition-show="rotate"
                 transition-hide="rotate"
               >
-                {{ $t('logOut') }}
+                logout
               </q-tooltip>
             </q-btn>
 

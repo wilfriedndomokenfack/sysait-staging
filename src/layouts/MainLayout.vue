@@ -61,7 +61,6 @@ export default {
         store.dispatch("setCompany", { ...temp} );
     },
     updateLang(lang){
-      console.log(lang)
       this.$i18n.locale = lang
       this.myKey = !this.myKey
     }
