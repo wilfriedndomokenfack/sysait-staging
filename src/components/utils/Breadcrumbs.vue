@@ -27,7 +27,6 @@
   },
   computed: {
     breadcrumbs () {
-      console.log(this.$route.matched)
         return this.$route.matched
     },
     activeBreadcrumbs () {

@@ -129,13 +129,13 @@ const routes = [
           {
             path: "job",
             name: 'job',
-            meta: { breadcrumb: 'product' },
+            meta: { breadcrumb: 'job' },
             component: () => import('pages/jobs/Job.vue'),
           },
           {
             path: "new",
             name: 'newJob',
-            meta: { breadcrumb: 'Create a new course' },
+            meta: { breadcrumb: 'Create a new job' },
             component: () => import('pages/jobs/NewJob.vue'),
           },
           {
@@ -143,6 +143,37 @@ const routes = [
             name: 'editJob',
             meta: { breadcrumb: 'Edit a job' },
             component: () => import('pages/jobs/EditJob.vue'),
+          }
+
+        ]
+      },
+      {
+        path: 'customers/',
+        component: RouterContainer,
+        children: [
+          {
+            path: "",
+            name: 'customers',
+            meta: { breadcrumb: 'Our customers' },
+            component: () => import('pages/customers/Customers.vue'),
+          },
+          {
+            path: "customer",
+            name: 'customer',
+            meta: { breadcrumb: 'product' },
+            component: () => import('pages/customers/Customer.vue'),
+          },
+          {
+            path: "new",
+            name: 'newCustomer',
+            meta: { breadcrumb: 'Create a new customer' },
+            component: () => import('pages/customers/NewCustomer.vue'),
+          },
+          {
+            path: "customer/edit",
+            name: 'editCustomer',
+            meta: { breadcrumb: 'Edit a customer' },
+            component: () => import('pages/customers/EditCustomer.vue'),
           }
 
         ]
