@@ -68,7 +68,11 @@
       style="padding-left:95px;"
     >
       <!-- <q-img src="logo.jpg" style="width:100px;height:50px;"></q-img> -->
-      <img :src="require('@/assets/logo.jpg')" height="50px" width="100px" />
+      <img
+        :src="require('@/assets/logo_sysait_gris.png')"
+        height="50px"
+        width="100px"
+      />
       <!--  <img
                       style="width: 170px; height:"
                       :ratio="1"
@@ -118,30 +122,30 @@
 
 <script>
 import { mapGetters } from "vuex";
-const stringOptions = [
-  "quasarframework/quasar",
-  "quasarframework/quasar-awesome"
-];
 
 export default {
   name: "Header",
   data() {
     return {
       lang: this.$i18n.locale,
-      langOptions: [],
-      text: "",
-      options: null,
-      filteredOptions: []
+      langOptions: []
     };
   },
+
   watch: {
     lang(lang) {
       this.$i18n.locale = lang;
-      this.updateValues();
+      //this.emitLang();
+    },
+    langCange: {
+      immediate: true,
+      handler() {
+        this.updateValues();
+      }
     }
   },
   computed: {
-    ...mapGetters(["copmany"])
+    ...mapGetters(["company", "langCange"])
   },
   mounted() {
     this.updateValues();
@@ -153,43 +157,13 @@ export default {
         { value: "en-us", label: this.$t("english") },
         { value: "fr", label: this.$t("french") }
       ];
-    },
-
-    filter(val, update) {
-      if (this.options === null) {
-        // load data
-        setTimeout(() => {
-          this.options = stringOptions;
-          this.$refs.search.filter("");
-        }, 2000);
-        update();
-        return;
-      }
-      if (val === "") {
-        update(() => {
-          this.filteredOptions = this.options.map(op => ({ label: op }));
-        });
-        return;
-      }
-      update(() => {
-        this.filteredOptions = [
-          {
-            label: val,
-            type: "In this repository"
-          },
-          {
-            label: val,
-            type: "All GitHub"
-          },
-          ...this.options
-            .filter(op => op.toLowerCase().includes(val.toLowerCase()))
-            .map(op => ({ label: op }))
-        ];
-      });
     }
-  },
-
-  created() {}
+    // adde this in methods:
+    //emitLang() {
+    //this.$store.dispatch("setLang");
+    //this.$emit("lang", this.lang);
+    //}
+  }
 };
 </script>
 <style lang="scss">
