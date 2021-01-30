@@ -1,5 +1,5 @@
 <template>
-  <q-layout class="bg-grey-1" :key="myKey">
+  <q-layout class="bg-grey-1">
 
     <Header v-on:lang="updateLang" />
 <!-- class="fit row wrap justify-center items-start content-start" -->
@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      myKey: 0,
+
     }
   },
   mounted(){
@@ -44,6 +44,7 @@ export default {
     ...mapGetters(
       [
         'company',
+
       ]),
   },
   methods: {
@@ -61,9 +62,8 @@ export default {
 
         store.dispatch("setCompany", { ...temp} );
     },
-    updateLang(lang){
-      this.$i18n.locale = lang
-      this.myKey = !this.myKey
+    updateLang(){
+       store.dispatch("setLang" );
     }
   }
 
