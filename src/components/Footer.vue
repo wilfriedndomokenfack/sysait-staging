@@ -107,7 +107,7 @@
                     <div class="q-pa-md q-gutter-md" style="max-width: 350px">
                       <div>
 
-                          <q-item class="cursor" v-for="(social, index) in socialMedia" :key="index" clickable>
+                          <q-item class="cursor" v-for="(social, index) in socialMedia" :key="index" clickable @click="socialLink(social.link)">
                             <q-item-section avatar >
                               <q-icon class="color_sysait_cerulean" :name="social.icon" />
                             </q-item-section>
@@ -145,6 +145,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 export default {
   name: 'Footer',
   data () {
@@ -176,6 +177,8 @@ export default {
   },
 
    mounted(){
+     let year = moment().format('YYYY')
+     this.copyright = `${year} sysait.com all rights reserved.`,
      this.updateValues(),
      this.socialMedia= [
         {icon: "fab fa-whatsapp", label: "Whatsapp", link: this.company.whatsapp},
