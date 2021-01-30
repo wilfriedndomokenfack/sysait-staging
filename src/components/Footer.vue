@@ -163,7 +163,7 @@ export default {
     langCange: {
       immediate: true,
       handler() {
-        this.updateLang()
+        this.updateValues()
       }
     },
   },
