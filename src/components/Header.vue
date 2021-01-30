@@ -69,7 +69,15 @@
     >
       <!-- <q-img src="logo.jpg" style="width:100px;height:50px;"></q-img> -->
       <img :src="require('@/assets/logo.jpg')" height="50px" width="100px" />
-
+      <!--  <img
+                      style="width: 170px; height:"
+                      :ratio="1"
+                      basic
+                      spinner-color="white"
+                      class="rounded-borders"
+                      src="~assets/logo_sysait_gris.png"
+                    >
+ -->
       <q-space />
       <q-btn to="/" stretch flat label="Home" />
       <q-separator vertical inset />

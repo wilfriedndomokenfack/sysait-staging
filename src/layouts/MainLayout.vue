@@ -1,11 +1,12 @@
 <template>
   <q-layout class="bg-grey-1">
 
-    <Header />
+    <Header v-on:lang="updateLang" />
 <!-- class="fit row wrap justify-center items-start content-start" -->
-    <q-page-container class="q-pa-md" ><br>
-      <Breadcrumbs />
-      <router-view class="fit row wrap justify-center items-start content-start"/>
+    <q-page-container class="" >
+
+      <router-view class="fit row wrap items-start content-start"/>
+      <Breadcrumbs class="breadcrumbs" floating/>
     </q-page-container>
 
     <Footer />
@@ -30,7 +31,7 @@ export default {
   },
   data() {
     return {
-      propCompany: null
+
     }
   },
   mounted(){
@@ -43,6 +44,7 @@ export default {
     ...mapGetters(
       [
         'company',
+
       ]),
   },
   methods: {
@@ -59,6 +61,9 @@ export default {
         }
 
         store.dispatch("setCompany", { ...temp} );
+    },
+    updateLang(){
+       store.dispatch("setLang" );
     }
   }
 

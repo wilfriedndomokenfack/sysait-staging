@@ -3,7 +3,7 @@
     <!-- content -->
     <div>
       <h5>
-        Courses page
+        Customers page
       </h5>
     </div>
   </q-page>
@@ -11,6 +11,6 @@
 
 <script>
 export default {
-  name: 'Courses',
+  // name: 'PageName',
 }
 </script>

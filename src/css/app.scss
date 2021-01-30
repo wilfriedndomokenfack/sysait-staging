@@ -7,3 +7,11 @@
   color: $sysait_cerulean;
 }
 
+.breadcrumbs {
+  color: $sysait_cerise;
+  position: absolute;
+  top: 100px;
+  border: 1px solid $sysait_cerulean;
+  border-radius: 5px;
+  background-color: $sysait_gallery;
+}
