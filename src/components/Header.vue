@@ -83,14 +83,14 @@
                     >
  -->
       <q-space />
-      <q-btn to="/" stretch flat label="Home" />
+      <q-btn to="/" stretch flat>{{ $t("home") }}</q-btn>
       <q-separator vertical inset />
 
-      <q-btn to="/about" stretch flat label="About" />
+      <q-btn to="/about" stretch flat>{{ $t("about") }}</q-btn>
       <q-separator vertical inset />
-      <q-btn to="/services" stretch flat label="Services" />
+      <q-btn to="/services" stretch flat>{{ $t("service") }}</q-btn>
       <q-separator vertical inset />
-      <q-btn-dropdown to="/products" stretch flat label="Products">
+      <q-btn-dropdown to="/products" stretch flat :label="$t('product')">
         <q-list>
           <q-item clickable v-close-popup tabindex="0">
             <q-item-section>
@@ -111,11 +111,11 @@
       </q-btn-dropdown>
 
       <q-separator vertical inset />
-      <q-btn stretch flat label="Clients" />
+      <q-btn stretch flat :label="$t('client')" />
       <q-separator vertical inset />
-      <q-btn to="/courses" stretch flat label="Courses" />
+      <q-btn to="/courses" stretch flat :label="$t('courses')" />
       <q-separator vertical inset />
-      <q-btn to="/jobs" stretch flat label="Join us" />
+      <q-btn to="/jobs" stretch flat :label="$t('join')" />
     </q-toolbar>
   </q-header>
 </template>
@@ -135,7 +135,7 @@ export default {
   watch: {
     lang(lang) {
       this.$i18n.locale = lang;
-      //this.emitLang();
+      this.emitLang();
     },
     langCange: {
       immediate: true,
@@ -157,12 +157,12 @@ export default {
         { value: "en-us", label: this.$t("english") },
         { value: "fr", label: this.$t("french") }
       ];
-    }
+    },
     // adde this in methods:
-    //emitLang() {
-    //this.$store.dispatch("setLang");
-    //this.$emit("lang", this.lang);
-    //}
+    emitLang() {
+      this.$store.dispatch("setLang");
+      //this.$emit("lang", this.lang);
+    }
   }
 };
 </script>
