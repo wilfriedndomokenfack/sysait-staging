@@ -184,3 +184,10 @@ export default {
   created() {}
 };
 </script>
+<style lang="scss">
+.menu_header {
+  a:hover {
+    background-color: $sysait_cerulean;
+  }
+}
+</style>
