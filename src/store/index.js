@@ -6,7 +6,6 @@ Vue.use(Vuex)
 const initialState = () => {
   const startState = {
     currentUser: null,
-    lang: true,
     company: {
        denomination: 'System Afrik Information and Technology',
       vision: 'Our vision is to excel in the field of international IT consulting. We are innovators, we create solutions \
@@ -83,10 +82,6 @@ export default new Store({
   state: initialState(),
 
   mutations: {
-    setLang(state){
-      state.lang = !state.lang
-    },
-
     setCurrentUser (state, payload) {
       state.currentUser = payload
     },
@@ -98,7 +93,6 @@ export default new Store({
     }
   },
   getters: {
-    langCange: state => state.lang,
     sponsors: state => state.sponsors,
     customers: state => state.customers,
     currentUser: state => state.currentUser,
@@ -109,9 +103,6 @@ export default new Store({
     previousRoute: state => (state.route ? state.route.from.name : null)
   },
   actions: {
-    setLang({commit}){
-      commit('setLang')
-    },
     setCurrentUser ({ commit }, payload) {
       commit('setCurrentUser', payload)
     },

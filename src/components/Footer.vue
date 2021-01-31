@@ -113,18 +113,6 @@
                             </q-item-section>
                             <q-item-section color="dark" ><b>{{ social.label }}</b></q-item-section>
                           </q-item>
-
-
-                        <!-- <q-item v-for="(social, index) in socialMedia" :key="index" >
-                          <div v-if="social.label.length>0" class="row cursor" @click="socialLink(social.link)"  v-ripple clickable>
-                            <q-item-section avatar>
-                              <q-icon class="color_sysait_cerulean" :name="social.icon"/>
-                              </q-item-section>
-                            <q-item-section color="dark" ><b>{{ social.label }}</b></q-item-section>
-                          </div>
-                        </q-item> -->
-
-
                       </div>
                     </div>
                   </div>
