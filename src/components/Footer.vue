@@ -88,7 +88,7 @@
                   </div>
                   <div class="q-pa-md q-gutter-md" style="max-width: 350px">
                     <q-list>
-                        <q-item class="cursor" v-for="(service, index) in services" :key="index" clickable>
+                        <q-item :to="service.path" class="cursor" v-for="(service, index) in services" :key="index" clickable>
                           <q-item-section avatar>
                             <q-icon class="color_sysait_cerulean" :name="service.icon" />
                           </q-item-section>
@@ -151,8 +151,8 @@ export default {
   data () {
     return {
       copyright: "2021 sysait.com all rights reserved.",
-      phoneIcon: "phone",
-      emailIcon: "mail",
+      phoneIcon: "fas fa-phone-alt",
+      emailIcon: "fas fa-envelope",
       positionIcon: "fas fa-map-marker-alt",
       services: null,
       socialMedia: []
@@ -190,10 +190,10 @@ export default {
   methods: {
      updateValues() {
       this.services= [
-        {icon:'fab fa-servicestack', label: this.$t('services')},
-        {icon:'fab fa-product-hunt', label: this.$t('products')},
-        {icon:'fas fa-user-tie', label: this.$t('aboutUs')},
-        {icon:'fas fa-id-card', label: this.$t('contacts')}
+        {icon:'fab fa-servicestack', label: this.$t('services'), path: "services"},
+        {icon:'fab fa-product-hunt', label: this.$t('products'), path: "products"},
+        {icon:'fas fa-user-tie', label: this.$t('aboutUs'), path: "about"},
+        {icon:'fas fa-id-card', label: this.$t('contacts'), path: "contact"}
       ]
     },
     socialLink(link){
