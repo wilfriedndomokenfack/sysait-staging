@@ -177,6 +177,12 @@ const routes = [
           }
 
         ]
+      },
+      {
+        path: "contact",
+        name: 'contact',
+        meta: { breadcrumb: 'Contact us page' },
+        component: () => import('pages/contacts/Contact.vue'),
       }
 
     ]
