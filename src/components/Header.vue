@@ -1,19 +1,19 @@
 <template>
   <q-header elevated class="text-white">
     <!--elevated class="bg-dark text-white"> -->
-    <div class="row justify-center" style="background:#1d1d1d;height: 45px;">
+    <div class="row justify-center" style="background:#1d1d1d;height:35px;">
       <div class="col-1"></div>
-      <div class="col-1" style="padding-top:10px;">
+      <div class="col-2" style="padding-top:5px;">
         <i class="far fa-envelope color_sysait_cerulean"></i>
-        sysait.com
+        {{ company.email }}
       </div>
-      <div class="col-1" style="padding-top:10px;">
+      <div class="col-2" style="padding-top:5px;">
         <i class="fas fa-phone-square-alt color_sysait_cerulean"></i>
-        3206328224
+        {{ company.phone_number }}
       </div>
-      <div class="col-6"></div>
-      <div class="col-1" style="padding-top:5px;">
-        <!-- <q-btn-dropdown stretch flat label="EN">
+      <div class="col-4"></div>
+      <div class="col-1" style="padding-top:2px;">
+        <!-- style="padding-top:10px;"<q-btn-dropdown stretch flat label="EN">
           <q-list>
             <q-item clickable v-close-popup tabindex="0">
               <q-item-section avatar>
@@ -46,7 +46,7 @@
           emit-value
           map-options
           options-dense
-          style="min-width: 100px; background: white"
+          style="min-width: 70px; height:25px; background: white"
         >
           <q-tooltip
             :offset="[10, 10]"
@@ -57,7 +57,7 @@
           </q-tooltip>
         </q-select>
       </div>
-      <div class="col-1" style="padding-top:5px;">
+      <div class="col-1" style="padding-top:1px;">
         <q-btn stretch flat label="Sign in" />
       </div>
       <div class="col-1"></div>
@@ -67,21 +67,8 @@
       class="bg-white text-dark shadow-2 rounded-borders"
       style="padding-left:95px;"
     >
-      <!-- <q-img src="logo.jpg" style="width:100px;height:50px;"></q-img> -->
-      <img
-        :src="require('@/assets/logo_sysait_gris.png')"
-        height="50px"
-        width="100px"
-      />
-      <!--  <img
-                      style="width: 170px; height:"
-                      :ratio="1"
-                      basic
-                      spinner-color="white"
-                      class="rounded-borders"
-                      src="~assets/logo_sysait_gris.png"
-                    >
- -->
+      <img :src="require('@/assets/logo.png')" height="50px" width="100px" />
+
       <q-space />
       <q-btn to="/" stretch flat>{{ $t("home") }}</q-btn>
       <q-separator vertical inset />
@@ -91,7 +78,7 @@
       <q-btn to="/services" stretch flat>{{ $t("service") }}</q-btn>
       <q-separator vertical inset />
       <q-btn-dropdown to="/products" stretch flat :label="$t('product')">
-        <q-list>
+        <!-- <q-list>
           <q-item clickable v-close-popup tabindex="0">
             <q-item-section>
               <q-item-label>App mobiles</q-item-label>
@@ -107,7 +94,7 @@
               <q-item-label>Photos</q-item-label>
             </q-item-section>
           </q-item>
-        </q-list>
+        </q-list> -->
       </q-btn-dropdown>
 
       <q-separator vertical inset />
@@ -153,9 +140,16 @@ export default {
   methods: {
     updateValues() {
       this.langOptions = [
-        { value: "it", label: this.$t("italian") },
-        { value: "en-us", label: this.$t("english") },
-        { value: "fr", label: this.$t("french") }
+        /* {
+          label: 'Apple',
+          value: 'Apple',
+          description: 'iStuff',
+          icon: 'golf_course'
+        }, */
+
+        { value: "it", label: this.$t("italian"), icon: "mail" },
+        { value: "en-us", label: this.$t("english"), icon: "mail" },
+        { value: "fr", label: this.$t("french"), icon: "mail" }
       ];
     },
     // adde this in methods:
