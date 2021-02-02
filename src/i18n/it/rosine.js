@@ -4,11 +4,12 @@ export const rosineTranslations = {
 
   home: "Home",
   about: "About",
-  service: "Servizi",
-  product: "Produtti",
-  client:"Clienti",
+  services: "Servizi",
+  products: "Produtti",
+  clients:"Clienti",
   courses: "Corsi",
-  join:"Lavora con noi",
+  joins:"Lavora con noi",
+  contacts: "Contatti",
 
   english: "Inglese",
   italian: "Italiano",
