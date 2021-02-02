@@ -1,12 +1,13 @@
 <template>
-  <q-header elevated class="text-white ">
+  <q-header elevated class="text-dark ">
     <div
-      class="row justify-between items-center text-center bg_sysait_black padding_header"
+      class="row justify-between items-center text-center bg_sysait_gallery"
+      :class="{ padding_header: !$q.screen.lt.sm }"
     >
       <div
         class=" row col-xs-12 col-sm-12 col-md-4 justify-around text-center size_header "
       >
-        <div class="col-xs-7 col-sm-8 col-md-7 ">
+        <div class="col-xs-8 col-sm-8 col-md-7 ">
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
         </div>
@@ -19,20 +20,19 @@
       <div
         class=" row col-xs-12 col-sm-12  col-md-4 justify-around items-center text-center  "
       >
-        <div class="col-xs-6 col-sm-8 col-md-3 ">
+        <div class="col-xs-6 col-sm-9 col-md-3 ">
           <div class="color_sysait_cerulean"><b>Sign in</b></div>
         </div>
 
-        <div class="col-xs-6 col-sm-4 col-md-4 ">
+        <div class="col-xs-4 col-sm-2 col-md-4 ">
           <q-select
             v-model="lang"
             :options="langOptions"
             dense
-            outlined
+            borderless
             emit-value
             map-options
             options-dense
-            style="background: white"
           >
             <q-tooltip
               :offset="[10, 10]"
@@ -64,49 +64,53 @@
      
     </div>-->
     <q-toolbar
-      class="bg-white text-dark shadow-2 rounded-borders padding_header"
+      class="bg-white text-dark shadow-2 rounded-borders"
+      :class="{ padding_header: !$q.screen.lt.sm }"
     >
       <img :src="require('@/assets/logo.png')" height="50px" width="100px" />
-
+      {{ deviceMobile }}
       <q-space />
 
-      <q-btn to="/" class="size_header" flat>{{ $t("home") }}</q-btn>
-      <q-separator color="dark" vertical inset />
+      <q-btn v-show="deviceMobile" to="/" class="size_header" flat>{{
+        $t("home")
+      }}</q-btn>
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
 
-      <q-btn v-show="drawerRight" to="/about" class="size_header" flat>{{
+      <q-btn v-show="deviceMobile" to="/about" class="size_header" flat>{{
         $t("about")
       }}</q-btn>
-      <q-separator color="dark" vertical inset />
-      <q-btn v-show="drawerRight" to="/services" class="size_header" flat>{{
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-btn v-show="deviceMobile" to="/services" class="size_header" flat>{{
         $t("service")
       }}</q-btn>
-      <q-separator color="dark" vertical inset />
-      <q-btn-dropdown
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-btn
+        v-show="deviceMobile"
         to="/products"
         class="size_header"
         flat
         :label="$t('products')"
-      >
-      </q-btn-dropdown>
+      />
 
-      <q-separator color="dark" vertical inset />
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
       <q-btn
-        v-show="drawerRight"
+        to="/customers"
+        v-show="deviceMobile"
         flat
         class="size_header"
         :label="$t('clients')"
       />
-      <q-separator color="dark" vertical inset />
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
       <q-btn
-        v-show="drawerRight"
+        v-show="deviceMobile"
         to="/courses"
         class="size_header"
         flat
         :label="$t('courses')"
       />
-      <q-separator color="dark" vertical inset />
+      <q-separator v-show="deviceMobile" color="dark" vertical inset />
       <q-btn
-        v-show="drawerRight"
+        v-show="deviceMobile"
         to="/jobs"
         class="size_header"
         flat
@@ -114,15 +118,48 @@
       />
 
       <q-btn
-        v-show="drawerRight"
+        v-show="deviceMobile"
         to="/contacts"
         class="bg_sysait_cerulean  text-white size_header"
         dense
         :label="$t('contacts')"
       />
-      <q-btn flat @click="drawerRight = !drawerRight" round dense icon="menu" />
+
+      <div class="q-pa-md">
+        <q-btn-dropdown
+          split
+          class="glossy color_sysait_cerulean"
+          dropdown-icon="menu"
+          v-show="!deviceMobile"
+          @click="drawerRight = !drawerRight"
+        >
+          <q-list class="item-center">
+            <div
+              v-for="(item, index) in menu"
+              :key="index"
+              style="width:100px;"
+            >
+              <q-item :to="item.link" clickable dense v-close-popup>
+                <q-item-section>
+                  <q-item-label>{{ item.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+              <!-- <q-separator spaced color="dark" /> -->
+            </div>
+          </q-list>
+        </q-btn-dropdown>
+      </div>
     </q-toolbar>
-    <q-drawer
+    <!--<q-btn
+        v-show="!deviceMobile"
+        flat
+        @click="drawerRight = !drawerRight"
+        round
+        dense
+        icon="menu"
+      />
+    
+     <q-drawer
       side="right"
       v-model="drawerRight"
       bordered
@@ -135,7 +172,17 @@
           <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
         </div>
       </q-scroll-area>
-    </q-drawer>
+
+      <q-btn-dropdown>
+        <q-btn
+          to="/"
+          v-show="deviceMobile"
+          flat
+          class="size_header"
+          :label="$t('h')"
+        />
+      </q-btn-dropdown>
+    </q-drawer> -->
   </q-header>
 </template>
 
@@ -166,7 +213,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["company", "langCange"])
+    ...mapGetters(["company", "langCange"]),
+    deviceMobile: function() {
+      // `this` points to the vm instance
+      return !(
+        this.$q.screen.lt.sm ||
+        this.$q.screen.lt.xs ||
+        this.$q.screen.lt.md
+      );
+    }
   },
   mounted() {
     this.updateValues();
@@ -187,6 +242,12 @@ export default {
         { label: this.$t("courses"), link: "/courses" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
+    },
+    onMainClick() {
+      // console.log('Clicked on main button')
+    },
+    onItemClick() {
+      // console.log('Clicked on an Item')
     },
 
     // adde this in methods:
@@ -222,5 +283,8 @@ export default {
 
 .click_menu:hover {
   background-color: white;
+}
+.bg_sysait_gallery {
+  background-color: $sysait_gallery;
 }
 </style>
