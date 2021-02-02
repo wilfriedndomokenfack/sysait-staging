@@ -88,8 +88,11 @@
     
       <q-carousel-slide :name="1" class="column no-wrap">
         <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-          <q-img class="rounded-borders col-3 full-height"  src="logosysait/logo sysait favico.jpg" />
-          <q-img class="rounded-borders col-3 full-height" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/free-logo-design-template-0e8ff2db52da3cd367b04572e8662852_screen.jpg?ts=1567181348" />
+          <q-item v-for="image in logoImg">
+          <q-item-side :image="getImage(image)"/>
+      </q-item>
+          <q-img class="responsive rounded-borders col-3 full-height"  src="~assets/logo-sysait-BON.jpg"  />
+          <q-img class="responsive rounded-borders col-3 full-height" src="~assets/logo-sysait-BON.jpg" />
           <q-img class="rounded-borders col-3 full-height" src="https://image.winudf.com/v2/image/Y29tLmtpbmdzaGlwLmxvZ29tYWtlcnByb2ZyZWVfc2NyZWVuXzEwXzE1MzI3MDg1MTVfMDI4/screen-10.jpg?fakeurl=1&type=.jpg" />
           <q-img class="rounded-borders col-3 full-height" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/free-logo-design-template-0e8ff2db52da3cd367b04572e8662852_screen.jpg?ts=1567181348" />
         </div>
@@ -124,6 +127,11 @@ export default {
     return {
       slide: 1
     }
-  }
+  },
+  methods: {
+    getImage: function (imageData) {
+        return `statics/faces/${imageData.id}.jpg`
+    }
+}
 }
 </script>
