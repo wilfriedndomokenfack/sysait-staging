@@ -74,16 +74,19 @@
       <q-btn v-show="deviceMobile" to="/" class="size_header" flat>{{
         $t("home")
       }}</q-btn>
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
 
       <q-btn v-show="deviceMobile" to="/about" class="size_header" flat>{{
         $t("about")
       }}</q-btn>
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
       <q-btn v-show="deviceMobile" to="/services" class="size_header" flat>{{
         $t("service")
       }}</q-btn>
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
       <q-btn
         v-show="deviceMobile"
         to="/products"
@@ -92,7 +95,8 @@
         :label="$t('products')"
       />
 
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
       <q-btn
         to="/customers"
         v-show="deviceMobile"
@@ -100,7 +104,8 @@
         class="size_header"
         :label="$t('clients')"
       />
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
       <q-btn
         v-show="deviceMobile"
         to="/courses"
@@ -108,7 +113,8 @@
         flat
         :label="$t('courses')"
       />
-      <q-separator v-show="deviceMobile" color="dark" vertical inset />
+      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
       <q-btn
         v-show="deviceMobile"
         to="/jobs"
@@ -128,6 +134,7 @@
       <div class="q-pa-md">
         <q-btn-dropdown
           split
+          label="menu"
           class="glossy color_sysait_cerulean"
           dropdown-icon="menu"
           v-show="!deviceMobile"
