@@ -179,10 +179,17 @@ const routes = [
         ]
       },
       {
+<<<<<<< HEAD
         path: "contact",
         name: 'contact',
         meta: { breadcrumb: 'Contact us page' },
         component: () => import('pages/contacts/Contact.vue'),
+=======
+        path: "signin",
+        name: 'signin',
+        meta: { breadcrumb: 'Sign in' },
+        component: () => import('pages/signins/Signin.vue'),
+>>>>>>> d095af181922dc8b93c7cd57e5396a91c53042d3
       }
 
     ]
