@@ -7,11 +7,16 @@
       <div
         class=" row col-xs-12 col-sm-12 col-md-4 justify-around text-center size_header"
       >
-        <div class="col-xs-5 col-sm-8 col-md-7 ">
+        <div
+          clickable
+          @click="mailTo(company.email)"
+          class="col-xs-5 col-sm-8 col-md-7 cursor "
+        >
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
         </div>
-        <div class="col-xs-5 col-sm-4 col-md-5 ">
+
+        <div clickable @click="mailTo(company.phone_number)" class="col-xs-5 col-sm-4 col-md-5 cursor">
           <q-btn size="8px" flat dense icon="fa fa-phone" color="primary" />
 
           {{ company.phone_number }}
@@ -61,10 +66,16 @@
       class="bg-white text-dark shadow-2 "
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
-      &nbsp;&nbsp;&nbsp;&nbsp;<img
+      &nbsp;&nbsp;&nbsp;&nbsp;<!-- <img 
         :src="require('@/assets/logo.png')"
         height="50px"
-      />
+      /> -->
+      <q-item clickable to="/">
+        <img style="width: 90px; height: auto;" src="~assets/logo.png" />
+      </q-item>
+
+      <!-- <q-img clickable to:="/" :src="require('@/assets/logo.png')"  style="width: 10%;
+      height: auto;" /> -->
 
       <q-space />
       <div v-for="(item, index) in menu" :key="index">
@@ -87,7 +98,7 @@
 
       <q-btn
         v-show="deviceMobile"
-        to="/contacts"
+        to="/contact"
         class="bg_sysait_cerulean  text-white size_header padding_contact"
         dense
         no-caps
@@ -119,39 +130,6 @@
         </q-btn-dropdown>
       </div>
     </q-toolbar>
-    <!--<q-btn
-        v-show="!deviceMobile"
-        flat
-        @click="drawerRight = !drawerRight"
-        round
-        dense
-        icon="menu"
-      />
-    
-     <q-drawer
-      side="right"
-      v-model="drawerRight"
-      bordered
-      :width="200"
-      :breakpoint="500"
-      content-class="bg-grey-3"
-    >
-      <q-scroll-area class="fit">
-        <div class="q-pa-sm">
-          <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-        </div>
-      </q-scroll-area>
-
-      <q-btn-dropdown>
-        <q-btn
-          to="/"
-          v-show="deviceMobile"
-          flat
-          class="size_header"
-          :label="$t('h')"
-        />
-      </q-btn-dropdown>
-    </q-drawer> -->
   </q-header>
 </template>
 
@@ -212,13 +190,16 @@ export default {
         { label: this.$t("joins"), link: "/jobs" }
       ];
     },
-    onMainClick() {
-      // console.log('Clicked on main button')
+    mailTo(telMail) {
+      let link = null;
+      if (telMail.includes("@")) {
+        link = `mailto:${telMail}`;
+      } else {
+        link = `tel:${telMail}`;
+      }
+      window.open(link, "_blank");
     },
-    onItemClick() {
-      // console.log('Clicked on an Item')
-    },
-
+   
     // adde this in methods:
     emitLang() {
       this.$store.dispatch("setLang");
@@ -234,7 +215,7 @@ export default {
   }
 }
 .size_header {
-  font-size: 10px;
+  font-size: 12px;
 }
 .bg_sysait_black {
   background-color: $sysait_black;
@@ -262,6 +243,9 @@ export default {
 .q-field__marginal {
   color: white;
   height: 36px;
+}
+.cursor {
+  cursor: pointer;
 }
 // we will move this code in the global css e make this css scoped
 .q-field__native,
