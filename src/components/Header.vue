@@ -1,7 +1,7 @@
 <template>
-  <q-header elevated class="text-dark ">
+  <q-header elevated class="text-white ">
     <div
-      class="row justify-between items-center text-center bg_sysait_gallery"
+      class="row justify-between items-center text-center bg_sysait_black"
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
       <div
@@ -21,10 +21,19 @@
         class=" row col-xs-12 col-sm-12  col-md-4 justify-around items-center text-center  "
       >
         <div class="col-xs-6 col-sm-9 col-md-3 ">
-          <div class="color_sysait_cerulean"><b>Sign in</b></div>
+          <q-btn
+            class="color_sysait_cerulean"
+            to="/"
+            flat
+            no-caps
+            dense
+            color="primary"
+            label="Sign in"
+          />
+          <!-- <div class=""><b>Sign in</b></div> -->
         </div>
 
-        <div class="col-xs-4 col-sm-2 col-md-4 ">
+        <div class="col-xs-2 col-sm-2 col-md-3">
           <q-select
             v-model="lang"
             :options="langOptions"
@@ -33,6 +42,8 @@
             emit-value
             map-options
             options-dense
+            class="pippo"
+            style=""
           >
             <q-tooltip
               :offset="[10, 10]"
@@ -62,72 +73,33 @@
         </div>
       </div> 
      
-    </div>-->
+    </div> rounded-borders-->
     <q-toolbar
-      class="bg-white text-dark shadow-2 rounded-borders"
+      class="bg-white text-dark shadow-2 "
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
       <img :src="require('@/assets/logo.png')" height="50px" width="100px" />
-      {{ deviceMobile }}
+
       <q-space />
-
-      <q-btn v-show="deviceMobile" to="/" class="size_header" flat>{{
-        $t("home")
-      }}</q-btn>
       <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-
-      <q-btn v-show="deviceMobile" to="/about" class="size_header" flat>{{
-        $t("about")
-      }}</q-btn>
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-      <q-btn v-show="deviceMobile" to="/services" class="size_header" flat>{{
-        $t("service")
-      }}</q-btn>
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-      <q-btn
-        v-show="deviceMobile"
-        to="/products"
-        class="size_header"
-        flat
-        :label="$t('products')"
-      />
-
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-      <q-btn
-        to="/customers"
-        v-show="deviceMobile"
-        flat
-        class="size_header"
-        :label="$t('clients')"
-      />
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-      <q-btn
-        v-show="deviceMobile"
-        to="/courses"
-        class="size_header"
-        flat
-        :label="$t('courses')"
-      />
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
-      <!-- <q-separator v-show="deviceMobile" color="dark" vertical inset /> -->
-      <q-btn
-        v-show="deviceMobile"
-        to="/jobs"
-        class="size_header"
-        flat
-        :label="$t('joins')"
-      />
+      <div v-for="(item, index) in menu" :key="index">
+        <q-btn
+          v-show="deviceMobile"
+          :to="item.link"
+          class="size_header"
+          flat
+          no-caps
+          :label="item.label"
+        />
+        <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+      </div>
 
       <q-btn
         v-show="deviceMobile"
         to="/contacts"
-        class="bg_sysait_cerulean  text-white size_header"
+        class="bg_sysait_cerulean  text-white size_header padding_contact"
         dense
+        no-caps
         :label="$t('contacts')"
       />
 
@@ -151,7 +123,6 @@
                   <q-item-label>{{ item.label }}</q-item-label>
                 </q-item-section>
               </q-item>
-              <!-- <q-separator spaced color="dark" /> -->
             </div>
           </q-list>
         </q-btn-dropdown>
@@ -293,5 +264,19 @@ export default {
 }
 .bg_sysait_gallery {
   background-color: $sysait_gallery;
+}
+.padding_contact {
+  padding-left: 0px;
+}
+.q-field__marginal {
+  color: white;
+  height: 36px;
+}
+// we will move this code in the global css e make this css scoped
+.q-field__native,
+.q-field__prefix,
+.q-field__suffix,
+.q-field__input {
+  color: white;
 }
 </style>
