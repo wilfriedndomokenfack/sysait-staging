@@ -5,9 +5,9 @@
       <!-- page content -->
        
       <div class="text-pink text-center text-italic text-subtitle1  col-md q-ma-md">Let's create a new Word with Technology!</div>
-      <div class="text-h5  col-md q-ma-md">Ready to start a new project with us? That's great! Give us a call or send us an email and we will contact you as soon as possible!</div>
+      <div class="  col-md q-ma-md">Ready to start a new project with us? That's great! Give us a call or send us an email and we will contact you as soon as possible!</div>
       
-        <div class="">
+        <!--div class="">
                 
             <div class="q-pa-md">
                 <q-carousel
@@ -78,7 +78,7 @@
                 </q-carousel >
            
 
-        </div> 
+        </div--> 
 
     
     </q-page>

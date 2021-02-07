@@ -75,13 +75,11 @@
 
     <div class="row q-my-lg">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg" v-for= "tecnologie in tecnologies">
-            
-            <div class="color_sysait_cerulean" style="font-size: 2em">
-                 <q-icon class="color_sysait_cerulean" :name="fasDatabase" />
-                {{ tecnologie.icon}}
-             </div>    
-            <div class="text-h5 text-bold">{{ tecnologie.name}}</div>
-            <div class="text-h6 ">{{ tecnologie.content}}</div>
+            <div class="text-info " style="font-size: 2em">
+             <q-icon :name= tecnologie.icon class="color_sysait_cerulean" />
+            </div>
+             <div class="text-h7 text-bold">{{ tecnologie.name}}</div>
+            <div>{{ tecnologie.content}}</div>
 
         </div>
        
@@ -111,19 +109,19 @@ export default {
 					{
 						id: 1,
 						name: 'Futur',
-						icon: "fasFont",
+						icon: "fa fa-arrow-up",
 						content: 'Artificial inteligent,Maching learning,...'						
 					},
 					{
 						id: 2,
 						name: 'Framework',
-						icon: "fab fa-whatsapp",
+						icon: "fa fa-retweet",
 						content: 'Ruby On Rails,Spring,Angular JS,Jquery,Bootstrap,...'	
 					},
 					{
 						id: 3,
 						name: 'Coding',
-						icon: "fab fa-whatsapp",
+						icon: "fa fa-code",
 						content: 'Ruby,HTML,CSS,JAVA,C,...'	
                     },
                     {
@@ -135,39 +133,30 @@ export default {
                      {
 						id: 5,
 						name: 'Mobile appications',
-						icon: "fab fa-whatsapp",
+						icon: "fa fa-mobile",
 						content: ''	
-                    },
-                     {
+             },
+            {
 						id: 6,
 						name: 'Web appications',
-						icon: "fab fa-whatsapp",
+						icon: "fa fa-desktop",
 						content: ''	
-                    },
-                      {
+           },
+            {
 						id: 7,
 						name: 'Projects management',
-						icon: "fab fa-whatsapp",
+						icon: "groups",
 						content: ''	
-                    },
-                     {
+          },
+           {
 						id: 8,
 						name: 'Customized software',
-						icon: "fab fa-whatsapp",
+						icon: "last_page",
 						content: ''	
 					}
 				]
     }
   },
-  created () {
-       this.fasFont = fasFont
-  },
-  methods: {
-    getImage: function (imageData) {
-        return `statics/faces/${imageData.id}.jpg`
-    }
-},
-
   computed: {
     ...mapGetters(
       [
