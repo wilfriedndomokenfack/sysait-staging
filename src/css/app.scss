@@ -1,0 +1,22 @@
+// app global css in SCSS form
+.bg_sysait_cerulean {
+  background: $sysait_cerulean;
+}
+
+.color_sysait_cerulean {
+  color: $sysait_cerulean;
+}
+
+.breadcrumbs {
+  color: $sysait_cerise;
+  position: absolute;
+  top: 120px;
+  border: 1px solid $sysait_cerulean;
+  border-radius: 5px;
+  background-color: $sysait_gallery;
+}
+
+.padding_header {
+  padding-left: 80px;
+  padding-right: 80px;
+}
