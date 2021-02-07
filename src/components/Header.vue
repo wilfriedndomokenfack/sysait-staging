@@ -5,9 +5,9 @@
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
       <div
-        class=" row col-xs-12 col-sm-12 col-md-4 justify-around text-center size_header "
+        class=" row col-xs-12 col-sm-12 col-md-4 justify-around text-center size_header"
       >
-        <div class="col-xs-8 col-sm-8 col-md-7 ">
+        <div class="col-xs-5 col-sm-8 col-md-7 ">
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
         </div>
@@ -20,10 +20,10 @@
       <div
         class=" row col-xs-12 col-sm-12  col-md-4 justify-around items-center text-center  "
       >
-        <div class="col-xs-6 col-sm-9 col-md-3 ">
+        <div class="col-xs-2 col-sm-4 col-md-3">
           <q-btn
             class="color_sysait_cerulean"
-            to="/"
+            to="/signin"
             flat
             no-caps
             dense
@@ -57,31 +57,16 @@
       </div>
     </div>
 
-    <!--<div class=" row bg-white">
-       <div class="col-xs-12 col-sm-12 col-md-3 justify-around  size_header ">
-        <img :src="require('@/assets/logo.png')" height="50px" width="100px" />
-      </div>
-      <div
-        class=" row col-xs-12 col-sm-12  col-md-9 justify-around items-center text-center text-dark "
-      >
-        <div
-          v-for="(item, index) in menu"
-          :key="index"
-          class="row col-xs-6 col-sm-8 col-md-1 vertical_bar click_menu  "
-        >
-          <span :to="item.link">{{ item.label }}</span>
-        </div>
-      </div> 
-     
-    </div> rounded-borders-->
     <q-toolbar
       class="bg-white text-dark shadow-2 "
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
-      <img :src="require('@/assets/logo.png')" height="50px" width="100px" />
+      &nbsp;&nbsp;&nbsp;&nbsp;<img
+        :src="require('@/assets/logo.png')"
+        height="50px"
+      />
 
       <q-space />
-      <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
       <div v-for="(item, index) in menu" :key="index">
         <q-btn
           v-show="deviceMobile"
@@ -91,7 +76,13 @@
           no-caps
           :label="item.label"
         />
-        <q-icon v-show="deviceMobile" size="3px" name="fa fa-circle" />
+
+        <q-icon
+          v-if="index !== menu.length - 1"
+          v-show="deviceMobile"
+          size="3px"
+          name="fa fa-circle"
+        />
       </div>
 
       <q-btn

@@ -177,6 +177,12 @@ const routes = [
           }
 
         ]
+      },
+      {
+        path: "signin",
+        name: 'signin',
+        meta: { breadcrumb: 'Sign in' },
+        component: () => import('pages/signin/Signin.vue'),
       }
 
     ]
