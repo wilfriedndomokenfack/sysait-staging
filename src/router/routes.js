@@ -183,10 +183,8 @@ const routes = [
         name: 'contact',
         meta: { breadcrumb: 'Contact us page' },
         component: () => import('pages/contacts/Contact.vue'),
-
       },
       {
-
         path: "signin",
         name: 'signin',
         meta: { breadcrumb: 'Sign in' },

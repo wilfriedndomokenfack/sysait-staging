@@ -1,13 +1,15 @@
 import Api from "@/models/Api";
-import { notify } from "@/models/utils/notifyUser"
-import store from "@/store";
 
-export const humanComponent = () => {
+export const humanComponent = () => Api().get("/human_components") // INDEX
 
-   let val = Api().get("/human_components"); // INDEX
-
-   debugger
-   return val
+export const saveHumanComponent = async hc => { // CREATE OR UPDATE
+  let responce = null
+  if(hc.id){
+    responce = await Api("base").patch(`/bu_diaries/${hc.id}`, hc ); // UPDATE
+  }else{
+    responce = await Api("base").post(`/bu_diaries`, hc ); // CREATE
+  }
+  return responce
 }
 
 

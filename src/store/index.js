@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 const initialState = () => {
   const startState = {
+    humanComponents: null,
     currentUser: null,
     lang: true,
     company: {
@@ -71,7 +72,58 @@ const initialState = () => {
       link: 'http://www.unife.it/it'
       },
     ],
+    tecnologies: [
+					{
+						id: 1,
+						name: 'Futur',
+						icon: "fa fa-arrow-up",
+						content: 'Artificial inteligent, Maching learning, ...'
+					},
+					{
+						id: 2,
+						name: 'Framework',
+						icon: "fa fa-retweet",
+						content: 'Ruby On Rails, Spring, Angular JS, Jquery, Bootstrap, ...'
+					},
+					{
+						id: 3,
+						name: 'Coding',
+						icon: "fa fa-code",
+						content: 'Ruby, HTML, CSS, JAVA, C, ...'
+                    },
+                    {
+						id: 4,
+						name: 'Database',
+						icon: "fa fa-database",
+						content: 'MySql, SQlite3, DB2, Oracle, SQL Server, ...'
+                    },
+                     {
+						id: 5,
+						name: 'Mobile appications',
+						icon: "fa fa-mobile",
+						content: ''
+             },
+            {
+						id: 6,
+						name: 'Web appications',
+						icon: "fa fa-desktop",
+						content: ''
+           },
+            {
+						id: 7,
+						name: 'Projects management',
+						icon: "fa fa-users",
+						content: ''
+          },
+           {
+						id: 8,
+						name: 'Customized software',
+						icon: "fa fa-microchip",
+						content: ''
+					}
+		],
     products: null,
+
   }
 
   return startState
@@ -83,6 +135,9 @@ export default new Store({
   state: initialState(),
 
   mutations: {
+    setHumanHomponents(state, payload){
+      state.humanComponents = payload
+    },
     setLang(state){
       state.lang = !state.lang
     },
@@ -98,6 +153,8 @@ export default new Store({
     }
   },
   getters: {
+    humanComponents: state => state.humanComponents,
+    tecnologies: state => state.tecnologies,
     langCange: state => state.lang,
     sponsors: state => state.sponsors,
     customers: state => state.customers,
@@ -109,6 +166,9 @@ export default new Store({
     previousRoute: state => (state.route ? state.route.from.name : null)
   },
   actions: {
+    setHumanHomponents({commit}, payload){
+      commit('setHumanHomponents', payload)
+    },
     setLang({commit}){
       commit('setLang')
     },
