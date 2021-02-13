@@ -6,16 +6,16 @@ const env = () => {
     return "development";
   }
 };
+let lang = this.$i18n.locale
+if(lang === "en-us") lang = "en"
 
 const EnvironmentSettings = {
   production: {
-    apiHost: "https://api.sysait.com/api/v1",
-    sysaitHost: "https://www.sysait.com",
+    apiHost: `https://api.sysait.com/${lang}api/v1`,
   },
   development: {
-    apiHost: "localhost:3001/api/v1", //"https://api.sysait.test/api/v1",
-    //sysaitHost: "https://www.sysait.test",
-  },
+    apiHost: `http://localhost:3001/${lang}/api/v1`
+  }
 
 }[env()];
 
