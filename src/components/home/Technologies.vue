@@ -1,5 +1,5 @@
 <template>
-  <q-page-container >
+  
     <q-page class="text-center padding_header">  <!-- flex flex-center-->
       <!-- page content -->
       <div class="text-h5 text-bold q-mt-md">{{ atYoutservices }}</div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     </q-page>
-  </q-page-container>
+
 </template>
 
 <script>
