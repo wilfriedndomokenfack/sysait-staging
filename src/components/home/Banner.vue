@@ -13,8 +13,9 @@
           <span class="col-10" style="color: #ffffff">{{ company.content_1 }}</span>
           <q-btn flat class="col-1" icon="fa fa-circle" color="white" />
         </div>
-        <div style="text-align: center">
-          <q-btn color="secondary" label="Read more" to="/about" />
+        <br /><br />
+        <div class="btn-1" style="text-align: center">
+          <q-btn color="white" text-color="black" label="Read more" to="/about" />
         </div>
       </div>
     </div>
@@ -25,24 +26,21 @@
             <img src="~assets/sysait_ecran.png" style="width: 200px; height: 200px" />
           </div>
         </template>
-        <div id="about">
-          <font
-            style="text-decoration: underline"
-            face="Time new roman"
-            class="sysait_black"
-            size="6"
-          >
+        <div class="about-us">
+          <font face="Time new roman" class="text-markup sysait_black" size="6">
             <b>Who are we</b> </font
           ><br /><br /><br />
           <font face="Time new roman" class="sysait_black" size="4">
             <p>{{ company.description }}</p>
           </font>
         </div>
-        <div style="text-align: left">
-          <q-btn color="secondary" label="Find out more" to="/about" />
+        <div class="btn-2">
+          <q-btn color="primary" label="Find out more" to="/about" />
         </div>
       </q-banner>
     </div>
+    <br /><br />
+    <br /><br />
   </div>
 </template>
 
@@ -101,8 +99,18 @@ export default {
   border: 1px;
 }
 
-#about {
+#about-us {
   position: right;
   color: black;
+}
+
+.text-markup {
+  border-bottom: 4px solid rgb(59, 133, 231);
+  height: 40px;
+  max-width: 300px;
+}
+.btn-2 {
+  text-align: left;
+  color: #007db7;
 }
 </style>
