@@ -19,28 +19,40 @@
         </div>
       </div>
     </div>
-    <div class="my-card">
-      <q-banner class="bg-grey-3">
-        <template v-slot:avatar>
-          <div class="image">
-            <img src="~assets/sysait_ecran.png" style="width: 200px; height: 200px" />
+    <div class="myCard">
+      <q-banner class="myCard-body row">
+        <div class="q-col-gutter-md row items-start">
+          <div class="col-23 image">
+            <img
+              src="~assets/sysait_ecran.png"
+              :ratio="1"
+              style="width: 240px; height: 200px"
+            />
           </div>
-        </template>
-        <div class="about-us">
-          <font face="Time new roman" class="text-markup sysait_black" size="6">
-            <b>Who are we</b> </font
-          ><br /><br /><br />
-          <font face="Time new roman" class="sysait_black" size="4">
-            <p>{{ company.description }}</p>
-          </font>
-        </div>
-        <div class="btn-2">
-          <q-btn color="primary" label="Find out more" to="/about" />
+          <div class="col-8">
+            <div class="about-us">
+              <font face="Time new roman" class="text-markup sysait_black" size="6">
+                <b>Who are we</b> </font
+              ><br /><br /><br />
+              <font face="Time new roman" class="sysait_black" size="4">
+                <p>{{ company.description }}</p>
+              </font>
+            </div>
+            <div class="btn-2">
+              <q-btn color="primary" label="Find out more" to="/about" />
+            </div>
+          </div>
+          <div class="col-1">
+            <q-icon
+              class="bannerIcon"
+              name="fa fa-quote-right"
+              size="70px"
+              width="100px"
+            />
+          </div>
         </div>
       </q-banner>
     </div>
-    <br /><br />
-    <br /><br />
   </div>
 </template>
 
@@ -90,17 +102,33 @@ export default {
   height: 300px;
 }
 
-.my-card {
+.myCard {
   width: 75%;
   max-width: 1200px;
   padding-bottom: 0;
   padding-top: -200px;
   transform: translateY(250px);
   border: 1px;
+  background-color: $sysait_gallery;
 }
 
-#about-us {
-  position: right;
+.myCard-body {
+  background-color: $sysait_gallery;
+}
+
+.image {
+  padding-left: 0;
+  padding-right: 0px;
+  margin-top: -8px;
+  margin-bottom: -15px;
+}
+.bannerIcon {
+  color: white;
+  height: 180px;
+}
+
+.about-us {
+  position: center;
   color: black;
 }
 
