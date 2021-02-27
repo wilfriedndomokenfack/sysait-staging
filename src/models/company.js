@@ -4,7 +4,7 @@ import store from "@/store";
 
 export const company = () => {
   alert("dentro contact")
-  debugger
+
    let val = Api().get("/companies"); // INDEX
 
    debugger

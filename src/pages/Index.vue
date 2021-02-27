@@ -4,6 +4,7 @@
     <Technologies class="col-12" />
     <Planing class="col-12" />
   </q-page>
+
 </template>
 
 <script>
@@ -21,9 +22,13 @@ export default {
     Planing,
   },
   computed: {
-    ...mapGetters(["copmany"]),
+    ...mapGetters(
+      [
+        'company',
+      ]),
   },
-};
+
+}
 </script>
 
 <style scoped lang="scss"></style>
