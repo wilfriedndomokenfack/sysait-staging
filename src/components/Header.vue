@@ -66,7 +66,7 @@
       class="bg-white text-dark shadow-2 "
       :class="{ padding_header: !$q.screen.lt.sm }"
     >
-      &nbsp;&nbsp;&nbsp;&nbsp;<!-- <img 
+      &nbsp;&nbsp;&nbsp;&nbsp;<!-- <img
         :src="require('@/assets/logo.png')"
         height="50px"
       /> -->
@@ -176,9 +176,9 @@ export default {
   methods: {
     updateValues() {
       this.langOptions = [
-        { value: "it", label: this.$t("italian"), icon: "" },
         { value: "en-us", label: this.$t("english"), icon: "" },
-        { value: "fr", label: this.$t("french"), icon: "" }
+        { value: "fr", label: this.$t("french"), icon: "" },
+        { value: "it", label: this.$t("italian"), icon: "" },
       ];
       this.menu = [
         { label: this.$t("home"), link: "/" },
@@ -199,7 +199,7 @@ export default {
       }
       window.open(link, "_blank");
     },
-   
+
     // adde this in methods:
     emitLang() {
       this.$store.dispatch("setLang");
