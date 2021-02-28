@@ -27,7 +27,7 @@ export default {
     if(!this.humanComponents){
       try{
         const response = await humanComponent()
-        this.$store.dispatch("setHumanHomponents", response?.data);
+        this.$store.dispatch("rosine/setHumanComponents", response?.data);
       }catch(err){
         console.log(err)
       }

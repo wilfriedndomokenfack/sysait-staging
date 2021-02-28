@@ -27,7 +27,8 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.0.0"
+    "@quasar/app": "^2.0.0",
+    "vue-devtools": "^5.1.4"
   },
   "browserslist": [
     "ie >= 11",

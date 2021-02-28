@@ -2,7 +2,9 @@
   <q-page-container >
     <q-page class="text-center padding_header">  <!-- flex flex-center-->
       <!-- page content -->
-      <div class="text-h5 text-bold q-mt-md">{{ atYoutservices }}</div>
+      <div class="text-h5 text-bold q-mt-md service flex flex-center">
+        {{ atYoutservices }}
+      </div>
        <div class="row q-my-lg">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg" v-for= "(tecnologie, index) in tecnologies" :key="index">
             <div class="text-info " style="font-size: 2em">
@@ -54,3 +56,11 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+.service {
+  border-bottom: 3px solid rgb(59, 133, 231);
+  max-width: 230px;
+  margin: 60px 500px 5px 500px ;
+}
+</style>

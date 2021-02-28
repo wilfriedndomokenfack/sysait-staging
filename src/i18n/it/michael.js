@@ -6,5 +6,6 @@ export const michaelTranslations = {
   services:"Servizi",
   products:"Prodotti",
   aboutUs:"Su di noi",
-  contacts:"Contattaci"
+  contacts:"Contattaci",
+  allRights: "tutti i diritti riservati"
 }
