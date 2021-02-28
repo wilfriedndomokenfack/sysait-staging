@@ -8,8 +8,9 @@ const initialState = () => {
     humanComponents: null,
     currentUser: null,
     lang: true,
-    company: {
-       denomination: 'System Afrik Information and Technology',
+    company: null,
+/*     company: {
+      denomination: 'System Afrik Information and Technology',
       vision: 'Our vision is to excel in the field of international IT consulting. We are innovators, we create solutions \
               and products able to improve the quality of life and work of our customers and we do it by relying on the \
               best talents, which we cultivate and enhance the technical, creative and organizational skills. We firmly \
@@ -33,7 +34,7 @@ const initialState = () => {
       facebook: 'https://www.facebook.com/wilfried.ndomo',
       linkedin: 'https://www.linkedin.com/in/wilfried-ndomo-kenfack-b44770161/',
       whatsapp: 'https://wa.me/00393427832705'
-    },
+    }, */
     customers: [
       {
       denomination: 'Institut paul momo',
