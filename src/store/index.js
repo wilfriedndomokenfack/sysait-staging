@@ -51,6 +51,7 @@ const initialState = () => {
       link: 'http://www.unife.it/it'
       },
     ],
+    lang: null,
 
     products: null,
 

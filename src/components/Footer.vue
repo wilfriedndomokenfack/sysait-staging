@@ -7,6 +7,7 @@
                 <div class="column items-center">
                   <q-item clickable to="/">
                     <img
+                      alt="logo sysait"
                       style="width: 170px; height:"
                       :ratio="1"
                       basic
@@ -138,12 +139,13 @@ export default {
   name: 'Footer',
   data () {
     return {
-      copyright: "2021 sysait.com all rights reserved.",
+      copyright: "",
       phoneIcon: "fas fa-phone-alt",
       emailIcon: "fas fa-envelope",
       positionIcon: "fas fa-map-marker-alt",
       services: null,
-      socialMedia: []
+      socialMedia: [],
+      year: ""
     }
   },
 
@@ -165,18 +167,19 @@ export default {
   },
 
    mounted(){
-     let year = moment().format('YYYY')
-     this.copyright = `${year} sysait.com all rights reserved.`,
-     this.updateValues(),
+     this.year = moment().format('YYYY')
+
+     this.updateValues()
      this.socialMedia= [
-        {icon: "fab fa-whatsapp", label: "Whatsapp", link: this.company.whatsapp},
-        {icon: "fab fa-linkedin-in",label: "Linkedin", link: this.company.linkedin},
-        {icon: "fab fa-facebook", label: "Facebook", link: this.company.facebook},
+        {icon: "fab fa-whatsapp", label: "Whatsapp", link: this.company?.whatsapp},
+        {icon: "fab fa-linkedin-in",label: "Linkedin", link: this.company?.linkedin},
+        {icon: "fab fa-facebook", label: "Facebook", link: this.company?.facebook},
       ]
   },
 
   methods: {
      updateValues() {
+      this.copyright = `${this.year} ${this.company?.email} ${this.$t('allRights')}.`
       this.services= [
         {icon:'fab fa-servicestack', label: this.$t('services'), path: "services"},
         {icon:'fab fa-product-hunt', label: this.$t('products'), path: "products"},
@@ -205,13 +208,4 @@ export default {
   font-size: 15px;
 }
 
-// .cursor {
-//   cursor: pointer;
-
-// }
-
-// .cursor:hover {
-//   background-color: rgb(191, 205, 209);
-
-// }
 </style>

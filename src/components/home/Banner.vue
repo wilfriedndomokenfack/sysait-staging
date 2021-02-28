@@ -22,7 +22,7 @@
     <div class="myCard">
       <q-banner class="myCard-body">
         <div class="q-col-gutter-md row items-start">
-          <div class="col-md-3 col-sm-12 col-xs-12 image">
+          <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
             <img
               alt="sysait ecran"
               src="~assets/sysait_ecran.png"
@@ -39,7 +39,7 @@
               <p face="Time new roman" class="sysait_black" >{{ company.description }}</p>
             </div>
             <div class="btn-2">
-              <q-btn padding="xs lg" round color="primary" label="Find out more" to="/about" />
+              <q-btn   color="primary" label="Find out more" to="/about" />
             </div>
           </div>
           <div class="col-md-2 col-sm-2 col-xs-2">
