@@ -1,5 +1,5 @@
 <template>
-  
+
     <q-page class="text-center padding_header">  <!-- flex flex-center-->
       <!-- page content -->
       <div class="text-h5 text-bold q-mt-md service flex flex-center">
@@ -20,7 +20,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
 
 export default {
   name: 'Tecnologies',
@@ -59,8 +58,19 @@ export default {
 
 <style lang="scss">
 .service {
-  border-bottom: 3px solid rgb(59, 133, 231);
-  max-width: 230px;
-  margin: 60px 500px 5px 500px ;
+  min-width: 250px;
+  padding-top: 150px;
+
+}
+
+.service::before {
+  min-width: 250px;
+  content:'\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0';
+  display: block;
+  position: absolute;
+  text-decoration: underline;
+  width:70px;
+  overflow:hidden;
+  padding-top: 15px;
 }
 </style>
