@@ -11,6 +11,32 @@ const tecnologies = [
   { id: 7, name: 'Projects management', icon: "fa fa-users", content: '' },
   { id: 8, name: 'Customized software', icon: "fa fa-microchip", content: '' }
 ]
+const partners = [
+  {
+      denomination: 'Università di bologna',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'flame.png',
+      link: 'http://www.unife.it/it'
+      },
+      {
+      denomination: 'Università di Ferrara',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'hippo_sound.png',
+      link: 'http://www.unife.it/it'
+      },
+      {
+      denomination: 'Università di yde',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'media_groupe.png',
+      link: 'http://www.unife.it/it'
+      },
+      {
+      denomination: 'Università di chang',
+      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
+      image_path: 'pincel.png',
+      link: 'http://www.unife.it/it'
+      },
+]
 const company = {
       denomination: 'System Afrik Information and Technology',
       vision: 'Our vision is to excel in the field of international IT consulting. We are innovators, we create solutions \
@@ -46,10 +72,12 @@ export default {
   state: {
     company: company,
     tecnologies: tecnologies,
+    partners: partners,
   },
 
   getters: {
     company: state => state.company,
     tecnologies: state => state.tecnologies,
+    partners: state => state.partners
   },
 };

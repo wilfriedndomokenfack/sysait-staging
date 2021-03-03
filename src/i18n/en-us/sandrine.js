@@ -1,4 +1,5 @@
 
 export const sandrineTranslations = {
-  atYoutservices: "At your service"
+  atYoutservices: "At your service",
+  ourPartners: "Our Partners"
 }
