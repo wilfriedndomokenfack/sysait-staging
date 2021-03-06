@@ -7,9 +7,9 @@ export const rosineTranslations = {
   services: "Services",
   products: "Products",
   clients:  "Clients",
-  courses: "Courses",
+  courses: "Training",
   joins: "Join us",
-  contacts: "Contacts",
+  contacts:"Contacts",
 
 
   english: "English",

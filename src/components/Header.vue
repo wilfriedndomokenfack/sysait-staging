@@ -16,8 +16,8 @@
           {{ company.email }}
         </div>
 
-        <div clickable @click="mailTo(company.phone_number)" class="col-xs-5 col-sm-4 col-md-5 cursor">
-          <q-btn size="8px" flat dense icon="fa fa-phone" color="primary" />
+        <div clickable @click="mailTo(company.phone_number)" class=" col-xs-5 col-sm-4 col-md-5 cursor">
+          <q-btn size="8px" flat dense icon="fa fa-phone-alt" color="primary" />
 
           {{ company.phone_number }}
         </div>

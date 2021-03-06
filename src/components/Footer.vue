@@ -183,7 +183,7 @@ export default {
       this.services= [
         {icon:'fab fa-servicestack', label: this.$t('services'), path: "services"},
         {icon:'fab fa-product-hunt', label: this.$t('products'), path: "products"},
-        {icon:'fas fa-user-tie', label: this.$t('aboutUs'), path: "about"},
+        {icon:'fas fa-user-tie', label: this.$t('about'), path: "about"},
         {icon:'fas fa-id-card', label: this.$t('contacts'), path: "contact"}
       ]
     },

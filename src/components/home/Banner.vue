@@ -1,24 +1,37 @@
 <template>
   <div class="bg_banner row justify-center">
-    <div class="banner_content">
-      <div class="vc_col-sm-3 nbm">
-        <div class="learning-automated-div">
-          <span style="color: #ffffff"
-            >We help you to create<br />the future that you want. <br />Making your lives
-            simplier, cheaper and easier</span
-          >
-        </div>
+    <div class="banner_content txt">
+      <div class=" nbm">
+        <div class="">
+
+          <div
+            style="color: #ffffff"
+            :class="{content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
+            >
+            {{ company.content_1 }}
+          </div>
+
         <div class="learning-mission row">
-          <q-btn flat class="col-1" icon="fa fa-circle" color="white" />
-          <span class="col-10" style="color: #ffffff">{{ company.content_1 }}</span>
-          <q-btn flat class="col-1" icon="fa fa-circle" color="white" />
+          <q-btn loading flat class="col-1" icon="fa fa-circle" color="white" />
+          <div
+            :class="{content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
+            class="col-10"
+            style="color: #ffffff"
+          >
+          {{ company.content_2 }}
+          </div>
+          <q-btn loading flat class="col-1" icon="fa fa-circle" color="white" />
         </div>
+
         <br /><br />
-        <div class="btn-1" style="text-align: center">
+        <div  class="btn-1" style="text-align: center">
           <q-btn color="white" text-color="black" label="Read more" to="/about" />
+        </div>
+
         </div>
       </div>
     </div>
+
     <div class="myCard">
       <q-banner class="myCard-body">
         <div class="q-col-gutter-md row items-start">
@@ -77,6 +90,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.content_1_lg {
+  font-size: 3vw;
+}
+.content_1_md {
+  font-size: 3vw;
+}
+.content_1_sm {
+  font-size: 4vw;
+}
+.content_1_xs {
+  font-size: 4vw;
+}
+
+.content_2_lg {
+  font-size: 1vw;
+}
+.content_2_md {
+  font-size: 1vw;
+}
+.content_2_sm {
+  font-size: 2vw;
+}
+.content_2_xs {
+  font-size: 3vw;
+}
+
+.txt {
+ // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  transform: translate(0%, 30%);
+  font-family: "Time New Roman";
+  font-size: 1vw;
+}
 .bg_banner {
   background-color: #cccccc;
   background-image: url("~assets/HomePageImage.png");
@@ -84,6 +131,8 @@ export default {
   padding-top: 10px;
   padding-bottom: 100px;
   background-repeat: no-repeat;
+  width:100%;
+  height:auto;
 }
 
 .learning-automated-div {
@@ -100,7 +149,8 @@ export default {
   padding: 5px 40px 5px;
   border-right: 6px solid rgb(234, 237, 240);
   border-left: 6px solid rgb(234, 237, 240);
-  height: 300px;
+  //height: 300px;
+  border-radius: 20px;
 }
 
 .myCard {
