@@ -12,7 +12,6 @@ const initialState = () => {
   const startState = {
 
     currentUser: null,
-
     customers: [
       {
       denomination: 'Institut paul momo',
