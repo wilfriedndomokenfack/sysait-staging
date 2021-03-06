@@ -1,12 +1,9 @@
 <template>
   <div class="div_center">
-    hhhhhh
-    <!-- <div>
-    <div v-for="(hc, index) in listHumanComponent" :key="index">
-      <h5>{{ hc.first_name }}</h5>
-      <br />
-    </div> 
-  </div> -->
+    <div>
+      <br /><span class="title_about">Management</span> <br /><br />
+    </div>
+   
     <div class="q-pa-md row items-start q-gutter-md">
       <q-card
         v-for="(hc, index) in listHumanComponent"
@@ -15,7 +12,7 @@
         flat
         bordered
       >
-        <q-img src="https://cdn.quasar.dev/img/parallax21.jpg" />
+        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
         <q-card-section>
           <div class="text-overline text-orange-9">
@@ -53,7 +50,12 @@ export default {
 }
 .my-card {
   width: 235px;
-  height: 250px;
+  //height: 250px;
   // max-width: 350px
+}
+.title_about {
+  font-weight: bold;
+  color: $sysait_cerulean;
+  font-size: 30px;
 }
 </style>

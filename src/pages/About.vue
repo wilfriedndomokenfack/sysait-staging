@@ -7,7 +7,11 @@
       :companyName="company.denomination"
       :key="myKey"
     />
-    <!-- <div v-for="(hc, index) in humanComponents" :key="index">
+    <BodyAbout :vision="company.vision" :mission="company.mission" />
+    
+    <ManagementAbout
+    :listHumanComponent="humanComponents" />
+     <!--<div v-for="(hc, index) in humanComponents" :key="index">
       <h5>{{ hc.first_name }}</h5>
       <br />
     </div> -->
@@ -72,16 +76,19 @@ import { humanComponent } from "@/models/humanComponent.js";
 import { company } from "@/models/company.js";
 import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
-
+import BodyAbout from "@/components/about/BodyAbout.vue";
+import ManagementAbout from "@/components/about/ManagementAbout.vue";
 export default {
   name: "About",
   components: {
-    BannerPages
+    BannerPages,
+    BodyAbout,
+    ManagementAbout
   },
 
   data() {
     return {
-      bannerUrl: "~assets/ImageAbout.png",
+      bannerUrl: "ImageAbout.png",
       pageName: "About",
       renderComponent: false,
       myKey: 0
@@ -95,7 +102,7 @@ export default {
     if (!this.humanComponents) {
       try {
         const response = await humanComponent();
-        this.$store.dispatch("rosine/setHumanComponents", response?.data);
+        this.$store.dispatch("rosine/setHumanComponents", response1?.data);
       } catch (err) {
         console.log(err);
       }
@@ -106,8 +113,8 @@ export default {
       this.$q.loadingBar.start();
       try {
         const response1 = await company();
-        this.$store.dispatch("setCompany", { ...response1?.data[0] });
-        this.renderComponent = true;
+        this.$store.dispatch("rosine/setCompany", { ...response1?.data });
+
         this.myKey = !this.myKey;
       } catch (err1) {
         console.log(err1);
@@ -116,6 +123,9 @@ export default {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
+    }
+    if (this.company) {
+      this.renderComponent = true;
     }
   }
 };
