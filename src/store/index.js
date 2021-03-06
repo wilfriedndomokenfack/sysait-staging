@@ -1,40 +1,17 @@
+
+
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
 
 Vue.use(Vuex)
 
+import wilfried from './wilfried/index'
+import rosine from './rosine/index'
+
 const initialState = () => {
   const startState = {
-    humanComponents: null,
+
     currentUser: null,
-    lang: true,
-    company: null,
-/*     company: {
-      denomination: 'System Afrik Information and Technology',
-      vision: 'Our vision is to excel in the field of international IT consulting. We are innovators, we create solutions \
-              and products able to improve the quality of life and work of our customers and we do it by relying on the \
-              best talents, which we cultivate and enhance the technical, creative and organizational skills. We firmly \
-              believe that the road to success moves from the sharing of knowledge between the members of an organization \
-              and the surrounding environment, in a process of continuous cultural exchange.',
-      mission: 'From suppliers to technology partners: this is the direction in which we want to focus our efforts during \
-              collaboration with customers. With this in mind, we want to work alongside them, accompanying them with increasing \
-              professionalism, efficiency and attention to detail. Through a continuous training process, we want to allow our \
-              employees and all those who turn to our company to turn every project into a success.',
-      address: 'Via Darsena 81/A 44122 Ferrara(FE) Italy',
-      email: 'sysaitechnology@gmail.com',
-      phone_number: '+39 3298161568',
-      ssn: '43862894345',
-      capital: '€5000',
-      description: 'We are a young and dynamic company that develops higher quality software. We provide our clients with reliable & \
-                    intelligent customizable products in differnt domains of application.',
-      content_1: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customers \
-                  and we do it by relying on the best talents, which we cultivate and enhance the technical, creative and organizational skills!',
-      content_2: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customers \
-                  and we do it by relying on the best talents, which we cultivate and enhance the technical, creative and organizational skills!',
-      facebook: 'https://www.facebook.com/wilfried.ndomo',
-      linkedin: 'https://www.linkedin.com/in/wilfried-ndomo-kenfack-b44770161/',
-      whatsapp: 'https://wa.me/00393427832705'
-    }, */
     customers: [
       {
       denomination: 'Institut paul momo',
@@ -73,56 +50,8 @@ const initialState = () => {
       link: 'http://www.unife.it/it'
       },
     ],
-    tecnologies: [
-					{
-						id: 1,
-						name: 'Futur',
-						icon: "fa fa-arrow-up",
-						content: 'Artificial inteligent, Maching learning, ...'
-					},
-					{
-						id: 2,
-						name: 'Framework',
-						icon: "fa fa-retweet",
-						content: 'Ruby On Rails, Spring, Angular JS, Jquery, Bootstrap, ...'
-					},
-					{
-						id: 3,
-						name: 'Coding',
-						icon: "fa fa-code",
-						content: 'Ruby, HTML, CSS, JAVA, C, ...'
-                    },
-                    {
-						id: 4,
-						name: 'Database',
-						icon: "fa fa-database",
-						content: 'MySql, SQlite3, DB2, Oracle, SQL Server, ...'
-                    },
-                     {
-						id: 5,
-						name: 'Mobile appications',
-						icon: "fa fa-mobile",
-						content: ''
-             },
-            {
-						id: 6,
-						name: 'Web appications',
-						icon: "fa fa-desktop",
-						content: ''
-           },
-            {
-						id: 7,
-						name: 'Projects management',
-						icon: "fa fa-users",
-						content: ''
-          },
-           {
-						id: 8,
-						name: 'Customized software',
-						icon: "fa fa-microchip",
-						content: ''
-					}
-		],
+    lang: null,
+
     products: null,
 
   }
@@ -134,11 +63,13 @@ export default new Store({
   namespaced: true,
   strict: true,
   state: initialState(),
+  modules: {
+    wilfried,
+    rosine,
+  },
 
   mutations: {
-    setHumanHomponents(state, payload){
-      state.humanComponents = payload
-    },
+
     setLang(state){
       state.lang = !state.lang
     },
@@ -149,36 +80,32 @@ export default new Store({
     setProducts (state, payload) {
       state.products = payload
     },
-    setCompany (state, payload) {
-      state.company = payload
-    }
+
   },
   getters: {
-    humanComponents: state => state.humanComponents,
-    tecnologies: state => state.tecnologies,
-    langCange: state => state.lang,
+    company: state => state.wilfried.company,
+    tecnologies: state => state.wilfried.tecnologies,
+    humanComponents: state => state.rosine.humanComponents,
+
     sponsors: state => state.sponsors,
     customers: state => state.customers,
     currentUser: state => state.currentUser,
-    company: state => state.company,
     products: state => state.products,
 
+    langCange: state => state.lang,
     currentRoute: state => (state.route ? state.route.name : null),
     previousRoute: state => (state.route ? state.route.from.name : null)
   },
   actions: {
-    setHumanHomponents({commit}, payload){
-      commit('setHumanHomponents', payload)
-    },
+
+
     setLang({commit}){
       commit('setLang')
     },
     setCurrentUser ({ commit }, payload) {
       commit('setCurrentUser', payload)
     },
-    setCompany ({ commit }, payload) {
-      commit('setCompany', payload)
-    },
+
     setProducts ({ commit }, payload) {
       commit('setProducts', payload)
     }

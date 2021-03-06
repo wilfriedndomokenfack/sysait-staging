@@ -90,12 +90,12 @@ export default {
   computed: {
     ...mapGetters(["humanComponents", "langCange", "company"])
   },
+
   async mounted() {
     if (!this.humanComponents) {
       try {
         const response = await humanComponent();
-        this.$store.dispatch("setHumanHomponents", response?.data);
-        //this.renderComponent = true;
+        this.$store.dispatch("rosine/setHumanComponents", response?.data);
       } catch (err) {
         console.log(err);
       }
