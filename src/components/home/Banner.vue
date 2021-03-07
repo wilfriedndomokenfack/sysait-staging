@@ -84,7 +84,7 @@ export default {
   methods: {},
 
   computed: {
-    ...mapGetters(["company", "langCange"]),
+    ...mapGetters(["company", "langChanged"]),
   },
 };
 </script>

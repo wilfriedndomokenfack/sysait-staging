@@ -92,7 +92,7 @@ export default new Store({
     currentUser: state => state.currentUser,
     products: state => state.products,
 
-    langCange: state => state.lang,
+    langChanged: state => state.lang,
     currentRoute: state => (state.route ? state.route.name : null),
     previousRoute: state => (state.route ? state.route.from.name : null)
   },

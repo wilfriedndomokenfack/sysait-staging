@@ -88,7 +88,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["humanComponents", "langCange", "company"])
+    ...mapGetters(["humanComponents", "langChanged", "company"])
   },
 
   async mounted() {

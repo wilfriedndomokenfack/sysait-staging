@@ -1,32 +1,40 @@
 <template>
   <q-header elevated class="text-white ">
     <div
-      class="row justify-between items-center text-center bg_sysait_black"
-      :class="{ padding_header: !$q.screen.lt.sm }"
+      class="row justify-between items-center  bg_sysait_black "
     >
       <div
-        class=" row col-xs-12 col-sm-12 col-md-4 justify-around text-center size_header"
+        class=" row col-xs-9 col-sm-9 col-md-5 justify-between text-center  "
+        
       >
         <div
           clickable
+          class="col-xs-7 col-sm-6 col-md-7 cursor "
           @click="mailTo(company.email)"
-          class="col-xs-5 col-sm-8 col-md-7 cursor "
+
         >
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
         </div>
 
-        <div clickable @click="mailTo(company.phone_number)" class=" col-xs-5 col-sm-4 col-md-5 cursor">
+        <div
+          clickable
+          class="col-xs-5 col-sm-6 col-md-5 cursor"
+          @click="mailTo(company.phone_number)"
+          style=";"
+        >
           <q-btn size="8px" flat dense icon="fa fa-phone-alt" color="primary" />
 
           {{ company.phone_number }}
         </div>
       </div>
       <div
-        class=" row col-xs-12 col-sm-12  col-md-4 justify-around items-center text-center  "
+        class=" row col-xs-3 col-sm-3  col-md-5 items-center text-center   justify-between"
+
       >
-        <div class="col-xs-2 col-sm-4 col-md-3">
+        <div class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
           <q-btn
+          v-show="deviceMobile"
             class="color_sysait_cerulean"
             to="/signin"
             flat
@@ -35,11 +43,22 @@
             color="primary"
             label="Sign in"
           />
-          <!-- <div class=""><b>Sign in</b></div> -->
+          <q-btn
+          v-show="deviceMobile"
+            class="color_sysait_cerulean"
+            to="/signin"
+            flat
+            no-caps
+            dense
+            color="primary"
+            label="Sign up"
+          />
+
         </div>
 
-        <div class="col-xs-2 col-sm-2 col-md-3">
+        <div class=" row col-xs-12 col-sm-12 col-md-5 justify-between">
           <q-select
+
             v-model="lang"
             :options="langOptions"
             dense
@@ -47,7 +66,7 @@
             emit-value
             map-options
             options-dense
-            class="pippo"
+            class="pippo col-xs-8 col-sm-6 col-md-6 text-center"
             style=""
           >
             <q-tooltip
@@ -58,6 +77,25 @@
               {{ $t("langChange") }}
             </q-tooltip>
           </q-select>
+
+          <q-btn
+          v-show="deviceMobile"
+          class=" col-xs-2 col-sm-2 col-md-6"
+            flat
+              icon="fa fa-power-off"
+
+
+
+              text-color="primary"
+            >
+              <q-tooltip
+                :offset="[10, 10]"
+                transition-show="rotate"
+                transition-hide="rotate"
+              >
+                {{ $t('logOut') }}
+        </q-tooltip>
+       </q-btn>
         </div>
       </div>
     </div>
@@ -71,7 +109,7 @@
         height="50px"
       /> -->
       <q-item clickable to="/">
-        <img style="width: 90px; height: auto;" src="~assets/logo.png" />
+        <img style="width: 100px; height: auto; " src="~assets/logoImg/logo_color.png" />
       </q-item>
 
       <!-- <q-img clickable to:="/" :src="require('@/assets/logo.png')"  style="width: 10%;
@@ -126,6 +164,35 @@
                 </q-item-section>
               </q-item>
             </div>
+
+            <div
+              style="width:100px;"
+            >
+              <q-item to="/" clickable dense v-close-popup>
+                <q-item-section>
+                  <q-item-label>Sign in</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div
+              style="width:100px;"
+            >
+              <q-item to="/" clickable dense v-close-popup>
+                <q-item-section>
+                  <q-item-label>Sign Up</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div
+              style="width:100px;"
+            >
+              <q-item to="/" clickable dense v-close-popup>
+                <q-item-section>
+                  <q-item-label>Log Out</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+
           </q-list>
         </q-btn-dropdown>
       </div>
@@ -152,7 +219,7 @@ export default {
       this.$i18n.locale = lang;
       this.emitLang();
     },
-    langCange: {
+    langChanged: {
       immediate: true,
       handler() {
         this.updateValues();
@@ -160,7 +227,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["company", "langCange"]),
+    ...mapGetters(["company", "langChanged"]),
     deviceMobile: function() {
       // `this` points to the vm instance
       return !(
@@ -247,11 +314,15 @@ export default {
 .cursor {
   cursor: pointer;
 }
+.fa-sign-out {
+ color: white;
+}
 // we will move this code in the global css e make this css scoped
 .q-field__native,
 .q-field__prefix,
 .q-field__suffix,
-.q-field__input {
+.q-field__input{
+
   color: white;
 }
 </style>

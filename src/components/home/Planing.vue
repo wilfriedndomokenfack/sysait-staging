@@ -7,7 +7,7 @@
     <div class="row q-my-lg items-center justify-center">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg " v-for="(partner, index) in partners" :key="index">
             <div class="text-info " style="font-size: 2em">
-             <q-img clickable @click="partnerlLink(partner.link)"  class="partner rounded-borders col-6 full-height" :src="`partners/${partner.image_path}`" >
+             <q-img clickable @click="partnerlLink(partner.link)"  class="partner rounded-borders col-6 full-height" :src="`partners/${partner.image_path}`" style="">
                 <q-tooltip
                   :offset="[10, 10]"
                   transition-show="rotate"
