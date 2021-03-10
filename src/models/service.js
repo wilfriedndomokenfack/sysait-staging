@@ -6,7 +6,8 @@ import store from "@/store";
 // export const company = () => Api().get("/companies") 
 
  export const services = () => {
-   let val = Api().get("/products"); // INDEX
+   let val = Api().get("/products", { params: { category: 'service', } }); // INDEX
+   // let val = Api().get("/products"); // INDEX
    return val
 }  
 

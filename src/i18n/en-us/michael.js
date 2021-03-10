@@ -7,6 +7,8 @@ export const michaelTranslations = {
   products:"Products",
   aboutUs:"About Us",
   contacts:"Contact Us",
-  allRights: "all rights reserved"
+  allRights: "all rights reserved",
+  noService:"Sorry...! Menu temporarily unavailable", 
+  netWorkErrorMSG: "Upload services failed!"
 
 }

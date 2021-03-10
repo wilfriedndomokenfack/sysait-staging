@@ -6,21 +6,55 @@
         :pageName="pageName"
         :companyName="companyName"
       />
-      <ServicesComponent :propServices="services" :key="myKey" />
+
+      <ServicesComponent
+        v-if="services.lenght > 0"
+        :propServices="services"
+        :key="myKey"
+      />
+      <EmptyComponent v-else-if="services.lenght == 0" />
+      <div class="q-pa-md q-gutter-sm">
+        <q-btn label="Click me" color="primary" @click="myAlert = true" />
+
+        <q-dialog
+          v-model="myAlert"
+          persistent
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          <q-card class="bg-teal text-white" style="width: 300px">
+            <q-card-section>
+              <div class="text-h6">Persistent</div>
+            </q-card-section>
+
+            <q-card-section class="q-pt-none">
+              Click/Tap on the backdrop.
+            </q-card-section>
+
+            <q-card-actions align="right" class="bg-white text-teal">
+              <q-btn flat label="OK" v-close-popup />
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script>
 import ServicesComponent from "@/components/ServicesComponent.vue";
+import EmptyComponent from "@/components/EmptyComponent.vue";
+import AlertComponent from "@/components/AlertComponent.vue";
 import BannerPages from "@/components/utils/BannerPages.vue";
-import { notify } from "@/models/utils/notifyUser";
+import { netWorkError } from "@/models/utils/netWorkError";
 import { services } from "@/models/service.js";
 import { mapGetters } from "vuex";
 export default {
   name: "Services",
   components: {
     ServicesComponent,
+    EmptyComponent,
+    AlertComponent,
     BannerPages,
   },
   data() {
@@ -30,10 +64,11 @@ export default {
       pageName: null,
       companyName: null,
       myKey: 0,
+      myAlert: false,
     };
   },
   computed: {
-    ...mapGetters(["michael/services", "company"]),
+    ...mapGetters(["michael/services", "company", "previousRoute"]),
   },
 
   async mounted() {
@@ -47,16 +82,17 @@ export default {
   },
   methods: {
     async getServices() {
-      this.$q.loading.show({ message: "Getting data, Pleace Wait ..." });
+      this.$q.loading.show();
       this.$q.loadingBar.start();
       try {
         const response = await services();
+        // response.data = [];
         this.$store.dispatch("michael/setServices", response?.data);
         this.myKey = !this.myKey;
-        //notify("green", "Services uploaded successfull");
+        // notify("green", "Services uploaded successfull");
       } catch (e) {
-        notify("red", "upload services failed " + e);
-        this.$router.push({ path: "/" });
+        netWorkError(this.$t("netWorkErrorMSG") + " " + e);
+        this.$router.push({ name: this.previousRoute });
       } finally {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
