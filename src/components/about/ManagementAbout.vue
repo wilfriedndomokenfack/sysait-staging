@@ -25,14 +25,23 @@
         flat
         
       >
-        <q-img class="dim_img" src="https://cdn.quasar.dev/img/parallax2.jpg" />
+          
+        
+        <q-img class="dim_img" :src="`about_img/brice.png`" /> 
+        <!-- <q-img class="dim_img" :src="`about_img/${hc.profil_path}`" /> -->
         <div class="title_profil"> {{ hc.first_name }} {{ hc.last_name }}</div>
-        <div class="">{{ hc.position }}</div>
+        <div class="">{{ hc.profile_path }}</div>
         <div>
-            <q-btn size="8px" flat dense icon="fab fa-linkedin-in" color="primary" />
+            <q-btn size="8px" flat dense icon="fab fa-linkedin-in" color="primary" /><br>
+           <!--  <q-item clickable :to="hc.linkedin">
+                <q-btn size="8px" flat dense icon="fab fa-linkedin-in" color="primary" />
+            </q-item>
+            <q-btn @click="hc.linkedin"> </q-btn> -->
+
         </div>
         <div class="text-caption text-grey">
-            {{ hc.description }}hhdshds hsdshdsd shdshdhsd shdsdsd shdshdsdsdghs sxhdgshd shdsgdsjdhskb
+            {{ hc.description }}
+            hhdshds hsdshdsd shdshdhsd shdsdsd shdshdsdsdghs sxhdgshd shdsgdsjdhskb
           </div>
 
         <!-- <q-card-section>
