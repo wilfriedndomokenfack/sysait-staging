@@ -1,11 +1,12 @@
 <template>
+<div>
   <q-header elevated class="text-white ">
     <div
       class="row justify-between items-center  bg_sysait_black "
     >
       <div
-        class=" row col-xs-9 col-sm-9 col-md-5 justify-between text-center  "
-        
+        class=" row col-xs-9 col-sm-9 col-md-5 justify-start text-center  "
+
       >
         <div
           clickable
@@ -29,31 +30,37 @@
         </div>
       </div>
       <div
-        class=" row col-xs-3 col-sm-3  col-md-5 items-center text-center   justify-between"
+        class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
 
       >
-        <div class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
+        <div v-if="deviceMobile && !currentUser" class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
           <q-btn
-          v-show="deviceMobile"
+
             class="color_sysait_cerulean"
             to="/signin"
             flat
             no-caps
             dense
             color="primary"
-            label="Sign in"
+            :label="$t('singInLabel')"
+
           />
           <q-btn
-          v-show="deviceMobile"
+
             class="color_sysait_cerulean"
             to="/signin"
             flat
             no-caps
             dense
             color="primary"
-            label="Sign up"
+            :label="$t('singUpLabel')"
           />
 
+        </div>
+        <div v-else-if="deviceMobile" class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
+          <div class="color_sysait_cerulean">
+            {{ currentUser.fullname }}
+          </div>
         </div>
 
         <div class=" row col-xs-12 col-sm-12 col-md-5 justify-between">
@@ -79,21 +86,19 @@
           </q-select>
 
           <q-btn
-          v-show="deviceMobile"
-          class=" col-xs-2 col-sm-2 col-md-6"
+            v-show="deviceMobile && currentUser"
+            class=" col-xs-2 col-sm-2 col-md-6"
             flat
-              icon="fa fa-power-off"
-
-
-
-              text-color="primary"
-            >
-              <q-tooltip
+            icon="fa fa-power-off"
+            text-color="primary"
+            @click="logout()"
+          >
+            <q-tooltip
                 :offset="[10, 10]"
                 transition-show="rotate"
                 transition-hide="rotate"
-              >
-                {{ $t('logOut') }}
+            >
+                {{ $t('captionLogOut') }}
         </q-tooltip>
        </q-btn>
         </div>
@@ -102,9 +107,9 @@
 
     <q-toolbar
       class="bg-white text-dark shadow-2 "
-      :class="{ padding_header: !$q.screen.lt.sm }"
+
     >
-      &nbsp;&nbsp;&nbsp;&nbsp;<!-- <img
+      <!-- <img
         :src="require('@/assets/logo.png')"
         height="50px"
       /> -->
@@ -142,66 +147,71 @@
         no-caps
         :label="$t('contacts')"
       />
+      <q-btn v-show="!deviceMobile" flat @click="drawerRight = !drawerRight" round dense icon="menu" />
 
-      <div class="q-pa-md">
-        <q-btn-dropdown
-          split
-          label="menu"
-          class="glossy color_sysait_cerulean"
-          dropdown-icon="menu"
-          v-show="!deviceMobile"
-          @click="drawerRight = !drawerRight"
-        >
-          <q-list class="item-center">
+    </q-toolbar>
+
+  </q-header>
+  <q-drawer
+        side="right"
+        v-model="drawerRight"
+        bordered
+        :width="200"
+        :breakpoint="500"
+      >
+        <q-scroll-area class="fit">
+          <div class="q-pa-sm">
+
+            <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
+
+            <q-list class="item-center">
             <div
               v-for="(item, index) in menu"
               :key="index"
-              style="width:100px;"
             >
-              <q-item :to="item.link" clickable dense v-close-popup>
+              <q-item :to="item.link" clickable v-close-popup>
                 <q-item-section>
                   <q-item-label>{{ item.label }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
+            <div
+            >
+              <q-item to="/" clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>{{ $t('singInLabel') }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div
 
-            <div
-              style="width:100px;"
             >
-              <q-item to="/" clickable dense v-close-popup>
+              <q-item to="/" clickable v-close-popup>
                 <q-item-section>
-                  <q-item-label>Sign in</q-item-label>
+                  <q-item-label> {{ $t('singUpLabel') }} </q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-              style="width:100px;"
+
             >
-              <q-item to="/" clickable dense v-close-popup>
+              <q-item to="/" clickable v-close-popup>
                 <q-item-section>
-                  <q-item-label>Sign Up</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-            <div
-              style="width:100px;"
-            >
-              <q-item to="/" clickable dense v-close-popup>
-                <q-item-section>
-                  <q-item-label>Log Out</q-item-label>
+                  <q-item-label>{{ $t('captionLogOut') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
 
           </q-list>
-        </q-btn-dropdown>
-      </div>
-    </q-toolbar>
-  </q-header>
+          </div>
+        </q-scroll-area>
+      </q-drawer>
+</div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import { logout } from "@/Models/auth/Auth"
 
 export default {
   name: "Header",
@@ -210,6 +220,7 @@ export default {
       lang: this.$i18n.locale,
       langOptions: [],
       menu: [],
+
       drawerRight: false
     };
   },
@@ -227,7 +238,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["company", "langChanged"]),
+    ...mapGetters([
+      "company",
+      "langChanged",
+      "currentUser"
+    ]),
     deviceMobile: function() {
       // `this` points to the vm instance
       return !(
@@ -256,6 +271,7 @@ export default {
         { label: this.$t("courses"), link: "/courses" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
+
     },
     mailTo(telMail) {
       let link = null;
@@ -271,6 +287,9 @@ export default {
     emitLang() {
       this.$store.dispatch("setLang");
       //this.$emit("lang", this.lang);
+    },
+    logout(){
+      logout()
     }
   }
 };

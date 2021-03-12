@@ -12,6 +12,7 @@ const initialState = () => {
   const startState = {
 
     currentUser: null,
+    //currentUser: {id: 1, fullname: "Ndomo Wilfried"},
     customers: [
       {
       denomination: 'Institut paul momo',

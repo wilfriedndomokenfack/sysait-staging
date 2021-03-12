@@ -1,5 +1,13 @@
 
 export const wilfriedTranslations = {
+  singInLabel: "Accesso",
+  singUpLabel: "Registrati",
+  captionLogOut: 'Esci dal tuo account',
+
+
+
+
+
   failed: 'Azione fallita',
   success: 'L\'azione ha avuto successo',
 
@@ -12,7 +20,7 @@ export const wilfriedTranslations = {
   CanotEnter: 'Non riesci ad accedere',
 
   logOut: 'Disconnettersi',
-  captionLogOut: 'esci dal tuo account',
+
 
   diary: 'diario',
   diaries: 'diari',

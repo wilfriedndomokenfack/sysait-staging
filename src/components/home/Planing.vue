@@ -43,7 +43,7 @@ export default {
     }
   },
   watch: {
-    langCange: {
+    langChanged: {
       immediate: true,
       handler() {
         this.updateValues()
@@ -59,7 +59,7 @@ export default {
     ...mapGetters(
       [
         'company',
-        'langCange',
+        'langChanged',
         'wilfried/partners'
       ]),
   },

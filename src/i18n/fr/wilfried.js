@@ -1,5 +1,11 @@
 
 export const wilfriedTranslations = {
+  singInLabel: "Connexion",
+  singUpLabel: "S'inscrire",
+  captionLogOut: "Déconnectez-vous de votre compte",
+
+
+
   failed: "Action échoué",
   success: "L'action a réussi",
 
@@ -12,11 +18,8 @@ export const wilfriedTranslations = {
   CanotEnter: "Impossible de se connecter",
 
   logOut: "Deconnection",
-  captionLogOut: "Déconnectez-vous de votre compte",
 
-  english: "Anglais",
-  italian: "Italien",
-  french: "Français",
+
 
   notifyAuthLoginMesg: "l'authentification a réussi",
   notifyAuthLogoutMesg: "tu n'es pas authentifié"
