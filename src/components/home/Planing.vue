@@ -1,11 +1,12 @@
 <template>
   <q-page class="text-center padding_header">  <!-- flex flex-center-->
     <!-- page content -->
-    <div class="text-h5 text-bold q-mt-md partners flex flex-center">
+    <div class="text-h5 text-bold q-mt-md partners flex flex-center" id="partList" ref="partList">
       {{ ourPartners }}
     </div>
-    <div class="row q-my-lg items-center justify-center">
-        <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg " v-for="(partner, index) in partners" :key="index">
+    <!-- <div class="row q-my-lg items-center justify-center"> -->
+      <transition-group tag="div" class="row q-my-lg items-center justify-center" name="partLists" enter-active-class="animated flipInY delay-5s">
+        <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg " v-for="partner in partners" :key="partner.id">
             <div class="text-info " style="font-size: 2em">
              <q-img clickable @click="partnerlLink(partner.link)"  class="partner rounded-borders col-6 full-height" :src="`partners/${partner.image_path}`" style="">
                 <q-tooltip
@@ -19,7 +20,8 @@
              </q-img>
             </div>
         </div>
-    </div>
+       </transition-group>
+    <!-- </div> -->
     <div class=" q-mb-lg">
       <div class="text-primary text-center text-subtitle1  col-md q-ma-md" color="primary" style="font-family: Cursive">
         Let's create a new Word with Technology!
@@ -33,13 +35,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
+import { COMMON_isVisibile } from '@/models/utils/common.js'
 export default {
   name: 'Planing',
   data () {
     return {
-      partners: null,
+      partners: [],
       ourPartners: "",
+      showPart: false,
     }
   },
   watch: {
@@ -52,8 +55,8 @@ export default {
   },
   async mounted(){
     this.updateValues()
-    if(this['wilfried/partners'])
-      this.partners = this['wilfried/partners']
+
+    window.addEventListener("scroll", () => this.renderSection());
   },
   computed: {
     ...mapGetters(
@@ -70,6 +73,14 @@ export default {
     partnerlLink(link){
       window.open(link, '_blank');
     },
+    renderSection(){
+      if (!this.showPart && COMMON_isVisibile(this.$refs.partList)) {
+        if(this['wilfried/partners']){
+          this.partners = this['wilfried/partners']
+        }
+        this.showPart = true
+      }
+    }
   }
 }
 </script>
@@ -96,6 +107,10 @@ export default {
 
 .tooltip{
   background-color: $primary;
+}
+
+.animated.flipInY {
+  --animate-duration: 14s;
 }
 
 </style>

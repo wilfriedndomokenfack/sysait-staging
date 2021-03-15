@@ -2,6 +2,7 @@
   <div class="bg_banner row justify-center">
     <div class="banner_content txt">
       <div class=" nbm">
+<transition appear name="bannerHome">
         <div class="">
 
           <div
@@ -29,18 +30,24 @@
         </div>
 
         </div>
+</transition>
+
+
       </div>
     </div>
 
-    <div class="myCard">
+    <BannerEcran/>
+
+    <!-- <div class="myCard">
       <q-banner class="myCard-body">
-        <div class="q-col-gutter-md row items-start">
-          <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
+        <div class="q-col-gutter-md row items-start justify-around" >
+          <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 ">
             <img
+              class="image"
               alt="sysait ecran"
-              src="~assets/sysait_ecran.png"
+              src="~assets/SysaitEcranCarré.png"
               :ratio="1"
-              style="width: 240px; height: 200px"
+
             />
           </div>
 
@@ -55,27 +62,31 @@
               <q-btn   color="primary" label="Find out more" to="/about" />
             </div>
           </div>
-          <div class="col-md-2 col-sm-2 col-xs-2">
+          <div class="col-md-1 col-sm-2 col-xs-2">
             <q-icon
 
               class="bannerIcon"
               name="fa fa-quote-right"
-              size="70px"
+              size="50px"
               width="100px"
             />
           </div>
         </div>
       </q-banner>
-    </div>
+    </div> -->
+    
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import BannerEcran from "@/components/home/BannerEcran.vue"
 export default {
   name: "Banner",
 
-  components: {},
+  components: {
+    BannerEcran
+  },
 
   data() {
     return {};
@@ -153,51 +164,70 @@ export default {
   border-radius: 20px;
 }
 
-.myCard {
-  width: 75%;
-  max-width: 1200px;
-  padding-bottom: 0;
-  padding-top: -200px;
-  transform: translateY(250px);
-  border: 1px;
-  background-color: $sysait_gallery;
-}
+// .myCard {
+//   width: 75%;
+// //  height: 5px;
+//   max-width: 1200px;
+//   padding-bottom: 0;
+//   padding-top: -200px;
+//   transform: translateY(250px);
+//   border: 1px;
+//   background-color: $sysait_gallery;
+// }
 
-.myCard-body {
-  background-color: $sysait_gallery;
-}
+// .myCard-body {
+//   background-color: $sysait_gallery;
+// }
 
-.image {
-  padding-left: 0;
-  padding-right: 0px;
-  margin-top: -8px;
-  margin-bottom: -15px;
-}
-.bannerIcon {
-  color: white;
-  height: 180px;
-}
+// .image {
+//   // padding-left: 0;
+//   // padding-right: 0px;
+//    margin-top: -8px;
+//    margin-bottom: -12px;
+//  //  height: inherit;
+//  //  width: auto;
+// }
+// .bannerIcon {
+//   color: white;
+//   height: 180px;
+// }
 
 .about-us {
   position: center;
   color: black;
 }
 
-.text-markup {
-  border-bottom: 3px solid rgb(59, 133, 231);
-  height: 40px;
-  max-width: 230px;
-  font-size: 40px;
-  flex: 1;
-  margin: 5px 0 10px -50;
+// .text-markup {
+//   border-bottom: 3px solid rgb(59, 133, 231);
+//   height: 40px;
+//   max-width: 230px;
+//   font-size: 40px;
+//   flex: 1;
+//   margin: 5px 0 10px -50;
 
 
-  text-align: justify;
-  text-justify: inter-word;
-}
+//   text-align: justify;
+//   text-justify: inter-word;
+// }
 .btn-2 {
   text-align: left;
   color: #007db7;
+}
+
+
+.bannerHome-enter-active {
+  animation: bannerHome-in .5s;
+}
+@keyframes bannerHome-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 </style>

@@ -1,30 +1,35 @@
 <template>
   <q-footer class="bg_sysait_gallery">
-    <div class="row footer_containergg justify-between text-dark" >
+          <div class="footer_container" style="min-height: 10vh;">
+          <q-tabs no-caps class="text-dark  fit row justify-center items-center content-center q-pa-md">
+            <div class="row self-start items-center col-xs-12 col-sm-6 col-md-3">
+              <div class="column items-center">
+                <div class="column items-center">
+                  <q-item clickable to="/">
+                    <img
+                      alt="logo sysait"
+                      style="width: 170px; height:"
+                      :ratio="1"
+                      basic
+                      spinner-color="white"
+                      class="rounded-borders"
+                      src="~assets/logo_sysait_gris.png"
+                    >
+                  </q-item>
+                  <q-item>
+                    <div class="color_sysait_cerulean content-center column items-center compagny_name">
+                      <p v-ripple>
+                            <b>{{ company.denomination }}</b>
+                      </p>
+                    </div>
+                  </q-item>
+                </div>
+              </div>
+            </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3 text-center items-center column">
-        <q-item clickable to="/">
-          <img
-            alt="logo sysait"
-            style="width: 170px; height:"
-            :ratio="1"
-            basic
-            spinner-color="white"
-            class="rounded-borders"
-            src="~assets/logo_sysait_gris.png"
-          >
-        </q-item>
-        <q-item>
-          <div class="color_sysait_cerulean content-center column items-center compagny_name">
-            <p v-ripple>
-              <b>{{ company.denomination }}</b>
-            </p>
-          </div>
-        </q-item>
-      </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3 column items-center self-start">
-          <div class="column items-center">
+            <div class="column items-center self-start col-xs-12 col-sm-6 col-md-3">
+              <div class="column items-center">
                 <div class="column items-center">
                   <div>
                     <div class="" style="max-width: 350px">
@@ -75,8 +80,11 @@
                   </div>
                 </div>
               </div>
-      </div>
-      <div class="column self-start items-center col-xs-6 col-sm-6 col-md-3">
+            </div>
+
+
+
+            <div class="column self-start items-center col-xs-12 col-sm-6 col-md-3">
               <div class="column items-center">
                 <div class="column items-center">
                   <div>
@@ -97,15 +105,10 @@
                 </div>
               </div>
             </div>
-            <div class="column self-start col-xs-6 col-sm-6 col-md-2">
+            <div class="column self-start items-center col-xs-12 col-sm-6 col-md-2">
               <div class="column items-center">
                 <div class="column items-center">
-
-                  <div class="column items-center">
-                    <font face="Time new roman" class="color_sysait_cerulean items-center" size="4">
-                      <b>{{ $t('follow') }}</b>
-                    </font>
-                  </div>
+                  <div><font face="Time new roman" class="color_sysait_cerulean" size="4"><b>{{ $t('follow') }}</b></font></div>
                   <div>
                     <div class="q-pa-md q-gutter-md" style="max-width: 350px">
                       <div>
@@ -122,15 +125,8 @@
                 </div>
               </div>
             </div>
-      <!-- <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-        3
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-        4
-      </div> -->
-
-    </div>
-
+          </q-tabs>
+        </div>
       <div class="footer_container bg_sysait_black q-pa-md" style="min-height: 4vh;">
           <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-white">
           <q-space />

@@ -4,6 +4,7 @@
     <div
       class="row justify-between items-center  bg_sysait_black "
     >
+
       <div
         class=" row col-xs-9 col-sm-9 col-md-5 justify-start text-center  "
 
@@ -18,6 +19,7 @@
           {{ company.email }}
         </div>
 
+
         <div
           clickable
           class="col-xs-5 col-sm-6 col-md-5 cursor"
@@ -28,7 +30,9 @@
 
           {{ company.phone_number }}
         </div>
+
       </div>
+    
       <div
         class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
 
@@ -344,4 +348,5 @@ export default {
 
   color: white;
 }
+
 </style>

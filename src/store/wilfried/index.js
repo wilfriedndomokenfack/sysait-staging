@@ -16,25 +16,29 @@ const partners = [
       denomination: 'Università di bologna',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
       image_path: 'flame.png',
-      link: 'http://www.unife.it/it'
+      link: 'http://www.unife.it/it',
+      id: 1
       },
       {
       denomination: 'Università di Ferrara',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
       image_path: 'hippo_sound.png',
-      link: 'http://www.unife.it/it'
+      link: 'http://www.unife.it/it',
+      id: 2
       },
       {
       denomination: 'Università di yde',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
       image_path: 'media_groupe.png',
-      link: 'http://www.unife.it/it'
+      link: 'http://www.unife.it/it',
+      id: 3
       },
       {
       denomination: 'Università di chang',
       description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
       image_path: 'pincel.png',
-      link: 'http://www.unife.it/it'
+      link: 'http://www.unife.it/it',
+      id: 4
       },
 ]
 const company = {
