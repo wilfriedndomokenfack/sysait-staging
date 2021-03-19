@@ -1,5 +1,6 @@
 <template>
-  <div class="div_center">
+  <div class="about_body">
+    <br />
     <div>
       <span class="title_about">Vision</span> <br /><br />
       <p>{{ vision }}</p>
@@ -26,9 +27,10 @@ export default {
 };
 </script>
 <style lang="scss">
-.div_center {
-  padding-left: 210px;
-  padding-right: 210px;
+.about_body {
+
+  width: 70%;
+  margin: auto;
 }
 
 .title_about {

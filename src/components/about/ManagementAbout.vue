@@ -1,5 +1,5 @@
 <template>
-  <div class="div_center">
+  <div   :class="{management_body_xs: $q.screen.lt.xs, management_body_xl: !$q.screen.lt.xs }">
     <div><br /><span class="title_about">Management</span> <br /><br /></div>
     <!-- <div class="card_profil">
        <img class="img_profil"  src="~assets/foto_cv.jpg" /><br>
@@ -14,45 +14,30 @@
 
     </div> -->
 
-    <div class="q-pa-md row items-start q-gutter-md flex flex-center">
+    <div class="q-pa-md row items-start q-gutter-md ">
       <q-card
         v-for="(hc, index) in listHumanComponent"
         :key="index"
         class="my-card"
         flat
+        style="padding-right:20px;padding-bottom:30px"
       >
-        <q-img class="dim_img" :src="`about_img/${hc.profile_path}`" />
+        <q-img type="a" class="dim_img" :src="`about_img/${hc.profile_path}`" />
         <div class="title_profil">{{ hc.first_name }} {{ hc.last_name }}</div>
-        <div class="">{{ hc.position }}</div>
-        <div>
-          <q-btn
-            size="8px"
-            flat
-            dense
-            type="a"
-            target="_blank"
-            :href="hc.linkedin"
-            icon="fab fa-linkedin-in"
-            color="primary"
-          />
-          <br />
+        <div class="">{{ hc.position }}
+        
         </div>
-        <div class="text-caption text-grey">
+        <div>
+          <a :href="hc.linkedin" target="_blank">
+            <img style="width:80px; height:20px;" :src="`about_img/linkedin.png`" />
+        </a>
+  
+        </div>
+        <br />
+        <div class="text-caption text-grey text-justify">
           {{ hc.description }}
         </div>
 
-        <!-- <q-card-section>
-          <div >
-            {{ hc.first_name }} {{ hc.last_name }}
-          </div>
-          <div class="">{{ hc.position }}</div>
-          <div>
-            <q-btn size="8px" flat dense icon="fab fa-linkedin-in" color="primary" />
-          </div>
-          <div class="text-caption text-grey">
-            {{ hc.description }}hhdshds hsdshdsd shdshdhsd shdsdsd shdshdsdsdghs sxhdgshd shdsgdsjdhskb
-          </div>
-        </q-card-section> -->
       </q-card>
     </div>
   </div>
@@ -71,9 +56,13 @@ export default {
 };
 </script>
 <style lang="scss">
-.div_center {
-  padding-left: 210px;
-  padding-right: 210px;
+.management_body_xl {
+  width: 70%;
+  margin: auto;
+}
+.management_body_xs {
+  //width: 70%;
+  margin: auto;
 }
 .dim_img {
   width: 70%;
@@ -81,7 +70,8 @@ export default {
   padding-left: 10px;
 }
 .my-card {
-  width: 235px;
+  width: 240px;
+  //margin: auto;
 }
 .title_position {
 }
