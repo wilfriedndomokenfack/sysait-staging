@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 import wilfried from './wilfried/index'
 import rosine from './rosine/index'
+import michael from './michael/index'
 
 const initialState = () => {
   const startState = {
@@ -66,6 +67,7 @@ export default new Store({
   modules: {
     wilfried,
     rosine,
+    michael,
   },
 
   mutations: {
