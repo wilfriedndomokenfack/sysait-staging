@@ -1,12 +1,13 @@
 <template>
-  <div class="div_center">
+  <div class="about_body">
+    <br />
     <div>
-      <span class="title_about">Vision</span> <br /><br />
+      <span class="title_about">{{$t('vision')}}</span> <br /><br />
       <p>{{ vision }}</p>
       <hr class="separator" />
     </div>
     <div>
-      <br /><span class="title_about">Mission</span> <br /><br />
+      <br /><span class="title_about">{{$t('mission')}}</span> <br /><br />
       <p>{{ mission }}</p>
       <hr class="separator" />
     </div>
@@ -21,14 +22,28 @@ export default {
     mission: String
   },
   data() {
-    return {};
+    return {
+      lang: this.$i18n.locale,
+    };
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang;
+      this.emitLang();
+    }
+  },
+  methods:{
+    emitLang() {
+      this.$store.dispatch("setLang");    
+    }
   }
 };
 </script>
 <style lang="scss">
-.div_center {
-  padding-left: 210px;
-  padding-right: 210px;
+.about_body {
+
+  width: 70%;
+  margin: auto;
 }
 
 .title_about {

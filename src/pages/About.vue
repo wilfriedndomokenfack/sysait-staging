@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page style="background-color:white" padding>
     <banner-pages
       v-if="renderComponent && company"
       :bannerUrl="bannerUrl"
@@ -7,63 +7,10 @@
       :companyName="company.denomination"
       :key="myKey"
     />
-    <!-- <div v-for="(hc, index) in humanComponents" :key="index">
-      <h5>{{ hc.first_name }}</h5>
-      <br />
-    </div> -->
+    <BodyAbout :vision="company.vision" :mission="company.mission" />
 
-    <!-- <div v-for="(cp, index1) in compagnies" :key="index1">
-      <h5>{{ cp.vision }}</h5>
-      <h4>{{cp.mission}}</h4>
-    </div> width: 90px;
-    <div>
-      <img class="image_paddingless" style="width:1200px; height: auto;" src="~assets/ImageAbout.png" />
-    </div>
-    -->
-
-    <!-- <div class="container">
-      <img src="~assets/ImageAbout.png" style="width:100%;" />
-      <div class="centered ">
-        {{ company.denomination }}<br />
-        ABOUT
-      </div>
-    </div>
-
-    <div class="div_center">
-      <div>
-        <span class="title_about">Vision</span> <br /><br />
-        <p>{{ company.vision }}</p>
-        <hr class="separator" />
-      </div>
-      <div>
-        <br /><span class="title_about">Mission</span> <br /><br />
-        <p>{{ company.mission }}</p>
-        <hr class="separator" />
-      </div>
-      <div>
-        <br /><span class="title_about">Management</span> <br /><br />
-        <div class="q-pa-md row items-start q-gutter-md">
-          <q-card class="my-card">
-            <img
-              style="width:120px;height:120px;"
-              src="https://cdn.quasar.dev/img/mountains.jpg"
-            />
-
-            <q-card-section>
-              <div class="text-h6">Our Changing Planet</div>
-              <div class="text-subtitle2">by John Doe</div>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none">
-              Lorem ipsum dolor <br />sit amet, consectetur adipiscing elit,<br />
-              sed do eiusmod tempor <br />
-              incididunt ut labore et<br />
-              dolore magna aliqua.
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
-    </div> -->
+    <ManagementAbout :listHumanComponent="humanComponents" />
+    
   </q-page>
 </template>
 
@@ -72,16 +19,19 @@ import { humanComponent } from "@/models/humanComponent.js";
 import { company } from "@/models/company.js";
 import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
-
+import BodyAbout from "@/components/about/BodyAbout.vue";
+import ManagementAbout from "@/components/about/ManagementAbout.vue";
 export default {
   name: "About",
   components: {
-    BannerPages
+    BannerPages,
+    BodyAbout,
+    ManagementAbout
   },
 
   data() {
     return {
-      bannerUrl: "~assets/ImageAbout.png",
+      bannerUrl: "ImageAbout.png",
       pageName: "About",
       renderComponent: false,
       myKey: 0
@@ -106,8 +56,8 @@ export default {
       this.$q.loadingBar.start();
       try {
         const response1 = await company();
-        this.$store.dispatch("setCompany", { ...response1?.data[0] });
-        this.renderComponent = true;
+        this.$store.dispatch("rosine/setCompany", { ...response1?.data });
+
         this.myKey = !this.myKey;
       } catch (err1) {
         console.log(err1);
@@ -116,6 +66,9 @@ export default {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
+    }
+    if (this.company) {
+      this.renderComponent = true;
     }
   }
 };
