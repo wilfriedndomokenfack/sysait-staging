@@ -15,4 +15,9 @@ export const rosineTranslations = {
   english: "English",
   italian: "Italian",
   french: "French",
+
+
+  vision:"Vision",
+  mission:"Mission",
+  management:"Management",
 }

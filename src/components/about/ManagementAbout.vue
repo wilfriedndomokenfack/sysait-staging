@@ -1,59 +1,105 @@
 <template>
-  <div class="div_center">
-    hhhhhh
-    <!-- <div>
-    <div v-for="(hc, index) in listHumanComponent" :key="index">
-      <h5>{{ hc.first_name }}</h5>
-      <br />
-    </div> 
-  </div> -->
-    <div class="q-pa-md row items-start q-gutter-md">
+  <div   :class="{management_body_xs: $q.screen.lt.xs, management_body_xl: !$q.screen.lt.xs }">
+    <div><br /><span class="title_about">{{$t('management')}}</span> <br /><br /></div>
+
+    <div class="q-pa-md row items-start q-gutter-md ">
       <q-card
         v-for="(hc, index) in listHumanComponent"
         :key="index"
         class="my-card"
         flat
-        bordered
+        
       >
-        <q-img src="https://cdn.quasar.dev/img/parallax21.jpg" />
+        <q-img type="a" class="dim_img" :src="`about_img/${hc.profile_path}`" />
+        <div class="title_profil">{{ hc.first_name }} {{ hc.last_name }}</div>
+        <div class="">{{ hc.position }}
+        
+        </div>
+        <div>
+          <a :href="hc.linkedin" target="_blank">
+            <img style="width:80px; height:20px;" :src="`about_img/linkedin.png`" />
+        </a>
+  
+        </div>
+        <br />
+        <div class="text-caption text-dark text-justify">
+          {{ hc.description }}
+          
+        </div>
 
-        <q-card-section>
-          <div class="text-overline text-orange-9">
-            {{ hc.first_name }} {{ hc.last_name }}
-          </div>
-          <div class="text-h5 q-mt-sm q-mb-xs">{{ hc.position }}</div>
-          <div class="text-caption text-grey">
-            {{ hc.description }}
-          </div>
-        </q-card-section>
       </q-card>
     </div>
   </div>
 </template>
 
 <script>
+import { openURL } from "quasar";
 export default {
   name: "ManagementAbout",
   props: {
     listHumanComponent: Array
   },
   data() {
-    return {};
+    return {
+      lang: this.$i18n.locale,
+    };
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang;
+      this.emitLang();
+    }
+  },
+  methods:{
+    emitLang() {
+      this.$store.dispatch("setLang");    
+    }
   }
+  
 };
 </script>
 <style lang="scss">
-.div_center {
-  padding-left: 210px;
-  padding-right: 210px;
+.management_body_xl {
+  width: 70%;
+  margin: auto;
+}
+.management_body_xs {
+  
+  margin: auto;
 }
 .dim_img {
-  width: 100px;
-  height: 100px;
+  width: 70%;
+  border-radius: 50%;
+  padding-left: 35px;
 }
 .my-card {
+  width: 260px;
+  margin: auto;
+  padding-bottom: 3%;
+  
+}
+.title_position {
+}
+.title_about {
+  font-weight: bold;
+  color: $sysait_cerulean;
+  font-size: 30px;
+}
+.title_profil {
+  font-weight: bold;
+  color: $sysait_cerulean;
+  font-size: 15px;
+  padding-left: -20px;
+}
+.card_profil {
   width: 235px;
-  height: 250px;
-  // max-width: 350px
+}
+.img_profil {
+  //align:center;
+  //padding-left:25px;
+  //padding-right:25px;
+  border-radius: 50%;
+  width: 90px;
+  height: auto;
 }
 </style>
