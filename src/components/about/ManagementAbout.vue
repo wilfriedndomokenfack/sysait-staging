@@ -1,18 +1,6 @@
 <template>
   <div   :class="{management_body_xs: $q.screen.lt.xs, management_body_xl: !$q.screen.lt.xs }">
-    <div><br /><span class="title_about">Management</span> <br /><br /></div>
-    <!-- <div class="card_profil">
-       <img class="img_profil"  src="~assets/foto_cv.jpg" /><br>
-       <span class="title_profil" >kenfack Tsamo </span><br>
-       <span>President and coordinator</span>
-       
-       <span>
-         <br><q-btn size="8px" flat dense icon="fab fa-linkedin-in" color="primary" />
-        </span>
-       <span><p><br>njdsdnjsd dsjhsd dhfghdfgbhdf dhfbhdfewhf dhfdfd dhfdhfhdf dhfhdfeikdhf fdjjdjf
-         jfjfjfj fjdfdkjkfdkf djfjdkfdf djfhdjf kgofjkfvkv jdhvjdhfied jdfhjdhfdj</p></span>
-
-    </div> -->
+    <div><br /><span class="title_about">{{$t('management')}}</span> <br /><br /></div>
 
     <div class="q-pa-md row items-start q-gutter-md ">
       <q-card
@@ -20,7 +8,7 @@
         :key="index"
         class="my-card"
         flat
-        style="padding-right:20px;padding-bottom:30px"
+        
       >
         <q-img type="a" class="dim_img" :src="`about_img/${hc.profile_path}`" />
         <div class="title_profil">{{ hc.first_name }} {{ hc.last_name }}</div>
@@ -34,8 +22,9 @@
   
         </div>
         <br />
-        <div class="text-caption text-grey text-justify">
+        <div class="text-caption text-dark text-justify">
           {{ hc.description }}
+          
         </div>
 
       </q-card>
@@ -51,8 +40,22 @@ export default {
     listHumanComponent: Array
   },
   data() {
-    return {};
+    return {
+      lang: this.$i18n.locale,
+    };
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang;
+      this.emitLang();
+    }
+  },
+  methods:{
+    emitLang() {
+      this.$store.dispatch("setLang");    
+    }
   }
+  
 };
 </script>
 <style lang="scss">
@@ -61,17 +64,19 @@ export default {
   margin: auto;
 }
 .management_body_xs {
-  //width: 70%;
+  
   margin: auto;
 }
 .dim_img {
   width: 70%;
   border-radius: 50%;
-  padding-left: 10px;
+  padding-left: 35px;
 }
 .my-card {
-  width: 240px;
-  //margin: auto;
+  width: 260px;
+  margin: auto;
+  padding-bottom: 3%;
+  
 }
 .title_position {
 }
