@@ -30,11 +30,13 @@ export default {
   mutations,
   actions,
   state: {
-    services: null
+    services: null,
+    products: null,
   },
 
   getters: {
-    services: state => state.services
+    services: state => state.services,
+    products: state => state.products
   },
 
 };
