@@ -1,8 +1,9 @@
 <template>
   <q-page class="text-center padding_header">  <!-- flex flex-center-->
     <!-- page content -->
-    <div class="text-h5 text-bold q-mt-md partners flex flex-center" id="partList" ref="partList">
-      {{ ourPartners }}
+    <div v-if="partners">
+      <div class="text-h5 text-bold q-mt-md partners flex flex-center" id="partList" ref="partList">
+      {{ this.$t('ourPartners') }}
     </div>
     <!-- <div class="row q-my-lg items-center justify-center"> -->
       <transition-group tag="div" class="row q-my-lg items-center justify-center" name="partLists" enter-active-class="animated flipInY delay-5s">
@@ -21,6 +22,8 @@
             </div>
         </div>
        </transition-group>
+    </div>
+
     <!-- </div> -->
     <div class=" q-mb-lg">
       <div class="text-primary text-center text-subtitle1  col-md q-ma-md" color="primary" style="font-family: Cursive">
@@ -38,6 +41,7 @@ import { mapGetters } from 'vuex'
 import { COMMON_isVisibile } from '@/models/utils/common.js'
 export default {
   name: 'Planing',
+  props: ['propPartners'],
   data () {
     return {
       partners: [],
@@ -45,39 +49,16 @@ export default {
       showPart: false,
     }
   },
-  watch: {
-    langChanged: {
-      immediate: true,
-      handler() {
-        this.updateValues()
-      }
-    },
-  },
   async mounted(){
-    this.updateValues()
-
     window.addEventListener("scroll", () => this.renderSection());
   },
-  computed: {
-    ...mapGetters(
-      [
-        'company',
-        'langChanged',
-        'wilfried/partners'
-      ]),
-  },
   methods: {
-    updateValues() {
-      this.ourPartners = this.$t('ourPartners')
-    },
     partnerlLink(link){
       window.open(link, '_blank');
     },
     renderSection(){
       if (!this.showPart && COMMON_isVisibile(this.$refs.partList)) {
-        if(this['wilfried/partners']){
-          this.partners = this['wilfried/partners']
-        }
+        this.partners = this.propPartners?.length > 0 ? this.partners = [...this.propPartners] : null
         this.showPart = true
       }
     }

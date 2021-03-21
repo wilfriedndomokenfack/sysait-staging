@@ -1,9 +1,7 @@
 <template>
-
-    <q-page class="text-center padding_header">  <!-- flex flex-center-->
-      <!-- page content -->
+    <q-page class="text-center padding_header">
       <div class="text-h5 text-bold q-mt-md service flex flex-center" id="techList" ref="techList">
-        {{ atYoutservices }}
+        {{ this.$t('atYoutservices') }}
       </div>
       <transition-group tag="div" class="row q-my-lg" name="techLists" enter-active-class="animated flipInY delay-5s">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg" v-for="tecnologie in localTecnologies" :key="tecnologie.id">
@@ -22,7 +20,7 @@ import { mapGetters } from 'vuex'
 import { COMMON_isVisibile } from '@/models/utils/common.js'
 export default {
   name: 'Tecnologies',
-
+  props: ['propTecnologies'],
   data () {
     return {
       atYoutservices: "",
@@ -30,32 +28,19 @@ export default {
       localTecnologies: []
     }
   },
-  watch: {
-    langChanged: {
-      immediate: true,
-      handler() {
-        this.updateValues()
-      }
-    },
-  },
   async mounted(){
-    this.updateValues()
     window.addEventListener("scroll", () => this.renderSection());
   },
   computed: {
     ...mapGetters(
       [
-        'tecnologies',
         'langChanged'
       ]),
   },
   methods: {
-    updateValues() {
-      this.atYoutservices = this.$t('atYoutservices')
-    },
     renderSection(){
       if (!this.showTech && COMMON_isVisibile(this.$refs.techList)) {
-        this.localTecnologies = this.tecnologies
+        this.localTecnologies = this.propTecnologies
         this.showTech = true
       }
     }

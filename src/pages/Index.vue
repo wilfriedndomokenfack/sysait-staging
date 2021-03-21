@@ -1,8 +1,8 @@
 <template>
   <q-page class="flex-center row">
-    <Banner class="col-12" v-if="renderBanner" :company="company" />
-    <Technologies class="col-12" v-if="renderTechnologies" :tecnologies="tecnologies" :key="myKey"/>
-    <Planing class="col-12" v-if="renderPartners" :partners="partners" />
+    <Banner class="col-12" v-if="renderBanner && company" :company="company" />
+    <Technologies class="col-12" v-if="renderTechnologies && tecnologies" :propTecnologies="tecnologies" :key="myKey"/>
+    <Planing class="col-12" :propPartners="partners" :key="myKey"/>
   </q-page>
 
 </template>
@@ -35,8 +35,6 @@ export default {
     };
   },
   async mounted() {
-    this.partners = this['wilfried/partners']
-
     if(this.company){
       this.renderBanner = true
     }
@@ -44,12 +42,12 @@ export default {
     if(!this.tecnologies){
       this.getTecnologies()
     }
+    this.renderTechnologies = true
 
     if(!this.partners){
       this.getPartners()
     }
-
-
+    this.partners = this['wilfried/partners']
   },
   computed: {
     ...mapGetters(
@@ -57,7 +55,8 @@ export default {
         'company',
         "previousRoute",
         'tecnologies',
-        'wilfried/partners'
+        'wilfried/partners',
+        'langChanged'
       ]),
   },
   methods: {
@@ -68,7 +67,8 @@ export default {
         const response = await allTecnologies();
          //response.data = [];
         this.$store.dispatch("wilfried/setTecnologies", response?.data);
-        if(response?.data.length > 0 ) this.renderTechnologies = true
+        if(response?.data.length === 0 ) this.$router.push({ name: 'notAvailable' });
+        this.renderTechnologies = true
         this.myKey = !this.myKey
       }catch(err){
         this.$router.push({ name: 'notAvailable' });
@@ -83,9 +83,9 @@ export default {
       this.$q.loadingBar.start();
       try{
         const response = await allPartners();
-         //response.data = [];
+       //response.data = [];
         this.$store.dispatch("wilfried/setPartners", response?.data);
-        if(response?.data.length > 0 ) this.renderPartners = true
+
       }catch(err){
         this.$router.push({ name: 'notAvailable' });
       }finally {
