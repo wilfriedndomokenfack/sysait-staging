@@ -32,7 +32,7 @@
         </div>
 
       </div>
-    
+
       <div
         class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
 
@@ -215,7 +215,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { logout } from "@/Models/auth/Auth"
+import { logout } from "@/models/auth/Auth"
 
 export default {
   name: "Header",

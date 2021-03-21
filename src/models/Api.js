@@ -1,7 +1,7 @@
 import axios from "axios";
 import Settings from "@/config/Settings";
-//import { apiErrorHandler } from "@/Models//Utils/apiErrorHandler";
-//import { heartBeater } from "@/Models//Utils/heartBeater";
+//import { apiErrorHandler } from "@/models//utils/apiErrorHandler";
+//import { heartBeater } from "@/models//utils/heartBeater";
 const headers = {
     'Accept': 'application/json',
   };

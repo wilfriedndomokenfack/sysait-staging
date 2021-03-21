@@ -1,7 +1,7 @@
 
 import store from '@/store'
  import { router } from "@/router";
- import { notify } from "@/Models/Utils/notifyUser"
+ import { notify } from "@/models/utils/notifyUser"
 
 
 
