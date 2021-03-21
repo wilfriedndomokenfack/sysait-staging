@@ -63,7 +63,6 @@ export default {
     renderSection(){
 
       if (!this.showBannerEcran && COMMON_isVisibile(this.$refs.bannerEcran)) {
-        console.log("pippo")
         this.showBannerEcran = true
       }
     }

@@ -199,6 +199,11 @@ const routes = [
   {
     path: '*',
     component: () => import('pages/Error404.vue')
+  },
+  {
+    path: '/notAvailable',
+    name: 'notAvailable',
+    component: () => import('pages/Sitedown.vue')
   }
 ]
 

@@ -3,6 +3,7 @@ export const wilfriedTranslations = {
   singInLabel: "Connexion",
   singUpLabel: "S'inscrire",
   captionLogOut: "Déconnectez-vous de votre compte",
+  siteDown: "Site Web temporairement indisponible ...",
 
 
 
