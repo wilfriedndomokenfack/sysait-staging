@@ -10,5 +10,5 @@ export const michaelTranslations = {
   contacts:"Nous contacter",
   allRights: "tous les droits sont réservés",
   noService:"Désolé...! Menu temporairement indisponible",
-  netWorkErrorMSG: "Le téléchargement des services a échoué!"
+  netWorkErrorMSG: "Le téléchargement du contenu a échoué!"
 }
