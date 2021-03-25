@@ -10,5 +10,9 @@ export const michaelTranslations = {
   contacts:"Contattaci",
   allRights: "tutti i diritti riservati",
   noService:"Scusate...! Menù momentaneamente indisponibile",
-  netWorkErrorMSG: "Caricamento del contenuto non riuscito!"
+  netWorkErrorMSG: "Caricamento del contenuto non riuscito!",
+  readMore: "LEGGERE DI PIÙ",
+  findOutMore: "SCOPRI DI PIÙ",
+  whoAreWe: "Chi siamo"
+
 }
