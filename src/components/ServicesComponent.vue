@@ -29,7 +29,6 @@ export default {
   },
 };
 </script>
-<
 <style scoped lang="scss">
 .bg_grey {
   background-color: $sysait_gallery;

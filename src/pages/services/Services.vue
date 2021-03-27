@@ -36,7 +36,6 @@ export default {
       pageName: null,
       companyName: null,
       myKey: 0,
-      myAlert: false,
     };
   },
   computed: {

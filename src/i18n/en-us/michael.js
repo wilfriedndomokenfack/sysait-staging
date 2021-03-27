@@ -10,6 +10,9 @@ export const michaelTranslations = {
   contacts:"Contact Us",
   allRights: "all rights reserved",
   noService:"Sorry...! Menu temporarily unavailable", 
-  netWorkErrorMSG: "Upload services failed!"
+  netWorkErrorMSG: "Upload content failed!",
+  readMore: "READ MORE" ,
+  findOutMore: "FIND OUT MORE",
+  whoAreWe: "Who are we"
 
 }

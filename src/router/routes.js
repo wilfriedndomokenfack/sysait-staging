@@ -65,7 +65,7 @@ const routes = [
             component: () => import('pages/products/Products.vue'),
           },
           {
-            path: "product",
+            path: "product/:product_id",
             name: 'product',
             meta: { breadcrumb: 'product' },
             component: () => import('pages/products/Product.vue'),
