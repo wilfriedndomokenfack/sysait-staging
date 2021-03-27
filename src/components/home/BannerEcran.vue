@@ -1,7 +1,7 @@
 <template>
-  <div class="myCard">
+  <div class="myCard" >
       <q-banner class="myCard-body">
-        <div class="q-col-gutter-md row items-start justify-around" >
+        <div class="q-col-gutter-md row items-start justify-between" >
           <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
             <img
               class=""
@@ -22,12 +22,13 @@
               <p face="Time new roman" class="sysait_black" >{{ company.description }}</p>
             </div>
             <div class="btn-2">
-              <q-btn   color="primary" label="Find out more" to="/about" />
+
+              <q-btn color="primary" label="Find out more" to="/about" />
+
+              <!-- <br><br><br> -->
             </div>
           </div>
         </transition>
-
-
 
           <div id="bannerEcran" ref="bannerEcran" class="col-md-1 col-sm-2 col-xs-2">
             <q-icon
@@ -50,20 +51,22 @@ export default {
   name: 'BannerEcran',
   data () {
     return {
-      showBannerEcran: false
+      showBannerEcran: false,
+      interval: null,
     }
   },
   computed: {
     ...mapGetters(["company", "langChanged"]),
   },
   mounted(){
+    this.interval = setInterval(this.renderSection, 1000);
     window.addEventListener("scroll", () => this.renderSection());
   },
   methods: {
     renderSection(){
-
       if (!this.showBannerEcran && COMMON_isVisibile(this.$refs.bannerEcran)) {
         this.showBannerEcran = true
+        clearInterval(this.interval);
       }
     }
   }
@@ -77,7 +80,7 @@ export default {
   max-width: 1200px;
   padding-bottom: 0;
   padding-top: -200px;
-  transform: translateY(250px);
+  transform: translateY(150px);
   border: 1px;
   background-color: $sysait_gallery;
 }

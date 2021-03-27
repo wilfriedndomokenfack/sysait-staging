@@ -52,7 +52,7 @@
           <q-btn
 
             class="color_sysait_cerulean"
-            to="/signin"
+            to="/signup"
             flat
             no-caps
             dense
@@ -169,6 +169,16 @@
             <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
 
             <q-list class="item-center">
+              <q-btn flat @click="drawerRight = !drawerRight" round dense icon="fa fa-times" />
+
+              <div v-if="currentUser">
+                <q-item clickable class="text-center">
+                  <q-item-section>
+                    <q-item-label class="color_sysait_cerulean"> {{ currentUser.fullname.toUpperCase()  }} </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+
             <div
               v-for="(item, index) in menu"
               :key="index"
@@ -180,26 +190,27 @@
               </q-item>
             </div>
             <div
+             v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item to="/signin" clickable v-close-popup>
                 <q-item-section>
                   <q-item-label>{{ $t('singInLabel') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item to="/signup" clickable v-close-popup>
                 <q-item-section>
                   <q-item-label> {{ $t('singUpLabel') }} </q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item  @click="logout()" clickable v-close-popup>
                 <q-item-section>
                   <q-item-label>{{ $t('captionLogOut') }}</q-item-label>
                 </q-item-section>

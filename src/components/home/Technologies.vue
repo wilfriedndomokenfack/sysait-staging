@@ -1,5 +1,5 @@
 <template>
-    <q-page class="text-center padding_header">
+    <q-page class="text-center padding_header"><br><br>
       <div class="text-h5 text-bold q-mt-md service flex flex-center" id="techList" ref="techList">
         {{ this.$t('atYoutservices') }}
       </div>
@@ -8,7 +8,7 @@
             <div class="text-info " style="font-size: 2em">
              <q-icon :name="tecnologie.icon"  class="color_sysait_cerulean" />
             </div>
-             <div class="text-h7 text-bold">{{ tecnologie.name}}</div>
+            <div class="text-h7 text-bold">{{ tecnologie.name}}</div>
             <div>{{ tecnologie.content}}</div>
         </div>
       </transition-group>
@@ -25,11 +25,14 @@ export default {
     return {
       atYoutservices: "",
       showTech: false,
-      localTecnologies: []
+      localTecnologies: [],
+      interval: null,
     }
   },
   async mounted(){
+    this.interval = setInterval(this.renderSection, 1000);
     window.addEventListener("scroll", () => this.renderSection());
+    
   },
   computed: {
     ...mapGetters(
@@ -42,6 +45,7 @@ export default {
       if (!this.showTech && COMMON_isVisibile(this.$refs.techList)) {
         this.localTecnologies = this.propTecnologies
         this.showTech = true
+        clearInterval(this.interval);
       }
     }
   }
@@ -52,7 +56,8 @@ export default {
 <style lang="scss">
 .service {
   min-width: 250px;
-  padding-top: 150px;
+ // padding-top: 150px;
+
 
 }
 

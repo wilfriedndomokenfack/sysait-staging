@@ -51,6 +51,7 @@ export default {
   },
   async mounted(){
     window.addEventListener("scroll", () => this.renderSection());
+    this.renderSection()
   },
   methods: {
     partnerlLink(link){

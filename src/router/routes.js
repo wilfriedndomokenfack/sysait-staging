@@ -188,7 +188,13 @@ const routes = [
         path: "signin",
         name: 'signin',
         meta: { breadcrumb: 'Sign in' },
-        component: () => import('pages/signins/Signin.vue'),
+        component: () => import('pages/SignIn.vue'),
+      },
+      {
+        path: "signup",
+        name: 'signup',
+        meta: { breadcrumb: 'Sign up' },
+        component: () => import('pages/SignUp.vue'),
       }
 
     ]

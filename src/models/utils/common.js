@@ -1,5 +1,7 @@
 export const COMMON_isVisibile = elm => {
+
   if (!elm) return false;
+
   let rect = elm.getBoundingClientRect();
   let viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
 
