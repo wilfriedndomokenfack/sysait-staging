@@ -70,17 +70,27 @@
               />
             </div>
           </div>
-          <q-separator class="q-pa-md" />
+          <q-separator />
         </div>
       </div>
     </div>
+    <q-separator />
+    <div class="trust q-pa-md flex fex-center">
+      <h5>They trusted us</h5>
+    </div>
+
+    <ClientProductsComponent class="q-pa-md" />
   </div>
 </template>
 
 <script>
+import ClientProductsComponent from "@/components/ClientProductsComponent.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "ProductsComponent",
+  components: {
+    ClientProductsComponent,
+  },
   props: ["propProducts"],
   data() {
     return {};
@@ -107,18 +117,18 @@ export default {
   max-height: 20px;
 }
 .moved2 {
-  transform: translate(-120px, -120px);
-  background-color: $sysait_cerulean;
+  transform: translate(-140px, -170px);
+  background-color: #273c53;
   border-radius: 5px;
   width: 60px;
   height: 60px;
   margin: 120px;
 }
 .static2 {
-  transform: translate(100px, 180px);
+  transform: translate(20px, 0px);
 }
 .moved1 {
-  transform: translate(280px, 150px);
+  transform: translate(400px, 140px);
   background-color: $sysait_cerulean;
   border-radius: 5px;
   width: 60px;
@@ -126,6 +136,10 @@ export default {
   margin: -60px;
 }
 .static1 {
-  transform: translate(-140px, 4px);
+  transform: translate(-20px, -10px);
+}
+.trust {
+  width: 15%;
+  margin: auto;
 }
 </style>
