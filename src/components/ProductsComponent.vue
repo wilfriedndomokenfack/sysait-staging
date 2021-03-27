@@ -34,13 +34,14 @@
                 color="blue"
                 text-color="black"
                 :label="$t('readMore')"
-                to="/products/product"
+                @click="sendProductId(product.id)"
               />
             </div>
           </div>
-          <div class="col-md-4 col-sm-6 col-xs-12 flex-center moved2"></div>
+
           <div class="static2 col-md-4 col-sm-6 col-xs-12">
             <img :src="`products_img/${product.image_path}`" style="width: 100%" />
+            <div class="col-md-4 col-sm-6 col-xs-12 flex flex-center moved2"></div>
           </div>
         </div>
         <div class="products flex flex-center q-pa-md q-col-gutter-md row" v-else>
@@ -65,7 +66,7 @@
                 color="blue"
                 text-color="black"
                 :label="$t('readMore')"
-                to="/products/product"
+                @click="sendProductId(product.id)"
               />
             </div>
           </div>
@@ -84,8 +85,15 @@ export default {
   data() {
     return {};
   },
+
   computed: {
     ...mapGetters(["products"]),
+  },
+
+  methods: {
+    sendProductId(product_id) {
+      this.$router.push({ name: "product", params: { product_id } });
+    },
   },
 };
 </script>
@@ -99,7 +107,7 @@ export default {
   max-height: 20px;
 }
 .moved2 {
-  transform: translate(20px, 150px);
+  transform: translate(-120px, -120px);
   background-color: $sysait_cerulean;
   border-radius: 5px;
   width: 60px;
@@ -107,7 +115,7 @@ export default {
   margin: 120px;
 }
 .static2 {
-  transform: translate(-160px, 3px);
+  transform: translate(100px, 180px);
 }
 .moved1 {
   transform: translate(280px, 150px);
