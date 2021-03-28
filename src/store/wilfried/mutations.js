@@ -1,7 +1,10 @@
-import { companyLocalStore, tecnologiesLocalStore, partnersLocalStore  } from "@/models/utils/sassionHandler.js"
+// On every mutation file, import functions to store your data
+import { companyLocalStore, tecnologiesLocalStore, partnersLocalStore  } from "@/models/utils/sessionHandler.js"
 
 const setCompany = (state, payload) => {
   state.company = payload
+
+  // this line store company on local storage
   companyLocalStore(state.company)
 }
 
