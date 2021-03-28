@@ -3,19 +3,22 @@
     <banner-pages
       v-if="renderComponent && company"
       :bannerUrl="bannerUrl"
-      :pageName="pageName"
+      :pageName="$t('about')"
       :companyName="company.denomination"
       :key="myKey"
     />
-    <BodyAbout :vision="company.vision" :mission="company.mission" />
+    <BodyAbout v-if="renderAll()" :vision="company.vision" :mission="company.mission" />
 
-    <ManagementAbout :listHumanComponent="humanComponents" />
-    
+    <ManagementAbout v-if="renderAll()" :listHumanComponent="humanComponents" />
+    <EmptyComponent v-if="!renderAll()" />
+
   </q-page>
 </template>
 
 <script>
 import { humanComponent } from "@/models/humanComponent.js";
+import EmptyComponent from "@/components/EmptyComponent.vue";
+import { netWorkError } from "@/models/utils/netWorkError";
 import { company } from "@/models/company.js";
 import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
@@ -26,51 +29,50 @@ export default {
   components: {
     BannerPages,
     BodyAbout,
-    ManagementAbout
+    ManagementAbout,
+    EmptyComponent
   },
 
   data() {
     return {
       bannerUrl: "ImageAbout.png",
-      pageName: "About",
       renderComponent: false,
       myKey: 0
     };
   },
   computed: {
-    ...mapGetters(["humanComponents", "langChanged", "company"])
+    ...mapGetters(["humanComponents", "langChanged", "company", "previousRoute"])
   },
 
   async mounted() {
     if (!this.humanComponents) {
-      try {
-        const response = await humanComponent();
-        this.$store.dispatch("rosine/setHumanComponents", response?.data);
-      } catch (err) {
-        console.log(err);
-      }
+      await this.getHumanComponents();
     }
 
-    if (!this.company) {
-      this.$q.loading.show({ message: "Pleace Wait, getting data ..." });
+
+  },
+  methods: {
+    renderAll(){
+      return (this.humanComponents && this.humanComponents.length > 0 )
+    },
+    async getHumanComponents() {
+      this.$q.loading.show();
       this.$q.loadingBar.start();
       try {
-        const response1 = await company();
-        this.$store.dispatch("rosine/setCompany", { ...response1?.data });
-
+        let response = await humanComponent();
+        // response.data = [];
+        this.$store.dispatch("rosine/setHumanComponents", response?.data);
         this.myKey = !this.myKey;
-      } catch (err1) {
-        console.log(err1);
-        this.$router.push({ path: "/" });
+        // notify("green", "Services uploaded successfull");
+      } catch (e) {
+        netWorkError(this.$t("netWorkErrorMSG") + " " + e);
+        this.$router.push({ name: this.previousRoute });
       } finally {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
-    }
-    if (this.company) {
-      this.renderComponent = true;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

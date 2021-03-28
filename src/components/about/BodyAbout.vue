@@ -1,15 +1,20 @@
 <template>
-  <div class="about_body">
-    <br />
-    <div>
-      <span class="title_about">{{$t('vision')}}</span> <br /><br />
-      <p>{{ vision }}</p>
-      <hr class="separator" />
-    </div>
-    <div>
-      <br /><span class="title_about">{{$t('mission')}}</span> <br /><br />
-      <p>{{ mission }}</p>
-      <hr class="separator" />
+  <div class="q-pa-md">
+    <div class=" flex flex-center q-pa-md q-col-gutter-md row">
+      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
+        <p id="denomination" face="Time new roman" class="sysait_black  flex flex-left title_about">
+          <strong>{{ $t('vision') }}</strong>
+        </p>
+        <p face="Time new roman" class="sysait_black">{{ vision }}</p>
+      </div>
+
+      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
+        <p id="denomination" face="Time new roman" class="sysait_black  flex flex-left title_about">
+          <strong>{{ $t('mission') }}</strong>
+        </p>
+        <p face="Time new roman" class="sysait_black">{{ mission }}</p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -34,7 +39,7 @@ export default {
   },
   methods:{
     emitLang() {
-      this.$store.dispatch("setLang");    
+      this.$store.dispatch("setLang");
     }
   }
 };
