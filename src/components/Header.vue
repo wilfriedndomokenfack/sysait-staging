@@ -52,7 +52,7 @@
           <q-btn
 
             class="color_sysait_cerulean"
-            to="/signin"
+            to="/signup"
             flat
             no-caps
             dense
@@ -169,42 +169,54 @@
             <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
 
             <q-list class="item-center">
+              <q-btn flat @click="drawerRight = !drawerRight" round dense icon="fa fa-times" />
+
+              <div v-if="currentUser">
+                <q-item clickable class="text-center">
+                  <q-item-section>
+                    <q-item-label class="color_sysait_cerulean"> {{ currentUser.fullname.toUpperCase()  }} </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+
             <div
               v-for="(item, index) in menu"
               :key="index"
             >
-              <q-item :to="item.link" clickable v-close-popup>
+              <q-item  @click="pushTo(item.link)" clickable >
                 <q-item-section>
                   <q-item-label>{{ item.label }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
+             v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item @click="pushTo('/signin')" clickable >
                 <q-item-section>
                   <q-item-label>{{ $t('singInLabel') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item @click="pushTo('/signup')" clickable >
                 <q-item-section>
                   <q-item-label> {{ $t('singUpLabel') }} </q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item  @click="logout()" clickable >
                 <q-item-section>
                   <q-item-label>{{ $t('captionLogOut') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
+
 
           </q-list>
           </div>
@@ -277,6 +289,10 @@ export default {
       ];
 
     },
+    pushTo(routePath){
+      this.drawerRight = !this.drawerRight
+      this.$router.push({ path: routePath });
+    },
     mailTo(telMail) {
       let link = null;
       if (telMail.includes("@")) {
@@ -293,6 +309,7 @@ export default {
       //this.$emit("lang", this.lang);
     },
     logout(){
+      this.drawerRight = !this.drawerRight
       logout()
     }
   }

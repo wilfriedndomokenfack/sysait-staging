@@ -2,79 +2,36 @@
   <div class="bg_banner row justify-center">
     <div class="banner_content txt">
       <div class=" nbm">
-<transition appear name="bannerHome">
-        <div class="">
+        <transition appear name="bannerHome">
+          <div class="">
 
-          <div
-            style="color: #ffffff"
-            :class="{content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
+            <div
+              style="color: #ffffff"
+              :class="{content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
+              >
+              {{ company.content_1 }}
+            </div>
+
+          <div class="learning-mission row">
+            <div
+              :class="{content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
+              class="col-10"
+              style="color: #ffffff"
             >
-            {{ company.content_1 }}
+            {{ company.content_2 }}
+            </div>
           </div>
 
-        <div class="learning-mission row">
-          <q-btn loading flat class="col-1" icon="fa fa-circle" color="white" />
-          <div
-            :class="{content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
-            class="col-10"
-            style="color: #ffffff"
-          >
-          {{ company.content_2 }}
+          <br /><br />
+          <div  class="btn-1" style="text-align: center">
+            <q-btn color="white" text-color="black" label="Read more" to="/about" />
           </div>
-          <q-btn loading flat class="col-1" icon="fa fa-circle" color="white" />
-        </div>
-
-        <br /><br />
-        <div  class="btn-1" style="text-align: center">
-          <q-btn color="white" text-color="black" label="Read more" to="/about" />
-        </div>
 
         </div>
-</transition>
-
-
+      </transition>
       </div>
     </div>
-
     <BannerEcran/>
-
-    <!-- <div class="myCard">
-      <q-banner class="myCard-body">
-        <div class="q-col-gutter-md row items-start justify-around" >
-          <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 ">
-            <img
-              class="image"
-              alt="sysait ecran"
-              src="~assets/SysaitEcranCarré.png"
-              :ratio="1"
-
-            />
-          </div>
-
-          <div class="col-md-7 col-sm-10 col-xs-10 " >
-            <div class="about-us">
-              <p face="Time new roman" class="text-markup sysait_black text-weight-regular flex flex-center">
-                <strong>Who are we</strong>
-              </p>
-              <p face="Time new roman" class="sysait_black" >{{ company.description }}</p>
-            </div>
-            <div class="btn-2">
-              <q-btn   color="primary" label="Find out more" to="/about" />
-            </div>
-          </div>
-          <div class="col-md-1 col-sm-2 col-xs-2">
-            <q-icon
-
-              class="bannerIcon"
-              name="fa fa-quote-right"
-              size="50px"
-              width="100px"
-            />
-          </div>
-        </div>
-      </q-banner>
-    </div> -->
-    
   </div>
 </template>
 

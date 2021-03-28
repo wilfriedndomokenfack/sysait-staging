@@ -176,11 +176,12 @@ export default {
   },
 
    mounted(){
+
      this.year = moment().format('YYYY')
 
      this.updateValues()
      this.socialMedia= [
-        {icon: "fab fa-whatsapp", label: "Whatsapp", link: this.company?.whatsapp},
+        {icon: "fab fa-whatsapp", label: "Whatsapp", link: this.company?.whatsApp},
         {icon: "fab fa-linkedin-in",label: "Linkedin", link: this.company?.linkedin},
         {icon: "fab fa-facebook", label: "Facebook", link: this.company?.facebook},
       ]
@@ -197,7 +198,7 @@ export default {
       ]
     },
     socialLink(link){
-          window.open(link, '_blank');
+      window.open(link, '_blank');
     },
   }
 }

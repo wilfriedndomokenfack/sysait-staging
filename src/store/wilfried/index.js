@@ -1,6 +1,10 @@
+import { loadWilfriedSession  } from "@/models/utils/sassionHandler.js"
 
 import actions from "./actions.js";
 import mutations from "./mutations";
+
+
+
 const tecnologies = [
 	{ id: 1, name: 'Futur', icon: "fa fa-arrow-up", content: 'Artificial inteligent, Maching learning, ...'},
 	{ id: 2, name: 'Framework', icon: "fa fa-retweet", content: 'Ruby On Rails, Spring, Angular JS, Jquery, Bootstrap, ...'},
@@ -41,7 +45,10 @@ const partners = [
       id: 4
       },
 ]
-const company = {
+const company = null
+
+/*
+{
       denomination: 'System Afrik Information and Technology',
       vision: 'Our vision is to excel in the field of international IT consulting. We are innovators, we create solutions \
               and products able to improve the quality of life and work of our customers and we do it by relying on the \
@@ -67,6 +74,7 @@ const company = {
       linkedin: 'https://www.linkedin.com/in/wilfried-ndomo-kenfack-b44770161/',
       whatsapp: 'https://wa.me/00393427832705'
 }
+*/
 
 
 export default {
@@ -74,9 +82,10 @@ export default {
   mutations,
   actions,
   state: {
-    company: company,
-    tecnologies: tecnologies,
-    partners: partners,
+    company: null,//company,
+    tecnologies: null, //tecnologies,
+    partners: null,//partners,
+    ...loadWilfriedSession()
   },
 
   getters: {

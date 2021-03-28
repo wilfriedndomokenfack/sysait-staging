@@ -5,14 +5,9 @@ import store from "@/store";
 
 // export const company = () => Api().get("/companies")
 
- export const company = () => {
+export const company = () =>
+  Api().get("/companies"); // INDEX
 
-   let val = Api().get("/companies"); // INDEX
-
-   console.log(val);
-
-   return val
-}
 export const updateCompany = (company) =>
     Api().patch("companies/2",company)
 
