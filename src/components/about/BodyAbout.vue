@@ -7,14 +7,12 @@
         </p>
         <p face="Time new roman" class="sysait_black">{{ vision }}</p>
       </div>
-
       <div class="col-md-9 col-sm-10 col-xs-12 self-start">
         <p id="denomination" face="Time new roman" class="sysait_black  flex flex-left title_about">
           <strong>{{ $t('mission') }}</strong>
         </p>
         <p face="Time new roman" class="sysait_black">{{ mission }}</p>
       </div>
-
     </div>
   </div>
 </template>
@@ -45,12 +43,6 @@ export default {
 };
 </script>
 <style lang="scss">
-.about_body {
-
-  width: 70%;
-  margin: auto;
-}
-
 .title_about {
   font-weight: bold;
   color: $sysait_cerulean;
@@ -59,7 +51,5 @@ export default {
 p {
   text-align: justify;
 }
-hr.separator {
-  border: 1px solid $sysait_cerulean;
-}
+
 </style>

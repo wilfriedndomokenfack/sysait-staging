@@ -283,7 +283,7 @@ export default {
         { label: this.$t("about"), link: "/about" },
         { label: this.$t("services"), link: "/services" },
         { label: this.$t("products"), link: "/products" },
-        { label: this.$t("clients"), link: "/customers" },
+        // { label: this.$t("clients"), link: "/customers" },
         { label: this.$t("courses"), link: "/courses" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
