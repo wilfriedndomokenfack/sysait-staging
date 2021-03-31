@@ -191,10 +191,10 @@ export default {
      updateValues() {
       this.copyright = `${this.year} ${this.company?.email} ${this.$t('allRights')}.`
       this.services= [
-        {icon:'fab fa-servicestack', label: this.$t('services'), path: "services"},
-        {icon:'fab fa-product-hunt', label: this.$t('products'), path: "products"},
-        {icon:'fas fa-user-tie', label: this.$t('about'), path: "about"},
-        {icon:'fas fa-id-card', label: this.$t('contacts'), path: "contact"}
+        {icon:'fab fa-servicestack', label: this.$t('services'), path: "/services"},
+        {icon:'fab fa-product-hunt', label: this.$t('products'), path: "/products"},
+        {icon:'fas fa-user-tie', label: this.$t('about'), path: "/about"},
+        {icon:'fas fa-id-card', label: this.$t('contacts'), path: "/contact"}
       ]
     },
     socialLink(link){
