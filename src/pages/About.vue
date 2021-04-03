@@ -5,9 +5,11 @@
       :pageName="$t('about')"
       :companyName="company.denomination"
     />
-    <BodyAbout v-if="renderAll()" :vision="company.vision" :mission="company.mission" />
-    <ManagementAbout v-if="renderAll()" :listHumanComponent="humanComponents" />
-    <EmptyComponent v-if="!renderAll()" />
+    <div v-if="renderAll() && renderComponent">
+      <BodyAbout :vision="company.vision" :mission="company.mission" />
+      <ManagementAbout v-if="renderAll() && renderComponent" :listHumanComponent="humanComponents" />
+    </div>
+    <EmptyComponent v-else-if="renderComponent" />
   </q-page>
 </template>
 
@@ -31,6 +33,7 @@ export default {
   data() {
     return {
       bannerUrl: "ImageAbout.png",
+      renderComponent: false
     };
   },
   computed: {
@@ -41,23 +44,24 @@ export default {
     if (!this.humanComponents) {
       await this.getHumanComponents();
     }
+    this.renderComponent = true
+
   },
   methods: {
     renderAll(){
-      return (this.humanComponents && this.humanComponents.length > 0 )
+      return (this.humanComponents && this.humanComponents?.length > 0)
     },
     async getHumanComponents() {
       this.$q.loading.show();
-      this.$q.loadingBar.start();
       try {
         let response = await humanComponent();
         this.$store.dispatch("rosine/setHumanComponents", response?.data);
+        
       } catch (e) {
         netWorkError(this.$t("netWorkErrorMSG") + " " + e);
         this.$router.push({ name: this.previousRoute });
       } finally {
         this.$q.loading.hide();
-        this.$q.loadingBar.stop();
       }
     },
   },
