@@ -1,5 +1,5 @@
 <template>
-  <q-footer class="bg_sysait_gallery">
+  <q-footer class="bg_sysait_gallery q-pa-md">
     <div class="row footer_containergg justify-between text-dark" >
 
       <div class="col-xs-12 col-sm-6 col-md-3 text-center items-center column">
@@ -29,11 +29,11 @@
                   <div>
                     <div class="" style="max-width: 350px">
                       <div class="column items-center">
-                        <font face="Time new roman" class="color_sysait_cerulean"  size="4">
+                        <font  class="color_sysait_cerulean"  size="4">
                           <b>{{ $t('office') }}</b>
                         </font>
                       </div>
-                      <div class="column">
+                      <div class="column q-pa-md q-gutter-md">
                         <div class="flex-break">
                           <q-item>
                             <q-item-section avatar>
@@ -76,11 +76,12 @@
                 </div>
               </div>
       </div>
+
       <div class="column self-start items-center col-xs-6 col-sm-6 col-md-3">
               <div class="column items-center">
                 <div class="column items-center">
                   <div>
-                    <font face="Time new roman" class="color_sysait_cerulean" size="4">
+                    <font class="color_sysait_cerulean" size="4">
                       <b>{{ $t('links') }}</b>
                     </font>
                   </div>
@@ -102,7 +103,7 @@
                 <div class="column items-center">
 
                   <div class="column items-center">
-                    <font face="Time new roman" class="color_sysait_cerulean items-center" size="4">
+                    <font  class="color_sysait_cerulean items-center" size="4">
                       <b>{{ $t('follow') }}</b>
                     </font>
                   </div>
