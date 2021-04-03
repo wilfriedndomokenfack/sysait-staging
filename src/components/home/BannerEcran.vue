@@ -16,10 +16,10 @@
         <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
           <div v-if="showBannerEcran" class="col-md-7 col-sm-10 col-xs-10 " >
             <div class="about-us">
-              <p face="Time new roman" class="text-markup sysait_black text-weight-regular flex flex-center">
+              <p  class="text-markup sysait_black text-weight-regular flex flex-center">
                 <strong >Who are we</strong>
               </p>
-              <p face="Time new roman" class="sysait_black" >{{ company.description }}</p>
+              <p  class="sysait_black" >{{ company.description }}</p>
             </div>
             <div class="btn-2">
 

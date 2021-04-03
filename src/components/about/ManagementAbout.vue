@@ -65,8 +65,6 @@ export default {
   font-weight: bold;
   color: $sysait_cerulean;
   font-size: 30px;
-
-
 }
 .title_profil {
   font-weight: bold;

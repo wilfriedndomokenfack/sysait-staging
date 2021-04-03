@@ -18,8 +18,13 @@ const setPartners = (state, payload) => {
   partnersLocalStore(state.partners)
 }
 
+const addTraining = (state, payload) => {
+  state.trainings = [...state.trainings, payload]
+}
+
 export default {
   setCompany,
   setTecnologies,
-  setPartners
+  setPartners,
+  addTraining
 };

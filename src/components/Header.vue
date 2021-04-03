@@ -281,7 +281,7 @@ export default {
         { label: this.$t("services"), link: "/services" },
         { label: this.$t("products"), link: "/products" },
         // { label: this.$t("clients"), link: "/customers" },
-        { label: this.$t("courses"), link: "/courses" },
+        { label: this.$t("courses"), link: "/training" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
 
@@ -306,7 +306,7 @@ export default {
       //this.$emit("lang", this.lang);
     },
     logout(){
-      this.drawerRight = !this.drawerRight
+     // this.drawerRight = false
       logout()
     }
   }

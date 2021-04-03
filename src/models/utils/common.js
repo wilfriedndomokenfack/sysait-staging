@@ -7,3 +7,15 @@ export const COMMON_isVisibile = elm => {
 
   return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
 }
+
+export const deepCopy = (obj) => {
+  if(obj === null) return null
+  if(typeof(obj) !== 'object') return obj
+
+  let newObj = Array.isArray(obj) ? [...obj] : {...obj}
+  for( let key in newObj){
+    newObj[key] = deepCopy(newObj[key])
+  }
+
+  return newObj
+}
