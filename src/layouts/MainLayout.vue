@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="font_arial">
     <q-layout view="hHh LpR lfr" v-if="renderComponents">
        <Header  />
 

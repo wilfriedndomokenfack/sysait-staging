@@ -26,10 +26,10 @@
 
     <!-- </div> -->
     <div class=" q-mb-lg">
-      <div class="text-primary text-center text-subtitle1  col-md q-ma-md" color="primary" style="font-family: Cursive">
+      <div class="text-primary text-center text-subtitle1  col-md q-ma-md font_Brush_Script_MT" color="primary">
         Let's create a new Word with Technology!
       </div>
-      <div class="col-md q-ma-md" style="font-family: Fantasy">
+      <div class="col-md q-ma-md">
         Ready to start a new project with us? That's great! Give us a call or send us an email and we will contact you as soon as possible!
       </div>
     </div>

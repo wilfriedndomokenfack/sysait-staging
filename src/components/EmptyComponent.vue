@@ -3,7 +3,7 @@
     <div class="flex flex-center col-md-4 col-sm-6 col-xs-12 self-start">
       <p
         id="denomination"
-        face="Time new roman"
+        
         style="margin: auto; color: red; padding-top: 60px"
       >
         <strong>{{ $t("noService") }}</strong>

@@ -12,7 +12,7 @@
               {{ company.content_1 }}
             </div>
 
-          <div class="learning-mission row">
+          <div class="learning-mission">
             <div
               :class="{content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
               class="col-10"
@@ -23,7 +23,7 @@
           </div>
 
           <br /><br />
-          <div  class="btn-1" style="text-align: center">
+          <div  class="btn-1 font_arial" style="text-align: center">
             <q-btn color="white" text-color="black" label="Read more" to="/about" />
           </div>
 
@@ -89,7 +89,7 @@ export default {
   // top: 50%;
   // left: 50%;
   transform: translate(0%, 30%);
-  font-family: "Time New Roman";
+  // font-family: "Time New Roman";
   font-size: 1vw;
 }
 .bg_banner {
