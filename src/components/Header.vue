@@ -4,16 +4,13 @@
     <div
       class="row justify-between items-center  bg_sysait_black "
     >
-
       <div
         class=" row col-xs-9 col-sm-9 col-md-5 justify-start text-center  "
-
       >
         <div
           clickable
           class="col-xs-7 col-sm-6 col-md-7 cursor "
           @click="mailTo(company.email)"
-
         >
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
@@ -283,7 +280,7 @@ export default {
         { label: this.$t("about"), link: "/about" },
         { label: this.$t("services"), link: "/services" },
         { label: this.$t("products"), link: "/products" },
-        { label: this.$t("clients"), link: "/customers" },
+        // { label: this.$t("clients"), link: "/customers" },
         { label: this.$t("courses"), link: "/courses" },
         { label: this.$t("joins"), link: "/jobs" }
       ];

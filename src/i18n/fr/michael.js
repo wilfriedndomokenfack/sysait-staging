@@ -8,7 +8,7 @@ export const michaelTranslations = {
   products:"Produits",
   aboutUs:"A Propos de nous",
   contacts:"Nous contacter",
-  allRights: "tous les droits sont réservés",
   noService:"Désolé...! Menu temporairement indisponible",
-  netWorkErrorMSG: "Le téléchargement des services a échoué!"
+  //netWorkErrorMSG: "Le téléchargement des services a échoué!"
+  netWorkErrorMSG: "Erreur réseau, veuillez réessayer plus tard"
 }

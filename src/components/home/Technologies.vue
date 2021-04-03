@@ -8,7 +8,7 @@
             <div class="text-info " style="font-size: 2em">
              <q-icon :name="tecnologie.icon"  class="color_sysait_cerulean" />
             </div>
-            <div class="text-h7 text-bold">{{ tecnologie.name}}</div>
+            <div class="text-h7 text-bold">{{ tecnologie.title }}</div>
             <div>{{ tecnologie.content}}</div>
         </div>
       </transition-group>
@@ -32,7 +32,7 @@ export default {
   async mounted(){
     this.interval = setInterval(this.renderSection, 1000);
     window.addEventListener("scroll", () => this.renderSection());
-    
+
   },
   computed: {
     ...mapGetters(

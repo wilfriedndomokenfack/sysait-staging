@@ -1,4 +1,5 @@
-import { loadWilfriedSession  } from "@/models/utils/sassionHandler.js"
+// import your loadSession in index file on your module
+import { loadWilfriedSession  } from "@/models/utils/sessionHandler.js"
 
 import actions from "./actions.js";
 import mutations from "./mutations";
@@ -85,7 +86,7 @@ export default {
     company: null,//company,
     tecnologies: null, //tecnologies,
     partners: null,//partners,
-    ...loadWilfriedSession()
+    ...loadWilfriedSession() // this load your state from local storage.
   },
 
   getters: {
