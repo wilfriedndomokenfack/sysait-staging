@@ -1,15 +1,7 @@
 <template>
   <div>
     <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md">
-      Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della
-      stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo
-      secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò
-      per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma
-      anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato.
-      Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri
-      trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più
-      recentemente da software di impaginazione come Aldus PageMaker, che includeva
-      versioni del Lorem Ipsum.
+      {{ productsPageDescription.description }}
     </div>
     <q-separator />
     <div class="q-pa-md">
@@ -41,11 +33,11 @@
 
           <div class="static2 col-md-4 col-sm-6 col-xs-12">
             <img :src="`products_img/${product.image_path}`" style="width: 100%" />
-            <div class="col-md-4 col-sm-6 col-xs-12 flex flex-center moved2"></div>
+            <!-- <div class="col-md-4 col-sm-6 col-xs-12 flex flex-center moved2"></div> -->
           </div>
         </div>
         <div class="products flex flex-center q-pa-md q-col-gutter-md row" v-else>
-          <div class="col-md-4 col-sm-6 col-xs-12 flex-center moved1"></div>
+          <!-- <div class="col-md-4 col-sm-6 col-xs-12 flex-center moved1"></div> -->
           <div class="static1 col-md-4 col-sm-6 col-xs-12">
             <img :src="`products_img/${product.image_path}`" style="width: 100%" />
           </div>
@@ -70,13 +62,13 @@
               />
             </div>
           </div>
-          <q-separator />
+          <!-- <q-separator /> -->
         </div>
       </div>
     </div>
     <q-separator />
-    <div class="trust q-pa-md flex fex-center">
-      <h5>They trusted us</h5>
+    <div class="trust flex fex-center">
+      <h5>{{ this.$t("trustUs") }}</h5>
     </div>
 
     <ClientProductsComponent class="q-pa-md" />
@@ -97,7 +89,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["products"]),
+    ...mapGetters(["products,productsPageDescription"]),
   },
 
   methods: {
@@ -116,7 +108,7 @@ export default {
   color: $sysait_cerulean;
   max-height: 20px;
 }
-.moved2 {
+/*.moved2 {
   transform: translate(-140px, -170px);
   background-color: #273c53;
   border-radius: 5px;
@@ -138,6 +130,7 @@ export default {
 .static1 {
   transform: translate(-20px, -10px);
 }
+*/
 .trust {
   width: 15%;
   margin: auto;

@@ -13,6 +13,8 @@ export const michaelTranslations = {
   netWorkErrorMSG: "Upload content failed!",
   readMore: "READ MORE" ,
   findOutMore: "FIND OUT MORE",
-  whoAreWe: "Who are we"
+  whoAreWe: "Who are we",
+  productPage: "PRODUCTS",
+  trustUs: "They trusted us"
 
 }

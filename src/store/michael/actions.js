@@ -6,8 +6,13 @@ const setServices = ({ commit }, payload) => { // Action
     commit('setProducts', payload) // mutation
   }
 
+  const setProductsPageDescription = ({ commit }, payload) => { // Action
+    commit('setProductsPageDescription', payload) // mutation
+  }
+
 
 export default {
     setServices, // export action
-    setProducts
+    setProducts,
+    setProductsPageDescription
 };

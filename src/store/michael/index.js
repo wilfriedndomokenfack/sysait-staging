@@ -32,11 +32,13 @@ export default {
   state: {
     services: null,
     products: null,
+    productsPageDescription: null
   },
 
   getters: {
     services: state => state.services,
-    products: state => state.products
+    products: state => state.products,
+    productsPageDescription: state => state.productsPageDescription
   },
 
 };

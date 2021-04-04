@@ -3,7 +3,7 @@
     <div>
       <BannerPages
         :bannerUrl="bannerUrl"
-        :pageName="pageName"
+        :pageName="$t('productPage')"
         :companyName="companyName"
       />
 
@@ -44,7 +44,6 @@ export default {
     }
     this.products = this["michael/products"];
     this.bannerUrl = "ImageProducts.png";
-    this.pageName = "PRODUCTS";
     this.companyName = this.company.denomination;
   },
   methods: {

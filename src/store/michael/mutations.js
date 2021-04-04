@@ -6,8 +6,13 @@ const setProducts = (state, payload) => { // mutation
     state.products = payload // update state 
 }
 
+const setProductsPageDescription = (state, payload) => {
+    state.productsPageDescription = payload
+}
+
 // Export mutation
 export default {
     setServices,
-    setProducts 
+    setProducts,
+    setProductsPageDescription
 };

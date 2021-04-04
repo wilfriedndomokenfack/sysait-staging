@@ -13,6 +13,8 @@ export const michaelTranslations = {
   netWorkErrorMSG: "Caricamento del contenuto non riuscito!",
   readMore: "LEGGERE DI PIÙ",
   findOutMore: "SCOPRI DI PIÙ",
-  whoAreWe: "Chi siamo"
+  whoAreWe: "Chi siamo",
+  productPage: "PRODOTTI",
+  trustUs: "Si fidano di noi"
 
 }
