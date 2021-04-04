@@ -7,7 +7,11 @@
         :companyName="companyName"
       />
 
-      <ProductsComponent :propProducts="products" :key="myKey" />
+      <ProductsComponent
+        :propProducts="products"
+        :descriptionProp="pageDescription"
+        :key="myKey"
+      />
     </div>
   </q-page>
 </template>
@@ -19,6 +23,7 @@ import BannerPages from "@/components/utils/BannerPages.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
 import { products } from "@/models/product.js";
 import { mapGetters } from "vuex";
+import { table_description } from "@/models/table_description.js";
 export default {
   name: "Products",
   components: {
@@ -32,16 +37,29 @@ export default {
       bannerUrl: null,
       pageName: null,
       companyName: null,
+      pageDescription: "",
       myKey: 0,
     };
   },
   computed: {
-    ...mapGetters(["michael/products", "company", "previousRoute"]),
+    ...mapGetters([
+      "michael/products",
+      "company",
+      "previousRoute",
+      "michael/productsPageDescription",
+    ]),
   },
   async mounted() {
     if (!this["michael/products"]) {
       await this.getProducts();
     }
+
+    if (!this["michael/productsPageDescription"]) {
+      this.getPageDescription();
+    }
+
+    this.pageDescription = this["michael/productsPageDescription"]?.description ?? "";
+
     this.products = this["michael/products"];
     this.bannerUrl = "ImageProducts.png";
     this.companyName = this.company.denomination;
@@ -62,6 +80,22 @@ export default {
       } finally {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
+      }
+    },
+
+    async getPageDescription() {
+      this.$q.loading.show();
+      try {
+        const response = await table_description("products");
+        this.pageDescription = response?.data.description;
+        this.$store.dispatch("michael/setProductsPageDescription", {
+          ...response?.data,
+        });
+      } catch (e) {
+        this.pageDescription = "";
+      } finally {
+        this.myKey = !this.myKey;
+        this.$q.loading.hide();
       }
     },
   },

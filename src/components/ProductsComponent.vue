@@ -1,41 +1,15 @@
 <template>
   <div>
-    <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md"></div>
+    <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md">
+      {{ descriptionProp }}
+    </div>
     <q-separator />
     <div class="q-pa-md">
-      <div v-for="(product, index) in propProducts">
+      <div v-for="(product, index) in propProducts" :class="{ bg_grey: index % 2 }">
         <div
           class="products flex flex-center q-pa-md q-col-gutter-md row"
-          v-if="index % 2"
+          :class="{ bg_grey: index % 2 }"
         >
-          <div class="col-md-4 col-sm-6 col-xs-12 self-start">
-            <p
-              id="denomination"
-              face="Time new roman"
-              class="sysait_black flex flex-center"
-            >
-              <strong>
-                <a :href="product.link">{{ product.denomination }}</a>
-              </strong>
-            </p>
-            <p face="Time new roman" class="sysait_black">{{ product.description }}</p>
-            <div class="q-pa-md btn-1" style="text-align: center">
-              <q-btn
-                color="blue"
-                text-color="black"
-                :label="$t('readMore')"
-                @click="sendProductId(product.id)"
-              />
-            </div>
-          </div>
-
-          <div class="static2 col-md-4 col-sm-6 col-xs-12">
-            <img :src="`products_img/${product.image_path}`" style="width: 100%" />
-            <!-- <div class="col-md-4 col-sm-6 col-xs-12 flex flex-center moved2"></div> -->
-          </div>
-        </div>
-        <div class="products flex flex-center q-pa-md q-col-gutter-md row" v-else>
-          <!-- <div class="col-md-4 col-sm-6 col-xs-12 flex-center moved1"></div> -->
           <div class="static1 col-md-4 col-sm-6 col-xs-12">
             <img :src="`products_img/${product.image_path}`" style="width: 100%" />
           </div>
@@ -60,12 +34,11 @@
               />
             </div>
           </div>
-          <!-- <q-separator /> -->
         </div>
       </div>
     </div>
     <q-separator />
-    <div class="trust flex fex-center">
+    <div class="trust col-md-4 col-sm-6 col-xs-12">
       <h5>{{ this.$t("trustUs") }}</h5>
     </div>
 
@@ -81,13 +54,13 @@ export default {
   components: {
     ClientProductsComponent,
   },
-  props: ["propProducts"],
+  props: ["propProducts", "descriptionProp"],
   data() {
     return {};
   },
 
   computed: {
-    ...mapGetters(["products", "michael/productsPageDescription"]),
+    ...mapGetters(["products"]),
   },
 
   methods: {
@@ -106,31 +79,13 @@ export default {
   color: $sysait_cerulean;
   max-height: 20px;
 }
-/*.moved2 {
-  transform: translate(-140px, -170px);
-  background-color: #273c53;
-  border-radius: 5px;
-  width: 60px;
-  height: 60px;
-  margin: 120px;
-}
-.static2 {
-  transform: translate(20px, 0px);
-}
-.moved1 {
-  transform: translate(400px, 140px);
-  background-color: $sysait_cerulean;
-  border-radius: 5px;
-  width: 60px;
-  height: 60px;
-  margin: -60px;
-}
-.static1 {
-  transform: translate(-20px, -10px);
-}
-*/
 .trust {
-  width: 15%;
+  width: 70%;
+  padding: 2px;
   margin: auto;
+  text-align: center;
+}
+.bg_grey {
+  background-color: $sysait_gallery;
 }
 </style>
