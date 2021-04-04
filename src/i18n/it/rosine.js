@@ -3,7 +3,7 @@ export const rosineTranslations = {
   langChange: "Cambia lingua",
 
   home: "Home",
-  about: "About",
+  about: "Chi siamo",
   services: "Servizi",
   products: "Produtti",
   clients:"Clienti",

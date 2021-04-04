@@ -1,7 +1,7 @@
 
 import store from '@/store'
  import { router } from "@/router";
- import { notify } from "@/Models/Utils/notifyUser"
+ import { notify } from "@/models/utils/notifyUser"
 
 
 
@@ -51,14 +51,21 @@ import store from '@/store'
 //     router.push({ name: "login" });
 //   }
 // };
+// computed: {
+//     ...mapGetters(
+//       [
+//         'currentRoute',
+//         'currentUser',
+//         'previousRoute',
+//       ]), this.$router.push({ name: this.previousRoute });
+//   },
 export const login = (user) => {
-  console.log(user)
+  const goTo = store.getters.previousRoute ?? 'home'
   store.dispatch("setCurrentUser", user);
-  router.push({ path: "/" });
-  notify('green', 'Login avvenuto con sucesso!')
+  router.push({ name: goTo });
+  notify('green', 'Login with success!')
 }
 export const logout = () => {
-  router.push({ path: "/" });
   store.dispatch("setCurrentUser", null);
-  notify('green', 'Login avvenuto con sucesso!')
+  notify('green', 'Logout with success!')
 };

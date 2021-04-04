@@ -86,32 +86,26 @@ const routes = [
         ]
       },
       {
-        path: 'courses/',
+        path: 'training/',
         component: RouterContainer,
         children: [
           {
             path: "",
-            name: 'courses',
+            name: 'training',
             meta: { breadcrumb: 'Our courses' },
-            component: () => import('pages/courses/Courses.vue'),
-          },
-          {
-            path: "course",
-            name: 'course',
-            meta: { breadcrumb: 'product' },
-            component: () => import('pages/courses/Course.vue'),
+            component: () => import('pages/training/Training.vue'),
           },
           {
             path: "new",
-            name: 'newCourse',
-            meta: { breadcrumb: 'Create a new course' },
-            component: () => import('pages/courses/NewCourse.vue'),
+            name: 'newTraining',
+            meta: { breadcrumb: 'Create a new Training' },
+            component: () => import('pages/training/NewTraining.vue'),
           },
           {
-            path: "course/edit",
-            name: 'editCourse',
-            meta: { breadcrumb: 'Edit a course' },
-            component: () => import('pages/courses/EditCourse.vue'),
+            path: ":training_id/edit",
+            name: 'editTraining',
+            meta: { breadcrumb: 'Edit a Training' },
+            component: () => import('pages/training/EditTraining.vue'),
           }
 
         ]
@@ -188,7 +182,13 @@ const routes = [
         path: "signin",
         name: 'signin',
         meta: { breadcrumb: 'Sign in' },
-        component: () => import('pages/signins/Signin.vue'),
+        component: () => import('pages/SignIn.vue'),
+      },
+      {
+        path: "signup",
+        name: 'signup',
+        meta: { breadcrumb: 'Sign up' },
+        component: () => import('pages/SignUp.vue'),
       }
 
     ]
@@ -199,6 +199,11 @@ const routes = [
   {
     path: '*',
     component: () => import('pages/Error404.vue')
+  },
+  {
+    path: '/notAvailable',
+    name: 'notAvailable',
+    component: () => import('pages/Sitedown.vue')
   }
 ]
 

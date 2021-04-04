@@ -1,7 +1,7 @@
 <template>
-  <div class="">
-    <q-layout view="hHh LpR lfr">
-       <Header />
+  <div class="font_arial">
+    <q-layout view="hHh LpR lfr" v-if="renderComponents">
+       <Header  />
 
     <q-page-container class="">
       <transition appear name="allPages">
@@ -31,34 +31,34 @@ export default {
   },
   data() {
     return {
-      drawerLeft: false,
-      drawerRight: false
+      renderComponents: false
     };
   },
-  mounted() {
-    /* if(!this.company){
-      this.getCompany()
-    }*/
-    this.propCompany = { ...this.company };
+  async mounted() {
+    if(!this.company){
+      await this.getCompany()
+    }
+    this.renderComponents = true
+    //this.propCompany = { ...this.company };
   },
   computed: {
     ...mapGetters(["company"])
   },
   methods: {
     async getCompany() {
-      let temp = null;
-      alert("dentro");
-      try {
-        alert("prima");
+      this.$q.loading.show();
+      this.$q.loadingBar.start();
+      try{
         const response = await company();
-        alert("dopo");
-        if (response?.data?.length > 0) temp = { ...response.data[0] };
-      } catch (err) {
-        //notify("red", "get company error! " + err);
-        console.log("red", "get company error! " + err);
+         //response.data = [];
+        if(response?.data.length === 0 ) this.$router.push({ name: 'notAvailable' });
+        this.$store.dispatch("wilfried/setCompany", response?.data[0]);
+      }catch(err){
+        this.$router.push({ name: 'notAvailable' });
+      }finally {
+        this.$q.loading.hide();
+        this.$q.loadingBar.stop();
       }
-
-      store.dispatch("setCompany", { ...temp });
     },
     updateLang() {
       store.dispatch("setLang");

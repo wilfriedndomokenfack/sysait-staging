@@ -2,7 +2,8 @@
 export const wilfriedTranslations = {
   singInLabel: "Accesso",
   singUpLabel: "Registrati",
-  captionLogOut: 'Esci dal tuo account',
+  captionLogOut: 'Esci',
+  siteDown: "Sito web momentaneamente non disponibile ...",
 
 
 

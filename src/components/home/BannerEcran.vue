@@ -1,7 +1,7 @@
 <template>
   <div class="myCard">
     <q-banner class="myCard-body">
-      <div class="q-col-gutter-md row items-start justify-around">
+      <div class="q-col-gutter-md row items-start justify-between">
         <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
           <img
             class=""
@@ -11,26 +11,22 @@
             style="width: 195px; height: auto"
           />
         </div>
-        <!-- style="width: 100%; height: auto" -->
 
-        <template name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
+        <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
           <div v-if="showBannerEcran" class="col-md-7 col-sm-10 col-xs-10">
             <div class="about-us">
-              <p
-                face="Time new roman"
-                class="text-markup sysait_black text-weight-regular flex flex-center"
-              >
-                <strong>
-                  {{ $t("whoAreWe") }}
-                </strong>
+              <p class="text-markup sysait_black text-weight-regular flex flex-center">
+                <strong>Who are we</strong>
               </p>
-              <p face="Time new roman" class="sysait_black">{{ company.description }}</p>
+              <p class="sysait_black">{{ company.description }}</p>
             </div>
-            <div>
+            <div class="btn-2">
               <q-btn color="primary" :label="$t('findOutMore')" to="/about" />
+
+              <!-- <br><br><br> -->
             </div>
           </div>
-        </template>
+        </transition>
 
         <div id="bannerEcran" ref="bannerEcran" class="col-md-1 col-sm-2 col-xs-2">
           <q-icon class="bannerIcon" name="fa fa-quote-right" size="50px" width="100px" />
@@ -48,19 +44,21 @@ export default {
   data() {
     return {
       showBannerEcran: false,
+      interval: null,
     };
   },
   computed: {
     ...mapGetters(["company", "langChanged"]),
   },
   mounted() {
+    this.interval = setInterval(this.renderSection, 1000);
     window.addEventListener("scroll", () => this.renderSection());
   },
   methods: {
     renderSection() {
       if (!this.showBannerEcran && COMMON_isVisibile(this.$refs.bannerEcran)) {
-        console.log("pippo");
         this.showBannerEcran = true;
+        clearInterval(this.interval);
       }
     },
   },
@@ -74,7 +72,7 @@ export default {
   max-width: 1200px;
   padding-bottom: 0;
   padding-top: -200px;
-  transform: translateY(250px);
+  transform: translateY(150px);
   border: 1px;
   background-color: $sysait_gallery;
 }

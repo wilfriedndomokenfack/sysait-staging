@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { login } from '@/Models/auth/Auth';
+import { login } from '@/models/auth/Auth';
 export default {
   data() {
       return {
@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.user)
       login(this.user)
     }
   },

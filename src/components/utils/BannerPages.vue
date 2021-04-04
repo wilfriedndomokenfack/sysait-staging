@@ -48,7 +48,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Time New Roman";
+  // font-family: "Time New Roman";
   font-size:1vw;
 }
 .page_name {
@@ -59,7 +59,7 @@ export default {
   font-weight: bold;
   color: $sysait_cerulean;
   font-size: 30px;
-  font-family: "Time New Roman";
+  // font-family: "Time New Roman";
 }
 
 p {

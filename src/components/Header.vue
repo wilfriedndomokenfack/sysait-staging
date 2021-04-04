@@ -4,16 +4,13 @@
     <div
       class="row justify-between items-center  bg_sysait_black "
     >
-
       <div
         class=" row col-xs-9 col-sm-9 col-md-5 justify-start text-center  "
-
       >
         <div
           clickable
           class="col-xs-7 col-sm-6 col-md-7 cursor "
           @click="mailTo(company.email)"
-
         >
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
           {{ company.email }}
@@ -32,7 +29,7 @@
         </div>
 
       </div>
-    
+
       <div
         class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
 
@@ -52,7 +49,7 @@
           <q-btn
 
             class="color_sysait_cerulean"
-            to="/signin"
+            to="/signup"
             flat
             no-caps
             dense
@@ -169,42 +166,54 @@
             <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
 
             <q-list class="item-center">
+              <q-btn flat @click="drawerRight = !drawerRight" round dense icon="fa fa-times" />
+
+              <div v-if="currentUser">
+                <q-item clickable class="text-center">
+                  <q-item-section>
+                    <q-item-label class="color_sysait_cerulean"> {{ currentUser.fullname.toUpperCase()  }} </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+
             <div
               v-for="(item, index) in menu"
               :key="index"
             >
-              <q-item :to="item.link" clickable v-close-popup>
+              <q-item  @click="pushTo(item.link)" clickable >
                 <q-item-section>
                   <q-item-label>{{ item.label }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
+             v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item @click="pushTo('/signin')" clickable >
                 <q-item-section>
                   <q-item-label>{{ $t('singInLabel') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="!currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item @click="pushTo('/signup')" clickable >
                 <q-item-section>
                   <q-item-label> {{ $t('singUpLabel') }} </q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div
-
+              v-show="currentUser"
             >
-              <q-item to="/" clickable v-close-popup>
+              <q-item  @click="logout()" clickable >
                 <q-item-section>
                   <q-item-label>{{ $t('captionLogOut') }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
+
 
           </q-list>
           </div>
@@ -215,7 +224,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { logout } from "@/Models/auth/Auth"
+import { logout } from "@/models/auth/Auth"
 
 export default {
   name: "Header",
@@ -271,11 +280,15 @@ export default {
         { label: this.$t("about"), link: "/about" },
         { label: this.$t("services"), link: "/services" },
         { label: this.$t("products"), link: "/products" },
-        { label: this.$t("clients"), link: "/customers" },
-        { label: this.$t("courses"), link: "/courses" },
+        // { label: this.$t("clients"), link: "/customers" },
+        { label: this.$t("courses"), link: "/training" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
 
+    },
+    pushTo(routePath){
+      this.drawerRight = !this.drawerRight
+      this.$router.push({ path: routePath });
     },
     mailTo(telMail) {
       let link = null;
@@ -293,6 +306,7 @@ export default {
       //this.$emit("lang", this.lang);
     },
     logout(){
+     // this.drawerRight = false
       logout()
     }
   }

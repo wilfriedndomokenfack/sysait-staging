@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md">
-      {{ productsPageDescription.description }}
-    </div>
+    <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md"></div>
     <q-separator />
     <div class="q-pa-md">
       <div v-for="(product, index) in propProducts">
@@ -89,7 +87,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["products,productsPageDescription"]),
+    ...mapGetters(["products", "michael/productsPageDescription"]),
   },
 
   methods: {
