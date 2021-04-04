@@ -18,7 +18,7 @@ export const sendToTranings = async (training) => {
 
     store.dispatch("wilfried/addTraining", { ...response?.data });
   }catch(err){
-    message = 'ERROR' + err
+    message = 'ERROR: ' + err
     color = 'red'
     returnData = false
   }finally{

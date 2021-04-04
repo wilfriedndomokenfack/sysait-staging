@@ -22,9 +22,14 @@ const addTraining = (state, payload) => {
   state.trainings = [...state.trainings, payload]
 }
 
+const setTrainingPageDescription = (state, payload) => {
+  state.trainingPageDescription =  payload
+}
+
 export default {
   setCompany,
   setTecnologies,
   setPartners,
-  addTraining
+  addTraining,
+  setTrainingPageDescription
 };

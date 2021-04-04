@@ -118,6 +118,7 @@ export default {
     tecnologies: null, //tecnologies,
     partners: null,//partners,
     trainings: trainings,
+    trainingPageDescription: null,
     ...loadWilfriedSession() // this load your state from local storage.
   },
 
@@ -125,6 +126,7 @@ export default {
     company: state => state.company,
     tecnologies: state => state.tecnologies,
     partners: state => state.partners,
-    trainings: state => state.trainings
+    trainings: state => state.trainings,
+    trainingPageDescription: state => state.trainingPageDescription
   },
 };
