@@ -2,7 +2,10 @@
   <div class="myCard">
     <q-banner class="myCard-body">
       <div class="q-col-gutter-md row items-start justify-around">
-        <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
+        <div
+          v-show="!this.$q.screen.lt.md"
+          class="col-md-3 col-sm-12 col-xs-12 image"
+        >
           <img
             class=""
             alt="sysait ecran"
@@ -13,7 +16,10 @@
         </div>
         <!-- style="width: 100%; height: auto" -->
 
-        <template name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
+        <template
+          name="bannerEcrans"
+          enter-active-class="animated zoomInDown delay-1s"
+        >
           <div v-if="showBannerEcran" class="col-md-7 col-sm-10 col-xs-10">
             <div class="about-us">
               <p
@@ -24,7 +30,9 @@
                   {{ $t("whoAreWe") }}
                 </strong>
               </p>
-              <p face="Time new roman" class="sysait_black">{{ company.description }}</p>
+              <p face="Time new roman" class="sysait_black">
+                {{ company.description }}
+              </p>
             </div>
             <div>
               <q-btn color="primary" :label="$t('findOutMore')" to="/about" />
@@ -32,8 +40,17 @@
           </div>
         </template>
 
-        <div id="bannerEcran" ref="bannerEcran" class="col-md-1 col-sm-2 col-xs-2">
-          <q-icon class="bannerIcon" name="fa fa-quote-right" size="50px" width="100px" />
+        <div
+          id="bannerEcran"
+          ref="bannerEcran"
+          class="col-md-1 col-sm-2 col-xs-2"
+        >
+          <q-icon
+            class="bannerIcon"
+            name="fa fa-quote-right"
+            size="50px"
+            width="100px"
+          />
         </div>
       </div>
     </q-banner>
@@ -47,11 +64,11 @@ export default {
   name: "BannerEcran",
   data() {
     return {
-      showBannerEcran: false,
+      showBannerEcran: false
     };
   },
   computed: {
-    ...mapGetters(["company", "langChanged"]),
+    ...mapGetters(["company", "langChanged"])
   },
   mounted() {
     window.addEventListener("scroll", () => this.renderSection());
@@ -62,8 +79,8 @@ export default {
         console.log("pippo");
         this.showBannerEcran = true;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

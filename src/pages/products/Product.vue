@@ -7,22 +7,20 @@
         :companyName="companyName"
       />
     </div>
-    <div>
-      ProductId:{{productId}}<br>
-      {{product.description}}
-      
-       
-    </div>
+
+    <ProductComponent :propProduct="product" />
   </q-page>
 </template>
 
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
+import ProductComponent from "@/components/ProductComponent/ProductComponent.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "Product",
   components: {
-    BannerPages
+    BannerPages,
+    ProductComponent
   },
   data() {
     return {
@@ -30,10 +28,8 @@ export default {
       pageName: null,
       companyName: null,
       productId: this.$route.params.product_id,
-      products:null,
-      product:null,
-
-
+      products: null,
+      product: null
     };
   },
   computed: {
@@ -41,28 +37,21 @@ export default {
   },
   async mounted() {
     if (!this["michael/products"]) {
-      this.$router.push({ name : "home" });
-      
+      this.$router.push({ name: "home" });
     }
     this.products = this["michael/products"];
-    this.getProduct()
+    this.getProduct();
     this.bannerUrl = "ImageProducts.png";
     this.pageName = "Product";
     this.companyName = this.company.denomination;
-    
-    
   },
-   methods: {
+  methods: {
     getProduct() {
-     
-      
-      this.product= this.products.filter(v => v.id === this.productId)[0];
-      if(!this.product){
-         this.$router.push({ name: "products" });
-
+      this.product = this.products.filter(v => v.id === this.productId)[0];
+      if (!this.product) {
+        this.$router.push({ name: "products" });
       }
-
-    },
-  },
+    }
+  }
 };
 </script>

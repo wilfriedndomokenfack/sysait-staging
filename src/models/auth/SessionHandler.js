@@ -1,13 +1,13 @@
 // import store from "@/store";
-// import { isWeb } from "@/Models/Utils/Platform";
-// import { setCookie, getCookie, clearCookies } from "@/Models/Utils/CookieUtils";
+// import { isWeb } from "@/models/utils/Platform";
+// import { setCookie, getCookie, clearCookies } from "@/models/utils/Cookieutils";
 // //import { businessUnits as businessUnitsIndex } from "../BusinessUnit";
-// import { attemptToLogin } from "@/Models/auth/UserSession"
+// import { attemptToLogin } from "@/models/auth/UserSession"
 // import {
 //   setLocalStorageValue,
 //   getLocalStorageValue,
 //   clearLocalStorage
-// } from "@/Models/Utils/LocalStorageUtils";
+// } from "@/models/utils/LocalStorageutils";
 // import { router } from "@/router";
 
 // const setValue = isWeb ? setCookie : setLocalStorageValue;

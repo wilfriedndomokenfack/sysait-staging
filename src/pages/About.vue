@@ -10,7 +10,6 @@
     <BodyAbout :vision="company.vision" :mission="company.mission" />
 
     <ManagementAbout :listHumanComponent="humanComponents" />
-    
   </q-page>
 </template>
 

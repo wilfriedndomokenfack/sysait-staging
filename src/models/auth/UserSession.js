@@ -1,11 +1,11 @@
 // import jwtDecode from "jwt-decode";
-// //import { EventBus } from "@/Models/EventBus";
+// //import { EventBus } from "@/models/EventBus";
 // import store from "@/store";
 // import { router } from "@/router";
-// import { userKicker } from "@/Models/auth/userKicker";
-// import { logout } from "@/Models/auth//Auth";
-// import { saveSession, saveJwtToken } from "@/Models/auth//SessionHandler";
-// //import { currentModule } from "../Utils/Platform";
+// import { userKicker } from "@/models/auth/userKicker";
+// import { logout } from "@/models/auth//Auth";
+// import { saveSession, saveJwtToken } from "@/models/auth//SessionHandler";
+// //import { currentModule } from "../utils/Platform";
 
 // export const attemptToLogin = () => {
 //   const canNavigate = userIsAbleToNavigate();

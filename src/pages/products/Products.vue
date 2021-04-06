@@ -24,7 +24,7 @@ export default {
   components: {
     ProductsComponent,
     EmptyComponent,
-    BannerPages,
+    BannerPages
   },
   data() {
     return {
@@ -32,11 +32,11 @@ export default {
       bannerUrl: null,
       pageName: null,
       companyName: null,
-      myKey: 0,
+      myKey: 0
     };
   },
   computed: {
-    ...mapGetters(["michael/products", "company", "previousRoute"]),
+    ...mapGetters(["michael/products", "company", "previousRoute"])
   },
   async mounted() {
     if (!this["michael/products"]) {
@@ -64,7 +64,7 @@ export default {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
-    },
-  },
+    }
+  }
 };
 </script>

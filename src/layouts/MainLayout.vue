@@ -1,14 +1,14 @@
 <template>
   <div class="">
     <q-layout view="hHh LpR lfr">
-       <Header />
+      <Header />
 
-    <q-page-container class="">
-      <transition appear name="allPages">
-      <router-view class="fit row wrap items-start content-start" />
-      </transition>
-    </q-page-container>
-    <Footer />
+      <q-page-container class="">
+        <transition appear name="allPages">
+          <router-view class="fit row wrap items-start content-start" />
+        </transition>
+      </q-page-container>
+      <Footer />
     </q-layout>
   </div>
 </template>
@@ -68,13 +68,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .allPages-enter-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .allPages-enter{
-    transform: translateX(10px);
-    opacity: 0;
-  }
-
-
+.allPages-enter-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.allPages-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>
