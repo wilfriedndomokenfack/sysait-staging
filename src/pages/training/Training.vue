@@ -1,28 +1,27 @@
 <template>
   <q-page padding>
-    <div>
-      <BannerPages
-        bannerUrl="ImageTraining.png"
-        :pageName="$t('courses')"
-        :companyName="company.denomination"
-      />
-      <q-toolbar v-if="currentUser">
-      <q-toolbar-title>
-      </q-toolbar-title>
-        <div class="q-pa-md q-gutter-sm" dense>
-          <q-btn
-            @click="redirect('newTraining')"
-            outline round dense
-            color="primary"
-            icon="fa fa-plus"
-            padding="sm"
-          />
-        </div>
-    </q-toolbar>
-      <div v-if="renderAll() && renderComponent">
-        <TrainingsComponent :propTrainings="trainings" :descriptionProp="pageDescription" :key="myKey"/>
+    <BannerPages
+      bannerUrl="ImageTraining.png"
+      :pageName="$t('courses')"
+      :companyName="company.denomination"
+      class="q-mb-md"
+    />
+    <div class="constrain">
+      <PageDescription :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" />
+      <div class="col-12">
+        <SendUserFromTrainingsToContacts/>
       </div>
-      <EmptyComponent v-else-if="renderComponent" />
+
+      <div>
+        <AddElementBtn link="newTraining"/>
+        <div v-if="renderAll() && renderComponent">
+          <TrainingsComponent  :propTrainings="trainings" :key="myKey"/>
+          <div class="col-12">
+            <SendUserFromTrainingsToContacts/>
+          </div>
+        </div>
+        <EmptyComponent v-else-if="renderComponent" />
+      </div>
     </div>
   </q-page>
 </template>
@@ -31,14 +30,23 @@
 import BannerPages from "@/components/utils/BannerPages.vue";
 import EmptyComponent from "@/components/EmptyComponent.vue";
 import TrainingsComponent from "@/components/training/TrainingsComponent.vue";
+import PageDescription from "@/components/utils/PageDescription.vue"
+import AddElementBtn from "@/components/utils/AddElementBtn.vue"
+import SendUserFromTrainingsToContacts from "@/components/training/SendUserFromTrainingsToContacts.vue"
+
 import { mapGetters } from "vuex";
-import { table_description } from "@/models/table_description.js"
+import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
+
+
 export default {
   name: 'TrainingsPage',
   components: {
     BannerPages,
     EmptyComponent,
-    TrainingsComponent
+    TrainingsComponent,
+    PageDescription,
+    AddElementBtn,
+    SendUserFromTrainingsToContacts
   },
   data() {
     return {
@@ -46,7 +54,10 @@ export default {
       renderComponent: false,
       trainings: null,
       pageDescription: "",
-      myKey: 0
+      descriptionKey: 12,
+      myKey: 0,
+      editDescription: false
+
     };
   },
   computed: {
@@ -57,23 +68,31 @@ export default {
     this.trainings = this["wilfried/trainings"];
 
     if(!this["wilfried/trainingPageDescription"]){
-      this.getPageDescription()
+      await this.getPageDescription()
     }
 
-    this.pageDescription = this["wilfried/trainingPageDescription"]?.description ?? ""
+    this.pageDescription = this["wilfried/trainingPageDescription"]
 
     this.renderComponent = true
 
   },
   methods: {
+    async updatePageDescription(description){
+      const response = await sendToTableDescriptions(description)
+      if(response){
+        this.pageDescription = response
+        this.descriptionKey ++
+      }
+    },
     async getPageDescription(){
       this.$q.loading.show();
       try{
         const response = await table_description("trainings");
-        this.pageDescription = response?.data.description
+        console.log(response)
+        this.pageDescription = response?.data
         this.$store.dispatch("wilfried/setTrainingPageDescription", { ...response?.data } );
       }catch(e){
-        this.pageDescription = ""
+        this.pageDescription = null
       }finally {
         this.myKey = !this.myKey;
         this.$q.loading.hide();
@@ -88,3 +107,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

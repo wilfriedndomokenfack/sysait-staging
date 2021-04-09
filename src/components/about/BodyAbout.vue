@@ -1,13 +1,13 @@
 <template>
-  <div class="q-pa-md">
-    <div class=" flex flex-center q-pa-md q-col-gutter-md row">
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
+  <div class="q-pa-md constrain">
+    <div class=" q-pa-md q-col-gutter-md ">
+      <div class=" self-start">
         <p id="denomination"  class="sysait_black  flex flex-left title_about">
           <strong>{{ $t('vision') }}</strong>
         </p>
         <p  class="sysait_black">{{ vision }}</p>
       </div>
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
+      <div class=" self-start">
         <p id="denomination" class="sysait_black  flex flex-left title_about">
           <strong>{{ $t('mission') }}</strong>
         </p>

@@ -1,15 +1,16 @@
 <template>
-<div>
-  <q-header elevated class="text-white ">
+<div class="bg-white">
+  <q-header elevated class="text-white bg-white ">
+    <div class="bg_sysait_black">
     <div
-      class="row justify-between items-center  bg_sysait_black "
+      class="row justify-between items-center  constrain"
     >
       <div
-        class=" row col-xs-9 col-sm-9 col-md-5 justify-start text-center  "
+        class=" row col-xs-12 col-sm-12 col-md-5 justify-between"
       >
         <div
           clickable
-          class="col-xs-7 col-sm-6 col-md-7 cursor "
+          class="col-xs-7 col-sm-6 col-md-7 cursor text-center email"
           @click="mailTo(company.email)"
         >
           <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
@@ -19,7 +20,7 @@
 
         <div
           clickable
-          class="col-xs-5 col-sm-6 col-md-5 cursor"
+          class="col-xs-5 col-sm-6 col-md-5 cursor text-center phone"
           @click="mailTo(company.phone_number)"
           style=";"
         >
@@ -30,14 +31,16 @@
 
       </div>
 
-      <div
-        class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
-
+      <div v-if="deviceMobile"
+        class=" row col-xs-3 col-sm-3  col-md-4 items-center   justify-end"
       >
-        <div v-if="deviceMobile && !currentUser" class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
+        <div
+          v-if="deviceMobile && !currentUser"
+          class="col-xs-1 col-sm-1 col-md-7 q-gutter-md row"
+        >
           <q-btn
 
-            class="color_sysait_cerulean"
+            class="color_sysait_cerulean "
             to="/signin"
             flat
             no-caps
@@ -58,13 +61,13 @@
           />
 
         </div>
-        <div v-else-if="deviceMobile" class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm">
+        <div v-else-if="deviceMobile" class="col-xs-1 col-sm-1 col-md-4 q-gutter-sm">
           <div class="color_sysait_cerulean">
             {{ currentUser.fullname }}
           </div>
         </div>
 
-        <div class=" row col-xs-12 col-sm-12 col-md-5 justify-between">
+        <div  class=" row col-xs-12 col-sm-12 col-md-4 justify-end">
           <q-select
 
             v-model="lang"
@@ -74,7 +77,7 @@
             emit-value
             map-options
             options-dense
-            class="pippo col-xs-8 col-sm-6 col-md-6 text-center"
+            class="first_select col-xs-8 col-sm-6 col-md-9 text-center"
             style=""
           >
             <q-tooltip
@@ -87,8 +90,8 @@
           </q-select>
 
           <q-btn
-            v-show="deviceMobile && currentUser"
-            class=" col-xs-2 col-sm-2 col-md-6"
+            v-if="deviceMobile && currentUser"
+            class=" col-xs-2 col-sm-2 col-md-3"
             flat
             icon="fa fa-power-off"
             text-color="primary"
@@ -105,11 +108,13 @@
         </div>
       </div>
     </div>
+    </div>
 
     <q-toolbar
-      class="bg-white text-dark shadow-2 "
+      class="bg-white text-dark constrain "
 
     >
+
       <!-- <img
         :src="require('@/assets/logo.png')"
         height="50px"
@@ -148,6 +153,26 @@
         no-caps
         :label="$t('contacts')"
       />
+      <q-select
+      v-show="!deviceMobile"
+            v-model="lang"
+            :options="langOptions"
+            dense
+            borderless
+            emit-value
+            map-options
+            options-dense
+            class="text-center"
+            style=""
+          >
+            <q-tooltip
+              :offset="[10, 10]"
+              transition-show="rotate"
+              transition-hide="rotate"
+            >
+              {{ $t("langChange") }}
+            </q-tooltip>
+          </q-select>
       <q-btn v-show="!deviceMobile" flat @click="drawerRight = !drawerRight" round dense icon="menu" />
 
     </q-toolbar>
@@ -344,23 +369,26 @@ export default {
 .padding_contact {
   padding-left: 0px;
 }
-.q-field__marginal {
-  color: white;
-  height: 36px;
-}
+// .q-field__marginal {
+//   color: white;
+//   height: 36px;
+// }
 .cursor {
   cursor: pointer;
 }
-.fa-sign-out {
- color: white;
-}
-// we will move this code in the global css e make this css scoped
-.q-field__native,
-.q-field__prefix,
-.q-field__suffix,
-.q-field__input{
+// .fa-sign-out {
+//  color: white;
+// }
 
+.first_select div{
   color: white;
+}
+
+.email, .phone {
+
+  @media (max-width: $breakpoint-sm-max){
+    font-size: 12px;
+  }
 }
 
 </style>

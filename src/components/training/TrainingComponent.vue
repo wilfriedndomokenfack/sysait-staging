@@ -1,8 +1,15 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card class="my-card card1" :class="{good: !$q.platform.is.desktop}">
       <q-card-section class="bg-primary text-white">
-        <div class="text-h6"> <strong>{{ trainingProp.denomination.toUpperCase() }}</strong> TRAINING COURSE </div>
+        <div class="text-h6" v-if="$i18n.locale == 'en-us'">
+          <strong >{{ trainingProp.denomination.toUpperCase() }}</strong>
+          {{ $t('trainningCourse').toUpperCase() }}
+        </div>
+        <div class="text-h6" v-else>
+          {{ $t('trainningCourse').toUpperCase() }}
+          <strong>{{ trainingProp.denomination.toUpperCase() }}</strong>
+        </div>
       </q-card-section>
 
       <q-card-actions class="row items-end justify-between">
@@ -27,6 +34,7 @@
         />
 
         <q-btn
+          @click="deleteTraining()"
           outline
           color="primary"
           round dense
@@ -50,6 +58,16 @@ export default {
     ...mapGetters(["currentUser"])
   },
   methods: {
+    deleteTraining(){
+      this.$q.dialog({
+        title: 'Confirmazione',
+        message: `Are you sure you want to delete ${this.trainingProp.denomination.toUpperCase() } ${this.$t('trainningCourse').toUpperCase() } ?`,
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        console.log('training deleted')
+      })
+    },
     redirect(link, id){
       this.$router.push({ name: link, params: { training_id: id }})
     },
@@ -58,8 +76,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-card{
-  width: 450px;
+.card1 {
+  width: 525px;
+  // @media (min-width: $breakpoint-md-min){
+  //   width: 500px;
+  // }
+  // @media (max-width: $breakpoint-sm-max){
+  //   width: 100%;
+  // }
+}
+
+.good{
+  width: 100%;
 }
 
 </style>

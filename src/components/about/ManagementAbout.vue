@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md row justify-around">
-  <div class=" col-md-9 col-sm-10 col-xs-12 self-start row justify-around q-col-gutter-x-md">
+  <div class="q-pa-md row justify-around constrain">
+  <div class=" self-start row justify-around q-col-gutter-x-md">
     <p class="col-12"><span class="title_about">{{ $t('management') }}</span></p>
     <q-card
       v-for="(hc, index) in listHumanComponent"
@@ -27,8 +27,6 @@
       </q-card>
       </div>
     </div>
-  </div>
-  </div>
 </template>
 
 <script>

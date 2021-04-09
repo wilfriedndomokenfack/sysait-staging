@@ -1,14 +1,14 @@
 <template>
-  <div class="myCard" >
-      <q-banner class="myCard-body">
-        <div class="q-col-gutter-md row items-start justify-between" >
+  <div class="myCard constrain" >
+      <q-banner class="myCard-body ">
+        <div class=" row items-start justify-between" >
           <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
             <img
               class=""
               alt="sysait ecran"
               src="~assets/SysaitEcranCarré.png"
               :ratio="1"
-              style="width: 195px; height: auto"
+              style="width: 195px; height: auto; border-radius: 15px 0px 0px 15px ;"
             />
           </div>
 <!-- style="width: 100%; height: auto" -->
@@ -19,7 +19,7 @@
               <p  class="text-markup sysait_black text-weight-regular flex flex-center">
                 <strong >Who are we</strong>
               </p>
-              <p  class="sysait_black" >{{ company.description }}</p>
+              <p  class="sysait_black q-pr-md" >{{ company.description }}</p>
             </div>
             <div class="btn-2">
 
@@ -77,15 +77,20 @@ export default {
 .myCard {
   width: 75%;
 //  height: 5px;
-  max-width: 1200px;
+ //max-width: 1200px;
   padding-bottom: 0;
   padding-top: -200px;
-  transform: translateY(150px);
+  padding-right: 10px ;
+  transform: translateY(-10%);
   border: 1px;
   background-color: $sysait_gallery;
+
+
+  border-radius: 15px ;
 }
 
 .myCard-body {
+   border-radius: 15px ;
   background-color: $sysait_gallery;
 }
 
@@ -116,13 +121,27 @@ export default {
   text-justify: inter-word;
 }
 
+.text-markup {
+  @media (max-width: $breakpoint-sm-max){
+    font-size: 30px;
+  }
+}
 
-.bannerEcran-enter-active {
-    transition: all .10s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+.myCard {
+  @media (max-width: $breakpoint-sm-max){
+    transform: translateY(-4%);
   }
-  .bannerEcran-enter{
-    transform: translateX(10px);
-    opacity: 0;
-  }
+}
+
+
+
+
+// .bannerEcran-enter-active {
+//     transition: all .10s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+// }
+// .bannerEcran-enter{
+//     transform: translateX(10px);
+//     opacity: 0;
+// }
 
 </style>

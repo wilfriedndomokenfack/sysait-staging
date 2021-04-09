@@ -1,9 +1,9 @@
 <template>
-    <q-page class="text-center padding_header"><br><br>
+    <q-page class="text-center "><br><br>
       <div class="text-h5 text-bold q-mt-md service flex flex-center" id="techList" ref="techList">
         {{ this.$t('atYoutservices') }}
       </div>
-      <transition-group tag="div" class="row q-my-lg" name="techLists" enter-active-class="animated flipInY delay-5s">
+      <transition-group tag="div" class="row q-my-lg constrain" name="techLists" enter-active-class="animated flipInY delay-5s">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg" v-for="tecnologie in localTecnologies" :key="tecnologie.id">
             <div class="text-info " style="font-size: 2em">
              <q-icon :name="tecnologie.icon"  class="color_sysait_cerulean" />
@@ -73,6 +73,6 @@ export default {
 }
 
 .animated.flipInY {
-  --animate-duration: 7s;
+  --animate-duration: 5s;
 }
 </style>

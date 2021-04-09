@@ -4,6 +4,8 @@ export const wilfriedTranslations = {
   singUpLabel: "Registrati",
   captionLogOut: 'Esci',
   siteDown: "Sito web momentaneamente non disponibile ...",
+  trainingContact: "Per seguire un corso Mandaci un messaggio dalla sezione",
+  trainningCourse: "corso di formazione",
 
 
 
