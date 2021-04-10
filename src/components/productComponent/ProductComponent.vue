@@ -24,13 +24,7 @@
         </p>
         <p>
           {{ propProduct.isAddressedTo}}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          
         </p>
       </div>
 
@@ -42,10 +36,6 @@
             </p>
             <p>
               {{ propProduct.howToAcquire}}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
             </p>
             
           </div>
@@ -68,9 +58,10 @@
             enter-active-class="animated flipInY delay-5s"
           >
             <div
-              class="col-md-3 col-sm-6 col-xs-12 q-pb-lg "
+              class="col-md-3 col-sm-6 col-xs-12 q-pb-lg text-center"
               v-for="colab in propProduct.collaborators"
               :key="colab.id"
+              
             >
               <div class="text-info " style="font-size: 2em">
                 <q-img
@@ -148,19 +139,21 @@ export default {
 }
 .name_site {
   position: relative;
-  width: 20%;
-  height:40%;
-  bottom: 15px;
+  width: 40%;
+  bottom: 20px;
   background: $sysait_cerulean;
   color: white;
+  padding-top: 1%;
+  padding-bottom:1% ;
   
 }
 .accurate_product {
   height: 20%;
+  width:100%;
   background: $sysait_cerulean;
   color: white;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: -30%;
+  margin-right: -30%;
 }
 .accurate_content {
   width: 60%;
