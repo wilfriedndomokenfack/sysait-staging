@@ -19,6 +19,7 @@ export const rosineTranslations = {
   mission:"Missione",
   management:"Management",
 
+  pageName:"Prodotto",
     
 
   whom:"A CHI E RIVOLTO QUESTO PRODOTTO",

@@ -3,12 +3,12 @@
     <div>
       <BannerPages
         :bannerUrl="bannerUrl"
-        :pageName="pageName"
+        :pageName="$t('pageName')"
         :companyName="companyName"
       />
     </div>
 
-    <ProductComponent :propProduct="product" />
+    <ProductComponent :propProduct="product" v-if="product" :key="myKey" />
   </q-page>
 </template>
 
@@ -29,7 +29,8 @@ export default {
       companyName: null,
       productId: this.$route.params.product_id,
       products: null,
-      product: null
+      product: null,
+      myKey: 0
     };
   },
   computed: {
@@ -50,6 +51,9 @@ export default {
       this.product = this.products.filter(v => v.id === this.productId)[0];
       if (!this.product) {
         this.$router.push({ name: "products" });
+      }
+      else{
+        this.myKey = !this.myKey;
       }
     }
   }

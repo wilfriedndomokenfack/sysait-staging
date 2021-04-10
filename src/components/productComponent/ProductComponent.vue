@@ -3,59 +3,56 @@
     <div class=" flex flex-center q-pa-md q-col-gutter-md row">
       <div class="col-md-9 col-sm-10 col-xs-12 self-start">
         <br />
-        <p face="Time new roman" class="sysait_black">
-          {{ propProduct.description }}
-        </p>
-      </div>
-
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <img
-          :src="`products_img/Product_SysaitWebsite.png`"
-          style="width:100%;height:50%;"
-        />
-        <div class="name_site">
-          <center> {{ propProduct.denomination}}</center>
-        </div>
-      </div>
-
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <p style="text-align: center; color:dark;font-weight: bold;">
-          {{ $t("whom") }}
-        </p>
-        <p>
-          {{ propProduct.isAddressedTo}}
+        <p v-html="propProduct.description"  class="sysait_black">
           
         </p>
       </div>
 
-      <div class="accurate_product">
+      <div v-if="propProduct.image_path != null" class="col-md-9 col-sm-10 col-xs-12 self-start">
+        <center><img
+          :src="`products_img/${propProduct.image_path}`"
+          style="height:30%;width:70%;"
+        /></center>
+        <div v-if="propProduct.image_path != null" class="name_site">
+          <center> {{ propProduct.denomination}}</center>
+        </div>
+      </div>
+
+      <div v-if="propProduct.isAddressedTo != null"  class="col-md-9 col-sm-10 col-xs-12 self-start">
+        <p style="text-align: center; color:dark;font-weight: bold;">
+          {{ $t("whom") }}
+        </p>
+        <p v-html="propProduct.isAddressedTo" >
+          
+          
+        </p>
+      </div>
+
+      <div v-if="propProduct.howToAcquire != null" class="accurate_product">
         <div class=" flex flex-center q-pa-md q-col-gutter-md row">
           <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-              <p style="text-align: center;font-weight: bold;">
+              <p  style="text-align: center;font-weight: bold;">
               {{ $t("acquire") }}
             </p>
-            <p>
-              {{ propProduct.howToAcquire}}
+            <p v-html="propProduct.howToAcquire">
             </p>
             
           </div>
         </div>
       </div>
 
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
+      <div v-if="propProduct.collaborators.length !=0" class="col-md-9 col-sm-10 col-xs-12 self-start">
         <div style="text-align: center;">
-          <br /><q-btn
-            color="white"
-            text-color="black"
-            :label="$t('use')"
-          />
+          <br/>
+          <div class="flex inline shadow-box flex-center shadow-3 q-pa-md">{{$t('use')}}</div>
+         
         </div>
         <div>
           <transition-group
             tag="div"
             class="row q-my-lg items-center justify-center"
             name="partLists"
-            enter-active-class="animated flipInY delay-5s"
+            enter-active-class="animated flipInY delay-10s"
           >
             <div
               class="col-md-3 col-sm-6 col-xs-12 q-pb-lg text-center"
@@ -139,12 +136,13 @@ export default {
 }
 .name_site {
   position: relative;
-  width: 40%;
+  width: 30%;
   bottom: 20px;
   background: $sysait_cerulean;
   color: white;
   padding-top: 1%;
   padding-bottom:1% ;
+  margin-left: 15%;
   
 }
 .accurate_product {
