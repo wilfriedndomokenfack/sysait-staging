@@ -14,15 +14,16 @@
           style="width:100%;height:50%;"
         />
         <div class="name_site">
-          WEBSITE SYSAIT
+          <center> {{ propProduct.denomination}}</center>
         </div>
       </div>
 
       <div class="col-md-9 col-sm-10 col-xs-12 self-start">
         <p style="text-align: center; color:dark;font-weight: bold;">
-          To whom this product is adressed
+          {{ $t("whom") }}
         </p>
         <p>
+          {{ propProduct.isAddressedTo}}
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -36,11 +37,11 @@
       <div class="accurate_product">
         <div class=" flex flex-center q-pa-md q-col-gutter-md row">
           <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-            
-            <p style="text-align: center;font-weight: bold;">
-              HOW TO ACQUIRE A PRODUCT
+              <p style="text-align: center;font-weight: bold;">
+              {{ $t("acquire") }}
             </p>
             <p>
+              {{ propProduct.howToAcquire}}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -56,7 +57,7 @@
           <br /><q-btn
             color="white"
             text-color="black"
-            label="The use the product"
+            :label="$t('use')"
           />
         </div>
         <div>
@@ -128,7 +129,7 @@ export default {
   cursor: pointer;
 }
 .partner {
-  width: 45%;
+  width: 30%;
 }
 
 .tooltip {
@@ -152,17 +153,14 @@ export default {
   bottom: 15px;
   background: $sysait_cerulean;
   color: white;
-  //border: 3px solid #8ac007;
+  
 }
 .accurate_product {
-  /* width:auto;*/
   height: 20%;
-  // height:auto;
   background: $sysait_cerulean;
   color: white;
   margin-left: -15px;
   margin-right: -15px;
-  //padding: 5%;
 }
 .accurate_content {
   width: 60%;
