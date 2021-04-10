@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="flex flex-center col-md-4 col-sm-6 col-xs-12 self-start">
-      <p
+      <div
         id="denomination"
-        
-        style="margin: auto; color: red; padding-top: 60px"
+        style="margin: auto; padding-top: 60px;"
+        class="text-primary text-center"
       >
-        <strong>{{ $t("noService") }}</strong>
-      </p>
+        <strong >{{ $t(defaultMessage) }}</strong>
+      </div>
     </div>
     <div class="empty col-md-4 col-sm-6 col-xs-12 flex flex-center">
-      <img src="~assets/sysait_ecran.png" style="width: 100%" />
+      <img alt="banner ecran" src="~assets/sysait_ecran.png" style="width: 100%; position: relative" />
     </div>
   </div>
 </template>
@@ -18,9 +18,16 @@
 <script>
 export default {
   name: "EmptyComponent",
+  props: ['message'],
   data() {
-    return {};
+    return {
+      defaultMessage: 'noService',
+      defaultColor: 'red'
+    };
   },
+  mounted(){
+    if(this.message) this.defaultMessage = this.message
+  }
 };
 </script>
 <style scoped style lang="scss">
@@ -35,4 +42,6 @@ export default {
 #denomination {
   font-size: 4vw;
 }
+
+
 </style>

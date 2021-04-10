@@ -5,7 +5,7 @@
         pageName="Edit training course"
         :companyName="company.denomination"
       />
-      <TrainingForm :key="myKey" v-if="renderForm && training " @form="saveForm" :trainingProp="training"/>
+    <TrainingForm :key="myKey" v-if="renderForm && training " @form="saveForm" :trainingProp="training"/>
 
   </q-page>
 </template>
@@ -53,10 +53,12 @@ export default {
       this.renderForm = true
       this.$q.loading.hide()
     },
-     saveForm(form){
+     async saveForm(form){
+      console.log(form)
+      let response = await sendToTranings(form)
 
-      //let response = await sendToTranings(form)
-      // if(response) this.$router.push({ path: "/training"})
+      this.$store.dispatch("wilfried/updateTraining", { ...response });
+      this.$router.push({ path: "/training"})
     }
   }
 }

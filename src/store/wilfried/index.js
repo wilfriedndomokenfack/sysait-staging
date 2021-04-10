@@ -117,7 +117,7 @@ export default {
     company: null,//company,
     tecnologies: null, //tecnologies,
     partners: null,//partners,
-    trainings: trainings,
+    trainings: null, //trainings,
     trainingPageDescription: null,
     ...loadWilfriedSession() // this load your state from local storage.
   },

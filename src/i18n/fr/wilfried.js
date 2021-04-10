@@ -7,6 +7,7 @@ export const wilfriedTranslations = {
 
   trainingContact: "Pour suivre un cours Envoyez-nous un message de la sectiom",
   trainningCourse: "formation",
+  emptyCourse: "Il n'y a pas de cours de formation pour le moment",
 
 
 

@@ -11,16 +11,14 @@
       <div class="col-12">
         <SendUserFromTrainingsToContacts/>
       </div>
-
       <div>
-        <AddElementBtn link="newTraining"/>
-        <div v-if="renderAll() && renderComponent">
-          <TrainingsComponent  :propTrainings="trainings" :key="myKey"/>
-          <div class="col-12">
-            <SendUserFromTrainingsToContacts/>
-          </div>
-        </div>
-        <EmptyComponent v-else-if="renderComponent" />
+        <AddElementBtn link="newTraining" @statusFilter="filterTrainings"/>
+      </div>
+      <div v-if="renderComponent">
+        <TrainingsComponent  :propTrainings="filteredTrainings"  :key="myKey"/>
+      </div>
+      <div class="col-12">
+        <SendUserFromTrainingsToContacts/>
       </div>
     </div>
   </q-page>
@@ -36,7 +34,8 @@ import SendUserFromTrainingsToContacts from "@/components/training/SendUserFromT
 
 import { mapGetters } from "vuex";
 import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
-
+import { trainings } from "@/models/training.js"
+import { netWorkError } from "@/models/utils/netWorkError";
 
 export default {
   name: 'TrainingsPage',
@@ -48,6 +47,20 @@ export default {
     AddElementBtn,
     SendUserFromTrainingsToContacts
   },
+  watch: {
+    currentUser: {
+      immediate: true,
+      handler() {
+        this.myKey = !this.myKey;
+      }
+    },
+    trainings: {
+      immediate: true,
+      handler() {
+        this.trainingsChanged()
+      }
+    },
+  },
   data() {
     return {
       bannerUrl: "ImageAbout.png",
@@ -56,7 +69,9 @@ export default {
       pageDescription: "",
       descriptionKey: 12,
       myKey: 0,
-      editDescription: false
+      editDescription: false,
+      filteredTrainings: [],
+      model: null
 
     };
   },
@@ -65,18 +80,27 @@ export default {
   },
 
   async mounted() {
-    this.trainings = this["wilfried/trainings"];
+
+
+    if(!this["wilfried/training"]){
+      await this.getTrainings()
+    }
 
     if(!this["wilfried/trainingPageDescription"]){
       await this.getPageDescription()
     }
 
     this.pageDescription = this["wilfried/trainingPageDescription"]
-
+    this.trainings = this["wilfried/trainings"];
+    this.filterTrainings([])
     this.renderComponent = true
 
   },
   methods: {
+    trainingsChanged(){
+      this.trainings = this["wilfried/trainings"];
+      this.filterTrainings(this.model)
+    },
     async updatePageDescription(description){
       const response = await sendToTableDescriptions(description)
       if(response){
@@ -84,25 +108,51 @@ export default {
         this.descriptionKey ++
       }
     },
+
+
+    async getTrainings(){
+      this.$q.loading.show();
+      try {
+        const response = await trainings();
+        // response.data = [];
+        this.$store.dispatch("wilfried/setTrainings", response?.data);
+        this.myKey = !this.myKey;
+      } catch (e) {
+        netWorkError(this.$t("netWorkErrorMSG") + " " + e);
+        this.$router.push({ name: this.previousRoute });
+      } finally {
+        this.$q.loading.hide();
+      }
+    },
+
+
     async getPageDescription(){
       this.$q.loading.show();
       try{
         const response = await table_description("trainings");
-        console.log(response)
         this.pageDescription = response?.data
         this.$store.dispatch("wilfried/setTrainingPageDescription", { ...response?.data } );
       }catch(e){
         this.pageDescription = null
       }finally {
-        this.myKey = !this.myKey;
         this.$q.loading.hide();
       }
     },
-    renderAll(){
-      return (this.trainings && this.trainings?.length > 0)
-    },
+
     redirect(link, params){
        this.$router.push({ name: link, params: params })
+    },
+
+    filterTrainings(model = []){
+      this.model = model
+      if(model?.length > 0){
+        this.filteredTrainings = this.trainings?.filter(
+          v => model.indexOf(parseInt(v.status)) > -1
+        )
+      }else{
+        this.filteredTrainings = this.trainings
+      }
+      this.myKey = !this.myKey;
     }
   }
 }

@@ -8,13 +8,14 @@
           <div class="">
 
             <div
+              class="content_1 q-pb-md"
               style="color: #ffffff"
               :class="{content_1_xl: $q.screen.lt.xl, content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
               >
               {{ company.content_1 }}
             </div>
 
-          <div class="learning-mission">
+          <div class="learning-mission content_2">
             <div
               :class="{content_2_xl: $q.screen.lt.xl, content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
               class="col-10"
@@ -51,7 +52,7 @@ export default {
     return {};
   },
   mounted(){
-    
+
   },
 
   methods: {
@@ -65,15 +66,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container1 {
-  position: relative;
+// .banner_content{
+//   @media(min-width: 700px){
+//     width: 100%;
+//     height: 100px;
+//    transform: translateY(60px);
+//   }
 
-  font-weight: bold;
-  font-size: 25px;
-  margin-left: -16px;
-  margin-right: -16px;
-  margin-top: -20px;
-}
+//   @media (max-width: $breakpoint-sm-max){
+//     height: 130px;
+//   }
+
+//   @media (min-width: $breakpoint-md-min){
+//     height: 10px;
+//   }
+// }
+
+
+
+
 
 .centered {
  // position: absolute;
@@ -84,49 +95,49 @@ export default {
   //font-size:1vw;
 }
 
-.content_1_xl {
-  font-size: 30px;
-  padding-top: 50px ;
-}
+// .content_1_xl {
+//   font-size: 30px;
+//   padding-top: 50px ;
+// }
 
-.content_2_xl {
-  font-size: 15px;
-}
+// .content_2_xl {
+//   font-size: 15px;
+// }
 
-.content_1_lg {
-  font-size: 25px;
-  padding-top: 50px ;
-}
-.content_2_lg {
-  font-size: 15px;
+// .content_1_lg {
+//   font-size: 25px;
+//   padding-top: 50px ;
+// }
+// .content_2_lg {
+//   font-size: 15px;
 
-}
+// }
 
-.content_1_md {
-  font-size: 17px;
-  padding-top: 15px ;
-}
-.content_2_md {
-  font-size: 10px;
-}
+// .content_1_md {
+//   font-size: 17px;
+//   padding-top: 15px ;
+// }
+// .content_2_md {
+//   font-size: 10px;
+// }
 
-.content_1_sm {
-  font-size: 10px;
-}
-.content_2_sm {
-  font-size: 5px;
-}
+// .content_1_sm {
+//   font-size: 10px;
+// }
+// .content_2_sm {
+//   font-size: 5px;
+// }
 
-.content_1_xs {
-  font-size: 4vw;
-}
-
-
+// .content_1_xs {
+//   font-size: 4vw;
+// }
 
 
-.content_2_xs {
-  font-size: 3vw;
-}
+
+
+// .content_2_xs {
+//   font-size: 3vw;
+// }
 
 // .txt {
 //  // position: absolute;
@@ -161,11 +172,99 @@ export default {
   width: 75%;
   padding-left: 10px ;
   padding-right: 10px ;
+  padding-bottom: 30px ;
   border-right: 6px solid rgb(234, 237, 240);
   border-left: 6px solid rgb(234, 237, 240);
   //height: 300px;
   border-radius: 20px;
-  transform: translateY(30px);
+
+
+  @media (min-width: 700px){
+    transform: translateY(35px);
+    height: 200px;
+  }
+
+  @media (max-width: 440px){
+    transform: translateY(30px);
+     height: 120px;
+  }
+
+  @media (max-width: 400px){
+     height: 100px;
+  }
+
+  @media (min-width: 500px){
+    height: 150px;
+    transform: translateY(30px);
+  }
+
+  @media (min-width: 1000px){
+    height: 250px;
+  }
+
+  @media (min-width: 1300px){
+    height: 400px;
+  }
+}
+
+.content_1{
+
+  @media (min-width: 700px){
+    font-size: 20px;
+  }
+
+  @media (max-width: 440px){
+    font-size: 10px;
+  }
+  @media (max-width: 400px){
+     font-size: 8px;
+  }
+
+  @media (min-width: 500px){
+    font-size: 14px;
+  }
+  @media (min-width: 1000px){
+    font-size: 25px;
+    padding-bottom: 30px ;
+  }
+  @media (min-width: 1300px){
+    font-size: 30px;
+  }
+}
+
+.content_2{
+
+  @media (min-width: 700px){
+    font-size: 10px;
+  }
+
+  @media (max-width: 440px){
+    font-size: 5px;
+  }
+
+
+  @media (min-width: 500px){
+    font-size: 10px;
+  }
+  @media (min-width: 1000px){
+    font-size: 15px;
+    padding-bottom: 30px ;
+  }
+
+  @media (min-width: 1300px){
+    font-size: 20px;
+  }
+}
+
+
+.container1 {
+  position: relative;
+
+  font-weight: bold;
+  font-size: 25px;
+  margin-left: -16px;
+  margin-right: -16px;
+  margin-top: -20px;
 }
 
 // .myCard {

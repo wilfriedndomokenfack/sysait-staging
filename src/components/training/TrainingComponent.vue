@@ -16,14 +16,23 @@
         <div class="col-11" v-html="trainingProp.description">
 
         </div>
-        <div class="col-1">
-          <img v-if="trainingProp.image_path" :src="`training_img/${trainingProp.image_path}`" style="width: 100%" />
-          <img v-else="trainingProp.image_path" :src="`training_img/java.png`" style="width: 100%" />
+        <div :key="imKey" class="col-1">
+          <img alt="IMG" v-if="googImg" :src="`training_img/${trainingProp.image_path}`" style="width: 100%" />
+          <img alt="IMG" v-else src="training_img/code.png" style="width: 100%" />
         </div>
 
       </q-card-actions>
       <q-separator color="primary" size="5px"/>
       <q-card-actions align="right" v-if="currentUser">
+        <q-btn
+          :label="status"
+          outline
+          color="red"
+          dense
+          :color="color"
+          padding="sm"
+        />
+
         <q-btn
           @click="redirect('editTraining', trainingProp.id  )"
           outline
@@ -48,24 +57,57 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { Constants } from '@/models/utils/common.js'
+import { deleteDBTraining } from "@/models/training.js"
+import axios from "axios";
 export default {
   name: 'Training',
   props: ['trainingProp'],
   data () {
-    return {}
+    return {
+      imKey: 0,
+      googImg: false,
+      status: null,
+      color: null
+    }
   },
   computed: {
     ...mapGetters(["currentUser"])
   },
+  async mounted(){
+    this.googImg = await this.getLogoUrl(this.trainingProp.image_path)
+    this.status = Constants.STATUS.find(v => v.value == this.trainingProp.status)?.label
+    this.color = Constants.STATUS.find(v => v.value == this.trainingProp.status)?.color
+  },
   methods: {
+    async getLogoUrl(club) {
+      let resp = false
+      let path = `${window.location.origin}/training_img/${club}`
+
+      try{
+        let response = null
+        if(club) response = await axios.get(path);
+        if(response?.status == 200){
+          resp = true
+        }
+      }catch(e){
+        resp = false
+      }
+      return resp;
+    },
+
     deleteTraining(){
       this.$q.dialog({
         title: 'Confirmazione',
-        message: `Are you sure you want to delete ${this.trainingProp.denomination.toUpperCase() } ${this.$t('trainningCourse').toUpperCase() } ?`,
+        message: `Are you sure you want to delete ${this.trainingProp.denomination.toUpperCase() } ${this.$t('trainningCourse').toUpperCase() } ? This action wil permanently delete this post from DATABASE. You may edit and change status to delete to maintaint the post in the DB`,
         cancel: true,
-        persistent: true
+        persistent: true,
+        color: "red",
+        ok: "delete"
       }).onOk(() => {
-        console.log('training deleted')
+
+        deleteDBTraining(this.trainingProp.id)
+        this.$store.dispatch("wilfried/removeTraining", this.trainingProp );
       })
     },
     redirect(link, id){
