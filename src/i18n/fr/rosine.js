@@ -18,4 +18,11 @@ export const rosineTranslations = {
   vision:"Vision",
   mission:"Mission",
   management:"Management",
+  
+  pageName: "Produit",
+ 
+  whom:"A QUI CE PRODUIT EST ADRESSE",
+  acquire:"COMMENT ACQUÉRIR UN PRODUIT",
+  use:"ILS UTILISENT LE PRODUIT",
+
 }

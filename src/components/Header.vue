@@ -12,16 +12,41 @@
           class="col-xs-7 col-sm-6 col-md-7 cursor "
           @click="mailTo(company.email)"
         >
-          <q-btn size="8px" flat dense icon="fas fa-envelope" color="primary" />
-          {{ company.email }}
+          <div
+            clickable
+            class="col-xs-7 col-sm-6 col-md-7 cursor "
+            @click="mailTo(company.email)"
+          >
+            <q-btn
+              size="8px"
+              flat
+              dense
+              icon="fas fa-envelope"
+              color="primary"
+            />
+            {{ company.email }}
+          </div>
+
+          <div
+            clickable
+            class="col-xs-5 col-sm-6 col-md-5 cursor"
+            @click="mailTo(company.phone_number)"
+            style=";"
+          >
+            <q-btn
+              size="8px"
+              flat
+              dense
+              icon="fa fa-phone-alt"
+              color="primary"
+            />
+
+            {{ company.phone_number }}
+          </div>
         </div>
 
-
         <div
-          clickable
-          class="col-xs-5 col-sm-6 col-md-5 cursor"
-          @click="mailTo(company.phone_number)"
-          style=";"
+          class=" row col-xs-3 col-sm-3  col-md-4 items-center text-center   justify-start"
         >
           <q-btn size="8px" flat dense icon="fa fa-phone-alt" color="primary" />
 
@@ -62,108 +87,118 @@
           <div class="color_sysait_cerulean">
             {{ currentUser.fullname }}
           </div>
-        </div>
-
-        <div class=" row col-xs-12 col-sm-12 col-md-5 justify-between">
-          <q-select
-
-            v-model="lang"
-            :options="langOptions"
-            dense
-            borderless
-            emit-value
-            map-options
-            options-dense
-            class="pippo col-xs-8 col-sm-6 col-md-6 text-center"
-            style=""
+          <div
+            v-else-if="deviceMobile"
+            class="col-xs-1 col-sm-1 col-md-5 q-gutter-sm"
           >
-            <q-tooltip
-              :offset="[10, 10]"
-              transition-show="rotate"
-              transition-hide="rotate"
+            <div class="color_sysait_cerulean">
+              {{ currentUser.fullname }}
+            </div>
+          </div>
+
+          <div class=" row col-xs-12 col-sm-12 col-md-5 justify-between">
+            <q-select
+              v-model="lang"
+              :options="langOptions"
+              dense
+              borderless
+              emit-value
+              map-options
+              options-dense
+              class="pippo col-xs-8 col-sm-6 col-md-6 text-center"
+              style=""
             >
-              {{ $t("langChange") }}
-            </q-tooltip>
-          </q-select>
-
-          <q-btn
-            v-show="deviceMobile && currentUser"
-            class=" col-xs-2 col-sm-2 col-md-6"
-            flat
-            icon="fa fa-power-off"
-            text-color="primary"
-            @click="logout()"
-          >
-            <q-tooltip
+              <q-tooltip
                 :offset="[10, 10]"
                 transition-show="rotate"
                 transition-hide="rotate"
+              >
+                {{ $t("langChange") }}
+              </q-tooltip>
+            </q-select>
+
+            <q-btn
+              v-show="deviceMobile && currentUser"
+              class=" col-xs-2 col-sm-2 col-md-6"
+              flat
+              icon="fa fa-power-off"
+              text-color="primary"
+              @click="logout()"
             >
-                {{ $t('captionLogOut') }}
-        </q-tooltip>
-       </q-btn>
+              <q-tooltip
+                :offset="[10, 10]"
+                transition-show="rotate"
+                transition-hide="rotate"
+              >
+                {{ $t("captionLogOut") }}
+              </q-tooltip>
+            </q-btn>
+          </div>
         </div>
       </div>
-    </div>
 
-    <q-toolbar
-      class="bg-white text-dark shadow-2 "
-
-    >
-      <!-- <img
+      <q-toolbar class="bg-white text-dark shadow-2 ">
+        <!-- <img
         :src="require('@/assets/logo.png')"
         height="50px"
       /> -->
-      <q-item clickable to="/">
-        <img style="width: 100px; height: auto; " src="~assets/logoImg/logo_color.png" />
-      </q-item>
+        <q-item clickable to="/">
+          <img
+            style="width: 100px; height: auto; "
+            src="~assets/logoImg/logo_color.png"
+          />
+        </q-item>
 
-      <!-- <q-img clickable to:="/" :src="require('@/assets/logo.png')"  style="width: 10%;
+        <!-- <q-img clickable to:="/" :src="require('@/assets/logo.png')"  style="width: 10%;
       height: auto;" /> -->
 
-      <q-space />
-      <div v-for="(item, index) in menu" :key="index">
+        <q-space />
+        <div v-for="(item, index) in menu" :key="index">
+          <q-btn
+            v-show="deviceMobile"
+            :to="item.link"
+            class="size_header"
+            flat
+            no-caps
+            :label="item.label"
+          />
+
+          <q-icon
+            v-if="index !== menu.length - 1"
+            v-show="deviceMobile"
+            size="3px"
+            name="fa fa-circle"
+          />
+        </div>
+
         <q-btn
           v-show="deviceMobile"
-          :to="item.link"
-          class="size_header"
-          flat
+          to="/contact"
+          class="bg_sysait_cerulean  text-white size_header padding_contact"
+          dense
           no-caps
-          :label="item.label"
+          :label="$t('contacts')"
         />
-
-        <q-icon
-          v-if="index !== menu.length - 1"
-          v-show="deviceMobile"
-          size="3px"
-          name="fa fa-circle"
+        <q-btn
+          v-show="!deviceMobile"
+          flat
+          @click="drawerRight = !drawerRight"
+          round
+          dense
+          icon="menu"
         />
-      </div>
-
-      <q-btn
-        v-show="deviceMobile"
-        to="/contact"
-        class="bg_sysait_cerulean  text-white size_header padding_contact"
-        dense
-        no-caps
-        :label="$t('contacts')"
-      />
-      <q-btn v-show="!deviceMobile" flat @click="drawerRight = !drawerRight" round dense icon="menu" />
-
-    </q-toolbar>
-
-  </q-header>
-  <q-drawer
-        side="right"
-        v-model="drawerRight"
-        bordered
-        :width="200"
-        :breakpoint="500"
-      >
-        <q-scroll-area class="fit">
-          <div class="q-pa-sm">
-
-            <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
+      </q-toolbar>
+    </q-header>
+    <q-drawer
+      side="right"
+      v-model="drawerRight"
+      bordered
+      :width="200"
+      :breakpoint="500"
+    >
+      <q-scroll-area class="fit">
+        <div class="q-pa-sm">
+          <!-- <div  v-for="n in 50" :key="n">Drawer {{ n }} / 50</div> -->
 
             <q-list class="item-center">
               <q-btn flat @click="drawerRight = !drawerRight" round dense icon="fa fa-times" />
@@ -191,7 +226,7 @@
             >
               <q-item @click="pushTo('/signin')" clickable >
                 <q-item-section>
-                  <q-item-label>{{ $t('singInLabel') }}</q-item-label>
+                  <q-item-label>{{ $t("singInLabel") }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
@@ -200,7 +235,7 @@
             >
               <q-item @click="pushTo('/signup')" clickable >
                 <q-item-section>
-                  <q-item-label> {{ $t('singUpLabel') }} </q-item-label>
+                  <q-item-label> {{ $t("singUpLabel") }} </q-item-label>
                 </q-item-section>
               </q-item>
             </div>
@@ -209,17 +244,17 @@
             >
               <q-item  @click="logout()" clickable >
                 <q-item-section>
-                  <q-item-label>{{ $t('captionLogOut') }}</q-item-label>
+                  <q-item-label>{{ $t("captionLogOut") }}</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
 
 
           </q-list>
-          </div>
-        </q-scroll-area>
-      </q-drawer>
-</div>
+        </div>
+      </q-scroll-area>
+    </q-drawer>
+  </div>
 </template>
 
 <script>
@@ -251,11 +286,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      "company",
-      "langChanged",
-      "currentUser"
-    ]),
+    ...mapGetters(["company", "langChanged", "currentUser"]),
     deviceMobile: function() {
       // `this` points to the vm instance
       return !(
@@ -273,7 +304,7 @@ export default {
       this.langOptions = [
         { value: "en-us", label: this.$t("english"), icon: "" },
         { value: "fr", label: this.$t("french"), icon: "" },
-        { value: "it", label: this.$t("italian"), icon: "" },
+        { value: "it", label: this.$t("italian"), icon: "" }
       ];
       this.menu = [
         { label: this.$t("home"), link: "/" },
@@ -284,7 +315,6 @@ export default {
         { label: this.$t("courses"), link: "/training" },
         { label: this.$t("joins"), link: "/jobs" }
       ];
-
     },
     pushTo(routePath){
       this.drawerRight = !this.drawerRight
@@ -352,15 +382,13 @@ export default {
   cursor: pointer;
 }
 .fa-sign-out {
- color: white;
+  color: white;
 }
 // we will move this code in the global css e make this css scoped
 .q-field__native,
 .q-field__prefix,
 .q-field__suffix,
-.q-field__input{
-
+.q-field__input {
   color: white;
 }
-
 </style>

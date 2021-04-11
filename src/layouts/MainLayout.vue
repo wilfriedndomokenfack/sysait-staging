@@ -1,14 +1,14 @@
 <template>
   <div class="font_arial">
     <q-layout view="hHh LpR lfr" v-if="renderComponents">
-       <Header  />
+      <Header />
 
-    <q-page-container class="">
-      <transition appear name="allPages">
-      <router-view class="fit row wrap items-start content-start" />
-      </transition>
-    </q-page-container>
-    <Footer />
+      <q-page-container class="">
+        <transition appear name="allPages">
+          <router-view class="fit row wrap items-start content-start" />
+        </transition>
+      </q-page-container>
+      <Footer />
     </q-layout>
   </div>
 </template>
@@ -27,54 +27,52 @@ export default {
   components: {
     Header,
     Footer,
-    Breadcrumbs
+    Breadcrumbs,
   },
   data() {
     return {
-      renderComponents: false
+      renderComponents: false,
     };
   },
   async mounted() {
-    if(!this.company){
-      await this.getCompany()
+    if (!this.company) {
+      await this.getCompany();
     }
-    this.renderComponents = true
+    this.renderComponents = true;
     //this.propCompany = { ...this.company };
   },
   computed: {
-    ...mapGetters(["company"])
+    ...mapGetters(["company"]),
   },
   methods: {
     async getCompany() {
       this.$q.loading.show();
       this.$q.loadingBar.start();
-      try{
+      try {
         const response = await company();
-         //response.data = [];
-        if(response?.data.length === 0 ) this.$router.push({ name: 'notAvailable' });
+        //response.data = [];
+        if (response?.data.length === 0) this.$router.push({ name: "notAvailable" });
         this.$store.dispatch("wilfried/setCompany", response?.data[0]);
-      }catch(err){
-        this.$router.push({ name: 'notAvailable' });
-      }finally {
+      } catch (err) {
+        this.$router.push({ name: "notAvailable" });
+      } finally {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
     },
     updateLang() {
       store.dispatch("setLang");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-  .allPages-enter-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .allPages-enter{
-    transform: translateX(10px);
-    opacity: 0;
-  }
-
-
+.allPages-enter-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.allPages-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>
