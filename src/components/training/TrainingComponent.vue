@@ -13,9 +13,23 @@
       </q-card-section>
 
       <q-card-actions class="row items-end justify-between">
-        <div class="col-11" v-html="trainingProp.description">
+        <div class="col-11" >
+          <div v-html="trainingProp.description">
 
+          </div>
+          <div v-if="trainingProp.link_course && isEnrollToTraining(trainingProp.id)">
+            <q-btn
+              @click="openPage(trainingProp.link_course)"
+              label="Click here to folow the course"
+              outline
+              color="primary"
+              dense
+
+              padding="sm"
+            />
+          </div>
         </div>
+
         <div :key="imKey" class="col-1">
           <img alt="IMG" v-if="googImg" :src="`training_img/${trainingProp.image_path}`" style="width: 100%" />
           <img alt="IMG" v-else src="training_img/code.png" style="width: 100%" />
@@ -59,6 +73,7 @@
 import { mapGetters } from "vuex";
 import { Constants } from '@/models/utils/common.js'
 import { deleteDBTraining } from "@/models/training.js"
+import { isEnrollToTraining } from "@/models/user.js"
 import axios from "axios";
 export default {
   name: 'Training',
@@ -80,6 +95,10 @@ export default {
     this.color = Constants.STATUS.find(v => v.value == this.trainingProp.status)?.color
   },
   methods: {
+    isEnrollToTraining,
+    openPage(link){
+      window.open(link, '_blank');
+    },
     async getLogoUrl(club) {
       let resp = false
       let path = `${window.location.origin}/training_img/${club}`
@@ -106,7 +125,7 @@ export default {
         ok: "delete"
       }).onOk(() => {
 
-        deleteDBTraining(this.trainingProp.id)
+        deleteDBTraining(this.trainingProp?.id)
         this.$store.dispatch("wilfried/removeTraining", this.trainingProp );
       })
     },

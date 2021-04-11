@@ -10,10 +10,10 @@
           <p id="denomination" class="sysait_black flex flex-left">
             <strong>{{ service.denomination }}</strong>
           </p>
-          <p  class="sysait_black">{{ service.description }}</p>
+          <p  class="sysait_black">{{ service.description }} </p>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-          <img :src="`services_img/${service.image_path}`" style="width: 60%" />
+          <img :src="`services_img/${service.image_path}`" style="width: 85%" />
         </div>
       </div>
     </div>

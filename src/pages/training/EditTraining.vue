@@ -38,7 +38,7 @@ export default {
   mounted(){
     this.training_id = this.$route.params.training_id
     if(!this["wilfried/trainings"] || !this.training_id){
-        this.$router.push({ path: '/courses' })
+        this.$router.push({ path: '/training' })
         notify('red', 'Tranongs are not present or training ID is not defint')
     }
     this.trainings = this["wilfried/trainings"]
@@ -47,7 +47,7 @@ export default {
   methods: {
     setupTraining(){
       this.$q.loading.show({ message: "Pleace Wait ..." })
-      let tempTraining = this.trainings.filter(v => v.id === this.training_id)[0]
+      let tempTraining = this.trainings?.filter(v => v.id === this.training_id)[0]
       this.training = deepCopy(tempTraining)
       this.myKey = !this.myKey
       this.renderForm = true

@@ -44,7 +44,7 @@
             />
           </div>
         </q-toolbar>
-        <p :class="{description: $q.platform.is.desktop, 'text-center': $q.platform.is.desktop}" >
+        <p :class="{description: $q.platform.is.desktop}" >
           {{ descriptionProp.description }}
         </p>
       </div>

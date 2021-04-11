@@ -2,17 +2,18 @@
   <div>
     <div class="constrain q-pa-lg">
       <q-form
+        v-if="form"
         @submit="onSubmit"
         class="q-gutter-md row justify-center"
       >
-        <div class=" col-12 text-center">
+        <div class="q-pa-md q-gutter-sm col-12 text-center">
           <q-btn
             type="submit"
             outline
-            color="primary"
+            padding="sm"
             round
             dense
-            padding="sm"
+            color="primary"
             icon="fa fa-save"
           >
             <q-tooltip
@@ -20,6 +21,34 @@
                 transition-show="rotate"
                 transition-hide="rotate">
                 Save
+            </q-tooltip>
+          </q-btn>
+          <q-btn
+            @click="resetForm()"
+            outline
+            padding="sm"
+            round
+            dense
+            color="primary"
+            icon="fa fa-ban"
+          >
+            <q-tooltip :offset="[10, 10]" transition-show="rotate"
+              transition-hide="rotate">
+              Reset form
+            </q-tooltip>
+          </q-btn>
+          <q-btn
+            to="/training"
+            outline
+            padding="sm"
+            round
+            dense
+            color="primary"
+            icon="fa fa-chevron-left"
+          >
+            <q-tooltip :offset="[10, 10]" transition-show="rotate"
+              transition-hide="rotate">
+              Back to trainings
             </q-tooltip>
           </q-btn>
         </div>
@@ -89,16 +118,8 @@ export default {
   },
   data () {
     return {
-      form: {
-        denomination: null,
-        description: "",
-        link_course: null,
-        image_path: null,
-        status: '1'
-      },
-      statusOptions: []
-
-
+      form: null,
+      statusOptions: [],
     }
   },
   computed: {
@@ -110,11 +131,23 @@ export default {
       ]),
   },
   async mounted(){
-    if(this.trainingProp) this.form = {...this.trainingProp}
-    this.form.status = this.form.status ? parseInt(this.form.status) : 1
+    this.resetForm()
+
+
     this.statusOptions = [...Constants.STATUS]
   },
   methods: {
+    resetForm(){
+      let form = {
+        denomination: null,
+        description: "",
+        link_course: null,
+        image_path: null,
+        status: '1'
+      }
+      this.form = this.trainingProp ? {...this.trainingProp} : form
+      this.form.status = this.form.status ? parseInt(this.form.status) : 1
+    },
     onSubmit(){
       if( this.form.denomination?.length < 1 ||
           this.form.description?.length < 1
