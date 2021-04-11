@@ -14,7 +14,7 @@
 
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
-import ProductComponent from "@/components/ProductComponent/ProductComponent.vue";
+import ProductComponent from "@/components/product/ProductComponent.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "Product",
