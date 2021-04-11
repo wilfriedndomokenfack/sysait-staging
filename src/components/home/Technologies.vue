@@ -11,8 +11,6 @@
             <div class="text-h7 text-bold">{{ tecnologie.title }}</div>
             <div>{{ tecnologie.content}}</div>
         </div>
-        <div class="text-h7 text-bold">{{ tecnologie.name }}</div>
-        <div>{{ tecnologie.content }}</div>
       </div>
     </transition-group>
   </q-page>
