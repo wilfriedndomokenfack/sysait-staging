@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.user)
       login(this.user)
     }
   },

@@ -9,8 +9,17 @@ const setPartners = ({ commit }, payload) => {
   commit('setPartners', payload)
 }
 
+const addTraining = ({ commit }, payload) => {
+  commit('addTraining', payload)
+}
+const setTrainingPageDescription = ({ commit }, payload) => {
+  commit('setTrainingPageDescription', payload)
+}
+
 export default {
   setCompany,
   setTecnologies,
-  setPartners
+  setPartners,
+  addTraining,
+  setTrainingPageDescription
 };

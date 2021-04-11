@@ -77,6 +77,37 @@ const company = null
 }
 */
 
+const trainings = [
+  {
+    id: 30,
+    denomination: 'Java',
+    description: "We areators, wrs, we reate solutis, we reate solutions and products ators, wrs, we rs, we reate solutions and products ators, wrs, we rons and products ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products  innovators, we create solutions and products able to improve the quality of life and work of our custome",
+    link_course: 'java.png',
+    image_path: 'java.png'
+  },
+  {
+    id: 31,
+    denomination: 'JavaScript',
+    description: "We are innovators,ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products  we create solutions and products able to improve the quality of life and work of our custome",
+    link_course: 'JavaScript.png',
+    image_path: 'JavaScript.png'
+  },
+  {
+    id: 32,
+    denomination: 'CSS',
+    description: "We are innovators,ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products  wrs, we reate solutions and products ae reate solutions and products able to improve reate solutions and products able to improve create solutions and products able to improve the quality of life and work of our custome",
+    link_course: 'css.png',
+    image_path: 'css.png'
+  }
+  ,
+  {
+    id: 33,
+    denomination: 'Matlab',
+    description: "We are innovators,ators, wrs, we reate solutions and products ators, wrs, we reate solutions and products  wrs, we reate solutions and products ae reate solutions and products able to improve reate solutions and products able to improve create solutions and products able to improve the quality of life and work of our custome",
+    link_course: 'css.png',
+    image_path: 'matlab.png'
+  }
+]
 
 export default {
   namespaced: true,
@@ -86,12 +117,16 @@ export default {
     company: null,//company,
     tecnologies: null, //tecnologies,
     partners: null,//partners,
+    trainings: trainings,
+    trainingPageDescription: null,
     ...loadWilfriedSession() // this load your state from local storage.
   },
 
   getters: {
     company: state => state.company,
     tecnologies: state => state.tecnologies,
-    partners: state => state.partners
+    partners: state => state.partners,
+    trainings: state => state.trainings,
+    trainingPageDescription: state => state.trainingPageDescription
   },
 };

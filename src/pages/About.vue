@@ -56,7 +56,7 @@ export default {
       try {
         let response = await humanComponent();
         this.$store.dispatch("rosine/setHumanComponents", response?.data);
-        
+
       } catch (e) {
         netWorkError(this.$t("netWorkErrorMSG") + " " + e);
         this.$router.push({ name: this.previousRoute });

@@ -2,13 +2,13 @@
   <q-page padding>
     <div>
       <BannerPages
-        :bannerUrl="bannerUrl"
-        :pageName="pageName"
+        bannerUrl="ImageServices.png"
+        :pageName="$t('services')"
         :companyName="companyName"
       />
 
       <ServicesComponent :propServices="services" :key="myKey" />
-      <EmptyComponent v-if="services.length == 0" />
+      <EmptyComponent v-if="services && services.length == 0" />
     </div>
   </q-page>
 </template>
@@ -32,11 +32,10 @@ export default {
   data() {
     return {
       services: null,
-      bannerUrl: null,
+      //bannerUrl: null,
       pageName: null,
       companyName: null,
       myKey: 0,
-      myAlert: false,
     };
   },
   computed: {
@@ -48,7 +47,7 @@ export default {
       await this.getServices();
     }
     this.services = this["michael/services"];
-    this.bannerUrl = "ImageServices.png";
+    //this.bannerUrl = "ImageServices.png";
     this.pageName = "SERVICES";
     this.companyName = this.company.denomination;
   },

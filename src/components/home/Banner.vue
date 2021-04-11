@@ -1,48 +1,61 @@
 <template>
   <div class="bg_banner row justify-center">
     <div class="banner_content txt">
-      <div class=" nbm">
+      <div class="nbm">
         <transition appear name="bannerHome">
           <div class="">
-
             <div
               style="color: #ffffff"
-              :class="{content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
-              >
+              :class="{
+                content_1_lg: $q.screen.lt.lg,
+                content_1_md: $q.screen.lt.md,
+                content_1_sm: $q.screen.lt.sm,
+                content_1_xs: $q.screen.lt.xs,
+              }"
+            >
               {{ company.content_1 }}
             </div>
 
-          <div class="learning-mission">
-            <div
-              :class="{content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
-              class="col-10"
-              style="color: #ffffff"
-            >
-            {{ company.content_2 }}
+            <div class="learning-mission">
+              <div
+                :class="{
+                  content_2_lg: $q.screen.lt.lg,
+                  content_2_md: $q.screen.lt.md,
+                  content_2_sm: $q.screen.lt.sm,
+                  content_2_xs: $q.screen.lt.xs,
+                }"
+                class="col-10"
+                style="color: #ffffff"
+              >
+                {{ company.content_2 }}
+              </div>
+            </div>
+
+            <br /><br />
+            <div class="btn-1 font_arial" style="text-align: center">
+              <q-btn
+                color="white"
+                text-color="black"
+                :label="$t('readMore')"
+                to="/about"
+              />
             </div>
           </div>
-
-          <br /><br />
-          <div  class="btn-1 font_arial" style="text-align: center">
-            <q-btn color="white" text-color="black" label="Read more" to="/about" />
-          </div>
-
-        </div>
-      </transition>
+        </transition>
       </div>
     </div>
-    <BannerEcran/>
+    <BannerEcran />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import BannerEcran from "@/components/home/BannerEcran.vue"
+import BannerEcran from "@/components/home/BannerEcran.vue";
 export default {
   name: "Banner",
 
   components: {
-    BannerEcran
+    BannerEcran,
   },
 
   data() {
@@ -85,7 +98,7 @@ export default {
 }
 
 .txt {
- // position: absolute;
+  // position: absolute;
   // top: 50%;
   // left: 50%;
   transform: translate(0%, 30%);
@@ -99,8 +112,8 @@ export default {
   padding-top: 10px;
   padding-bottom: 100px;
   background-repeat: no-repeat;
-  width:100%;
-  height:auto;
+  width: 100%;
+  height: auto;
 }
 
 .learning-automated-div {
@@ -162,7 +175,6 @@ export default {
 //   flex: 1;
 //   margin: 5px 0 10px -50;
 
-
 //   text-align: justify;
 //   text-justify: inter-word;
 // }
@@ -171,9 +183,8 @@ export default {
   color: #007db7;
 }
 
-
 .bannerHome-enter-active {
-  animation: bannerHome-in .5s;
+  animation: bannerHome-in 0.5s;
 }
 @keyframes bannerHome-in {
   0% {
@@ -186,5 +197,4 @@ export default {
     transform: scale(1);
   }
 }
-
 </style>
