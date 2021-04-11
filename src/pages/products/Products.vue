@@ -8,6 +8,7 @@
       />
 
       <ProductsComponent
+        class="constrain"
         :propProducts="products"
         :descriptionProp="pageDescription"
         :key="myKey"

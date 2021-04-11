@@ -15,6 +15,7 @@ export const michaelTranslations = {
   findOutMore: "SCOPRI DI PIÙ",
   whoAreWe: "Chi siamo",
   productPage: "PRODOTTI",
-  trustUs: "Si fidano di noi"
+  trustUs: "Si fidano di noi",
+  clickMeProducts: "Clicca per vedere il prodtto"
 
 }

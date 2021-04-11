@@ -15,6 +15,7 @@ export const michaelTranslations = {
   findOutMore: "FIND OUT MORE",
   whoAreWe: "Who are we",
   productPage: "PRODUCTS",
-  trustUs: "They trusted us"
+  trustUs: "They trusted us",
+  clickMeProducts: "Click to see the product"
 
 }

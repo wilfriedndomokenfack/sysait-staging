@@ -5,41 +5,48 @@
     </div>
     <q-separator />
     <div class="q-pa-md">
-      <div v-for="(product, index) in propProducts" :class="{ bg_grey: index % 2 }">
-        <div
-          class="products flex flex-center q-pa-md q-col-gutter-md row"
-          :class="{ bg_grey: index % 2 }"
-        >
-          <div class="static1 col-md-4 col-sm-6 col-xs-12">
-            <img :src="`products_img/${product.image_path}`" style="width: 100%" />
-          </div>
-          <div class="col-md-4 col-sm-6 col-xs-12 self-start">
-            <p
-              id="denomination"
-              face="Time new roman"
-              class="sysait_black flex flex-center"
-              text-color="red"
-            >
-              <strong>
-                <a :href="product.link">{{ product.denomination }}</a>
-              </strong>
-            </p>
-            <p face="Time new roman" class="sysait_black">{{ product.description }}</p>
-            <div class="q-pa-md btn-1" style="text-align: center">
-              <q-btn
-                color="blue"
-                text-color="black"
-                :label="$t('readMore')"
-                @click="sendProductId(product.id)"
-              />
-            </div>
+      <div
+        class="products q-pa-md q-col-gutter-md row justfy-between"
+        :class="{ bg_grey: index % 2 }"
+        v-for="(product, index) in propProducts"
+      >
+        <div class="static1 col-md-3 col-sm-6 col-xs-12">
+          <img :src="`products_img/${product.image_path}`" style="width: 85%" />
+        </div>
+        <div class="col-md-9 col-sm-6 col-xs-12 self-start">
+          <p
+            id="denomination"
+            face="Time new roman"
+            class="sysait_black text-center"
+            text-color="red"
+          >
+            <strong>
+              <a :href="product.link">{{ product.denomination }}</a>
+              <q-tooltip
+                :offset="[10, 10]"
+                transition-show="rotate"
+                transition-hide="rotate"
+                content-class="tooltip"
+              >
+                <strong>{{ $t("clickMeProducts") }}</strong>
+              </q-tooltip>
+            </strong>
+          </p>
+          <p face="Time new roman" class="sysait_black">{{ product.description }}</p>
+          <div class="q-pa-md btn-1" style="text-align: center">
+            <q-btn
+              color="blue"
+              text-color="black"
+              :label="$t('readMore')"
+              @click="sendProductId(product.id)"
+            />
           </div>
         </div>
       </div>
     </div>
     <q-separator />
     <div class="trust col-md-4 col-sm-6 col-xs-12">
-      <h5>{{ this.$t("trustUs") }}</h5>
+      <h5>{{ $t("trustUs") }}</h5>
     </div>
 
     <ClientProductsComponent class="q-pa-md" />
