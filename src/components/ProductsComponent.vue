@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div :class="{ w_products: !this.$q.screen.lt.md }" class="text-center q-pa-md">
+    <p :class="{ w_products: !this.$q.screen.lt.md }" class="q-pa-md">
       {{ descriptionProp }}
-    </div>
+    </p>
     <q-separator />
     <div class="q-pa-md">
       <div
-        class="products q-pa-md q-col-gutter-md row justfy-between"
+        class="products q-pa-md q-col-gutter-md row justfy-between items-center"
         :class="{ bg_grey: index % 2 }"
         v-for="(product, index) in propProducts"
       >
-        <div class="static1 col-md-3 col-sm-6 col-xs-12">
+        <div class="static1 col-md-3 col-sm-6 col-xs-12 text-center">
           <img :src="`products_img/${product.image_path}`" style="width: 85%" />
         </div>
         <div class="col-md-9 col-sm-6 col-xs-12 self-start">
