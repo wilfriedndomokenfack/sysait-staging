@@ -1,5 +1,5 @@
 <template>
-  <q-page style="background-color:white" padding>
+  <q-page style="background-color: white" padding>
     <banner-pages
       :bannerUrl="bannerUrl"
       :pageName="$t('about')"
@@ -7,7 +7,10 @@
     />
     <div v-if="renderAll() && renderComponent" class="flex flex-center">
       <BodyAbout :vision="company.vision" :mission="company.mission" />
-      <ManagementAbout v-if="renderAll() && renderComponent" :listHumanComponent="humanComponents" />
+      <ManagementAbout
+        v-if="renderAll() && renderComponent"
+        :listHumanComponent="humanComponents"
+      />
     </div>
     <EmptyComponent v-else-if="renderComponent" />
   </q-page>
@@ -27,36 +30,34 @@ export default {
     BannerPages,
     BodyAbout,
     ManagementAbout,
-    EmptyComponent
+    EmptyComponent,
   },
 
   data() {
     return {
       bannerUrl: "ImageAbout.png",
-      renderComponent: false
+      renderComponent: false,
     };
   },
   computed: {
-    ...mapGetters(["humanComponents", "company", "previousRoute"])
+    ...mapGetters(["humanComponents", "company", "previousRoute"]),
   },
 
   async mounted() {
     if (!this.humanComponents) {
       await this.getHumanComponents();
     }
-    this.renderComponent = true
-
+    this.renderComponent = true;
   },
   methods: {
-    renderAll(){
-      return (this.humanComponents && this.humanComponents?.length > 0)
+    renderAll() {
+      return this.humanComponents && this.humanComponents?.length > 0;
     },
     async getHumanComponents() {
       this.$q.loading.show();
       try {
         let response = await humanComponent();
         this.$store.dispatch("rosine/setHumanComponents", response?.data);
-
       } catch (e) {
         netWorkError(this.$t("netWorkErrorMSG") + " " + e);
         this.$router.push({ name: this.previousRoute });

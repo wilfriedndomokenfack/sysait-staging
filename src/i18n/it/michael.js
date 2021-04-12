@@ -8,7 +8,14 @@ export const michaelTranslations = {
   products:"Prodotti",
   aboutUs:"Su di noi",
   contacts:"Contattaci",
+  allRights: "tutti i diritti riservati",
   noService:"Scusate...! Menù momentaneamente indisponibile",
-  //netWorkErrorMSG: "Caricamento dei servizi non riuscito!"
-  netWorkErrorMSG: "Errore di rete, riprova più tardi"
+  netWorkErrorMSG: "Caricamento del contenuto non riuscito!",
+  readMore: "LEGGERE DI PIÙ",
+  findOutMore: "SCOPRI DI PIÙ",
+  whoAreWe: "Chi siamo",
+  productPage: "PRODOTTI",
+  trustUs: "Si fidano di noi",
+  clickMeProducts: "Clicca per vedere il prodtto"
+
 }

@@ -27,7 +27,7 @@ export default {
     ServicesComponent,
     EmptyComponent,
     AlertComponent,
-    BannerPages,
+    BannerPages
   },
   data() {
     return {
@@ -35,12 +35,11 @@ export default {
       //bannerUrl: null,
       pageName: null,
       companyName: null,
-      myKey: 0,
-      myAlert: false,
+      myKey: 0
     };
   },
   computed: {
-    ...mapGetters(["michael/services", "company", "previousRoute"]),
+    ...mapGetters(["michael/services", "company", "previousRoute"])
   },
 
   async mounted() {
@@ -69,7 +68,7 @@ export default {
         this.$q.loading.hide();
         this.$q.loadingBar.stop();
       }
-    },
-  },
+    }
+  }
 };
 </script>

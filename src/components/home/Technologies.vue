@@ -11,13 +11,14 @@
             <div class="text-h7 text-bold">{{ tecnologie.title }}</div>
             <div>{{ tecnologie.content}}</div>
         </div>
-      </transition-group>
-    </q-page>
+      </div>
+    </transition-group>
+  </q-page>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { COMMON_isVisibile } from '@/models/utils/common.js'
+import { mapGetters } from "vuex";
+import { COMMON_isVisibile } from "@/models/utils/common.js";
 export default {
   name: 'Tecnologies',
   props: ['propTecnologies'],
@@ -49,8 +50,7 @@ export default {
       }
     }
   }
-}
-
+};
 </script>
 
 <style lang="scss">
@@ -63,12 +63,12 @@ export default {
 
 .service::before {
   min-width: 250px;
-  content:'\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0';
+  content: "\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0";
   display: block;
   position: absolute;
   text-decoration: underline;
-  width:70px;
-  overflow:hidden;
+  width: 70px;
+  overflow: hidden;
   padding-top: 15px;
 }
 

@@ -8,8 +8,14 @@ export const michaelTranslations = {
   products:"Products",
   aboutUs:"About Us",
   contacts:"Contact Us",
-  noService:"Sorry...! Menu temporarily unavailable",
-  //netWorkErrorMSG: "Upload services failed!",
-  netWorkErrorMSG: "Network error, please try later!"
+  allRights: "all rights reserved",
+  noService:"Sorry...! Menu temporarily unavailable", 
+  netWorkErrorMSG: "Upload content failed!",
+  readMore: "READ MORE" ,
+  findOutMore: "FIND OUT MORE",
+  whoAreWe: "Who are we",
+  productPage: "PRODUCTS",
+  trustUs: "They trusted us",
+  clickMeProducts: "Click to see the product"
 
 }
