@@ -11,7 +11,6 @@
               style="width: 195px; height: auto; border-radius: 15px 0px 0px 15px ;"
             />
           </div>
-<!-- style="width: 100%; height: auto" -->
 
         <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
           <div v-if="showBannerEcran" class="col-md-7 col-sm-10 col-xs-10 " >
@@ -87,21 +86,20 @@ export default {
 
 
   border-radius: 15px ;
+  @media (max-width: $breakpoint-sm-max){
+    transform: translateY(-4%);
+  }
+
 }
 
 .myCard-body {
-   border-radius: 15px ;
+  border-radius: 15px ;
   background-color: $sysait_gallery;
 }
 
 .image {
    padding-left: 0;
-  //  padding-bottom: 0;
-  //  padding-right: 0px;
    margin: -8px -17px -30px -17px;
-  // margin-bottom: -15px;
- //  height: inherit;
- //  width: auto;
 }
 .bannerIcon {
   color: white;
@@ -119,29 +117,10 @@ export default {
 
   text-align: justify;
   text-justify: inter-word;
-}
 
-.text-markup {
   @media (max-width: $breakpoint-sm-max){
     font-size: 30px;
   }
 }
-
-.myCard {
-  @media (max-width: $breakpoint-sm-max){
-    transform: translateY(-4%);
-  }
-}
-
-
-
-
-// .bannerEcran-enter-active {
-//     transition: all .10s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-// }
-// .bannerEcran-enter{
-//     transform: translateX(10px);
-//     opacity: 0;
-// }
 
 </style>

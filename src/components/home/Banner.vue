@@ -10,14 +10,12 @@
             <div
               class="content_1 q-pb-md"
               style="color: #ffffff"
-              :class="{content_1_xl: $q.screen.lt.xl, content_1_lg: $q.screen.lt.lg, content_1_md: $q.screen.lt.md, content_1_sm: $q.screen.lt.sm, content_1_xs: $q.screen.lt.xs }"
               >
               {{ company.content_1 }}
             </div>
 
           <div class="learning-mission content_2">
             <div
-              :class="{content_2_xl: $q.screen.lt.xl, content_2_lg: $q.screen.lt.lg, content_2_md: $q.screen.lt.md, content_2_sm: $q.screen.lt.sm, content_2_xs: $q.screen.lt.xs }"
               class="col-10"
               style="color: #ffffff"
             >
@@ -66,105 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .banner_content{
-//   @media(min-width: 700px){
-//     width: 100%;
-//     height: 100px;
-//    transform: translateY(60px);
-//   }
 
-//   @media (max-width: $breakpoint-sm-max){
-//     height: 130px;
-//   }
-
-//   @media (min-width: $breakpoint-md-min){
-//     height: 10px;
-//   }
-// }
-
-
-
-
-
-.centered {
- // position: absolute;
-  //top: 50%;
-  //left: 50%;
-  //transform: translate(-50%, -50%);
-  // font-family: "Time New Roman";
-  //font-size:1vw;
-}
-
-// .content_1_xl {
-//   font-size: 30px;
-//   padding-top: 50px ;
-// }
-
-// .content_2_xl {
-//   font-size: 15px;
-// }
-
-// .content_1_lg {
-//   font-size: 25px;
-//   padding-top: 50px ;
-// }
-// .content_2_lg {
-//   font-size: 15px;
-
-// }
-
-// .content_1_md {
-//   font-size: 17px;
-//   padding-top: 15px ;
-// }
-// .content_2_md {
-//   font-size: 10px;
-// }
-
-// .content_1_sm {
-//   font-size: 10px;
-// }
-// .content_2_sm {
-//   font-size: 5px;
-// }
-
-// .content_1_xs {
-//   font-size: 4vw;
-// }
-
-
-
-
-// .content_2_xs {
-//   font-size: 3vw;
-// }
-
-// .txt {
-//  // position: absolute;
-//   // top: 50%;
-//   // left: 50%;
-//   transform: translate(0%, 30%);
-//   // font-family: "Time New Roman";
-//   font-size: 1vw;
-// }
-.bg_banner {
-  background-color: #cccccc;
-  background-image: url("~assets/HomePageImage.png");
-  background-size: cover;
-  padding-top: 10px;
-  padding-bottom: 100px;
-  background-repeat: no-repeat;
-  width:100%;
-  height:auto;
-}
-
-.learning-automated-div {
-  text-align: center;
-  font-size: 48px;
-  line-height: 52px;
-  padding: 100px 5px 10px 5px;
-  font-weight: bold;
-}
 
 .banner_content {
   position: absolute;
@@ -267,51 +167,11 @@ export default {
   margin-top: -20px;
 }
 
-// .myCard {
-//   width: 75%;
-// //  height: 5px;
-//   max-width: 1200px;
-//   padding-bottom: 0;
-//   padding-top: -200px;
-//   transform: translateY(250px);
-//   border: 1px;
-//   background-color: $sysait_gallery;
-// }
-
-// .myCard-body {
-//   background-color: $sysait_gallery;
-// }
-
-// .image {
-//   // padding-left: 0;
-//   // padding-right: 0px;
-//    margin-top: -8px;
-//    margin-bottom: -12px;
-//  //  height: inherit;
-//  //  width: auto;
-// }
-// .bannerIcon {
-//   color: white;
-//   height: 180px;
-// }
-
 .about-us {
   position: center;
   color: black;
 }
 
-// .text-markup {
-//   border-bottom: 3px solid rgb(59, 133, 231);
-//   height: 40px;
-//   max-width: 230px;
-//   font-size: 40px;
-//   flex: 1;
-//   margin: 5px 0 10px -50;
-
-
-//   text-align: justify;
-//   text-justify: inter-word;
-// }
 .btn-2 {
   text-align: left;
   color: #007db7;
