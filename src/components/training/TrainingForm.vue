@@ -144,6 +144,7 @@ export default {
         link_course: null,
         image_path: null,
         status: '1'
+
       }
       this.form = this.trainingProp ? {...this.trainingProp} : form
       this.form.status = this.form.status ? parseInt(this.form.status) : 1
@@ -159,6 +160,7 @@ export default {
           icon: 'cloud_done'
         })
       }else{
+        console.log(this.form)
         this.$emit('form', this.form)
       }
     }

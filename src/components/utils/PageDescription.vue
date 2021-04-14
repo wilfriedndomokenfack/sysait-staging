@@ -72,9 +72,9 @@ export default {
       if(this.localDescription.description.length > 3 ) this.$emit('description', this.localDescription)
     },
     updateDescription(){
-      console.log(1)
+
       this.localDescription = deepCopy(this.descriptionProp)
-      console.log(2)
+      this.localDescription.category = "trainings"
       this.editDescription = true
     }
   }

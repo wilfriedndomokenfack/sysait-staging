@@ -29,7 +29,7 @@ export const saveTableDescription = async tableDescription => { // CREATE OR UPD
   if(tableDescription.id){
     responce = await Api().patch(`/table_descriptions/${tableDescription.id}`, tableDescription ); // UPDATE
   }else{
-    responce = await Api().post(`/table_descriptions?category=trainings`, tableDescription ); // CREATE
+    responce = await Api().post(`/table_descriptions`, tableDescription ); // CREATE
   }
 
   return responce
