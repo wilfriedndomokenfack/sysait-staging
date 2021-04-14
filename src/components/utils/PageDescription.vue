@@ -56,7 +56,7 @@ import { isSuperUser } from '@/models/user.js'
 import { deepCopy } from '@/models/utils/common.js'
 export default {
   name: 'PageDescription',
-  props: ['descriptionProp'],
+  props: ['descriptionProp', 'category'],
   data () {
     return {
       localDescription: null,
@@ -74,7 +74,7 @@ export default {
     updateDescription(){
 
       this.localDescription = deepCopy(this.descriptionProp)
-      this.localDescription.category = "trainings"
+      this.localDescription.category = this.category
       this.editDescription = true
     }
   }
