@@ -7,7 +7,7 @@
       class="q-mb-md"
     />
     <div class="constrain">
-      <PageDescription :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="trainnings"/>
+      <PageDescription :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="trainings"/>
       <div class="col-12">
         <SendUserFromTrainingsToContacts/>
       </div>
