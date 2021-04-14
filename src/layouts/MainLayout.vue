@@ -1,14 +1,14 @@
 <template>
   <div class="font_arial">
-    <q-layout view="hHh LpR lfr" v-if="renderComponents">
-      <Header />
+    <q-layout view="hHh LpR lfr" v-if="renderComponents" >
+       <Header  />
 
-      <q-page-container class="">
-        <transition appear name="allPages">
-          <router-view class="fit row wrap items-start content-start" />
-        </transition>
-      </q-page-container>
-      <Footer />
+    <q-page-container >
+      <transition appear name="allPages">
+      <router-view class="fit row items-start content-start" />
+      </transition>
+    </q-page-container>
+    <Footer />
     </q-layout>
   </div>
 </template>

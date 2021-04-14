@@ -5,6 +5,10 @@ export const wilfriedTranslations = {
   captionLogOut: "Se déconnecter",
   siteDown: "Site Web temporairement indisponible ...",
 
+  trainingContact: "Pour suivre un cours Envoyez-nous un message de la sectiom",
+  trainningCourse: "formation",
+  emptyCourse: "Il n'y a pas de cours de formation pour le moment",
+
 
 
   failed: "Action échoué",

@@ -6,7 +6,7 @@
       {{ this.$t('ourPartners') }}
     </div>
     <!-- <div class="row q-my-lg items-center justify-center"> -->
-      <transition-group tag="div" class="row q-my-lg items-center justify-center" name="partLists" enter-active-class="animated flipInY delay-5s">
+      <transition-group tag="div" class="row q-my-lg items-center justify-center constrain" name="partLists" enter-active-class="animated flipInY delay-5s">
         <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg " v-for="partner in partners" :key="partner.id">
             <div class="text-info " style="font-size: 2em">
              <q-img clickable @click="partnerlLink(partner.link)"  class="partner rounded-borders col-6 full-height" :src="`partners/${partner.image_path}`" style="">
@@ -92,7 +92,7 @@ export default {
 }
 
 .animated.flipInY {
-  --animate-duration: 14s;
+  --animate-duration: 13s;
 }
 
 </style>

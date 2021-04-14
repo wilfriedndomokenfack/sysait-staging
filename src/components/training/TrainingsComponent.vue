@@ -1,24 +1,42 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md justify-center">
-    <div>
-      {{ descriptionProp }}
+  <div>
+    <div v-if="localTrainings.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
+      <div v-for="training in localTrainings" >
+        <TrainingComponent :trainingProp="training" />
+      </div>
     </div>
-    <div v-for="training in propTrainings" >
-      <TrainingComponent :trainingProp="training" />
+    <div v-else>
+      <EmptyComponent message="emptyCourse"/>
     </div>
   </div>
 </template>
 
 <script>
 import TrainingComponent from "@/components/training/TrainingComponent.vue";
+import { isSuperUser } from '@/models/user.js'
+import EmptyComponent from "@/components/EmptyComponent.vue";
 export default {
   name: 'Trainings',
-  props: ['propTrainings', 'descriptionProp'],
+  props: ['propTrainings'],
   components: {
     TrainingComponent,
+    EmptyComponent
   },
+
   data () {
-    return {}
+    return {
+      localTrainings: []
+    }
+  },
+  mounted(){
+    this.filterTrainings()
+  },
+
+  methods: {
+    filterTrainings(){
+      this.localTrainings = isSuperUser() ? this.propTrainings : this.propTrainings?.filter(v => v.status == "4")
+    }
   }
 }
 </script>
+

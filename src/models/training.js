@@ -5,6 +5,9 @@ import store from "@/store"
 export const trainings = () =>
   Api().get("/courses"); // INDEX
 
+export const deleteDBTraining = (id) =>
+  Api().delete("/courses/"+id); // DELETE
+
 export const sendToTranings = async (training) => {
 
   let returnData = null
@@ -12,15 +15,10 @@ export const sendToTranings = async (training) => {
   let color = 'green'
   try{
     let response = await saveTraining(training)
-    returnData = true
-    //store.dispatch(`setdiary`, true);
-
-
-    store.dispatch("wilfried/addTraining", { ...response?.data });
+    returnData = response?.data
   }catch(err){
     message = 'ERROR: ' + err
     color = 'red'
-    returnData = false
   }finally{
     notify(color, message)
   }

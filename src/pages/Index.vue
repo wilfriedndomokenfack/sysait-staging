@@ -1,7 +1,7 @@
 <template>
-  <q-page class="flex-center row q-gutter-xl">
-    <Banner class="col-12" v-if="renderBanner && company" :company="company" />
-    <Technologies class="col-12" v-if="renderTechnologies && tecnologies" :propTecnologies="tecnologies" :key="myKey"/>
+  <q-page class=" row ">
+    <Banner v-if="renderBanner && company" :company="company" />
+    <Technologies class="col-12 " v-if="renderTechnologies && tecnologies" :propTecnologies="tecnologies" :key="myKey"/>
     <Planing class="col-12" :propPartners="partners" :key="myKey2"/>
   </q-page>
 

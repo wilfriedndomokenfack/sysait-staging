@@ -18,9 +18,24 @@ const setPartners = (state, payload) => {
   partnersLocalStore(state.partners)
 }
 
-const addTraining = (state, payload) => {
-  state.trainings = [...state.trainings, payload]
+const setTrainings = (state, payload) => {
+  state.trainings = payload
 }
+
+const addTraining = (state, payload) => {
+  state.trainings = [payload, ...state.trainings]
+}
+
+const removeTraining = (state, payload) => {
+  const index = state.trainings.indexOf(payload)
+  state.trainings.splice(index, 1);
+}
+
+const updateTraining = (state, payload) => {
+  let trainings = state.trainings?.filter(v => v.id !== payload.id)
+  state.trainings = [payload, ...trainings]
+}
+
 
 const setTrainingPageDescription = (state, payload) => {
   state.trainingPageDescription =  payload
@@ -30,6 +45,9 @@ export default {
   setCompany,
   setTecnologies,
   setPartners,
+  setTrainings,
   addTraining,
+  removeTraining,
+  updateTraining,
   setTrainingPageDescription
 };

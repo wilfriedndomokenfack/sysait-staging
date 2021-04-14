@@ -5,7 +5,7 @@
       :pageName="$t('about')"
       :companyName="company.denomination"
     />
-    <div v-if="renderAll() && renderComponent">
+    <div v-if="renderAll() && renderComponent" class="flex flex-center">
       <BodyAbout :vision="company.vision" :mission="company.mission" />
       <ManagementAbout
         v-if="renderAll() && renderComponent"

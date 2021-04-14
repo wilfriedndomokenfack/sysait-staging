@@ -28,7 +28,9 @@ export default {
     async saveForm(form){
       console.log(form)
       let response = await sendToTranings(form)
-       //if(response) this.$router.push({ name: "previousRoute"})
+
+      this.$store.dispatch("wilfried/addTraining", { ...response });
+      this.$router.push({ path: "/training"})
     }
   }
 }

@@ -7,7 +7,7 @@
         :companyName="companyName"
       />
 
-      <ServicesComponent :propServices="services" :key="myKey" />
+      <ServicesComponent :propServices="services" :key="myKey" class="constrain"/>
       <EmptyComponent v-if="services && services.length == 0" />
     </div>
   </q-page>

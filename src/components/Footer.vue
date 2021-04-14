@@ -1,6 +1,6 @@
 <template>
-  <q-footer class="bg_sysait_gallery q-pa-md">
-    <div class="row footer_containergg justify-between text-dark" >
+  <q-footer class="bg_sysait_gallery ">
+    <div class="row footer_containergg justify-between text-dark constrain q-pa-md" >
 
       <div class="col-xs-12 col-sm-6 col-md-3 text-center items-center column">
         <q-item clickable to="/">
@@ -23,18 +23,17 @@
         </q-item>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3 column items-center self-start">
-          <div class="column items-center">
-                <div class="column items-center">
-                  <div>
+      <div class="col-xs-12 col-sm-6 col-md-3 column ">
+          <div class="column items-start">
+
                     <div class="" style="max-width: 350px">
                       <div class="column items-center">
                         <font  class="color_sysait_cerulean"  size="4">
                           <b>{{ $t('office') }}</b>
                         </font>
                       </div>
-                      <div class="column q-pa-md q-gutter-md">
-                        <div class="flex-break">
+                      <div class="column q-pa-md items-start">
+                        <div class="">
                           <q-item>
                             <q-item-section avatar>
                               <q-icon class="color_sysait_cerulean" :name="positionIcon" />
@@ -71,8 +70,8 @@
                         </div>
 
                       </div>
-                    </div>
-                  </div>
+
+
                 </div>
               </div>
       </div>
@@ -132,12 +131,10 @@
 
     </div>
 
-      <div class="footer_container bg_sysait_black q-pa-md" style="min-height: 4vh;">
-          <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-white">
-          <q-space />
-            &copy; {{ copyright }}
-          <q-space />
-        </q-tabs>
+      <div class="footer_container bg_sysait_black q-pa-md text-center" style="min-height: 4vh;">
+          <div class="text-white">
+            {{ copyright }}
+        </div>
       </div>
     </q-footer>
 </template>

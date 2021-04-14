@@ -95,7 +95,7 @@ module.exports = function ( ctx ) {
           'QCarouselSlide',
           'QCarouselControl'
         ],
-      
+
 
 
       // Possible values for "importStrategy":
@@ -111,7 +111,7 @@ module.exports = function ( ctx ) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["Notify", "Cookies", "Loading", 'LoadingBar'],
+      plugins: ["Notify", "Cookies", "Loading", 'LoadingBar', 'Dialog'],
 
       config: {
         notify: {

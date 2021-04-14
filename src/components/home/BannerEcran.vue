@@ -1,16 +1,16 @@
 <template>
-  <div class="myCard">
-    <q-banner class="myCard-body">
-      <div class="q-col-gutter-md row items-start justify-between">
-        <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
-          <img
-            class=""
-            alt="sysait ecran"
-            src="~assets/SysaitEcranCarré.png"
-            :ratio="1"
-            style="width: 195px; height: auto"
-          />
-        </div>
+  <div class="myCard constrain" >
+      <q-banner class="myCard-body ">
+        <div class=" row items-start justify-between" >
+          <div v-show="!this.$q.screen.lt.md" class="col-md-3 col-sm-12 col-xs-12 image">
+            <img
+              class=""
+              alt="sysait ecran"
+              src="~assets/SysaitEcranCarré.png"
+              :ratio="1"
+              style="width: 195px; height: auto; border-radius: 15px 0px 0px 15px ;"
+            />
+          </div>
 
         <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
           <div v-if="showBannerEcran" class="col-md-7 col-sm-10 col-xs-10">
@@ -18,7 +18,7 @@
               <p class="text-markup sysait_black text-weight-regular flex flex-center">
                 <strong>Who are we</strong>
               </p>
-              <p class="sysait_black">{{ company.description }}</p>
+              <p  class="sysait_black q-pr-md" >{{ company.description }}</p>
             </div>
             <div class="btn-2">
               <q-btn color="primary" :label="$t('findOutMore')" to="/about" />
@@ -72,12 +72,21 @@ export default {
   max-width: 1200px;
   padding-bottom: 0;
   padding-top: -200px;
-  transform: translateY(150px);
+  padding-right: 10px ;
+  transform: translateY(-10%);
   border: 1px;
   background-color: $sysait_gallery;
+
+
+  border-radius: 15px ;
+  @media (max-width: $breakpoint-sm-max){
+    transform: translateY(-4%);
+  }
+
 }
 
 .myCard-body {
+  border-radius: 15px ;
   background-color: $sysait_gallery;
 }
 

@@ -19,3 +19,12 @@ export const deepCopy = (obj) => {
 
   return newObj
 }
+
+export const Constants = {
+  STATUS: [
+    {label: "ACTIVE",   value: 1, color: 'yellow-10' },
+    {label: "DELETED",  value: 2, color: 'red-10' },
+    {label: "CANCELED", value: 3, color: 'cyan-10' },
+    {label: "PUBLISHED",value: 4, color: 'green-14' }
+  ]
+}
