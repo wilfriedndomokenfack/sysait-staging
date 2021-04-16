@@ -1,51 +1,45 @@
 <template>
-  <div class="q-pa-md">
-    <div class=" flex flex-center q-pa-md q-col-gutter-md row">
-      <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <br />
+  <div class="">
+    <div class="colomn items-center">
+      <div class="q-pa-md">
         <p v-html="propProduct.description"  class="sysait_black">
-          
         </p>
       </div>
 
-      <div v-if="propProduct.image_path != null" class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <center><img
-          :src="`products_img/${propProduct.image_path}`"
-          style="height:30%;width:70%;"
-        /></center>
-        <div v-if="propProduct.image_path != null" class="name_site">
-          <center> {{ propProduct.denomination}}</center>
+      <div v-if="propProduct.image_path" class="">
+        <div class="text-center">
+          <img
+            class="product_img"
+            alt="product image"
+            :src="`products_img/${propProduct.image_path}`"
+          />
+        </div>
+        <div v-if="propProduct.denomination" class="name_site text-center">
+          <div> {{ propProduct.denomination}}</div>
         </div>
       </div>
 
-      <div v-if="propProduct.isAddressedTo != null"  class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <p style="text-align: center; color:dark;font-weight: bold;">
-          {{ $t("whom") }}
+      <div v-if="propProduct.isAddressedTo"  class="q-pa-md colomn items-center">
+        <p class="text-center text-dark text-bold" >
+          {{ $t("whom").toUpperCase() }}
         </p>
         <p v-html="propProduct.isAddressedTo" >
-          
-          
         </p>
       </div>
 
-      <div v-if="propProduct.howToAcquire != null" class="accurate_product">
-        <div class=" flex flex-center q-pa-md q-col-gutter-md row">
-          <div class="col-md-9 col-sm-10 col-xs-12 self-start">
-              <p  style="text-align: center;font-weight: bold;">
-              {{ $t("acquire") }}
-            </p>
-            <p v-html="propProduct.howToAcquire">
-            </p>
-            
-          </div>
-        </div>
+      <div v-if="propProduct.howToAcquire" class="q-pa-md colomn items-center bg-primary text-white">
+        <p class="text-center text-bold">
+          {{ $t("acquire") }}
+        </p>
+        <p v-html="propProduct.howToAcquire">
+        </p>
       </div>
 
       <div v-if="propProduct.collaborators.length !=0" class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <div style="text-align: center;">
+        <div style="text-center">
           <br/>
           <div class="flex inline shadow-box flex-center shadow-3 q-pa-md">{{$t('use')}}</div>
-         
+
         </div>
         <div>
           <transition-group
@@ -58,7 +52,7 @@
               class="col-md-3 col-sm-6 col-xs-12 q-pb-lg text-center"
               v-for="colab in propProduct.collaborators"
               :key="colab.id"
-              
+
             >
               <div class="text-info " style="font-size: 2em">
                 <q-img
@@ -74,7 +68,7 @@
                     transition-hide="rotate"
                     content-class="tooltip"
                   >
-                     <strong>{{colab.denomination }}</strong> 
+                     <strong>{{colab.denomination }}</strong>
                   </q-tooltip>
                 </q-img>
               </div>
@@ -136,22 +130,75 @@ export default {
 }
 .name_site {
   position: relative;
-  width: 30%;
+  //width: 100%;
   bottom: 20px;
   background: $sysait_cerulean;
   color: white;
   padding-top: 1%;
   padding-bottom:1% ;
-  margin-left: 15%;
-  
+  margin-left: 25%;
+  width: 25%;
+  //
+  @media (min-width: 2000px){
+  //  width: 25%;
+  //  margin-left: 25%;
+  }
+  @media (max-width: 499px){
+    margin-left: 10%;
+    width: 50%;
+  }
+  // @media (min-width: 1000px){
+  //   width: 25%;
+  //   margin-left: 25%;
+  // }
+  // @media (min-width: 700px){
+  //   width: 20%;
+  // }
+  // @media (min-width: 700px){
+  //   width: 30%;
+  // }
+
+  // @media (min-width: 450px){
+  //   width: 50%;
+  // }
+
+}
+.product_img {
+  height: auto;
+
+  @media (min-width: 500px){
+    width: 50%;
+  }
+  @media (max-width: 499px){
+    width: 80%;
+  }
+  // @media (min-width: 1000px){
+  //   width: 50%;
+  // }
+  // @media (min-width: 700px){
+  //   width: 30%;
+  // }
+  // @media (min-width: 700px){
+  //   width: 50%;
+  // }
+  // @media (min-width: 450px){
+  //   width: 50%;
+  // }
+  // @media (min-width: 400px){
+  //   width: 60%;
+  // }
+
+  // @media (min-width: 300px){
+  //   width: 70%;
+  // }
 }
 .accurate_product {
-  height: 20%;
-  width:100%;
+  // height: 20%;
+  // width:100%;
   background: $sysait_cerulean;
   color: white;
-  margin-left: -30%;
-  margin-right: -30%;
+  // margin-left: -30%;
+  // margin-right: -30%;
 }
 .accurate_content {
   width: 60%;

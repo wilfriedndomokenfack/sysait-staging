@@ -104,7 +104,7 @@ export default {
     async updatePageDescription(description){
       const response = await sendToTableDescriptions(description)
       if(response){
-        this.pageDescription = response
+        this.pageDescription = response 
         this.descriptionKey ++
       }
     },
