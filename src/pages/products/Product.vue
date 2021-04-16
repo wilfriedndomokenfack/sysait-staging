@@ -8,7 +8,7 @@
       />
     </div>
 
-    <ProductComponent :propProduct="product" v-if="product" :key="myKey" />
+    <ProductComponent :propProduct="product" v-if="product" :key="myKey"  class="constrain"/>
   </q-page>
 </template>
 
