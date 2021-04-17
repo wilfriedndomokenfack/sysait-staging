@@ -13,12 +13,12 @@
           </div>
 
         <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
-          <div v-if="showBannerEcran" class="col-md-7 col-sm-12col-xs-12 text-center">
-            <div class="about-us q-pt-md">
+          <div v-if="showBannerEcran" class="col-md-7 col-sm-12 col-xs-12">
+            <div class="about-us q-pt-xs">
               <div class="pbn-title sysait_black text-weight-regular flex flex-center ">
-                <strong> {{$t("whoAreWe")}}</strong>
+                <div> {{$t("whoAreWe")}}</div>
               </div>
-              <p  class="sysait_black" :class="{'q-pr-md':!this.$q.screen.lt.md}" >{{ company.description }}</p>
+              <div  class="sysait_black q-pt-xs q-pb-md" :class="{'q-pr-md':!this.$q.screen.lt.md}" >{{ company.description }}</div>
             </div>
             <div class="">
               <q-btn color="primary" :label="$t('findOutMore')" to="/about" />
@@ -105,14 +105,16 @@ export default {
 
 .pbn-title {
   border-bottom: 3px solid rgb(59, 133, 231);
-  height: 40px;
-  max-width: 335px;
-  font-size: 40px;
-  flex: 1;
-  margin: 5px 0 10px -50;
+  height: 30px;
+ // max-width: 30%;
+  font-size: 180%;
+ // fontflex: 1;
+ // margin: 5px 0 10px -50;
 
-  text-align: justify;
-  text-justify: inter-word;
+  display: inline-block;
+
+  // text-align: justify;
+  // text-justify: inter-word;
 
 
 }
