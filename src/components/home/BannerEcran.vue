@@ -15,9 +15,9 @@
         <transition name="bannerEcrans" enter-active-class="animated zoomInDown delay-1s">
           <div v-if="showBannerEcran" class="col-md-7 col-sm-12col-xs-12 text-center">
             <div class="about-us q-pt-md">
-              <p class="pbn-title sysait_black text-weight-regular flex flex-center ">
-                <strong>Who are we</strong>
-              </p>
+              <div class="pbn-title sysait_black text-weight-regular flex flex-center ">
+                <strong> {{$t("whoAreWe")}}</strong>
+              </div>
               <p  class="sysait_black" :class="{'q-pr-md':!this.$q.screen.lt.md}" >{{ company.description }}</p>
             </div>
             <div class="">
@@ -106,7 +106,7 @@ export default {
 .pbn-title {
   border-bottom: 3px solid rgb(59, 133, 231);
   height: 40px;
-  max-width: 230px;
+  max-width: 335px;
   font-size: 40px;
   flex: 1;
   margin: 5px 0 10px -50;

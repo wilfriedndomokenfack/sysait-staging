@@ -7,6 +7,7 @@ export const wilfriedTranslations = {
   trainingContact: "Per seguire un corso Mandaci un messaggio dalla sezione",
   trainningCourse: "corso di formazione",
   emptyCourse: "Non ci sono corsi di formazione per il momento",
+  whoAreWe: "Chi siamo",
 
 
 
