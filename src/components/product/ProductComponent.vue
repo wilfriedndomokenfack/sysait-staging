@@ -35,12 +35,9 @@
         </p>
       </div>
 
-      <div v-if="propProduct.collaborators.length !=0" class="col-md-9 col-sm-10 col-xs-12 self-start">
-        <div style="text-center">
+      <div v-if="propProduct.collaborators.length !=0" class="col-md-9 col-sm-10 col-xs-12 self-start text-center">
           <br/>
-          <div class="flex inline shadow-box flex-center shadow-3 q-pa-md">{{$t('use')}}</div>
-
-        </div>
+          <div class="flex inline shadow-box text-center flex-center shadow-3 q-pa-md">{{$t('use')}}</div>
         <div>
           <transition-group
             tag="div"
