@@ -20,9 +20,10 @@
               class="q-gutter-md"
             >
               <q-input
+                
                 filled
-                v-model="user.fullname"
-                label="Fullname"
+                v-model="user.email"
+                label="Email"
                 lazy-rules
                 :rules="[
                   val => val && val.length > 0 || 'Digita il tuo nome utente'
@@ -54,8 +55,9 @@ export default {
   data() {
       return {
         user: {
-          fullname: 'Sysait',
-          password: '12345'
+          //fullname: 'sandrine@gmail.com',
+          email: 'sandrine@gmail.com',
+          password: 'Sandrine1234567'
         }
       }
   },

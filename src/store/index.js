@@ -1,4 +1,12 @@
 
+import { loadSession  } from "@/models/utils/sessionHandler.js"
+import { resetUser } from "@/models/user.js"
+import { userKicker } from "@/models/auth/userKicker";
+import { saveJwtToken } from "@/models/utils/sessionHandler.js"
+import jwt_decode from "jwt-decode";
+
+import { router } from "@/router";
+import { notify } from "@/models/utils/notifyUser"
 
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
@@ -11,51 +19,15 @@ import michael from './michael/index'
 
 const initialState = () => {
   const startState = {
-
     currentUser: null,
-    //currentUser: {id: 1, fullname: "Ndomo Wilfried"},
-    customers: [
-      {
-      denomination: 'Institut paul momo',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'imp',
-      link: 'http://www.unife.it/it'
-      },
-      {
-      denomination: 'bk service',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'bk',
-      link: 'http://www.unife.it/it'
-      }
-    ],
-    sponsors: [
-      {
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },
-      {
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },{
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },{
-      denomination: 'Università di Ferrara',
-      description: 'We are innovators, we create solutions and products able to improve the quality of life and work of our customer',
-      image_path: 'unife',
-      link: 'http://www.unife.it/it'
-      },
-    ],
+    token: null,
     lang: null,
+    ...loadSession()
+  }
 
-    products: null,
-
+  if (startState.token) {
+    startState.currentUser = jwt_decode(startState.token);
+    userKicker(startState.currentUser.exp);
   }
 
   return startState
@@ -77,40 +49,42 @@ export default new Store({
       state.lang = !state.lang
     },
 
-    setCurrentUser (state, payload) {
-      state.currentUser = payload
-    },
-    setProducts (state, payload) {
-      state.products = payload
-    },
 
+
+    setCurrentUser (state, token) {
+      if(token){
+        const user = jwt_decode(token);
+        state.currentUser = user
+        userKicker(user.exp);
+        saveJwtToken(token)
+
+        const goTo = state.route.from.name ?? 'home'
+        router.push({ name: goTo });
+        notify('green', 'Login with success!')
+      }else{
+        state.currentUser = null
+        state.token = null
+      }
+    },
   },
   getters: {
     company: state => state.wilfried.company,
     tecnologies: state => state.wilfried.tecnologies,
     humanComponents: state => state.rosine.humanComponents,
 
-    sponsors: state => state.sponsors,
-    customers: state => state.customers,
     currentUser: state => state.currentUser,
-    products: state => state.products,
+    token: state => state.token,
 
     langChanged: state => state.lang,
     currentRoute: state => (state.route ? state.route.name : null),
     previousRoute: state => (state.route ? state.route.from.name : null)
   },
   actions: {
-
-
     setLang({commit}){
       commit('setLang')
     },
     setCurrentUser ({ commit }, payload) {
       commit('setCurrentUser', payload)
     },
-
-    setProducts ({ commit }, payload) {
-      commit('setProducts', payload)
-    }
   }
 })
