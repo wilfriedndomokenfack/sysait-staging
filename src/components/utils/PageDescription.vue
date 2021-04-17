@@ -44,7 +44,7 @@
             />
           </div>
         </q-toolbar>
-        <p :class="{description: $q.platform.is.desktop}" >
+        <p v-if="descriptionProp" :class="{description: $q.platform.is.desktop}" >
           {{ descriptionProp.description }}
         </p>
       </div>

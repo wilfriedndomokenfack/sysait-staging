@@ -2,7 +2,7 @@
   <q-page padding>
     <div>
       <BannerPages
-        :bannerUrl="bannerUrl"
+        bannerUrl="ImageProducts.png"
         :pageName="$t('productPage')"
         :companyName="companyName"
       />

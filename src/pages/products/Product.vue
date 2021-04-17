@@ -2,13 +2,13 @@
   <q-page padding>
     <div>
       <BannerPages
-        :bannerUrl="bannerUrl"
+        bannerUrl="ImageProducts.png"
         :pageName="$t('pageName')"
         :companyName="companyName"
       />
     </div>
 
-    <ProductComponent :propProduct="product" v-if="product" :key="myKey" />
+    <ProductComponent :propProduct="product" v-if="product" :key="myKey" class="constrain"/>
   </q-page>
 </template>
 
@@ -38,17 +38,17 @@ export default {
   },
   async mounted() {
     if (!this["michael/products"]) {
-      this.$router.push({ name: "home" });
+      this.$router.push({ name: "products" });
     }
     this.products = this["michael/products"];
     this.getProduct();
     this.bannerUrl = "ImageProducts.png";
-    this.pageName = "Product";
+
     this.companyName = this.company.denomination;
   },
   methods: {
     getProduct() {
-      this.product = this.products.filter(v => v.id === this.productId)[0];
+      this.product = this.products?.filter(v => v.id === this.productId)[0];
       if (!this.product) {
         this.$router.push({ name: "products" });
       }
