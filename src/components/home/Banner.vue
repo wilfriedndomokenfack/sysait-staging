@@ -93,9 +93,29 @@ export default {
      height: 100px;
   }
 
-  @media (min-width: 500px){
-    height: 150px;
+  @media (min-width: 440px){
     transform: translateY(30px);
+     height: 120px;
+  }
+
+  @media (min-width: 480px){
+    height: 128px;
+    transform: translateY(40px);
+  }
+
+  @media (min-width: 500px){
+    height: 128px;
+    transform: translateY(40px);
+  }
+
+  @media (min-width: 730px){
+    height: 200px;
+    transform: translateY(50px);
+  }
+
+  @media (min-width: 760px){
+    height: 200px;
+    transform: translateY(50px);
   }
 
   @media (min-width: 1000px){
@@ -104,6 +124,16 @@ export default {
 
   @media (min-width: 1300px){
     height: 400px;
+  }
+
+  @media (min-width: 1500px){
+    height: 400px;
+    transform: translateY(90px);
+  }
+
+  @media (min-width: 2000px){
+    height: 600px;
+    transform: translateY(90px);
   }
 }
 
@@ -116,12 +146,23 @@ export default {
   @media (max-width: 440px){
     font-size: 10px;
   }
+
+  @media (min-width: 440px){
+    font-size: 10px;
+  }
   @media (max-width: 400px){
      font-size: 8px;
   }
 
+  @media (min-width: 480px){
+     font-size: 11px;
+  }
+
   @media (min-width: 500px){
-    font-size: 14px;
+    font-size: 13px;
+  }
+  @media (min-width: 760px){
+   font-size: 16px;
   }
   @media (min-width: 1000px){
     font-size: 25px;
@@ -129,6 +170,15 @@ export default {
   }
   @media (min-width: 1300px){
     font-size: 30px;
+  }
+
+  @media (min-width: 1500px){
+    padding: 30px ;
+  }
+
+  @media (min-width: 2000px){
+    font-size: 40px;
+    padding: 30px ;
   }
 }
 
@@ -142,9 +192,20 @@ export default {
     font-size: 5px;
   }
 
+  @media (min-width: 440px){
+    font-size: 7px;
+  }
+
+  @media (min-width: 480px){
+     font-size: 9px;
+  }
 
   @media (min-width: 500px){
     font-size: 10px;
+  }
+  @media (min-width: 760px){
+
+    padding-bottom: 30px ;
   }
   @media (min-width: 1000px){
     font-size: 15px;
@@ -153,6 +214,9 @@ export default {
 
   @media (min-width: 1300px){
     font-size: 20px;
+  }
+  @media (min-width: 2000px){
+    padding: 30px ;
   }
 }
 
