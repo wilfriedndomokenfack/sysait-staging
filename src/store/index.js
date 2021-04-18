@@ -50,7 +50,10 @@ export default new Store({
     },
 
 
-
+    setUserCourses(state, payload){
+      state.currentUser = {...state.currentUser, coursesIds: payload}
+    },
+    
     setCurrentUser (state, token) {
       if(token){
         const user = jwt_decode(token);
@@ -86,5 +89,8 @@ export default new Store({
     setCurrentUser ({ commit }, payload) {
       commit('setCurrentUser', payload)
     },
+    setUserCourses ({ commit}, payload) {
+      commit('setUserCourses', payload)
+    }
   }
 })

@@ -20,7 +20,7 @@
           <div v-if="trainingProp.link_course && isEnrollToTraining(trainingProp.id)">
             <q-btn
               @click="openPage(trainingProp.link_course)"
-              label="Click here to folow the course"
+              :label="$t('takeCourse')"
               outline
               color="primary"
               dense

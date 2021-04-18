@@ -11,7 +11,7 @@ export const login = async (user) => {
     store.dispatch("setCurrentUser", token);
 
   } catch (error) {
-    console.log("eror - " + error)
+    console.log("error - " + error)
   }
 }
 

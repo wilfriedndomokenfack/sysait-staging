@@ -5,36 +5,30 @@ import { router } from "@/router";
 import jwt_decode from "jwt-decode";
 import moment from "moment";
 
+export const getUsers = async () => {
+  try {
+    let response = await Api().get("/users" )
+    store.dispatch("wilfried/setUsers", response.data);
+  } catch (error) {
+    console.log("error: " + error)
+  }
+
+}
+
 export const getToken = (userData) => {
   return Api().post("/users/sign_in", userData )
 }
 
-// export const resetUser = token => {
-
-//   const currentUser = jwt_decode(token);
-//   store?.dispatch("setCurrentUser", {
-//     currentUser,
-//     token
-//   });
-
-//   // const now = moment();
-//   // const exp = moment.unix(currentUser.exp);
-//   // const timeout = moment.duration(exp.diff(now)).asMilliseconds()
-
-
-
-
-//   // let bb = moment().milliseconds(currentUser.exp)//moment.unix(currentUser.exp).format()
-
-//   // console.log(currentUser.exp,bb)
-//   //debugger
-//   const goTo = store?.getters.previousRoute ?? 'home'
-//   router.push({ name: goTo });
-//   notify('green', 'Login with success!')
-// }
-
 export const getUserCourses = (id) => {
-  Api().post("/users/", id )
+  try{
+   // const response = Api().post("/users/", id )
+    const coursesIds = [30, 47, 50, 51]//response?.data
+    store.dispatch("setUserCourses", coursesIds);
+
+  }catch(err){
+    console.log("error: " + err)
+  }
+
 }
 
 export const isSuperUser = () => {
@@ -42,5 +36,9 @@ export const isSuperUser = () => {
 }
 
 export const isEnrollToTraining = (training_id) => {
-  return store.getters.currentUser
+  let response = -1
+  if(store.getters.currentUser?.coursesIds){
+    response = store.getters.currentUser?.coursesIds.indexOf(training_id)
+  }
+  return response == -1 ? false : true
 }

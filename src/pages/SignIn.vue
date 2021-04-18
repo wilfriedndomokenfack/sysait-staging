@@ -20,7 +20,7 @@
               class="q-gutter-md"
             >
               <q-input
-                
+
                 filled
                 v-model="user.email"
                 label="Email"
@@ -56,8 +56,8 @@ export default {
       return {
         user: {
           //fullname: 'sandrine@gmail.com',
-          email: 'sandrine@gmail.com',
-          password: 'Sandrine1234567'
+          email: 'sysait@gmail.com',
+          password: 'sysait'
         }
       }
   },
