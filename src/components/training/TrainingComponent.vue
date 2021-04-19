@@ -85,7 +85,8 @@ export default {
       googImg: false,
       status: null,
       color: null,
-      isAdmin: false
+      isAdmin: false,
+      
     }
   },
   computed: {

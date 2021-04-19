@@ -65,14 +65,7 @@ import { mapGetters } from "vuex";
 export default {
   name: 'AddRole',
   props: ['openDialog', 'propUser'],
-  watch: {
-    model: {
-      handler() {
-        console.log(this.model)
-        if(!this.model) this.emitData()
-      }
-    },
-  },
+  
   data () {
     return {
       model: false,
@@ -106,8 +99,9 @@ export default {
       }
 
       addRole(roleData)
+      this.emitData()
       this.model = false
-      
+
     }
   }
 }

@@ -38,14 +38,10 @@ export const isSuperUser = async () => {
         let response = await Api().get(`/users/${id}/get_user_roles` )
         index = response.data.indexOf('admin')
       }
-
-      //console.log(response.data)
-      console.log(index)
       return index > -1 ? true : false
     }catch(error){
       console.log("error: " + error)
     }
-  //return store.getters.currentUser
 }
 
 export const isEnrollToTraining = (training_id) => {

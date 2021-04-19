@@ -3,7 +3,7 @@
     <div>
       <q-splitter
         v-model="splitterModel"
-        style="height: 450px; width:1000px"
+        style="height: 600px; width:1000px"
       >
         <template v-slot:before>
           <q-tabs
@@ -11,9 +11,9 @@
             vertical
             class="text-dark"
           >
-            <q-tab name="users" icon="fa fa-users" label="Users" />
-            <q-tab name="alarms" icon="alarm" label="Alarms" />
-            <q-tab name="movies" icon="movie" label="Movies" />
+            <q-tab name="users" label="Users" />
+            <q-tab name="other1" label="other1" />
+            <q-tab name="other2" label="other2" />
           </q-tabs>
         </template>
 
@@ -30,14 +30,14 @@
               <UsersManagement/>
             </q-tab-panel>
 
-            <q-tab-panel name="alarms" >
-              <div class="text-h4 q-mb-md">Alarms</div>
+            <q-tab-panel name="other1" >
+              <div class="text-h4 q-mb-md">other1</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
             </q-tab-panel>
 
-            <q-tab-panel name="movies">
-              <div class="text-h4 q-mb-md">Movies</div>
+            <q-tab-panel name="other2">
+              <div class="text-h4 q-mb-md">other2</div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
