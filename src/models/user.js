@@ -19,10 +19,10 @@ export const getToken = (userData) => {
   return Api().post("/users/sign_in", userData )
 }
 
-export const getUserCourses = (id) => {
+export const getUserCourses = async (id) => {
   try{
-   // const response = Api().post("/users/", id )
-    const coursesIds = [30, 47, 50, 51]//response?.data
+    const response = await Api().get(`/users/${id}/get_user_courses`,)
+    const coursesIds = response?.data
     store.dispatch("setUserCourses", coursesIds);
 
   }catch(err){
