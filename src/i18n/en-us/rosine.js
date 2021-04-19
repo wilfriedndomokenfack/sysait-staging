@@ -26,5 +26,7 @@ export const rosineTranslations = {
   whom:"To whom this product is adressed",
   acquire:"HOW TO ACQUIRE A PRODUCT",
   use:"THEY USE THE PRODUCT",
+
+  contact: "Contact Us",
 }
 

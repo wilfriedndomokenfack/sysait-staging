@@ -25,4 +25,6 @@ export const rosineTranslations = {
   acquire:"COMMENT ACQUÉRIR UN PRODUIT",
   use:"ILS UTILISENT LE PRODUIT",
 
+  contact: "Contactez nous",
+
 }
