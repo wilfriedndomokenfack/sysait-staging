@@ -58,7 +58,6 @@
             />
           </td>
         </tr>
-
       </tbody>
     </q-markup-table>
     <AddRole v-if="openRoles" :propUser="propUser" :openDialog="openRoles" @popopClosed="poposclosed" :key="addRoleKey"/>
@@ -116,7 +115,12 @@ export default {
         user_id: user_id,
         role: role
       }
+      let user = this.users.find(v => v.id === user_id)
+      let r = user.roles.find(v => v.name === role)
+      const index = user.roles.indexOf(r)
+      user.roles.splice(index, 1);
       removeRole(roleDatas)
+      getUsers();
       this.tableKey++
 
     },

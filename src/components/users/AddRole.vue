@@ -107,6 +107,7 @@ export default {
 
       addRole(roleData)
       this.model = false
+      
     }
   }
 }
