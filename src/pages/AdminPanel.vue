@@ -65,8 +65,9 @@ export default {
       tab: 'users'
     }
   },
-  mounted() {
-    if(!isSuperUser()) this.$router.push({ name: "home" });
+  async mounted() {
+    let val = await isSuperUser()
+    if(!val) this.$router.push({ name: "home" });
   }
 }
 </script>

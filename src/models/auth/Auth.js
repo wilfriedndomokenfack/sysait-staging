@@ -1,5 +1,6 @@
 
 import store from '@/store'
+
 import { notify } from "@/models/utils/notifyUser"
 import { getToken} from "@/models/user.js"
 import { deleteCookie } from "@/models/utils/setupCookies.js";
@@ -19,4 +20,7 @@ export const logout = () => {
   store.dispatch("setCurrentUser", null);
   deleteCookie('sy-jwt')
   notify('green', 'Logout with success!')
+  
+  if(store.getters.currentRoute == "admin") store.$router.push({name: 'home'})
+
 };
