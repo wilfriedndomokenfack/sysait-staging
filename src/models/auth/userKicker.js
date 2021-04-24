@@ -1,23 +1,17 @@
-// // Kicks out user upon session expiration
-// import moment from "moment";
-// import store from "@/store";
-// import { router } from "@/router";
+// Kicks out user upon session expiration
 
-// const defaultSessionTimeout = 20 * 60 * 1000; // minutes -> milliseconds
-// const loginPath = "/login";
-// let kicker = null;
+import { logout } from "@/models/auth/Auth.js";
+
+
+const defaultSessionTimeout = 1 * 60 * 1000; // minutes -> milliseconds
+let kicker = null;
 
 // const kickOutUser = () => {
-//   store.dispatch("logout");
-//   if (window.location.pathname != loginPath) router.push({ name: "login" });
+//   logout()
+//  // if (window.location.pathname != loginPath) router.push({ name: "signin" });
 // };
 
-// export const userKicker = user => {
-//   if (kicker) clearTimeout(kicker);
-//   const now = moment();
-//   const exp = moment.unix(user.exp || user.expires_at);
-//   const timeout = user
-//     ? moment.duration(exp.diff(now)).asMilliseconds()
-//     : defaultSessionTimeout;
-//   kicker = setTimeout(kickOutUser, timeout);
-// };
+export const userKicker = exp => {
+  if (kicker) clearTimeout(kicker);
+  kicker = setTimeout(logout, exp);
+};

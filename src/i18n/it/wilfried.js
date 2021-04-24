@@ -8,6 +8,7 @@ export const wilfriedTranslations = {
   trainningCourse: "corso di formazione",
   emptyCourse: "Non ci sono corsi di formazione per il momento",
   whoAreWe: "Chi siamo",
+  takeCourse: "Clicca qui per seguire questo corso",
 
 
 

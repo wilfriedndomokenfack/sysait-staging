@@ -25,7 +25,7 @@ export default {
   mounted(){
     let laguages = ['en-us', 'fr', 'it']
     const laguagesCodes = laguages.map( v => v.substring(0, 2))
-    console.log(navigator)
+    //console.log(navigator)
     let userLang = navigator.language || navigator.userLanguage;
     let code = userLang.substring(0, 2);
 

@@ -34,3 +34,24 @@ export const saveTraining = async training => { // CREATE OR UPDATE
   }
   return responce
 }
+
+
+
+export const addTraining = async (trainingDatas) => {
+  try {
+    let response = await Api().post(`/users/${trainingDatas.id}/assign_course`, trainingDatas )
+  } catch (error) {
+    console.log("error: " + error)
+  }
+}
+
+export const removeTraining = async (trainingDatas) => {
+  try {
+    let response = await Api().post(`/users/${trainingDatas.id}/remove_course`, trainingDatas )
+    //getRoles();
+    console.log(response)
+    //store.dispatch("wilfried/setUsers", response.data);
+  } catch (error) {
+    console.log("error: " + error)
+  }
+}

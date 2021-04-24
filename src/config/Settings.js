@@ -15,6 +15,9 @@
 // //let lang2 = this.$q.lang.getLocale() // returns a string
 // let lang = null
 
+
+import { i18n } from '@/boot/i18n.js'
+
 const env = () => {
  if (process.env.DEPLOY_ENV == "production") {
     return "production";
@@ -22,16 +25,13 @@ const env = () => {
     return "development";
   }
 };
-let lang = "en"
-
 
 const EnvironmentSettings = {
   production: {
-    //apiHost: `https://api.sysait.com/${lang}api/v1`,
-    apiHost: `https://api.sysait.com/${lang}api/v1`,
+    apiHost: `https://api.sysait.com/`,
   },
   development: {
-    apiHost: `http://localhost:3001/${lang}/api/v1`
+    apiHost: `http://localhost:3001/`
   }
 
 }[env()];
