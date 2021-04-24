@@ -1,0 +1,59 @@
+<template>
+  <div class="column justify-between">
+    <div class="bg-content self-start text-center q-pa-md col">
+      {{ company.content_1 }}<br />
+      <h5>Already have an account</h5>
+
+      <q-btn to="/signin" label="Login" color="primary" />
+    </div>
+    <div class="col image-content">
+      <img
+        src="~assets/sysait_ecran.png"
+        style="
+          width: 100%;
+          border-bottom-left-radius: 25px;
+          margin: 0px 0px -6px 0px;
+          @media (min-width: $breakpoint-sm-min) {
+            border-bottom-left-radius: 25px;
+          }
+        "
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+export default {
+  name: "RegistrationImage",
+  data() {
+    return {};
+  },
+  mounted() {},
+
+  methods: {},
+
+  computed: {
+    ...mapGetters(["company", "langChanged"]),
+  },
+};
+</script>
+<style scoped <style lang="scss">
+.bg-content {
+  background-color: #fafaf9;
+  border-top-left-radius: 25px;
+  @media (max-width: $breakpoint-xs-max) {
+    border-top-right-radius: 25px;
+    margin-top: 0px;
+  }
+  @media (max-width: $breakpoint-sm-max) {
+    margin-top: 0px;
+    margin-bottom: 52px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: 0px;
+    margin-bottom: 52px;
+  }
+}
+</style>
