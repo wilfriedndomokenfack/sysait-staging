@@ -1,31 +1,42 @@
 <template>
-  <div class="">
-    <q-form @submit="onSubmit">
-      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
-        <q-input
-          class="col-12"
-          hint="First name*"
-          dense
-          filled
-          v-model="contact.firstname"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
 
-        <q-input
-          class="col-12"
-          hint="Last name*"
-          dense
-          filled
-          v-model="contact.lastname"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
+  <div class="">
+    <p class="color_sysait_cerulean text-bold"> {{$t('contact_send_email')}} </p>
+    <q-form @submit="onSubmit">
+      <div class="row  no-wrap justify-between q-gutter-xs q-pb-md">
+          <div class="col-xs-6 col-sm-6 col-md-5">
+            <q-input
+              class=""
+              :hint="$t('contact_firstname')"
+              dense
+              filled
+              v-model="contact.first_name"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+          </div>
+          <div class="col-xs-6 col-sm-6  col-md-5">
+            <q-input
+              class=""
+              :hint="$t('contact_lastname')"
+              dense
+              filled
+              v-model="contact.last_name"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+          </div>
+        
       </div>
       <div class=" q-pb-md">
         <q-input
           class="col-12"
-          hint="Email*"
+          :hint="$t('contact_email')"
+          
           placeholder="yvanfotso3@gmail.com"
           dense
           filled
@@ -37,61 +48,71 @@
       <div class=" q-pb-md">
         <q-input
           class="col-12"
-          hint="Phone number*"
+          :hint="$t('contact_phone_number')"
           placeholder="+237 698765432"
           dense
           filled
-          v-model="contact.phone"
+          v-model="contact.phone_number"
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
         />
       </div>
-      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
-        <q-input
-          class="col-12"
-          dense
-          hint=" Address*"
-          filled
-          v-model="contact.address"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
-        <q-input
-          class="col-12"
-          dense
-          hint="P.O Box*"
-          filled
-          v-model="contact.pobox"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
+      
+      <div class="row no-wrap justify-between q-gutter-xs q-pb-md">
+          <div class="col-xs-6 col-sm-6 col-md-5">
+            <q-input
+              dense
+              :hint="$t('contact_address')"
+              filled
+              v-model="contact.address"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+              
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-5">
+            <q-input
+              dense
+              :hint="$t('contact_pobox')"
+              filled
+              v-model="contact.cap"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+          </div>
+        
       </div>
-      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
-        <q-input
-          class="col-12"
+      <div class="row no-wrap justify-between q-gutter-xs q-pb-md">
+        <div class="col-xs-6 col-sm-6 col-md-5">
+          <q-input
+            dense
+            :hint="$t('contact_city')"
+            filled
+            v-model="contact.city"
+            lazy-rules
+            :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5">
+          <q-input
+          
           dense
-          hint="City*"
-          filled
-          v-model="contact.city"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
-        <q-input
-          class="col-12"
-          dense
-          hint="Country*"
+          :hint="$t('contact_country')"
           filled
           v-model="contact.country"
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
         />
+          
+        </div>
+        
       </div>
       <div class=" q-pb-md">
         <q-editor
           class="col-12 text-left"
           v-model="contact.message"
           min-height="10rem"
-          placeholder="Message"
+          :placeholder="$t('contact_message')"
         />
       </div>
       <div class="text-left">
@@ -99,36 +120,59 @@
       </div>
     </q-form>
   </div>
+
 </template>
 
 <script>
- import { sendcontactform } from '@/models/contact/FormContact.js';
 export default {
-  name: 'ContactFormComponent',
-  data () {
+  name: "ContactFormComponent",
+  data() {
     return {
-      contact:{
-      firstname: "",
-      lastname: "",
-      phone: "",
-      city: "",
-      country: "",
-      city:"",
-      email: "",
-      pobox: "",
-      address: ""
+      contact: {
+        first_name: null,
+        last_name: null,
+        phone_number: null,
+        city: null,
+        country: null,
+        email: null,
+        cap: null,
+        address: null,
+        message: "",
+        category: "From contact form"
       }
-
-    }
+    };
   },
-  methods:{
-    onSubmit(){
-      contactform(this.contact)
-
-      console.log(this.contact.firstname)
-      console.log(this.contact.lastname)
-
+  methods: {
+    onSubmit() {
+      //control all input before call submit
+      if (
+        this.contact.first_name?.length < 1 ||
+        this.contact.last_name?.length < 1 ||
+        this.contact.phone_number?.length < 1 ||
+        this.contact.city?.length < 1 ||
+        this.contact.country?.length < 1 ||
+        this.contact.email?.length < 1 ||
+        this.contact.address?.length < 1 ||
+        this.contact.cap?.length < 1 ||
+        this.contact.message?.length < 1
+      ) {
+        this.$q.notify({
+          message: "Check errors in the form!",
+          color: "red-4",
+          textColor: "white",
+          icon: "cloud_done"
+        });
+      } else {
+        //console.log(this.contact)
+        this.$emit("formcontact", this.contact);
+      }
     }
   }
-}
+};
 </script>
+<style scoped>
+.title_msg_form{
+  color: #4CAF50;
+
+}
+</style>

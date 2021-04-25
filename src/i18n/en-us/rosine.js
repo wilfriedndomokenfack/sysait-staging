@@ -28,5 +28,24 @@ export const rosineTranslations = {
   use:"THEY USE THE PRODUCT",
 
   contact: "Contact Us",
+  welcome_msg_contact:"If you have any question or comments, please fill out the form below and we will respond as soon as we are able",
+  contact_firstname:"First name *",
+  contact_lastname:"Last name *",
+  contact_email:"Email *",
+  contact_phone_number:"Phone number *",
+  contact_address:"Address *",
+  contact_pobox:"Cap ",
+  contact_city:"City *  ",
+  contact_country:"Country *",
+  contact_message:"Message",
+  contact_send_email:"SEND US EMAIL",
+  
+
+
+
+
+
+
+
 }
 

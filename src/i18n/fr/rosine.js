@@ -26,5 +26,15 @@ export const rosineTranslations = {
   use:"ILS UTILISENT LE PRODUIT",
 
   contact: "Contactez nous",
-
+  welcome_msg_contact:"Si vous avez des questions ou des commentaires, veuillez remplir le formulaire ci-dessous et nous vous répondrons dès que possible",
+  contact_firstname:"Nom *",
+  contact_lastname:"Prenom *",
+  contact_email:"Email *",
+  contact_phone_number:"Numero de telephone *",
+  contact_address:"Addresse *",
+  contact_pobox:"Boite postale ",
+  contact_city:"Ville *  ",
+  contact_country:"Pays *",
+  contact_message:"Message",
+  contact_send_email:"ENVOYEZ-NOUS UN EMAIL",
 }

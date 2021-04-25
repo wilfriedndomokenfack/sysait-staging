@@ -1,11 +1,6 @@
 <template>
-
-    <!-- <div class="headerContact constrain">
-        <p class="text-center"  >If you have any question or comments, please fill out the form below and we will respond as soon as we are able
-        <br></p>
-    </div> -->
   <div>
-    If you have any question or comments, please fill out the form below and we will respond as soon as we are able
+    {{ $t('welcome_msg_contact') }}
   </div>
 
 </template>

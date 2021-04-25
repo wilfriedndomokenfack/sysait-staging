@@ -8,7 +8,7 @@
 
        <div class="column constrain justify-between q-gutter-md q-pb-xl q-pt-xl">
         <MessageContactComponent class="bg-primary text-center q-pa-md text-white"/>
-        <InfoMapComponent class=" text-center"/>
+        <InfoMapComponent :key="myKey" @formcontact="emitcontactform" class=" text-center"/>
       </div>
       <!--<MessageContactComponent/>
        <ContactFormComponent></ContactFormComponent> -->
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { humanComponent } from "@/models/humanComponent.js";
+import { sendcontactform } from '@/models/contact/FormContact.js';
 import EmptyComponent from "@/components/EmptyComponent.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
 import { mapGetters } from "vuex";
@@ -54,6 +54,14 @@ export default {
   async mounted() {
     this.bannerUrl = "ImageContact.png";
     this.companyName = this.company.denomination;
+  },
+  methods: {
+    async emitcontactform(contact) {
+       // console.log("page Contact",contact);
+        await sendcontactform(contact);
+        this.myKey++;
+       //this.$emit('formcontact', this.contact)
+    }
   }
 };
 </script>
