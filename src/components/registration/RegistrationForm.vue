@@ -1,16 +1,17 @@
 <template>
-  <div class="row justify-center form-page">
-    <div class="color_sysait_cerulean column text-center">
-      <b>Registration</b>
-    </div>
-    <div class="q-pa-md" style="max-width: 400px">
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+  <div class="row component-2 justify-center items-stretch">
+    <div class="form-page text-center col">
+      <div class="form-content col color_sysait_cerulean bg-black flex flex-center">
+        {{ $t("registration") }}
+      </div>
+      <q-form @submit="onSubmit" @reset="onReset" class="q-pa-md q-gutter-md">
         <q-input
-          filled
+          rounded
+          outlined
+          bg-color="white"
           v-model="name"
           type="name"
-          label="First Name"
-          hint="Name and surname"
+          :label="$t('firstName')"
           lazy-rules
           :rules="[(val) => (val && val.length > 0) || 'Please type name']"
         >
@@ -20,11 +21,12 @@
         </q-input>
 
         <q-input
-          filled
+          rounded
+          outlined
+          bg-color="white"
           v-model="username"
           type="username"
-          label="Last Name"
-          hint="Name and surname"
+          :label="$t('lastName')"
           lazy-rules
           :rules="[(val) => (val && val.length > 0) || 'Please type surname']"
         >
@@ -32,12 +34,13 @@
             <q-icon class="color_sysait_cerulean" name="person" />
           </template>
         </q-input>
-
         <q-input
-          filled
+          rounded
+          outlined
+          bg-color="white"
           v-model="email"
           type="email"
-          label="Email Address"
+          :label="$t('email')"
           lazy-rules
           :rules="[(val) => (val && val.length > 0) || 'Please type email address']"
         >
@@ -46,24 +49,39 @@
           </template>
         </q-input>
 
-        <q-input filled v-model="password" type="password" label="Password">
+        <q-input
+          rounded
+          outlined
+          bg-color="white"
+          v-model="password"
+          type="password"
+          :label="$t('password')"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please type your password']"
+        >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="lock" />
           </template>
         </q-input>
 
         <q-input
-          filled
+          rounded
+          outlined
+          bg-color="white"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please repeat your password']"
           v-model="repeatedPassword"
           type="password"
-          label="Confirm Password"
+          :label="$t('passwordRepeated')"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="lock" />
           </template>
         </q-input>
-        <q-checkbox v-model="right" label="I accept the license and terms" />
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-checkbox v-model="accept" label="I accept the license and terms" />
+        <div class="flex col flex-center">
+          <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
+        </div>
       </q-form>
     </div>
   </div>
@@ -80,7 +98,6 @@ export default {
       email: null,
       password: null,
       repeatedPassword: null,
-      right: null,
       accept: false,
     };
   },
@@ -119,5 +136,22 @@ export default {
 <style scoped lang="scss">
 .form-page {
   background-color: #e0ecf2;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  @media (max-width: $breakpoint-sm-max) {
+    border-bottom-left-radius: 25px;
+  }
+}
+.form-content {
+  height: 30px;
+  @media (min-width: $breakpoint-md-min) {
+    border-top-right-radius: 20px;
+    margin-top: 0px;
+  }
+}
+.component-2 {
+  @media (max-width: $breakpoint-xs-max) {
+    padding-top: 12px;
+  }
 }
 </style>

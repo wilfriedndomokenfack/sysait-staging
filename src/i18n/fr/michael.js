@@ -16,6 +16,15 @@ export const michaelTranslations = {
   whoAreWe: "Qui sommes nous",
   productPage: "PRODUITS",
   trustUs: "Nous font confiance",
-  clickMeProducts: "Cliquez pour voir le produit"
+  clickMeProducts: "Cliquez pour voir le produit",
+  hasAccount:"Vous disposez d'un compte?",
+  login:"Entrer",
+  submit:"Soummettre",
+  registration:"S'enrégistrer",
+  firstName:"Nom",
+  lastName:"Prénom",
+  email:"Adresse Mail",
+  password:"Passoword",
+  passwordRepeated:"Confirmer Password"
 
 }

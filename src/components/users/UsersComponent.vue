@@ -1,7 +1,7 @@
 <template>
   <div class="content_1 row flex flex-center">
-    <RegistrationImage class="bg-ecranRegistration col-md-6 col-sm-6 col-xs-12" />
-    <RegistrationForm class="col-md-6 col-sm-6 col-xs-12" />
+    <RegistrationImage class="bg-ecranRegistration col-md-6 col-sm-12 col-xs-12" />
+    <RegistrationForm class="col-md-6 col-sm-12 col-xs-12" />
   </div>
 </template>
 
@@ -29,9 +29,4 @@ export default {
     width: 90%;
   }
 }
-/* .bg-ecranRegistration {
-  background-image: url("/users/ImageBgLoginRegisster.png");
-  //background-color: red;
-  height: 500px;
-} */
 </style>

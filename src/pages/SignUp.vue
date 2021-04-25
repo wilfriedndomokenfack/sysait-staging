@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .bg-image {
   background-image: url("/users/ImageBgLoginRegisster.png");
 }
