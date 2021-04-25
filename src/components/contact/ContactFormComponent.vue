@@ -1,140 +1,134 @@
 <template>
-  <div class="div_contact constrain">
-       <div class="row no-wrap">
-          <div class="col-xs-4 col-sm-6 col-md-4 div_info">
-                <p class=" title_contact_info text-center text-bold "><br>Contact Info 
-                  <hr class="contact">
-                </p> 
-                <p class="text-center">
-                  Email: sysaitechnology@gmail.com<br>
-                  Adress: Ferrara, Italy<br>
-                  Tel:3206328224
+  <div class="">
+    <q-form @submit="onSubmit">
+      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
+        <q-input
+          class="col-12"
+          hint="First name*"
+          dense
+          filled
+          v-model="contact.firstname"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
 
-                </p>
-
-           </div>
-          <div class="col-xs-8 col-sm-6 col-md-8 div_form"><p class="">Send us a email</p>
-              <q-form @submit="onSubmit">
-    
-
-                    <div class="row no-wrap justify-between">
-                        <div class="col-xs-4 col-sm-6 col-md-6">
-                        First name*<br>
-                        <q-input
-                              filled
-                              v-model="firstname"                              
-                              lazy-rules
-                              :rules="[ val => val && val.length > 0 || 'Please type something']"
-                            />
-                        </div>
-                        <div class="col-xs-4 col-sm-6 col-md-6">              
-                        Last name*<br>
-                        <q-input
-                              filled
-                              v-model="lastname"                              
-                              lazy-rules
-                              :rules="[ val => val && val.length > 0 || 'Please type something']"
-                            />
-                        </div>
-          
-                    </div>
-                    <div class="row no-wrap ">
-                      <div class="col-xs-4 col-sm-6 col-md-12">
-                        Phone*<br>
-                        <q-input
-                              filled
-                              v-model="phone"                              
-                              lazy-rules
-                              :rules="[ val => val && val.length > 0 || 'Please type something']"
-                        />
-                      </div>
-
-                    </div>
-
-                     <div class="row no-wrap ">
-                      <div class="col-xs-4 col-sm-6 col-md-4">
-                        Address*<br>
-                        <q-input
-                              filled
-                              v-model="address"                              
-                              lazy-rules
-                              :rules="[ val => val && val.length > 0 || 'Please type something']"
-                        />
-                      </div>
-                      <div class="col-xs-4 col-sm-6 col-md-4">
-                        P.O Box<br>
-                        <q-input
-                              filled
-                              v-model="pobox"                              
-                        />
-                      </div>
-                      <div class="col-xs-4 col-sm-6 col-md-4">
-                        City*<br>
-                        <q-input
-                              filled
-                              v-model="city"                              
-                              lazy-rules
-                              :rules="[ val => val && val.length > 0 || 'Please type something']"
-                        />
-                      </div>
-                    </div>
-                    <div class="row no-wrap ">
-                      <div class="col-xs-4 col-sm-6 col-md-12">
-                        Message*<br>
-                        <textarea class="full-width"></textarea>
-                      </div>
-
-                    </div>
-                    <div class="row no-wrap ">
-                      <div class="col-xs-4 col-sm-6 col-md-12">
-                        <q-btn label="Contact us" type="submit" color="primary"/><br>
-                      </div>
-
-                    </div>
-
-
-
-
-              </q-form>
-          
-          </div>
-    </div>
-            
+        <q-input
+          class="col-12"
+          hint="Last name*"
+          dense
+          filled
+          v-model="contact.lastname"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+      </div>
+      <div class=" q-pb-md">
+        <q-input
+          class="col-12"
+          hint="Email*"
+          placeholder="yvanfotso3@gmail.com"
+          dense
+          filled
+          v-model="contact.email"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+      </div>
+      <div class=" q-pb-md">
+        <q-input
+          class="col-12"
+          hint="Phone number*"
+          placeholder="+237 698765432"
+          dense
+          filled
+          v-model="contact.phone"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+      </div>
+      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
+        <q-input
+          class="col-12"
+          dense
+          hint=" Address*"
+          filled
+          v-model="contact.address"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+        <q-input
+          class="col-12"
+          dense
+          hint="P.O Box*"
+          filled
+          v-model="contact.pobox"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+      </div>
+      <div class=" no-wrap justify-between q-gutter-xs q-pb-md">
+        <q-input
+          class="col-12"
+          dense
+          hint="City*"
+          filled
+          v-model="contact.city"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+        <q-input
+          class="col-12"
+          dense
+          hint="Country*"
+          filled
+          v-model="contact.country"
+          lazy-rules
+          :rules="[val => (val && val.length > 0) || 'Please type something']"
+        />
+      </div>
+      <div class=" q-pb-md">
+        <q-editor
+          class="col-12 text-left"
+          v-model="contact.message"
+          min-height="10rem"
+          placeholder="Message"
+        />
+      </div>
+      <div class="text-left">
+        <q-btn label="Send" type="submit" color="primary" /><br />
+      </div>
+    </q-form>
   </div>
 </template>
 
 <script>
+ import { sendcontactform } from '@/models/contact/FormContact.js';
 export default {
-  // name: 'ComponentName',
+  name: 'ContactFormComponent',
   data () {
-    return {}
+    return {
+      contact:{
+      firstname: "",
+      lastname: "",
+      phone: "",
+      city: "",
+      country: "",
+      city:"",
+      email: "",
+      pobox: "",
+      address: ""
+      }
+
+    }
+  },
+  methods:{
+    onSubmit(){
+      contactform(this.contact)
+
+      console.log(this.contact.firstname)
+      console.log(this.contact.lastname)
+
+    }
   }
 }
 </script>
-<style  lang="scss">
-
-.div_contact {
-  width: 80%;
-  //background-color: $sysait_cerulean;
-  //color: white;
-}
-.div_info{
-  //width:300px;
-  background-color: $sysait_gallery;
-  margin-right: 5px;
-
-}
-.div_form{
-  //width:647px;
-  //background-color:$sysait_gallery;
-
-}
-.title_contact_info{
-  color: $sysait_cerulean;
-}
-hr.contact {
-  border-top: 1px solid $sysait_cerulean;
-  width:100px;
-}
-
-</style>

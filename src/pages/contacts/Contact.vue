@@ -5,8 +5,13 @@
         :pageName="$t('contact')"
         :companyName="companyName"
       />
-      <ContactComponent/>
-      <ContactFormComponent></ContactFormComponent>
+
+       <div class="column constrain justify-between q-gutter-md q-pb-xl q-pt-xl">
+        <MessageContactComponent class="bg-primary text-center q-pa-md text-white"/>
+        <InfoMapComponent class=" text-center"/>
+      </div>
+      <!--<MessageContactComponent/>
+       <ContactFormComponent></ContactFormComponent> -->
     
 
   </q-page>
@@ -18,17 +23,22 @@ import EmptyComponent from "@/components/EmptyComponent.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
 import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
-import ContactComponent from "@/components/contact/ContactComponent.vue";
-import ContactFormComponent from "@/components/contact/ContactFormComponent.vue";
+import MessageContactComponent from "@/components/contact/MessageContactComponent.vue";
+import InfoMapComponent from "@/components/contact/InfoMapComponent.vue";
 import ContactInfoComponent from "@/components/contact/ContactInfoComponent.vue";
+import ContactFormComponent from "@/components/contact/ContactFormComponent.vue"; 
+
+
+
 export default {
   name: "contact",
   components: {
     BannerPages,
     EmptyComponent,
-    ContactComponent,
+    MessageContactComponent ,
     ContactInfoComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    InfoMapComponent 
   },
   data() {
     return {
