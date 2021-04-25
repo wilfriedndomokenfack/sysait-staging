@@ -37,6 +37,10 @@ const setTrainingPageDescription = ({ commit }, payload) => {
   commit('setTrainingPageDescription', payload)
 }
 
+const setJobsPageDescription = ({ commit }, payload) => {
+  commit('setJobsPageDescription', payload)
+}
+
 export default {
   setRoles,
   setUsers,
@@ -47,5 +51,6 @@ export default {
   addTraining,
   removeTraining,
   updateTraining,
-  setTrainingPageDescription
+  setTrainingPageDescription,
+  setJobsPageDescription
 };

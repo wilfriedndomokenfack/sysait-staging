@@ -65,6 +65,7 @@ export default {
     }
   },
   async mounted(){
+    console.log(this.descriptionProp)
     this.isAdmin = await isSuperUser()
   },
   methods: {

@@ -48,6 +48,10 @@ const setTrainingPageDescription = (state, payload) => {
   state.trainingPageDescription =  payload
 }
 
+const setJobsPageDescription = (state, payload) => {
+  state.jobsPageDescription =  payload
+}
+
 export default {
   setRoles,
   setUsers,
@@ -58,5 +62,6 @@ export default {
   addTraining,
   removeTraining,
   updateTraining,
-  setTrainingPageDescription
+  setTrainingPageDescription,
+  setJobsPageDescription
 };

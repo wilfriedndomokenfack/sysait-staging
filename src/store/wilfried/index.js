@@ -16,6 +16,7 @@ export default {
     partners: null,
     trainings: null,
     trainingPageDescription: null,
+    jobsPageDescription: null,
     ...loadWilfriedSession()
   },
 
@@ -26,6 +27,7 @@ export default {
     tecnologies: state => state.tecnologies,
     partners: state => state.partners,
     trainings: state => state.trainings,
-    trainingPageDescription: state => state.trainingPageDescription
+    trainingPageDescription: state => state.trainingPageDescription,
+    jobsPageDescription: state => state.jobsPageDescription
   },
 };
