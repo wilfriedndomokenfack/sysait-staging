@@ -195,6 +195,12 @@ const routes = [
         name: 'admin',
         meta: { breadcrumb: 'AdminPanel' },
         component: () => import('pages/AdminPanel.vue'),
+      },
+      {
+        path: "confirmation/confirmation_token=:confirmation_token",
+        name: 'confirmation',
+        meta: { breadcrumb: 'AdminPanel' },
+        component: () => import('pages/user/EmailConfirmationPage.vue'),
       }
 
     ]
