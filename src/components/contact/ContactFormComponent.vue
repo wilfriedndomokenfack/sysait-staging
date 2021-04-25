@@ -4,10 +4,10 @@
     <p class="color_sysait_cerulean text-bold"> {{$t('contact_send_email')}} </p>
     <q-form @submit="onSubmit">
       <div class="row  no-wrap justify-between q-gutter-xs q-pb-md">
-          <div class="col-xs-6 col-sm-6 col-md-5">
+          <!-- <div class=""> -->
             <q-input
-              class=""
-              :hint="$t('contact_firstname')"
+              class="col-xs-6 col-sm-6 col-md-5"
+              :label="$t('contact_firstname')"
               dense
               filled
               v-model="contact.first_name"
@@ -16,11 +16,11 @@
                 val => (val && val.length > 0) || 'Please type something'
               ]"
             />
-          </div>
-          <div class="col-xs-6 col-sm-6  col-md-5">
+          <!-- </div> 
+          <div class="">-->
             <q-input
-              class=""
-              :hint="$t('contact_lastname')"
+              class="col-xs-6 col-sm-6  col-md-5"
+              :label="$t('contact_lastname')"
               dense
               filled
               v-model="contact.last_name"
@@ -29,13 +29,13 @@
                 val => (val && val.length > 0) || 'Please type something'
               ]"
             />
-          </div>
+          <!-- </div> -->
         
       </div>
       <div class=" q-pb-md">
         <q-input
           class="col-12"
-          :hint="$t('contact_email')"
+          :label="$t('contact_email')"
           
           placeholder="yvanfotso3@gmail.com"
           dense
@@ -48,7 +48,7 @@
       <div class=" q-pb-md">
         <q-input
           class="col-12"
-          :hint="$t('contact_phone_number')"
+          :label="$t('contact_phone_number')"
           placeholder="+237 698765432"
           dense
           filled
@@ -62,7 +62,7 @@
           <div class="col-xs-6 col-sm-6 col-md-5">
             <q-input
               dense
-              :hint="$t('contact_address')"
+              :label="$t('contact_address')"
               filled
               v-model="contact.address"
               lazy-rules
@@ -73,7 +73,7 @@
           <div class="col-xs-6 col-sm-6 col-md-5">
             <q-input
               dense
-              :hint="$t('contact_pobox')"
+              :label="$t('contact_pobox')"
               filled
               v-model="contact.cap"
               lazy-rules
@@ -86,7 +86,7 @@
         <div class="col-xs-6 col-sm-6 col-md-5">
           <q-input
             dense
-            :hint="$t('contact_city')"
+            :label="$t('contact_city')"
             filled
             v-model="contact.city"
             lazy-rules
@@ -97,7 +97,7 @@
           <q-input
           
           dense
-          :hint="$t('contact_country')"
+          :label="$t('contact_country')"
           filled
           v-model="contact.country"
           lazy-rules
