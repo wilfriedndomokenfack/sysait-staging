@@ -18,13 +18,18 @@ export const michaelTranslations = {
   trustUs: "Si fidano di noi",
   clickMeProducts: "Clicca per vedere il prodtto",
   hasAccount:"Ha già un account?",
+  noAccount:"Non ha un account?",
   login:"Entrare",
   submit:"Inviare",
-  registration:"Registrarsi",
+  registration:"Registrazione",
   firstName:"Cognome",
   lastName:"Nome",
   email:"Indirizzo Mail",
+  validAddress:"Digitare un indirizzo email valido",
+  required:"Campo obligatorio",
   password:"Passoword",
-  passwordRepeated:"Confirma Password"
+  passwordRepeated:"Confirma Password",
+  enterName:"Compilare il campo cognome",
+  enterLastName:"Compilare il campo nome"
 
 }

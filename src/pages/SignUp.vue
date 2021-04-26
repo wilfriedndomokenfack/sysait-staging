@@ -1,6 +1,12 @@
 <template>
   <div class="bg-image q-pt-xl q-pb-xl flex flex-center">
-    <UsersComponent />
+    <UsersComponent
+      @form="getForm"
+      :buttonProp="$t('login')"
+      pathToProp="/signin"
+      :userQuestionProp="$t('hasAccount')"
+      :pageNameProp="$t('registration')"
+    />
   </div>
 </template>
 
@@ -8,6 +14,7 @@
 import UsersComponent from "@/components/users/UsersComponent.vue";
 import { login } from "@/models/auth/Auth";
 export default {
+  name: "signUpPage",
   components: {
     UsersComponent,
   },
@@ -20,6 +27,10 @@ export default {
     };
   },
   methods: {
+    getForm(form) {
+      // foward the form to the page;
+      //this.$emit("form", form);
+    },
     onSubmit() {
       console.log(this.user);
       login(this.user);

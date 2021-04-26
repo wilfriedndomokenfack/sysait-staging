@@ -1,19 +1,26 @@
 <template>
-  <div class="row component-2 justify-center items-stretch">
-    <div class="form-page text-center col">
-      <div class="form-content col color_sysait_cerulean bg-black flex flex-center">
-        {{ $t("registration") }}
+  <div class="row component-2">
+    <div class="form-page col">
+      <div class="form-content col text-white bg-black flex flex-center">
+        {{ pageNameProp }}
       </div>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-pa-md q-gutter-md">
+      <q-form
+        @submit="checkForm"
+        method="post"
+        @reset="onReset"
+        class="q-pa-md q-gutter-md"
+      >
         <q-input
+          v-if="currentRoute == 'signup'"
+          id="name"
           rounded
           outlined
           bg-color="white"
-          v-model="name"
+          v-model="form.name"
           type="name"
           :label="$t('firstName')"
           lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please type name']"
+          :rules="[(val) => (val && val.length > 0) || $t('enterName')]"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="person" />
@@ -21,14 +28,16 @@
         </q-input>
 
         <q-input
+          v-if="currentRoute == 'signup'"
+          id="last-name"
           rounded
           outlined
           bg-color="white"
-          v-model="username"
+          v-model="form.username"
           type="username"
           :label="$t('lastName')"
           lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please type surname']"
+          :rules="[(val) => (val && val.length > 0) || $t('enterLastName')]"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="person" />
@@ -38,11 +47,9 @@
           rounded
           outlined
           bg-color="white"
-          v-model="email"
+          v-model="form.email"
           type="email"
           :label="$t('email')"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please type email address']"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="email" />
@@ -53,11 +60,9 @@
           rounded
           outlined
           bg-color="white"
-          v-model="password"
+          v-model="form.password"
           type="password"
           :label="$t('password')"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please type your password']"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="lock" />
@@ -65,12 +70,12 @@
         </q-input>
 
         <q-input
+          v-if="currentRoute == 'signup'"
+          id="passwordR"
           rounded
           outlined
           bg-color="white"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please repeat your password']"
-          v-model="repeatedPassword"
+          v-model="form.repeatedPassword"
           type="password"
           :label="$t('passwordRepeated')"
         >
@@ -78,8 +83,14 @@
             <q-icon class="color_sysait_cerulean" name="lock" />
           </template>
         </q-input>
-        <q-checkbox v-model="accept" label="I accept the license and terms" />
-        <div class="flex col flex-center">
+        <q-checkbox
+          v-if="currentRoute == 'signup'"
+          id="terms"
+          v-model="accept"
+          label="I accept
+        the license and terms"
+        />
+        <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
         </div>
       </q-form>
@@ -89,41 +100,68 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { required, email } from "src/models/utils/validations.js";
 export default {
   name: "RegistrationForm",
+  props: ["pageNameProp"],
   data() {
     return {
-      name: null,
-      username: null,
-      email: null,
-      password: null,
-      repeatedPassword: null,
-      accept: false,
+      form: {
+        name: null,
+        username: null,
+        email: null,
+        password: null,
+        repeatedPassword: null,
+        accept: false,
+      },
+      currentRoute: null,
     };
   },
 
+  mounted() {
+    this.currentRoute = this.$store.getters.currentRoute; //Get the current root
+  },
   methods: {
-    onSubmit() {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-          message: "You need to accept the license and terms first",
-        });
+    email(val) {
+      return email(val);
+    },
+
+    required(val) {
+      return required(val);
+    },
+
+    checkForm() {
+      let check = true;
+      /* this.errors = [];
+
+      if (this.currentRoute == "signup") {
+        if (!this.form.name) {
+          this.errors.push("Name required.");
+          check = false;
+        }
+
+        if (this.form.username.length > 0 && !email(form.username)) {
+          this.errors.push("Last name required.");
+          check = false;
+        }
+      } */
+      if (check) {
+        this.$emit("form", this.form);
       } else {
         this.$q.notify({
-          color: "green-4",
+          message: "Check errors in the form!",
+          color: "red-4",
           textColor: "white",
           icon: "cloud_done",
-          message: "Submitted",
         });
       }
     },
 
     onReset() {
       this.name = null;
-      this.age = null;
+      this.surname = null;
+      this.email = null;
+      this.password = null;
       this.accept = false;
     },
   },
@@ -143,10 +181,13 @@ export default {
   }
 }
 .form-content {
-  height: 30px;
+  height: 34px;
   @media (min-width: $breakpoint-md-min) {
-    border-top-right-radius: 20px;
+    border-top-right-radius: 15px;
     margin-top: 0px;
+  }
+  @media (min-width: 1024px) {
+    height: 30px;
   }
 }
 .component-2 {
