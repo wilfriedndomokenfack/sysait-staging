@@ -38,7 +38,7 @@
             </q-tooltip>
           </q-btn>
           <q-btn
-            to="/training"
+            to="/jobs"
             outline
             padding="sm"
             round
@@ -81,7 +81,7 @@
             </q-tooltip>
           </q-select>
        <q-input
-       
+
         class=" col-md-4 col-sm-12 col-xs-12"
         hint="Training link"
         v-model="form.link_course"
@@ -140,14 +140,14 @@ export default {
   methods: {
     resetForm(){
       let form = {
-        denomination: null,
-        description: "",
-        targetCustomer: null, // string to
+        denomination: null, // string
+        description: "", // text
+        targetCustomer: null, // string
         profile: null, // string
         targetCustomerDescription: "", // text
         requirements: "", // text
-        offer: null, // null
-        note: "", // null
+        offer: null, // string
+        note: "", // text
         status: '1'
 
       }

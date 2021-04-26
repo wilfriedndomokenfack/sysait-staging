@@ -10,6 +10,7 @@ export const wilfriedTranslations = {
   trainningCourse: "training course",
   emptyCourse: "There are no training courses for the moment",
   emptyJobs: "There are no open positions for the moment",
+  consultJob: "Consult the offer",
 
   takeCourse: "Click here to take this course",
 

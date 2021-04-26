@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="localJobs.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
+    <div v-if="localJobs && localJobs.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
       <div v-for="job in localJobs" >
-        <JobComponent :trainingProp="job" />
+        <JobComponent :jobProp="job" />
       </div>
     </div>
     <div v-else>

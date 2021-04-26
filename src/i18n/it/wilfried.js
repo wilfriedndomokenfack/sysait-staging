@@ -8,13 +8,14 @@ export const wilfriedTranslations = {
   trainningCourse: "corso di formazione",
   emptyCourse: "Non ci sono corsi di formazione per il momento",
   emptyJobs: "Non ci sono posizioni aperte per il momento",
+  consultJob: "Consultare l'offerta",
   whoAreWe: "Chi siamo",
   takeCourse: "Clicca qui per seguire questo corso",
 
 
 
 
-  
+
   failed: 'Azione fallita',
   success: 'L\'azione ha avuto successo',
 

@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      renderComponent: true,
+      renderComponent: false,
       jobs: [],
       pageDescription: null,
       descriptionKey: 4,
@@ -54,7 +54,15 @@ export default {
     if(!this["wilfried/jobsPageDescription"]){
       await this.getPageDescription()
     }
+
+    if(!this["wilfried/jobs"]){
+      await this.getJobs()
+    }
+    this.jobs = this["wilfried/jobs"]
     this.pageDescription = this["wilfried/jobsPageDescription"]
+
+    this.filterJobs([])
+    this.renderComponent = true
   },
   computed: {
     ...mapGetters(["company", "wilfried/jobs", "wilfried/jobsPageDescription", "currentUser"])
@@ -78,6 +86,9 @@ export default {
       }finally {
         this.$q.loading.hide();
       }
+    },
+    getJobs(){
+      console.log("getting jobs")
     },
 
     filterJobs(model = []){

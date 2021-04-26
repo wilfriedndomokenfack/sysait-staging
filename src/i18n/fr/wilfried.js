@@ -10,6 +10,7 @@ export const wilfriedTranslations = {
   trainningCourse: "formation",
   emptyCourse: "Il n'y a pas de cours de formation pour le moment",
   emptyJobs: "Il n'y a pas de poste vacant pour le moment",
+  consultJob: "Consulter l'offre",
   takeCourse: "Cliquez ici pour suivre ce cours",
 
 
