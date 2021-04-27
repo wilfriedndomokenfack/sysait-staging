@@ -36,12 +36,21 @@ const updateTraining = (state, payload) => {
   state.trainings = [payload, ...trainings]
 }
 
+const setUsers = (state, payload) => {
+  state.users = payload
+}
+
+const setRoles = (state, payload) => {
+  state.roles = payload
+}
 
 const setTrainingPageDescription = (state, payload) => {
   state.trainingPageDescription =  payload
 }
 
 export default {
+  setRoles,
+  setUsers,
   setCompany,
   setTecnologies,
   setPartners,

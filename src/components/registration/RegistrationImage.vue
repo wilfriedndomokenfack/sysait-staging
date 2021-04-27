@@ -1,18 +1,16 @@
 <template>
   <div class="column justify-between">
-    <div class="registration-content">
-      <div class="bg-content items-start text-center q-pa-md col">
-        {{ company.content_1 }}<br />
+    <div class="col-12 flex flex-center">
+         <div class="q-pb-xl q-pa-md text-center">
+        {{ pageDescriptio }}<br />
         <h5>{{ userQuestionProp }}</h5>
 
         <q-btn :to="pathToProp" :label="buttonProp" color="primary" size="md" rounded />
-      </div>
-      <div class="col image-content">
+        </div>
         <img
           src="~assets/sysait_ecran.png"
-          style="width: 100%; border-bottom-left-radius: 25px; margin: 0px 0px -6px 0px"
+          style="width: 100%; height: auto; border-bottom-left-radius: 25px"
         />
-      </div>
     </div>
   </div>
 </template>
@@ -23,7 +21,10 @@ export default {
   name: "RegistrationImage",
   props: ["buttonProp", "pathToProp", "userQuestionProp"],
   data() {
-    return {};
+    return {
+      pageDescriptio:
+        "We help you to create the future that you want, making your life simplier cheaper and easier.",
+    };
   },
   mounted() {},
 
@@ -36,23 +37,8 @@ export default {
 </script>
 <style scoped <style lang="scss">
 .bg-content {
-  /* background-color: #fafaf9; */
-  border-top-left-radius: 25px;
-
-  @media (max-width: $breakpoint-xs-max) {
-    border-top-right-radius: 25px;
-    margin-top: 0px;
-  }
-  @media (max-width: $breakpoint-sm-max) {
-    margin-top: 0px;
-    margin-bottom: 52px;
-  }
-  @media (min-width: 780px) {
-    background-color: #fafaf9;
-  }
-  @media (min-width: 1024px) {
-    margin-top: inherit;
-  }
+  background-color: #fafaf9; 
+  
 }
 .image-content {
   @media (min-width: $breakpoint-sm-min) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="content_1 row flex flex-center">
+  <div class="content_1 row">
     <RegistrationImage
       class="bg-ecranRegistration col-md-6 col-sm-12 col-xs-12"
       :buttonProp="buttonProp"
@@ -42,21 +42,13 @@ export default {
 <style scoped lang="scss">
 .content_1 {
   border-radius: 26px;
-  border: 5px solid;
-  width: 60%;
-  height: auto;
-  @media (min-width: 1024px) {
-    border: 8px solid;
+  border: 4px solid;
+  @media (min-width: 1400px) {
+    width: 100%;
   }
-  @media (max-width: 1024px) {
-    border: 10px solid;
-    border-radius: 40px;
-  }
-  @media (max-width: $breakpoint-sm-max) {
+
+  @media (min-width: $breakpoint-md-min) {
     width: 70%;
-  }
-  @media (min-width: $breakpoint-sm-min) {
-    width: 55%;
   }
 }
 </style>

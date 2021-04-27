@@ -189,6 +189,12 @@ const routes = [
         name: 'signup',
         meta: { breadcrumb: 'Sign up' },
         component: () => import('pages/SignUp.vue'),
+      },
+      {
+        path: "admin",
+        name: 'admin',
+        meta: { breadcrumb: 'AdminPanel' },
+        component: () => import('pages/AdminPanel.vue'),
       }
 
     ]

@@ -30,7 +30,7 @@
       </q-input>
 
       <div v-else class="col-12">
-        <q-toolbar v-if="isSuperUser()">
+        <q-toolbar v-if="isAdmin">
           <q-toolbar-title>
           </q-toolbar-title>
           <div class="q-pa-md q-gutter-sm" dense>
@@ -44,7 +44,7 @@
             />
           </div>
         </q-toolbar>
-        <p :class="{description: $q.platform.is.desktop}" >
+        <p v-if="descriptionProp" :class="{description: $q.platform.is.desktop}" >
           {{ descriptionProp.description }}
         </p>
       </div>
@@ -60,14 +60,14 @@ export default {
   data () {
     return {
       localDescription: null,
-      editDescription: false
+      editDescription: false,
+      isAdmin: false
     }
   },
-  mounted(){
-
+  async mounted(){
+    this.isAdmin = await isSuperUser()
   },
   methods: {
-    isSuperUser,
     emitDescription(){
       if(this.localDescription.description.length > 3 ) this.$emit('description', this.localDescription)
     },

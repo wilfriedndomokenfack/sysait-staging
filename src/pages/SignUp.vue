@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-image q-pt-xl q-pb-xl flex flex-center">
+  <div class="page-background q-pt-xl q-pb-xl flex flex-center">
     <UsersComponent
       @form="getForm"
       :buttonProp="$t('login')"
@@ -12,7 +12,7 @@
 
 <script>
 import UsersComponent from "@/components/users/UsersComponent.vue";
-import { login } from "@/models/auth/Auth";
+import { signup } from "@/models/auth/Auth";
 export default {
   name: "signUpPage",
   components: {
@@ -29,7 +29,7 @@ export default {
   methods: {
     getForm(form) {
       // foward the form to the page;
-      //this.$emit("form", form);
+      signup(form);
     },
     onSubmit() {
       console.log(this.user);
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bg-image {
+.page-background {
   background-image: url("/users/ImageBgLoginRegisster.png");
 }
 </style>

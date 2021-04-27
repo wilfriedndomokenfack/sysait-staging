@@ -30,6 +30,20 @@ export const michaelTranslations = {
   password:"Passoword",
   passwordRepeated:"Confirma Password",
   enterName:"Compilare il campo cognome",
-  enterLastName:"Compilare il campo nome"
+  enterLastName:"Compilare il campo nome",
+  readTerms:"Accetto la licenza e i",
+  read:"termini",
+  remember:"Ricordami",
+  forgotPass:"Password dimenticata ?",
+  correstFirstName:"compilare correttamente il campo cognome ",
+  emptyName:"Valorizzare campo cognome. ",
+  correctLastName:"compilare correttamente il campo nome. ",
+  emptyLastName:"Valorizzare campo nome. ",
+  correctEmail:"compilare correttamente il campo email. ",
+  emptyEmail:"Valorizzare campo email. ",
+  correctPassword:"compilare correttamente il campo password, deve contenere almeno 8 caratteri composti da lettere maiuscole, minuscole e caratteri speciali. ",
+  emptyPassword:"Valorizzare campo password. ",
+  acceptTerms:"Accetta i termini e le condizioni! ",
+  passwordMatch:"Le password inserite non sono uguali. "
 
 }

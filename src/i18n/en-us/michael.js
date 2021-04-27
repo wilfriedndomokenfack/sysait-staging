@@ -22,7 +22,7 @@ export const michaelTranslations = {
   login:"Login",
   submit:"Submit",
   registration:"Registration",
-  firstName:"Name",
+  firstName:"First Name",
   lastName:"Last Name",
   email:"Email Address",
   validAddress:"Please enter a valid email address",
@@ -30,6 +30,20 @@ export const michaelTranslations = {
   password:"Passoword",
   passwordRepeated:"Confirm Password",
   enterName:"Please type name",
-  enterLastName:"Please type lastname"
+  enterLastName:"Please type lastname",
+  readTerms:"I accept the license and",
+  read:"terms",
+  remember:"Remember me",
+  forgotPass:"Forgot password ?",
+  correctFirstName:"Fill in the first name field correctly. ",
+  emptyName:"Fill in the first name field. ",
+  correctLastName:"Fill in the last name field correctly. ",
+  emptyLastName:"Fill in the last name field. ",
+  correctEmail:"Fill in the email field correctly.",
+  emptyEmail:"Fill in the email field. ",
+  correctPassword:"Fill in the password field correctly, it must have at least 8 characters composed of uppercase, lowercase and special characters.",
+  emptyPassword:"Fill in the password field. ",
+  acceptTerms:"Please accept the terms and conditions",
+  passwordMatch:"Passwords entered are not equal. "
 
 }

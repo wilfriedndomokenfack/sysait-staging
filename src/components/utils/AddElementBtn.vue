@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-toolbar v-if="isSuperUser()">
+    <q-toolbar v-if="isAdmin">
       <q-toolbar-title>
       </q-toolbar-title>
       <div class="q-pa-md q-gutter-sm col-md-3 col-sm-6 col-xs-8">
@@ -29,10 +29,15 @@ export default {
   },
   props: ['link', 'params'],
   data () {
-    return {}
+    return {
+      isAdmin: false,
+    }
+  },
+  async mounted () {
+     this.isAdmin = await isSuperUser()
   },
   methods: {
-    isSuperUser,
+
     redirect(){
       this.$router.push({ name: this.link, params: this.params })
     },

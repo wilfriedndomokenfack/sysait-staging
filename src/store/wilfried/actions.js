@@ -25,11 +25,21 @@ const updateTraining = ({ commit }, payload) => {
   commit('updateTraining', payload)
 }
 
+const setUsers = ({ commit }, payload) => {
+  commit('setUsers', payload)
+}
+
+const setRoles = ({ commit }, payload) => {
+  commit('setRoles', payload)
+}
+
 const setTrainingPageDescription = ({ commit }, payload) => {
   commit('setTrainingPageDescription', payload)
 }
 
 export default {
+  setRoles,
+  setUsers,
   setCompany,
   setTecnologies,
   setPartners,

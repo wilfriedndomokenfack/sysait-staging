@@ -1,9 +1,9 @@
 <template>
-  <div class="row component-2">
-    <div class="form-page col">
-      <div class="form-content col text-white bg-black flex flex-center">
-        {{ pageNameProp }}
-      </div>
+  <div class="column component-2">
+    <div class="title-registration col-1 text-white bg-black flex flex-center">
+      {{ pageNameProp }}
+    </div>
+    <div class="form-page col-11 q-pb-xl flex flex-center">
       <q-form
         @submit="checkForm"
         method="post"
@@ -16,11 +16,9 @@
           rounded
           outlined
           bg-color="white"
-          v-model="form.name"
+          v-model="form.first_name"
           type="name"
           :label="$t('firstName')"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || $t('enterName')]"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="person" />
@@ -33,17 +31,16 @@
           rounded
           outlined
           bg-color="white"
-          v-model="form.username"
+          v-model="form.last_name"
           type="username"
           :label="$t('lastName')"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || $t('enterLastName')]"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="person" />
           </template>
         </q-input>
         <q-input
+          id="email"
           rounded
           outlined
           bg-color="white"
@@ -61,6 +58,7 @@
           outlined
           bg-color="white"
           v-model="form.password"
+          id="password"
           type="password"
           :label="$t('password')"
         >
@@ -83,13 +81,31 @@
             <q-icon class="color_sysait_cerulean" name="lock" />
           </template>
         </q-input>
+        <p v-if="currentRoute == 'signup'" class="text-center">
+          <q-checkbox v-model="form.accept" />
+          {{ $t("readTerms") }}
+          <q-btn
+            no-caps
+            flat
+            dense
+            @click="toggleComponent()"
+            class="text-primary text-bold"
+            >{{ $t("read") }}</q-btn
+          >
+        </p>
+
+        <div v-if="currentRoute == 'signin'" class="forgotPassword text-center">
+          <a href="#" style="text-decoration: none">{{ $t("forgotPass") }}</a>
+        </div>
+
         <q-checkbox
-          v-if="currentRoute == 'signup'"
-          id="terms"
-          v-model="accept"
-          label="I accept
-        the license and terms"
+          id="rememberMe"
+          v-if="currentRoute == 'signin'"
+          :label="$t('remember')"
+          v-model="form.rememberMe"
+          onclick="lsRememberMe()"
         />
+        <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
         </div>
@@ -100,21 +116,31 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { required, email } from "src/models/utils/validations.js";
+import { netWorkError } from "@/models/utils/netWorkError";
+import {
+  validateEmail,
+  validateName,
+  validatePassword,
+} from "src/models/utils/validations.js";
+import TermsOfAgreementComponent from "@/components/registration/TermsOfAgreementComponent.vue";
 export default {
   name: "RegistrationForm",
+  components: { TermsOfAgreementComponent },
   props: ["pageNameProp"],
   data() {
     return {
       form: {
-        name: null,
-        username: null,
+        first_name: null,
+        last_name: null,
         email: null,
         password: null,
-        repeatedPassword: null,
         accept: false,
       },
+      rememberMe: false,
+      repeatedPassword: null,
       currentRoute: null,
+      show: false,
+      termsKey: 1,
     };
   },
 
@@ -122,6 +148,11 @@ export default {
     this.currentRoute = this.$store.getters.currentRoute; //Get the current root
   },
   methods: {
+    toggleComponent() {
+      this.termsKey++;
+      this.show = true;
+    },
+
     email(val) {
       return email(val);
     },
@@ -130,30 +161,107 @@ export default {
       return required(val);
     },
 
+    lsRememberMe() {
+      const emailInput = this.form.email;
+      const rmCheck = this.rememberMe;
+
+      if (localStorage.checkbox && localStorage.checkbox !== "") {
+        rmCheck.setAttribute("checked", "checked");
+        emailInput.value = localStorage.username;
+      } else {
+        rmCheck.removeAttribute("checked");
+        emailInput.value = "";
+      }
+
+      if (rmCheck.checked && emailInput.value !== "") {
+        localStorage.username = emailInput.value;
+        localStorage.checkbox = rmCheck.value;
+      } else {
+        localStorage.username = "";
+        localStorage.checkbox = "";
+      }
+    },
+
     checkForm() {
       let check = true;
-      /* this.errors = [];
+      this.errors = [];
 
       if (this.currentRoute == "signup") {
-        if (!this.form.name) {
-          this.errors.push("Name required.");
+        if (this.form.first_name != "" && validateName(this.form.first_name) == false) {
+          this.errors.push(this.$t("correctFirstName"));
           check = false;
         }
 
-        if (this.form.username.length > 0 && !email(form.username)) {
-          this.errors.push("Last name required.");
+        if (!this.form.first_name) {
+          this.errors.push(this.$t("emptyName"));
           check = false;
         }
-      } */
+
+        if (this.form.last_name != "" && validateName(this.form.last_name) == false) {
+          this.errors.push(this.$t("correctLastName"));
+          check = false;
+        }
+
+        if (!this.form.last_name) {
+          this.errors.push(this.$t("emptyLastName"));
+          check = false;
+        }
+
+        if (this.form.email != "" && validateEmail(this.form.email) == false) {
+          this.errors.push(this.$t("correctEmail"));
+          check = false;
+        }
+
+        if (!this.form.email) {
+          this.errors.push(this.$t("emptyEmail"));
+          check = false;
+        }
+
+        if (this.form.password != "" && validatePassword(this.form.password) == false) {
+          this.errors.push(this.$t("correctPassword"));
+          check = false;
+        }
+
+        if (!this.form.password) {
+          this.errors.push(this.$t("emptyPassword"));
+          check = false;
+        }
+
+        if (this.form.accept == false) {
+          this.errors.push(this.$t("acceptTerms"));
+          check = false;
+        }
+
+        if (this.form.password && this.repeatedPassword) {
+          if (this.form.password != this.repeatedPassword) {
+            this.errors.push(this.$t("passwordMatch"));
+            check = false;
+          }
+        }
+      }
+
+      if (this.currentRoute == "signin") {
+        if (!this.form.email) {
+          this.errors.push(this.$t("emptyEmail"));
+          check = false;
+        }
+
+        if (!this.form.password) {
+          this.errors.push(this.$t("emptyPassword"));
+          check = false;
+        }
+      }
+
       if (check) {
         this.$emit("form", this.form);
       } else {
-        this.$q.notify({
-          message: "Check errors in the form!",
+        netWorkError(this.errors);
+        /* this.$q.notify({
+          message: this.errors,
           color: "red-4",
           textColor: "white",
           icon: "cloud_done",
-        });
+        }); */
       }
     },
 
@@ -174,12 +282,18 @@ export default {
 <style scoped lang="scss">
 .form-page {
   background-color: #e0ecf2;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  @media (max-width: $breakpoint-sm-max) {
-    border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 26px;
+  @media (max-width: 736px) {
+    border-bottom-left-radius: 26px;
   }
 }
+
+.title-registration {
+  @media (min-width: $breakpoint-md-min) {
+    border-top-right-radius: 26px;
+  }
+}
+
 .form-content {
   height: 34px;
   @media (min-width: $breakpoint-md-min) {
@@ -188,11 +302,6 @@ export default {
   }
   @media (min-width: 1024px) {
     height: 30px;
-  }
-}
-.component-2 {
-  @media (max-width: $breakpoint-xs-max) {
-    padding-top: 12px;
   }
 }
 </style>
