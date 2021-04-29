@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="constrain q-pa-lg">
+    <div class="constrain">
       <q-form
+        :key="formKey"
         v-if="form"
         @submit="onSubmit"
-        class="q-gutter-md row justify-center"
+        class="q-gutter-md column justify-center"
       >
-        <div class="q-pa-md q-gutter-sm col-12 text-center">
+        <div class="q-pa-md q-gutter-sm col text-center">
           <q-btn
             type="submit"
             outline
@@ -52,25 +53,54 @@
             </q-tooltip>
           </q-btn>
         </div>
-      <q-input
-        hint="Denomination"
-        class=" col-md-6 col-sm-12 col-xs-12"
-          v-model="form.denomination"
-          dense filled
-          lazy-rules
-          :rules="[
-            val => val && val.length > 0 || 'Denomination canot be blank']"
-        />
-        <q-select
-          filled
+        <div class="col row justify-center q-gutter-md">
+          <q-input
+            label="Denomination*"
+            class=" col-md-5 col-sm-11 col-xs-11"
+            v-model="form.denomination"
+            dense filled
+            lazy-rules
+            :rules="[
+              val => val && val.length > 0 || 'Denomination canot be blank']"
+          />
+
+          <q-input
+            label="Profile*"
+            class="text.center col-md-5 col-sm-11 col-xs-11"
+            v-model="form.profile"
+            dense filled
+            lazy-rules
+            :rules="[
+              val => val && val.length > 0 || 'Profile canot be blank']"
+          />
+        </div>
+
+        <div class="col row justify-center q-gutter-md items-center">
+          <q-input
+            label="Offer"
+            class=" col-md-10 col-sm-11 col-xs-11"
+            v-model="form.offer"
+            dense filled
+            lazy-rules
+          />
+        </div>
+        <div class="col row justify-center q-gutter-md items-center">
+          <q-input
+            label="TargetCustomer"
+            class=" col-md-5 col-sm-11 col-xs-11"
+            v-model="form.targetCustomer"
+            dense filled
+            lazy-rules
+          />
+          <q-select
+            filled
             v-model="form.status"
             :options="statusOptions"
             dense
             emit-value
             map-options
             options-dense
-            class=" col-xs-8 col-sm-6 col-md-2 "
-
+            class=" col-xs-11 col-sm-11 col-md-5 "
           >
             <q-tooltip
               :offset="[10, 10]"
@@ -80,30 +110,19 @@
               Change status
             </q-tooltip>
           </q-select>
-       <q-input
+        </div>
+        <div v-for="(formRichKey, index) in formRichKeys" :key="index" class="col row justify-center q-gutter-md items-center">
+          <RichText
+            @modelData="modelUpdate"
+            :propModel="form[formRichKey]"
+            :propModelName="formRichKey"
+            :label="`Job ${formRichKey}`"
+            class="col-md-11 col-sm-11 col-xs-11"
+          />
+        </div>
 
-        class=" col-md-4 col-sm-12 col-xs-12"
-        hint="Training link"
-        v-model="form.link_course"
-        dense filled
-        />
-
-        <q-input
-          class=" col-md-4 col-sm-12 col-xs-12"
-          hint="Image Name"
-          v-model="form.image_path"
-          dense filled
-
-
-        />
-      <q-editor
-        class=" col-12"
-        v-model="form.description"
-        min-height="20rem"
-        placeholder="Description"
-      />
-    </q-form>
-  </div>
+      </q-form>
+    </div>
   </div>
 </template>
 
@@ -111,16 +130,19 @@
 import  moment  from 'moment'
 import { mapGetters } from 'vuex'
 import { Constants } from '@/models/utils/common.js'
+import RichText from "@/components/utils/RichText.vue"
 export default {
   name: 'jobForm',
-  props: ['trainingProp'],
+  props: ['jobProp'],
   components: {
-
+    RichText
   },
   data () {
     return {
+      formKey: 43,
       form: null,
       statusOptions: [],
+      formRichKeys: ["description", "requirements","note","targetCustomerDescription"]
     }
   },
   computed: {
@@ -133,26 +155,28 @@ export default {
   },
   async mounted(){
     this.resetForm()
-
-
     this.statusOptions = [...Constants.STATUS]
   },
   methods: {
+    modelUpdate(modelData){
+      this.form[modelData.modelKey] = modelData.model
+    },
     resetForm(){
       let form = {
-        denomination: null, // string
-        description: "", // text
-        targetCustomer: null, // string
-        profile: null, // string
+        denomination: null, // string ok
+        description: "", // text ok
+        targetCustomer: null, // string ok
+        profile: null, // string ok
         targetCustomerDescription: "", // text
-        requirements: "", // text
-        offer: null, // string
-        note: "", // text
-        status: '1'
+        requirements: "", // text ok
+        offer: null, // string ok
+        note: "", // text ok
+        status: '1' // ok
 
       }
-      this.form = this.trainingProp ? {...this.trainingProp} : form
+      this.form = this.jobProp ? {...this.jobProp} : form
       this.form.status = this.form.status ? parseInt(this.form.status) : 1
+      this.formKey++
     },
     onSubmit(){
       if( this.form.denomination?.length < 1 ||

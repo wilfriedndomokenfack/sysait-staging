@@ -132,8 +132,6 @@ export default {
   },
   async mounted(){
     this.resetForm()
-
-
     this.statusOptions = [...Constants.STATUS]
   },
   methods: {

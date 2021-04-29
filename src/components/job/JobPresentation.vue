@@ -4,7 +4,21 @@
         {{ jobProp.denomination.toUpperCase() }}  <span class="text-primary">REF-{{jobProp.job_cod}}</span>
     </div>
     <div class="col text-right q-pb-xl">
-      <span class="bg-primary q-pa-xs text-white">Candidate</span>
+      <q-btn
+        padding="xs"
+        label="Candidate"
+        dense
+        color="primary"
+        icon="fa fa-paper-plane"
+      >
+        <q-tooltip
+          :offset="[10, 10]"
+            transition-show="rotate"
+            transition-hide="rotate">
+            Click to send your datas
+        </q-tooltip>
+      </q-btn>
+
     </div>
     <div class="col">
         Published on <span class="q-pt-md text-bold">{{ jobProp.published_at }}</span>
@@ -54,7 +68,20 @@
         <div v-html="jobProp.note"></div>
     </div>
      <div class="col text-right q-pb-xl">
-      <span class="bg-primary q-pa-xs text-white">Candidate</span>
+      <q-btn
+        padding="xs"
+        label="Candidate"
+        dense
+        color="primary"
+        icon="fa fa-paper-plane"
+      >
+        <q-tooltip
+          :offset="[10, 10]"
+            transition-show="rotate"
+            transition-hide="rotate">
+            Click to send your datas
+        </q-tooltip>
+      </q-btn>
     </div>
 
 
