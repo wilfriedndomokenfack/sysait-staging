@@ -54,9 +54,18 @@
 <script>
 import { isSuperUser } from '@/models/user.js'
 import { deepCopy } from '@/models/utils/common.js'
+import { mapGetters } from "vuex";
 export default {
   name: 'PageDescription',
   props: ['descriptionProp', 'category'],
+  watch: {
+    currentUser: {
+      immediate: true,
+      handler() {
+        this.userChanged()
+      }
+    }
+  },
   data () {
     return {
       localDescription: null,
@@ -64,16 +73,20 @@ export default {
       isAdmin: false
     }
   },
+   computed: {
+    ...mapGetters(["currentUser"])
+  },
   async mounted(){
-    console.log(this.descriptionProp)
     this.isAdmin = await isSuperUser()
   },
   methods: {
+    async userChanged(){
+      this.isAdmin = await isSuperUser()
+    },
     emitDescription(){
       if(this.localDescription.description.length > 3 ) this.$emit('description', this.localDescription)
     },
     updateDescription(){
-
       this.localDescription = deepCopy(this.descriptionProp)
       this.localDescription.category = this.category
       this.editDescription = true

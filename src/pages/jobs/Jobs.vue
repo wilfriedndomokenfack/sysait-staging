@@ -8,8 +8,8 @@
     />
     <div class="constrain column">
       <PageDescription class="col" :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="jobs"/>
-      <AddElementBtn class="col" link="newJob" @statusFilter="filterJobs" @searchPatern="filterJobs"/>
-      <JobsComponent class="col card_jobs" v-if="renderComponent"   :propJobs="filteredJobs"  :key="myKey"/>
+      <AddElementBtn v-if="isAdmin" class="col" link="newJob" @statusFilter="filterJobs" @searchPatern="filterJobs"/>
+      <JobsComponent class="col card_jobs" v-if="renderComponent"   :propJobs="filteredJobs"  />
     </div>
   </q-page>
 </template>
@@ -22,6 +22,7 @@ import JobsComponent from "@/components/job/JobsComponent.vue"
 import AddElementBtn from "@/components/utils/AddElementBtn.vue"
 
 import { mapGetters } from "vuex";
+import { isSuperUser } from '@/models/user.js'
 import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
 import { jobs } from "@/models/job.js"
 
@@ -38,10 +39,16 @@ export default {
     currentUser: {
       immediate: true,
       handler() {
-        this.myKey++;
+        this.userChanged()
+
       }
     },
-
+    jobs: {
+      immediate: true,
+      handler() {
+        this.jobsChanged()
+      }
+    },
   },
   data() {
     return {
@@ -52,11 +59,13 @@ export default {
       myKey: 45,
       // editDescription: false,
       filteredJobs: [],
-      model: null
+      model: null,
+      isAdmin: false
 
     };
   },
   async mounted(){
+
     if(!this["wilfried/jobsPageDescription"]){
       await this.getPageDescription()
     }
@@ -74,6 +83,15 @@ export default {
     ...mapGetters(["company", "wilfried/jobs", "wilfried/jobsPageDescription", "currentUser"])
   },
   methods: {
+    async userChanged(){
+      this.isAdmin = await isSuperUser()
+      this.myKey++;
+    },
+    jobsChanged(){
+      this.jobs = this["wilfried/jobs"];
+      this.filterJobs(this.model)
+
+    },
     async updatePageDescription(description){
       const response = await sendToTableDescriptions(description)
       if(response){

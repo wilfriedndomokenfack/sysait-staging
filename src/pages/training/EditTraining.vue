@@ -54,7 +54,6 @@ export default {
       this.$q.loading.hide()
     },
      async saveForm(form){
-      console.log(form)
       let response = await sendToTranings(form)
 
       this.$store.dispatch("wilfried/updateTraining", { ...response });

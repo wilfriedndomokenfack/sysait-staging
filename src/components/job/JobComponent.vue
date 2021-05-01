@@ -59,6 +59,14 @@ import axios from "axios";
 export default {
   name: 'Job',
   props: ['jobProp'],
+  watch: {
+    currentUser: {
+      immediate: true,
+      handler() {
+        this.userChanged()
+      }
+    }
+  },
   data () {
     return {
       imKey: 0,
@@ -71,11 +79,13 @@ export default {
     ...mapGetters(["currentUser"])
   },
   async mounted(){
-    this.isAdmin = await isSuperUser()
     this.status = Constants.STATUS.find(v => v.value == this.jobProp.status)?.label
     this.color = Constants.STATUS.find(v => v.value == this.jobProp.status)?.color
   },
   methods: {
+    async userChanged(){
+      this.isAdmin = await isSuperUser()
+    },
     openPage(link){
       window.open(link, '_blank');
     },
@@ -88,9 +98,8 @@ export default {
         persistent: true,
         color: "red",
         ok: "delete"
-      }).onOk(() => {
-
-        deleteDBJob(this.jobProp?.id)
+      }).onOk(async () => {
+        await deleteDBJob(this.jobProp?.id)
         this.$store.dispatch("wilfried/removeJob", this.jobProp );
       })
     },

@@ -201,7 +201,6 @@ export default {
           icon: 'cloud_done'
         })
       }else{
-        console.log(this.form)
         this.$emit('form', this.form)
       }
     }

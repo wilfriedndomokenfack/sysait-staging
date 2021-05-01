@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="localJobs && localJobs.length > 0" class="q-pa-md row items-center q-gutter-md justify-center">
-      <div v-for="job in localJobs" class="col-12" >
+
+      <div v-for="job in localJobs" class="col-12">
         <JobComponent :jobProp="job" class="text-center"/>
       </div>
     </div>

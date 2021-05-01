@@ -31,6 +31,8 @@ const addJob = ({ commit }, payload) => {
   commit('addJob', payload)
 }
 const removeJob = ({ commit }, payload) => {
+  
+
   commit('removeJob', payload)
 }
 const updateJob = ({ commit }, payload) => {
