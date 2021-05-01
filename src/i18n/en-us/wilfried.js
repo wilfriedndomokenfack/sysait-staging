@@ -11,6 +11,14 @@ export const wilfriedTranslations = {
   emptyCourse: "There are no training courses for the moment",
   emptyJobs: "There are no open positions for the moment",
   consultJob: "Consult the offer",
+  candidacyJob: "candidacy",
+  publishedOn: "Published on",
+  targetCustomer: "Target customer",
+  description: "description",
+  skillsJob: "requirements and skills",
+  offerJob: "the offer",
+  noteJob: "note",
+
 
   takeCourse: "Click here to take this course",
 

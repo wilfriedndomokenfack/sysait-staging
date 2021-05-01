@@ -13,10 +13,11 @@
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
 import JobForm from "@/components/job/JobForm.vue";
-import { sendToTranings }from "@/models/training.js"
+import { sendToJobs }from "@/models/job.js"
 import { mapGetters } from "vuex";
 import { notify } from "@/models/utils/notifyUser"
 import { deepCopy } from '@/models/utils/common.js'
+import moment from "moment"
 export default {
   name: 'EditJobPage',
   components: {
@@ -56,11 +57,13 @@ export default {
       this.$q.loading.hide()
     },
      async saveForm(form){
-      console.log(form)
-      // let response = await sendToTranings(form)
+     if(form.status == '4' && !form.published_at) form.published_at = moment()
+     if(form.status != '4') form.published_at = null
 
-      // this.$store.dispatch("wilfried/updateJob", { ...response });
-      // this.$router.push({ path: "/jobs"})
+      const response = await sendToJobs(form)
+
+      this.$store.dispatch("wilfried/updateJob", { ...response });
+      this.$router.push({ path: "/jobs"})
     }
   }
 }

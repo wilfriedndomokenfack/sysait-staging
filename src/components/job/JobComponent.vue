@@ -1,30 +1,21 @@
 <template>
-  <div>
-    <q-card class="my-card card1" :class="{good: !$q.platform.is.desktop}">
-      <q-card-section class="bg-primary text-white">
-        <div class="text-h6">
-          <div class="q-pl-md">
-            <span class="text-bold">{{ jobProp.denomination.toUpperCase() }}</span>  REF-{{jobProp.job_cod}}
-          </div>
-          <div>
-
-          </div>
-        </div>
+  <div  class="">
+     <q-card class="my-card " >
+      <q-card-section class="bg-primary text-white text-left text-h6">
+        <span class="text-bold q-pl-md ">{{ jobProp.denomination.toUpperCase() }}</span>  REF-{{jobProp.job_cod.toUpperCase() }}
       </q-card-section>
 
-      <q-card-actions class="column ">
-        <div class="col text-left q-pa-md" v-html="jobProp.description">
+      <q-card-actions class="column justify-between">
+        <div class="col  q-pa-md self-start" v-html="jobProp.description" style="">
         </div>
-        <div class="col self-end q-pa-md" >
+        <div class="col  q-pa-md self-end" >
           <q-btn
-            class="bg_sysait_cerulean text-white dense "
+            class="bg_sysait_cerulean text-white dense  "
             no-caps
             :label="$t('consultJob')"
             @click="redirect('job', jobProp.id  )"
-
           />
         </div>
-
       </q-card-actions>
       <q-separator color="primary" size="5px"/>
       <q-card-actions align="right" v-if="isAdmin">
@@ -63,8 +54,7 @@
 import { isSuperUser } from '@/models/user.js'
 import { mapGetters } from "vuex";
 import { Constants } from '@/models/utils/common.js'
-import { deleteDBTraining } from "@/models/training.js"
-import { isEnrollToTraining } from "@/models/user.js"
+import { deleteDBJob } from "@/models/job.js"
 import axios from "axios";
 export default {
   name: 'Job',
@@ -86,11 +76,9 @@ export default {
     this.color = Constants.STATUS.find(v => v.value == this.jobProp.status)?.color
   },
   methods: {
-    isEnrollToTraining,
     openPage(link){
       window.open(link, '_blank');
     },
-
 
     deleteJob(){
       this.$q.dialog({
@@ -102,8 +90,8 @@ export default {
         ok: "delete"
       }).onOk(() => {
 
-        //deleteDBTraining(this.trainingProp?.id)
-        //this.$store.dispatch("wilfried/removeTraining", this.trainingProp );
+        deleteDBJob(this.jobProp?.id)
+        this.$store.dispatch("wilfried/removeJob", this.jobProp );
       })
     },
     redirect(link, id){
@@ -112,10 +100,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.card1 {
-  width: 100%;
-}
-
-</style>

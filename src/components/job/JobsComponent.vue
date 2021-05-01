@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="localJobs && localJobs.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
-      <div v-for="job in localJobs" >
-        <JobComponent :jobProp="job" />
+    <div v-if="localJobs && localJobs.length > 0" class="q-pa-md row items-center q-gutter-md justify-center">
+      <div v-for="job in localJobs" class="col-12" >
+        <JobComponent :jobProp="job" class="text-center"/>
       </div>
     </div>
     <div v-else>
@@ -16,7 +16,7 @@ import JobComponent from "@/components/job/JobComponent.vue";
 import { isSuperUser } from '@/models/user.js'
 import EmptyComponent from "@/components/EmptyComponent.vue";
 export default {
-  name: 'Jobs',
+  name: 'JobsComponent',
   props: ['propJobs'],
   components: {
     JobComponent,
@@ -25,7 +25,7 @@ export default {
 
   data () {
     return {
-      localJobs: []
+      localJobs: null
     }
   },
   mounted(){
@@ -33,8 +33,8 @@ export default {
   },
 
   methods: {
-    filterJobs(){
-      this.localJobs = isSuperUser() ? this.propJobs : this.propJobs?.filter(v => v.status == "4")
+    async filterJobs(){
+      this.localJobs = await isSuperUser() ? this.propJobs : this.propJobs?.filter(v => v.status == "4")
     }
   }
 }

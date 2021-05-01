@@ -1,38 +1,31 @@
 <template>
   <div class="column">
     <div class=" col text-h6 text-bold job-denomination">
-        {{ jobProp.denomination.toUpperCase() }}  <span class="text-primary">REF-{{jobProp.job_cod}}</span>
+        {{ jobProp.denomination.toUpperCase() }}  <span class="text-primary">REF-{{jobProp.job_cod.toUpperCase() }}</span>
     </div>
     <div class="col text-right q-pb-xl">
       <q-btn
         padding="xs"
-        label="Candidate"
+        :label="$t('candidacyJob')"
         dense
         color="primary"
         icon="fa fa-paper-plane"
-      >
-        <q-tooltip
-          :offset="[10, 10]"
-            transition-show="rotate"
-            transition-hide="rotate">
-            Click to send your datas
-        </q-tooltip>
-      </q-btn>
+      />
 
     </div>
-    <div class="col">
-        Published on <span class="q-pt-md text-bold">{{ jobProp.published_at }}</span>
+    <div class="col" v-if="jobProp.published_at">
+        {{ $t('publishedOn') }} <span class="q-pt-md text-bold">{{ jobDate }}</span>
     </div>
-    <div class="col">
+    <div class="col" v-if="jobProp.targetCustomer">
       <ul>
-        <li color="primary" v-if="jobProp.targetCustomer">{{ jobProp.targetCustomer }}</li>
+        <li color="primary" >{{ jobProp.targetCustomer }}</li>
         <li v-if="jobProp.profile">{{ jobProp.profile }}</li>
       </ul>
     </div>
 
     <div class="col" v-if="jobProp.targetCustomerDescription">
         <div class="text-bold">
-          TARGET CUSTOMER
+          {{ $t('targetCustomer').toUpperCase() }}
         </div>
         <div v-html="jobProp.targetCustomerDescription">
         </div>
@@ -40,7 +33,7 @@
 
      <div class="col q-pt-md" v-if="jobProp.description">
         <div class="text-bold">
-          JOB DESCRIPTION
+          {{ $t('description').toUpperCase() }}
         </div>
         <div v-html="jobProp.description">
         </div>
@@ -48,14 +41,14 @@
 
      <div class="col q-pt-md" v-if="jobProp.requirements">
         <div class="text-bold">
-          REQUIREMENTS AND SKILLS
+          {{ $t('skillsJob').toUpperCase() }}
         </div>
         <div v-html="jobProp.requirements">
         </div>
     </div>
      <div class="col q-pt-md" v-if="jobProp.offer">
         <div class="text-bold">
-          THE OFFER
+           {{ $t('offerJob').toUpperCase() }}
         </div>
         <div>
           {{ jobProp.offer }}
@@ -63,25 +56,18 @@
     </div>
      <div class="col q-pt-md q-pb-xl job-note" v-if="jobProp.note">
         <div class="text-bold">
-          NOTE
+          {{ $t('noteJob').toUpperCase() }}
         </div>
         <div v-html="jobProp.note"></div>
     </div>
      <div class="col text-right q-pb-xl">
       <q-btn
         padding="xs"
-        label="Candidate"
+        :label="$t('candidacyJob')"
         dense
         color="primary"
         icon="fa fa-paper-plane"
-      >
-        <q-tooltip
-          :offset="[10, 10]"
-            transition-show="rotate"
-            transition-hide="rotate">
-            Click to send your datas
-        </q-tooltip>
-      </q-btn>
+      />
     </div>
 
 
@@ -89,11 +75,22 @@
 </template>
 
 <script>
+import moment from "moment"
 export default {
   name: 'JobPresentation',
   props: ["jobProp"],
   data () {
-    return {}
+    return {
+    }
+  },
+  computed: {
+    jobDate(){
+      moment.locale(this.$i18n.locale);
+      return moment(this.jobProp.published_at).format('LL')
+    },
+  },
+  mounted(){
+
   }
 }
 </script>

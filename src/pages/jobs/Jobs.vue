@@ -1,19 +1,15 @@
 <template>
-  <q-page padding>
+  <q-page padding cla>
     <BannerPages
       bannerUrl="ImageJobs.png"
       :pageName="$t('joins')"
       :companyName="company.denomination"
       class="q-mb-md"
     />
-    <div class="constrain">
-      <PageDescription :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="jobs"/>
-      <div>
-        <AddElementBtn link="newJob" @statusFilter="filterJobs"/>
-      </div>
-      <div v-if="renderComponent">
-        <JobsComponent  :propJobs="filteredJobs"  :key="myKey"/>
-      </div>
+    <div class="constrain column">
+      <PageDescription class="col" :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="jobs"/>
+      <AddElementBtn class="col" link="newJob" @statusFilter="filterJobs" @searchPatern="filterJobs"/>
+      <JobsComponent class="col card_jobs" v-if="renderComponent"   :propJobs="filteredJobs"  :key="myKey"/>
     </div>
   </q-page>
 </template>
@@ -27,6 +23,7 @@ import AddElementBtn from "@/components/utils/AddElementBtn.vue"
 
 import { mapGetters } from "vuex";
 import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
+import { jobs } from "@/models/job.js"
 
 export default {
   name: 'Jobs',
@@ -37,13 +34,22 @@ export default {
     JobsComponent,
     AddElementBtn
   },
+  watch: {
+    currentUser: {
+      immediate: true,
+      handler() {
+        this.myKey++;
+      }
+    },
+
+  },
   data() {
     return {
       renderComponent: false,
       jobs: [],
       pageDescription: null,
       descriptionKey: 4,
-      myKey: 0,
+      myKey: 45,
       // editDescription: false,
       filteredJobs: [],
       model: null
@@ -87,21 +93,65 @@ export default {
         this.$q.loading.hide();
       }
     },
-    getJobs(){
-      console.log("getting jobs")
+    async getJobs(){
+      this.$q.loading.show();
+      try {
+        const response = await jobs();
+        // response.data = [];
+        this.$store.dispatch("wilfried/setJobs", response?.data);
+        this.myKey = !this.myKey;
+      } catch (e) {
+        netWorkError(this.$t("netWorkErrorMSG") + " " + e);
+        this.$router.push({ name: this.previousRoute });
+      } finally {
+        this.$q.loading.hide();
+      }
     },
 
-    filterJobs(model = []){
-      this.model = model
-      if(model?.length > 0){
-        this.filteredJobs = this.jobs?.filter(
-          v => model.indexOf(parseInt(v.status)) > -1
-        )
-      }else{
+    filterJobs(model = null){
+
+      if(!model){
         this.filteredJobs = this.jobs
+        this.myKey = !this.myKey;
+        return
       }
+      let isArray = Array.isArray(model)
+      this.model = model
+      let localJobs = [...this.jobs]
+
+      if(isArray && model?.length > 0){
+        localJobs = localJobs?.filter(
+          v => model.indexOf(parseInt(v.status)) > -1
+      )
+
+      }else if(!isArray && model?.length > 0){
+
+        const needle = model.toLowerCase() ?? ""
+        localJobs = localJobs?.filter(
+          v => v.job_cod?.toLowerCase().indexOf(needle) > -1
+        )
+      }
+
+      this.filteredJobs = localJobs
       this.myKey = !this.myKey;
     }
   }
 }
 </script>
+
+<style lang="scss" >
+.card_jobs {
+  width: 100%;
+  // @media (min-width: $breakpoint-md-min){
+  //   width: 500px;
+  // }
+  // @media (max-width: $breakpoint-sm-max){
+  //   width: 100%;
+  // }
+}
+
+.good{
+  width: 100%;
+}
+
+</style>

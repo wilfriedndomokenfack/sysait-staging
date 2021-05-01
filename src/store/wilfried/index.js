@@ -43,7 +43,7 @@ export default {
     tecnologies: null,
     partners: null,
     trainings: null,
-    jobs: jobs,
+    jobs: null,//jobs,
     trainingPageDescription: null,
     jobsPageDescription: null,
     ...loadWilfriedSession()

@@ -13,8 +13,9 @@
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
 import JobForm from "@/components/job/JobForm.vue";
-import { sendToTranings }from "@/models/training.js"
+import { sendToJobs }from "@/models/job.js"
 import { mapGetters } from "vuex";
+import moment from "moment"
 export default {
   name: 'NewJobPage',
   components: {
@@ -26,11 +27,12 @@ export default {
   },
   methods: {
     async saveForm(form){
-      console.log(form)
-      let response = await sendToTranings(form)
+      
+      if(form.status == '4') form.published_at = moment()
+      let response = await sendToJobs(form)
 
-      this.$store.dispatch("wilfried/addTraining", { ...response });
-      this.$router.push({ path: "/training"})
+      this.$store.dispatch("wilfried/addJob", { ...response });
+      this.$router.push({ path: "/jobs"})
     }
   }
 }
