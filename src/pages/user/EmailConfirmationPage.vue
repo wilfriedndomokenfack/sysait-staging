@@ -12,7 +12,7 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" v-close-popup @click="goHome()"/>
+          <q-btn flat label="OK" v-close-popup/>
         </q-card-actions>
       </q-card>
 
@@ -25,30 +25,38 @@
 import Api from "@/models/Api";
 export default {
   name: 'EmailConfirmationPage',
+  watch: {
+    model: {
+      immediate: true,
+      handler() {
+        if(!this.model) this.goHome();
+      }
+    }
+  },
   data() {
     return {
       muKey: 3,
       model: true,
-      confirmation_token: this.$route.params.confirmation_token ?? null,
+      fullPath: this.$route.fullPath,
       message: "Email confermato",
     };
   },
   async mounted(){
     this.$q.loading.show();
-    console.log(this.confirmation_token)
+    const confirmation_token = this.fullPath.split("=")[1];
     try {
-      const response = await Api().post("users/confirmation", { params: { confirmation_token: this.confirmation_token } });
-      this.message = response?.data ?? null
+      const response = await Api().post("users/confirmation", { params: { confirmation_token: confirmation_token } });
+      this.message = response?.data.message ?? null
       this.muKey++
     } catch (error) {
-      this.message = error
+      this.message = error + " try again latter"
     }finally{
       this.$q.loading.hide();
     }
   },
   methods: {
     goHome(){
-      this.$router.push({ path: "/"})
+      this.$router.push({ path: "/signin"})
     }
   }
 }
