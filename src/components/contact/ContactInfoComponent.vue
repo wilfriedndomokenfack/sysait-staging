@@ -10,7 +10,7 @@
           <span class="text-bold">Email: </span> {{ company.email }}
         </div>
         <div class="col-12">
-          <span class="text-bold">Adress: </span> {{ company.address }}
+          <span class="text-bold">Address: </span> {{ company.address }}
         </div>
         <div class="col-12">
           <span class="text-bold">Tel:</span> {{ company.phone_number }}
@@ -21,10 +21,32 @@
       </div>
       
       <div class="row justify-center q-pt-sm text-primary">
+        <div
+          clickable
+          @click="mailTo(company.phone_number)"
+          style=";"
+        >
+          <q-btn flat icon="fab fa-whatsapp" />
+        </div>
+
+        <div
+          clickable
+          @click="mailTo(company.linkedin)"
+          style=";"
+        >
+          <q-btn flat icon="fab fa-linkedin-in" />
+        </div>
         
-        <q-btn flat icon="fab fa-whatsapp" />
-        <q-btn flat icon="fab fa-linkedin-in" />
-        <q-btn flat icon="fab fa-facebook" />
+        <div
+          clickable
+          @click="mailTo(company.facebook)"
+          style=";"
+        >
+          <q-btn flat icon="fab fa-facebook" />
+        </div>
+        
+        
+        
       </div>
     </div>
     <div
@@ -51,6 +73,17 @@ export default {
     ...mapGetters(["company"])
   },
   methods: {
+    mailTo(telMail) {
+      let link = null;
+      if (telMail.includes("linkedin") || telMail.includes("facebook")) {
+        link = telMail;
+      } else {
+        link = `tel:${telMail}`;
+      }
+      window.open(link, "_blank");
+    },
+
+
     initMap() {
       this.mapData = new google.maps.Map(document.getElementById("myMap"), {
         center: { lat: 44.837151, lng: 11.5996273 },
