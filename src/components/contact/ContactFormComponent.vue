@@ -1,7 +1,7 @@
 <template>
 
   <div class="">
-    <p class="color_sysait_cerulean text-bold"> {{$t('contact_send_email')}} </p>
+    <br><p  class="color_sysait_cerulean text-bold text-center"> {{$t('contact_send_email')}} </p>
     <q-form @submit="onSubmit">
       <div class="row  no-wrap justify-between q-gutter-xs q-pb-md">
           <!-- <div class=""> -->
@@ -13,7 +13,7 @@
               v-model="contact.first_name"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('contact_firstname_control')
               ]"
             />
           <!-- </div> 
@@ -26,7 +26,7 @@
               v-model="contact.last_name"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('contact_lastname_control')
               ]"
             />
           <!-- </div> -->
@@ -42,7 +42,7 @@
           filled
           v-model="contact.email"
           lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
+          :rules="[val => (val && val.length > 0) || $t('contact_email_control')]"
         />
       </div>
       <div class=" q-pb-md">
@@ -54,7 +54,7 @@
           filled
           v-model="contact.phone_number"
           lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
+          :rules="[val => (val && val.length > 0) ||  $t('contact_phone_number_control')]"
         />
       </div>
       
@@ -66,7 +66,7 @@
               filled
               v-model="contact.address"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Please type something']"
+              :rules="[val => (val && val.length > 0) ||  $t('contact_address_control')]"
           />
               
           </div>
@@ -77,7 +77,7 @@
               filled
               v-model="contact.cap"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Please type something']"
+              :rules="[val => (val && val.length > 0)]"
           />
           </div>
         
@@ -90,7 +90,7 @@
             filled
             v-model="contact.city"
             lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
+            :rules="[val => (val && val.length > 0) || $t('contact_city_control')]"
           />
         </div>
         <div class="col-xs-6 col-sm-6 col-md-5">
@@ -101,7 +101,7 @@
           filled
           v-model="contact.country"
           lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
+          :rules="[val => (val && val.length > 0) || $t('contact_country_control')]"
         />
           
         </div>

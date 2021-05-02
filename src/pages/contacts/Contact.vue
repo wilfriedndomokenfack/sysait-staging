@@ -5,8 +5,7 @@
         :pageName="$t('contact')"
         :companyName="companyName"
       />
-
-       <div class="column constrain justify-between q-gutter-md q-pb-xl q-pt-xl">
+       <div class="column constrain justify-between q-gutter-md q-pb-xl q-t-xl">
         <MessageContactComponent class="bg-primary text-center q-pa-md text-white"/>
         <InfoMapComponent :key="myKey" @formcontact="emitcontactform" class=" text-center"/>
       </div>

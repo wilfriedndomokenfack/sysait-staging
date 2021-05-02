@@ -37,6 +37,14 @@ export const rosineTranslations = {
   contact_city:"Città *  ",
   contact_country:"Paese *",
   contact_message:"Messaggio",
-  contact_send_email:"INVIACI EMAIL"
+  contact_send_email:"INVIACI EMAIL",
+
+  contact_firstname_control:"Digitare il tuo cognome *",
+  contact_lastname_control:"Digitare il tuo nome *",
+  contact_email_control:"Digitare la  tua mail *",
+  contact_phone_number_control:"Digitare il tuo numero di telefono *",
+  contact_address_control:"Digitare il tuo indirizzo *",
+  contact_city_control:"Digitare la tua città *  ",
+  contact_country_control:"Digitare il tuo paese *",
 
 }
