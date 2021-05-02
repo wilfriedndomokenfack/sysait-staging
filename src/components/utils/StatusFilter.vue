@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-select
+
       v-model="model"
       :options="options"
       label="Status filter"
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     emitData(){
-      this.$emit('statusFilter', this.model)
+      this.$emit('statusFilter', this.model )
     }
   }
 }

@@ -21,7 +21,7 @@ const Api = function() {
     baseURL: url,
     headers
   });
-  //console.log(i18n.locale)
+
 
   //api.interceptors.response.use(res => res, apiErrorHandler);
   //api.interceptors.response.use(heartBeater);
