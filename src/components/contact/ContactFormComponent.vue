@@ -3,10 +3,10 @@
   <div class="">
     <br><p  class="color_sysait_cerulean text-bold text-center"> {{$t('contact_send_email')}} </p>
     <q-form @submit="onSubmit">
-      <div class="row  no-wrap justify-between q-gutter-xs q-pb-md">
+      <div class="row  no-wrap justify-between">
           <!-- <div class=""> -->
             <q-input
-              class="col-xs-6 col-sm-6 col-md-5"
+              class="col-xs-6 col-sm-6 col-md-6 q-pr-md"
               :label="$t('contact_firstname')"
               dense
               filled
@@ -19,7 +19,7 @@
           <!-- </div> 
           <div class="">-->
             <q-input
-              class="col-xs-6 col-sm-6  col-md-5"
+              class="col-xs-6 col-sm-6  col-md-6"
               :label="$t('contact_lastname')"
               dense
               filled
@@ -32,7 +32,7 @@
           <!-- </div> -->
         
       </div>
-      <div class=" q-pb-md">
+      <div class="">
         <q-input
           class="col-12"
           :label="$t('contact_email')"
@@ -45,7 +45,7 @@
           :rules="[val => (val && val.length > 0) || $t('contact_email_control')]"
         />
       </div>
-      <div class=" q-pb-md">
+      <div class="">
         <q-input
           class="col-12"
           :label="$t('contact_phone_number')"
@@ -58,8 +58,8 @@
         />
       </div>
       
-      <div class="row no-wrap justify-between q-gutter-xs q-pb-md">
-          <div class="col-xs-6 col-sm-6 col-md-5">
+      <div class="row no-wrap justify-between">
+          <div class="col-xs-6 col-sm-6 col-md-6 q-pr-md">
             <q-input
               dense
               :label="$t('contact_address')"
@@ -70,7 +70,7 @@
           />
               
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-5">
+          <div class="col-xs-6 col-sm-6 col-md-6">
             <q-input
               dense
               :label="$t('contact_pobox')"
@@ -82,8 +82,8 @@
           </div>
         
       </div>
-      <div class="row no-wrap justify-between q-gutter-xs q-pb-md">
-        <div class="col-xs-6 col-sm-6 col-md-5">
+      <div class="row no-wrap justify-between">
+        <div class="col-xs-6 col-sm-6 col-md-6 q-pr-md">
           <q-input
             dense
             :label="$t('contact_city')"
@@ -93,7 +93,7 @@
             :rules="[val => (val && val.length > 0) || $t('contact_city_control')]"
           />
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-5">
+        <div class="col-xs-6 col-sm-6 col-md-6">
           <q-input
           
           dense
@@ -115,8 +115,8 @@
           :placeholder="$t('contact_message')"
         />
       </div>
-      <div class="text-left">
-        <q-btn label="Send" type="submit" color="primary" /><br />
+      <div class="text-right">
+        <q-btn :label="$t('send_form_contact')" type="submit" color="primary" /><br />
       </div>
     </q-form>
   </div>

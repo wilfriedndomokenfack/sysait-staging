@@ -48,6 +48,9 @@ export const rosineTranslations = {
   contact_city_control:"Enter your City *  ",
   contact_country_control:"Enter your Country *",
 
+  contact_info: "CONTACT INFO",
+  send_form_contact:"Send",
+
 
   
 

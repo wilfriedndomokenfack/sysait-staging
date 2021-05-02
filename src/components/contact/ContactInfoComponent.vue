@@ -2,10 +2,9 @@
   <div class="row items-center">
     <div class="col-12  q-pa-xl">
       <div class="q-pb-sm text-primary">
-        CONTACT INFO
-        <hr class="separation"/>
+        {{ $t("contact_info") }}
       </div>
-      <div class="row">
+      <div class="row text-left text-weight-regular infoContact q-pl-md">
         <div class="col-12">
           <span class="text-bold">Email: </span> {{ company.email }}
         </div>
@@ -15,38 +14,21 @@
         <div class="col-12">
           <span class="text-bold">Tel:</span> {{ company.phone_number }}
         </div>
-        <div class="col-12">
-          <hr class="separation"/>
-        </div>
+        <div class="col-12"></div>
       </div>
-      
+
       <div class="row justify-center q-pt-sm text-primary">
-        <div
-          clickable
-          @click="mailTo(company.phone_number)"
-          style=";"
-        >
+        <div clickable @click="open_link(company.whatsApp)">
           <q-btn flat icon="fab fa-whatsapp" />
         </div>
 
-        <div
-          clickable
-          @click="mailTo(company.linkedin)"
-          style=";"
-        >
+        <div clickable @click="open_link(company.linkedin)">
           <q-btn flat icon="fab fa-linkedin-in" />
         </div>
-        
-        <div
-          clickable
-          @click="mailTo(company.facebook)"
-          style=";"
-        >
+
+        <div clickable @click="open_link(company.facebook)">
           <q-btn flat icon="fab fa-facebook" />
         </div>
-        
-        
-        
       </div>
     </div>
     <div
@@ -73,16 +55,10 @@ export default {
     ...mapGetters(["company"])
   },
   methods: {
-    mailTo(telMail) {
-      let link = null;
-      if (telMail.includes("linkedin") || telMail.includes("facebook")) {
-        link = telMail;
-      } else {
-        link = `tel:${telMail}`;
-      }
-      window.open(link, "_blank");
+    open_link(linkapp) {
+      
+      window.open(linkapp, "_blank");
     },
-
 
     initMap() {
       this.mapData = new google.maps.Map(document.getElementById("myMap"), {
@@ -94,10 +70,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-.separation{
-  width:60%;
-  border-top:2px solid $primary; 
-
+.infoContact {
+  border-bottom: 2px solid $primary;
+  border-top: 2px solid $primary;
 }
 </style>

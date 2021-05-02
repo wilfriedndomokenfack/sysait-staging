@@ -1,9 +1,9 @@
 <template>
-  <div class="row  justify-between">
+  <div class="row  justify-center">
     <ContactInfoComponent class="col-md-5 col-sm-12 col-xs-12 bg-grey-3" />
     <ContactFormComponent
       @formcontact="emitcontactform"
-      class="col-md-6 col-sm-12 col-xs-12"
+      class="col-md-6 col-sm-12 col-xs-12 q-pl-lg "
     />
   </div>
 </template>
