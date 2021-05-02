@@ -9,7 +9,7 @@
     <div class="constrain column">
       <PageDescription class="col" :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="jobs"/>
       <AddElementBtn v-if="isAdmin" class="col" link="newJob" @statusFilter="filterJobs" @searchPatern="filterJobs"/>
-      <JobsComponent class="col card_jobs" v-if="renderComponent"   :propJobs="filteredJobs"  />
+      <JobsComponent class="col card_jobs" v-if="renderComponent"   :propJobs="filteredJobs" :key="myKey" />
     </div>
   </q-page>
 </template>
@@ -40,7 +40,6 @@ export default {
       immediate: true,
       handler() {
         this.userChanged()
-
       }
     },
     jobs: {
@@ -76,7 +75,7 @@ export default {
     this.jobs = this["wilfried/jobs"]
     this.pageDescription = this["wilfried/jobsPageDescription"]
 
-    this.filterJobs([])
+    if(this.jobs) this.filterJobs([])
     this.renderComponent = true
   },
   computed: {
@@ -127,14 +126,16 @@ export default {
     },
 
     filterJobs(model = null){
+      console.log(model)
 
-      if(!model){
+      if(!model || !this.jobs){
         this.filteredJobs = this.jobs
         this.myKey = !this.myKey;
         return
       }
       let isArray = Array.isArray(model)
       this.model = model
+      console.log("this.jobs",this.jobs)
       let localJobs = [...this.jobs]
 
       if(isArray && model?.length > 0){
@@ -145,9 +146,11 @@ export default {
       }else if(!isArray && model?.length > 0){
 
         const needle = model.toLowerCase() ?? ""
+        console.log(needle)
         localJobs = localJobs?.filter(
           v => v.job_cod?.toLowerCase().indexOf(needle) > -1
         )
+        console.log("localJobs",localJobs)
       }
 
       this.filteredJobs = localJobs
