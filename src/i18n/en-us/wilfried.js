@@ -10,6 +10,9 @@ export const wilfriedTranslations = {
   trainningCourse: "training course",
   emptyCourse: "There are no training courses for the moment",
   takeCourse: "Click here to take this course",
+  emailConfirmation: "Email confirmation",
+  somethingWentWrong: "something went wrong",
+  confirmationEmailProgress: "Confirmation of the e-mail in progress ...",
 
 
 }

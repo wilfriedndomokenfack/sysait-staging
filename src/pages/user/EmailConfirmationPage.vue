@@ -4,14 +4,14 @@
 
       <q-card style="width: 300px">
         <q-card-section class="bg-primary text-white">
-          <div class="text-h6">Email confirmation</div>
+          <div class="text-h6">{{ $t('emailConfirmation') }}</div>
         </q-card-section>
 
         <q-card-section class=" flex flex-center">
           {{ message }}
         </q-card-section>
 
-        <q-card-actions align="right" class="bg-white text-teal">
+        <q-card-actions align="right" class="bg-white text-primary">
           <q-btn flat label="OK" v-close-popup/>
         </q-card-actions>
       </q-card>
@@ -38,18 +38,18 @@ export default {
       muKey: 3,
       model: true,
       fullPath: this.$route.fullPath,
-      message: "Email confermato",
+      message: this.$t('somethingWentWrong'),
     };
   },
   async mounted(){
-    this.$q.loading.show();
+    this.$q.loading.show({message: this.$t('confirmationEmailProgress')});
     const confirmation_token = this.fullPath.split("=")[1];
     try {
       const response = await Api().post("users/confirmation", { params: { confirmation_token: confirmation_token } });
-      this.message = response?.data.message ?? null
+      if(response?.data.message ) this.message = response?.data.message
       this.muKey++
     } catch (error) {
-      this.message = error + " try again latter"
+      this.message = error + " - " + this.message
     }finally{
       this.$q.loading.hide();
     }
