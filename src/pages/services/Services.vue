@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import ServicesComponent from "@/components/ServicesComponent.vue";
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import ServicesComponent from "@/components/service/ServicesComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import AlertComponent from "@/components/AlertComponent.vue";
 import BannerPages from "@/components/utils/BannerPages.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
