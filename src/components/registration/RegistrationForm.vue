@@ -12,7 +12,7 @@
       >
         <q-input
           v-if="currentRoute == 'signup'"
-          id="name"
+          id="input-long"
           rounded
           outlined
           bg-color="white"
@@ -27,7 +27,6 @@
 
         <q-input
           v-if="currentRoute == 'signup'"
-          id="last-name"
           rounded
           outlined
           bg-color="white"
@@ -40,7 +39,6 @@
           </template>
         </q-input>
         <q-input
-          id="email"
           rounded
           outlined
           bg-color="white"
@@ -58,7 +56,6 @@
           outlined
           bg-color="white"
           v-model="form.password"
-          id="password"
           type="password"
           :label="$t('password')"
         >
@@ -69,7 +66,6 @@
 
         <q-input
           v-if="currentRoute == 'signup'"
-          id="passwordR"
           rounded
           outlined
           bg-color="white"
@@ -102,7 +98,7 @@
           id="rememberMe"
           v-if="currentRoute == 'signin'"
           :label="$t('remember')"
-          v-model="form.rememberMe"
+          v-model="form.remember_me"
           onclick="lsRememberMe()"
         />
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
@@ -136,7 +132,7 @@ export default {
         password: null,
         accept: false,
       },
-      rememberMe: false,
+      remember_me: false,
       repeatedPassword: null,
       currentRoute: null,
       show: false,

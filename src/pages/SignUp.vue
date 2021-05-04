@@ -41,6 +41,6 @@ export default {
 
 <style scoped lang="scss">
 .page-background {
-  background-image: url("/users/ImageBgLoginRegisster.png");
+  background-image: url("/users/ImageBgLoginRegister.png");
 }
 </style>

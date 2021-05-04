@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-image q-pt-xl q-pb-xl flex flex-center">
+  <div class="page-background q-pt-xl q-pb-xl flex flex-center">
     <UsersComponent
       @form="getForm"
       :buttonProp="$t('registration')"
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bg-image {
-  background-image: url("/users/ImageBgLoginRegisster.png");
+.page-background {
+  background-image: url("/users/ImageBgLoginRegister.png");
 }
 </style>

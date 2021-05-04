@@ -1,16 +1,16 @@
 <template>
   <div class="column justify-between">
     <div class="col-12 flex flex-center">
-         <div class="q-pb-xl q-pa-md text-center">
+      <div class="pg-description q-pb-xl q-pa-md text-center">
         {{ pageDescriptio }}<br />
         <h5>{{ userQuestionProp }}</h5>
 
         <q-btn :to="pathToProp" :label="buttonProp" color="primary" size="md" rounded />
-        </div>
-        <img
-          src="~assets/sysait_ecran.png"
-          style="width: 100%; height: auto; border-bottom-left-radius: 25px"
-        />
+      </div>
+      <img
+        src="~assets/sysait_ecran.png"
+        style="width: 100%; height: auto; border-bottom-left-radius: 25px"
+      />
     </div>
   </div>
 </template>
@@ -36,9 +36,18 @@ export default {
 };
 </script>
 <style scoped <style lang="scss">
-.bg-content {
-  background-color: #fafaf9; 
-  
+.pg-description {
+  background-color: #fafaf9;
+  @media (min-width: $breakpoint-sm-min) {
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    width: 100%;
+  }
+  @media (max-width: 420px) {
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    width: 100%;
+  }
 }
 .image-content {
   @media (min-width: $breakpoint-sm-min) {
