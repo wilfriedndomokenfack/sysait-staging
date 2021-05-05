@@ -69,7 +69,7 @@
           rounded
           outlined
           bg-color="white"
-          v-model="form.repeatedPassword"
+          v-model="repeatedPassword"
           type="password"
           :label="$t('passwordRepeated')"
         >
@@ -98,7 +98,7 @@
           id="rememberMe"
           v-if="currentRoute == 'signin'"
           :label="$t('remember')"
-          v-model="form.remember_me"
+          v-model="remember_me"
           onclick="lsRememberMe()"
         />
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
@@ -228,11 +228,9 @@ export default {
           check = false;
         }
 
-        if (this.form.password && this.repeatedPassword) {
-          if (this.form.password != this.repeatedPassword) {
-            this.errors.push(this.$t("passwordMatch"));
-            check = false;
-          }
+        if (this.form.password != this.repeatedPassword) {
+          this.errors.push(this.$t("passwordMatch"));
+          check = false;
         }
       }
 

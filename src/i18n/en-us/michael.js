@@ -43,7 +43,7 @@ export const michaelTranslations = {
   emptyEmail:"Fill in the email field. ",
   correctPassword:"Fill in the password field correctly, it must have at least 8 characters composed of uppercase, lowercase and special characters.",
   emptyPassword:"Fill in the password field. ",
-  acceptTerms:"Please accept the terms and conditions",
+  acceptTerms:"Please accept the terms and conditions! ",
   passwordMatch:"Passwords entered are not equal. "
 
 }
