@@ -19,16 +19,7 @@ export const wilfriedTranslations = {
 
   whoAreWe: "Chi siamo",
   takeCourse: "Clicca qui per seguire questo corso",
-
-
-
-
-  langChange: 'Cambi la lingua',
-  dateLabel: 'Oggi è il',
-
-  sendLoginForm: 'Accedi',
-  CanotEnter: 'Non riesci ad accedere',
-
-  logOut: 'Disconnettersi',
-
+  emailConfirmation: "Conferma dell'email",
+  somethingWentWrong: "Qualcosa è andato storto",
+  confirmationEmailProgress: "Confermare l\'e-mail in corso ...",
 }
