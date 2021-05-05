@@ -35,7 +35,6 @@
           </div>
           <p class="sysait_black q-pt-md">{{ product.description }}</p>
           <div class="q-pa-md btn-1" style="text-align: center">
-            {{ product.id }}
             <q-btn
               class="bg_sysait_cerulean text-white "
               no-caps
