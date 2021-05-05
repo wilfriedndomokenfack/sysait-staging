@@ -26,7 +26,7 @@
 
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import TrainingsComponent from "@/components/training/TrainingsComponent.vue";
 import PageDescription from "@/components/utils/PageDescription.vue"
 import AddElementBtn from "@/components/utils/AddElementBtn.vue"
@@ -64,7 +64,6 @@ export default {
   },
   data() {
     return {
-      bannerUrl: "ImageAbout.png",
       renderComponent: false,
       trainings: null,
       pageDescription: "",

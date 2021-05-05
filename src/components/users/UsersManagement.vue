@@ -153,7 +153,7 @@ export default {
       if(trainingData){
         let user = this.users.find(v => v.id === trainingData.id)
         user.courses.push(trainingData.training)
-        console.log(user.courses)
+       
         this.tableKey++
       }
 

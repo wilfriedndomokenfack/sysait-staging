@@ -28,3 +28,11 @@ export const Constants = {
     {label: "PUBLISHED",value: 4, color: 'green-14' }
   ]
 }
+
+export const uniqCode = (n) => {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first n characters
+  // after the decimal.
+  return '' + Math.random().toString(36).substr(2, n);
+
+}
