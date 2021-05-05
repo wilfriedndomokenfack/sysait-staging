@@ -22,15 +22,4 @@ export const wilfriedTranslations = {
   emailConfirmation: "Conferma dell'email",
   somethingWentWrong: "Qualcosa è andato storto",
   confirmationEmailProgress: "Confermare l\'e-mail in corso ...",
-
-
-
-  langChange: 'Cambi la lingua',
-  dateLabel: 'Oggi è il',
-
-  sendLoginForm: 'Accedi',
-  CanotEnter: 'Non riesci ad accedere',
-
-  logOut: 'Disconnettersi',
-
 }

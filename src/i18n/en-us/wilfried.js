@@ -21,6 +21,9 @@ export const wilfriedTranslations = {
 
 
   takeCourse: "Click here to take this course",
+  emailConfirmation: "Email confirmation",
+  somethingWentWrong: "something went wrong",
+  confirmationEmailProgress: "Confirmation of the e-mail in progress ...",
 
 
 }
