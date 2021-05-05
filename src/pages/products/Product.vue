@@ -7,7 +7,6 @@
         :companyName="companyName"
       />
     </div>
-
     <ProductComponent :propProduct="product" v-if="product" :key="myKey" class="constrain"/>
   </q-page>
 </template>
@@ -48,7 +47,7 @@ export default {
   },
   methods: {
     getProduct() {
-      this.product = this.products?.filter(v => v.id === this.productId)[0];
+      this.product = this.products?.find(v => v.id === this.productId);
       if (!this.product) {
         this.$router.push({ name: "products" });
       }

@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import ProductsComponent from "@/components/ProductsComponent.vue";
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import ProductsComponent from "@/components/product/ProductsComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import BannerPages from "@/components/utils/BannerPages.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
 import { products } from "@/models/product.js";

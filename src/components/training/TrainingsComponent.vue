@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="renderContent">
     <div v-if="localTrainings.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
       <div v-for="training in localTrainings" >
         <TrainingComponent :trainingProp="training" />
@@ -14,9 +14,9 @@
 <script>
 import TrainingComponent from "@/components/training/TrainingComponent.vue";
 import { isSuperUser } from '@/models/user.js'
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 export default {
-  name: 'Trainings',
+  name: 'TrainingsComponent',
   props: ['propTrainings'],
   components: {
     TrainingComponent,
@@ -25,16 +25,18 @@ export default {
 
   data () {
     return {
-      localTrainings: []
+      localTrainings: [],
+      renderContent: false
     }
   },
-  mounted(){
+  created(){
     this.filterTrainings()
   },
 
   methods: {
     async filterTrainings(){
       this.localTrainings = await isSuperUser() ? this.propTrainings : this.propTrainings?.filter(v => v.status == "4")
+      this.renderContent = true
     }
   }
 }
