@@ -18,7 +18,7 @@
 
 <script>
 import { sendcontactform } from '@/models/contact/FormContact.js';
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import { netWorkError } from "@/models/utils/netWorkError";
 import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
