@@ -36,6 +36,7 @@ import { mapGetters } from "vuex";
 import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
 import { trainings } from "@/models/training.js"
 import { netWorkError } from "@/models/utils/netWorkError";
+import { getUserCourses } from "@/models/user.js"
 
 export default {
   name: 'TrainingsPage',
@@ -63,7 +64,6 @@ export default {
   },
   data() {
     return {
-      bannerUrl: "ImageAbout.png",
       renderComponent: false,
       trainings: null,
       pageDescription: "",
@@ -81,6 +81,9 @@ export default {
 
   async mounted() {
 
+    if(this.currentUser && !this.currentUser?.coursesIds){
+      await getUserCourses(this.currentUser.id)
+    }
 
     if(!this["wilfried/training"]){
       await this.getTrainings()

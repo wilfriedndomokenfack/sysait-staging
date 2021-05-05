@@ -17,10 +17,10 @@
           <div v-html="trainingProp.description">
 
           </div>
-          <div v-if="trainingProp.link_course && isEnrollToTraining(trainingProp.id)">
+          <div v-if="trainingProp.link_course && (isEnrollToTraining(trainingProp.id) || isAdmin)">
             <q-btn
               @click="openPage(trainingProp.link_course)"
-              label="Click here to folow the course"
+              :label="$t('takeCourse')"
               outline
               color="primary"
               dense
@@ -37,7 +37,7 @@
 
       </q-card-actions>
       <q-separator color="primary" size="5px"/>
-      <q-card-actions align="right" v-if="currentUser">
+      <q-card-actions align="right" v-if="isAdmin">
         <q-btn
           :label="status"
           outline
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { isSuperUser } from '@/models/user.js'
 import { mapGetters } from "vuex";
 import { Constants } from '@/models/utils/common.js'
 import { deleteDBTraining } from "@/models/training.js"
@@ -83,13 +84,16 @@ export default {
       imKey: 0,
       googImg: false,
       status: null,
-      color: null
+      color: null,
+      isAdmin: false,
+      
     }
   },
   computed: {
     ...mapGetters(["currentUser"])
   },
   async mounted(){
+    this.isAdmin = await isSuperUser()
     this.googImg = await this.getLogoUrl(this.trainingProp.image_path)
     this.status = Constants.STATUS.find(v => v.value == this.trainingProp.status)?.label
     this.color = Constants.STATUS.find(v => v.value == this.trainingProp.status)?.color

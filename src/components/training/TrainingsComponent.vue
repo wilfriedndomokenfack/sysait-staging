@@ -33,8 +33,8 @@ export default {
   },
 
   methods: {
-    filterTrainings(){
-      this.localTrainings = isSuperUser() ? this.propTrainings : this.propTrainings?.filter(v => v.status == "4")
+    async filterTrainings(){
+      this.localTrainings = await isSuperUser() ? this.propTrainings : this.propTrainings?.filter(v => v.status == "4")
     }
   }
 }

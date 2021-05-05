@@ -63,7 +63,7 @@
         </div>
         <div v-else-if="deviceMobile" class="col-xs-1 col-sm-1 col-md-4 q-gutter-sm">
           <div class="color_sysait_cerulean">
-            {{ currentUser.fullname }}
+            {{ currentUser.first_name }}
           </div>
         </div>
 
@@ -196,7 +196,7 @@
               <div v-if="currentUser">
                 <q-item clickable class="text-center">
                   <q-item-section>
-                    <q-item-label class="color_sysait_cerulean"> {{ currentUser.fullname.toUpperCase()  }} </q-item-label>
+                    <q-item-label class="color_sysait_cerulean"> {{ currentUser.first_name.toUpperCase()  }} </q-item-label>
                   </q-item-section>
                 </q-item>
               </div>

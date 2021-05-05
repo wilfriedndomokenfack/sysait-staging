@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     async saveForm(form){
-      console.log(form)
       let response = await sendToTranings(form)
 
       this.$store.dispatch("wilfried/addTraining", { ...response });

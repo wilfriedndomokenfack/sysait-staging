@@ -30,7 +30,7 @@
       </q-input>
 
       <div v-else class="col-12">
-        <q-toolbar v-if="isSuperUser()">
+        <q-toolbar v-if="isAdmin">
           <q-toolbar-title>
           </q-toolbar-title>
           <div class="q-pa-md q-gutter-sm" dense>
@@ -44,7 +44,7 @@
             />
           </div>
         </q-toolbar>
-        <p :class="{description: $q.platform.is.desktop}" >
+        <p v-if="descriptionProp" :class="{description: $q.platform.is.desktop}" >
           {{ descriptionProp.description }}
         </p>
       </div>
@@ -54,25 +54,39 @@
 <script>
 import { isSuperUser } from '@/models/user.js'
 import { deepCopy } from '@/models/utils/common.js'
+import { mapGetters } from "vuex";
 export default {
   name: 'PageDescription',
   props: ['descriptionProp', 'category'],
+  watch: {
+    currentUser: {
+      immediate: true,
+      handler() {
+        this.userChanged()
+      }
+    }
+  },
   data () {
     return {
       localDescription: null,
-      editDescription: false
+      editDescription: false,
+      isAdmin: false
     }
   },
-  mounted(){
-
+   computed: {
+    ...mapGetters(["currentUser"])
+  },
+  async mounted(){
+    this.isAdmin = await isSuperUser()
   },
   methods: {
-    isSuperUser,
+    async userChanged(){
+      this.isAdmin = await isSuperUser()
+    },
     emitDescription(){
       if(this.localDescription.description.length > 3 ) this.$emit('description', this.localDescription)
     },
     updateDescription(){
-
       this.localDescription = deepCopy(this.descriptionProp)
       this.localDescription.category = this.category
       this.editDescription = true

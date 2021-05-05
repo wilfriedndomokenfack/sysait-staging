@@ -121,7 +121,7 @@ const routes = [
             component: () => import('pages/jobs/Jobs.vue'),
           },
           {
-            path: "job",
+            path: "job/:job_id",
             name: 'job',
             meta: { breadcrumb: 'job' },
             component: () => import('pages/jobs/Job.vue'),
@@ -133,7 +133,7 @@ const routes = [
             component: () => import('pages/jobs/NewJob.vue'),
           },
           {
-            path: "job/edit",
+            path: ":job_id/edit",
             name: 'editJob',
             meta: { breadcrumb: 'Edit a job' },
             component: () => import('pages/jobs/EditJob.vue'),
@@ -189,6 +189,12 @@ const routes = [
         name: 'signup',
         meta: { breadcrumb: 'Sign up' },
         component: () => import('pages/SignUp.vue'),
+      },
+      {
+        path: "admin",
+        name: 'admin',
+        meta: { breadcrumb: 'AdminPanel' },
+        component: () => import('pages/AdminPanel.vue'),
       }
 
     ]
