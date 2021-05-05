@@ -22,17 +22,6 @@
 <script>
 export default {
   name: 'Sitedown',
-  mounted(){
-    let laguages = ['en-us', 'fr', 'it']
-    const laguagesCodes = laguages.map( v => v.substring(0, 2))
-    let userLang = navigator.language || navigator.userLanguage;
-    let code = userLang.substring(0, 2);
-
-    if(laguagesCodes.indexOf(code) > -1){
-      if(code === 'en') code = 'en-us'
-      this.$i18n.locale = code;
-    }
-  }
 }
 
 </script>

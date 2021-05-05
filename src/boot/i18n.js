@@ -4,9 +4,19 @@ import messages from 'src/i18n'
 
 Vue.use(VueI18n)
 
+let response = 'en-us'
+let laguages = ['fr', 'it']
+const laguagesCodes = laguages.map( v => v.substring(0, 2))
+let userLang = navigator.language || navigator.userLanguage;
+let code = userLang.substring(0, 2);
+
+if(laguagesCodes.indexOf(code) > -1){
+  response = code;
+}
+
 const i18n = new VueI18n({
-  locale: 'en-us',
-  fallbackLocale: 'en-us',
+  locale: response,
+  fallbackLocale: response,
   messages
 })
 
@@ -14,6 +24,20 @@ export default ({ app }) => {
   // Set i18n instance on app
   app.i18n = i18n
 }
+
+// export const setLang = () => {
+//   let response = 'en-us'
+//   let laguages = ['fr', 'it']
+//   const laguagesCodes = laguages.map( v => v.substring(0, 2))
+//   let userLang = navigator.language || navigator.userLanguage;
+//   let code = userLang.substring(0, 2);
+
+//   if(laguagesCodes.indexOf(code) > -1){
+//     response = code;
+//   }
+
+//   return response
+// }
 
 export { i18n }
 
