@@ -19,7 +19,9 @@ export const wilfriedTranslations = {
 
   whoAreWe: "Chi siamo",
   takeCourse: "Clicca qui per seguire questo corso",
-
+  emailConfirmation: "Conferma dell'email",
+  somethingWentWrong: "Qualcosa è andato storto",
+  confirmationEmailProgress: "Confermare l\'e-mail in corso ...",
 
 
 
