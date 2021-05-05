@@ -16,7 +16,7 @@
 
 <script>
 import BannerPages from "@/components/utils/BannerPages.vue";
-import EmptyComponent from "@/components/EmptyComponent.vue";
+import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import PageDescription from "@/components/utils/PageDescription.vue"
 import JobsComponent from "@/components/job/JobsComponent.vue"
 import AddElementBtn from "@/components/utils/AddElementBtn.vue"
@@ -126,7 +126,6 @@ export default {
     },
 
     filterJobs(model = null){
-      console.log(model)
 
       if(!model || !this.jobs){
         this.filteredJobs = this.jobs
@@ -135,7 +134,6 @@ export default {
       }
       let isArray = Array.isArray(model)
       this.model = model
-      console.log("this.jobs",this.jobs)
       let localJobs = [...this.jobs]
 
       if(isArray && model?.length > 0){
@@ -146,11 +144,9 @@ export default {
       }else if(!isArray && model?.length > 0){
 
         const needle = model.toLowerCase() ?? ""
-        console.log(needle)
         localJobs = localJobs?.filter(
           v => v.job_cod?.toLowerCase().indexOf(needle) > -1
         )
-        console.log("localJobs",localJobs)
       }
 
       this.filteredJobs = localJobs

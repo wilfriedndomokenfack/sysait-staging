@@ -2,7 +2,7 @@
   <div class=" row justify-center container1">
 
     <img src="~assets/HomePageImage.png" style="width:100%;" />
-     <div class="banner_content txt  constrain">
+     <div class="banner_content txt  constrain" v-if="renderComponent">
       <div class=" nbm">
         <transition appear name="bannerHome">
           <div class="">
@@ -47,10 +47,12 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      renderComponent: false,
+    };
   },
   mounted(){
-
+    if(this.company) this.renderComponent = true
   },
 
   methods: {

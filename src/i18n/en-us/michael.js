@@ -8,13 +8,12 @@ export const michaelTranslations = {
   products:"Products",
   aboutUs:"About Us",
   contacts:"Contact Us",
-  allRights: "all rights reserved",
-  noService:"Sorry...! Menu temporarily unavailable", 
+  noService:"Sorry...! Menu temporarily unavailable",
   netWorkErrorMSG: "Upload content failed!",
-  readMore: "READ MORE" ,
-  findOutMore: "FIND OUT MORE",
+  readMore: "Read more" ,
+  findOutMore: "Find out more",
   whoAreWe: "Who are we",
-  productPage: "PRODUCTS",
+  productPage: "Products",
   trustUs: "They trusted us",
   clickMeProducts: "Click to see the product"
 
