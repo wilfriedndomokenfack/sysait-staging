@@ -7,29 +7,33 @@
       :userQuestionProp="$t('hasAccount')"
       :pageNameProp="$t('registration')"
     />
+  confirm:"Messaggio di conferma"
+  confirm:"Messaggio di conferma"
+    <RegistrationPopupComponent v-if="emailConfirmMessage" :propTitle="$t('confirm')" :propMessage="emailConfirmMessage" :key="myKey" />
   </div>
 </template>
 
 <script>
 import UsersComponent from "@/components/users/UsersComponent.vue";
 import { signup } from "@/models/auth/Auth";
+import RegistrationPopupComponent from "@/components/registration/RegistrationPopupComponent.vue";
 export default {
   name: "signUpPage",
   components: {
     UsersComponent,
+    RegistrationPopupComponent,
   },
   data() {
     return {
-      user: {
-        fullname: "Pratik",
-        password: "12345",
-      },
+      emailConfirmMessage:null,
+      myKey: 50,
     };
   },
   methods: {
-    getForm(form) {
+    async getForm(form) {
       // foward the form to the page;
-      signup(form);
+      this.emailConfirmMessage = await signup(form); 
+      this.myKey++;
     },
     onSubmit() {
       console.log(this.user);

@@ -44,6 +44,7 @@ export const michaelTranslations = {
   correctPassword:"compilare correttamente il campo password, deve contenere almeno 8 caratteri composti da lettere maiuscole, minuscole e caratteri speciali. ",
   emptyPassword:"Valorizzare campo password. ",
   acceptTerms:"Accetta i termini e le condizioni! ",
-  passwordMatch:"Le password inserite non sono uguali. "
+  passwordMatch:"Le password inserite non sono uguali. ",
+  confirm:"Messaggio di conferma"
 
 }

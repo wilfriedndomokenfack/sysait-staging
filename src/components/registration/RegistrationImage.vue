@@ -36,20 +36,15 @@ export default {
 };
 </script>
 <style scoped <style lang="scss">
-.pg-description {
+ .pg-description {
   background-color: #fafaf9;
   @media (min-width: $breakpoint-sm-min) {
     border-top-left-radius: 26px;
-    border-top-right-radius: 26px;
+    /* border-top-right-radius: 26px; */
     width: 100%;
   }
-  @media (max-width: 420px) {
-    border-top-left-radius: 26px;
-    border-top-right-radius: 26px;
-    width: 100%;
-  }
-}
-.image-content {
+} 
+/* .image-content {
   @media (min-width: $breakpoint-sm-min) {
     border-bottom-left-radius: 25px;
   }
@@ -60,5 +55,5 @@ export default {
   @media (min-width: 1024px) {
     padding: inherit;
   }
-}
+} */
 </style>

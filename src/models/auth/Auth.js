@@ -17,13 +17,17 @@ export const login = async (user) => {
 }
 
 export const signup = async (user) => {
+  let message = null;
   try {
     const response = await postRegistration(user)
-    const token = response.data
-    store.dispatch("setCurrentUser", token);
+    //const token = response.data
+    //store.dispatch("setCurrentUser", token);
+     message = response.data?.message
   } catch (error) {
-    console.log("error - " + error)
-  }
+    message = "error - " + error;
+  } finally {
+    return message;
+  };
 }
 
 export const logout = () => {

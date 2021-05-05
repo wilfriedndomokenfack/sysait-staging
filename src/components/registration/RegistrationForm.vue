@@ -98,8 +98,7 @@
           id="rememberMe"
           v-if="currentRoute == 'signin'"
           :label="$t('remember')"
-          v-model="remember_me"
-          onclick="lsRememberMe()"
+          v-model="rememberMe"
         />
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         <div class="col flex flex-center">
@@ -125,6 +124,7 @@ export default {
   props: ["pageNameProp"],
   data() {
     return {
+      storage: window.localStorage,
       form: {
         first_name: null,
         last_name: null,
@@ -132,7 +132,7 @@ export default {
         password: null,
         accept: false,
       },
-      remember_me: false,
+      rememberMe: false,
       repeatedPassword: null,
       currentRoute: null,
       show: false,
@@ -244,6 +244,8 @@ export default {
           this.errors.push(this.$t("emptyPassword"));
           check = false;
         }
+
+        lsRememberMe();
       }
 
       if (check) {
@@ -260,11 +262,12 @@ export default {
     },
 
     onReset() {
-      this.name = null;
-      this.surname = null;
-      this.email = null;
-      this.password = null;
-      this.accept = false;
+      this.form.first_name = null;
+      this.form.last_name = null;
+      this.form.email = null;
+      this.form.password = null;
+      this.form.accept = false;
+      this.repeatedPassword = null;
     },
   },
 
