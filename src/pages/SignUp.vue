@@ -36,7 +36,6 @@ export default {
       this.myKey++;
     },
     onSubmit() {
-      console.log(this.user);
       login(this.user);
     },
   },

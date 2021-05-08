@@ -64,7 +64,6 @@ export default {
   },
   data() {
     return {
-      bannerUrl: "ImageAbout.png",
       renderComponent: false,
       trainings: null,
       pageDescription: "",

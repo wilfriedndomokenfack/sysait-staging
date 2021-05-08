@@ -15,6 +15,7 @@ export const saveJwtToken = token => setCookie("sy-jwt", token);
 
 // for avery store module, we need one loadSession
 export const loadWilfriedSession = () => {
+  
   return {
     company: getLocalStorageValue("sy-cmpy"),
     tecnologies: getLocalStorageValue("sy-techs"),

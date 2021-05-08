@@ -16,7 +16,7 @@ export const setCookie = ( key, value, expiryDate) => {
     //httpOnly: true      // To help mitigate cross-site scripting (XSS) attacks
   };
 
-  //console.log(options)
+
 
   if (!Cookies.has(key)) Cookies.set(key, value, options);
 };
