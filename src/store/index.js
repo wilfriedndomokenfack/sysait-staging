@@ -53,7 +53,7 @@ export default new Store({
     setUserCourses(state, payload){
       state.currentUser = {...state.currentUser, coursesIds: payload}
     },
-    
+
     setCurrentUser (state, token) {
       if(token){
         const user = jwt_decode(token);
@@ -61,7 +61,8 @@ export default new Store({
         userKicker(user.exp);
         saveJwtToken(token)
 
-        const goTo = state.route.from.name ?? 'home'
+        const goTo = state.route.from.name == "signup" ? "home" : state.route.from.name
+
         router.push({ name: goTo });
         notify('green', 'Login with success!')
       }else{

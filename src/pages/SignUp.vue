@@ -1,55 +1,38 @@
 <template>
-  <q-page class="flex bg-image flex-center">
-    <q-card v-bind:style="$q.screen.lt.sm ? { width: '80%' } : { width: '30%' }">
-      <q-card-section>
-        <q-avatar size="103px" class="absolute-center shadow-10">
-          <img src="login/profile.svg" />
-        </q-avatar>
-      </q-card-section>
-      <q-card-section>
-        <div class="text-center q-pt-lg">
-          <div class="col text-h6 ellipsis">Log in</div>
-        </div>
-      </q-card-section>
-      <q-card-section>
-        <q-form @submit="onSubmit" class="q-gutter-md">
-          <q-input
-            filled
-            v-model="user.fullname"
-            label="Fullname"
-            lazy-rules
-            :rules="[(val) => (val && val.length > 0) || 'Digita il tuo nome utente']"
-          />
-
-          <q-input
-            type="password"
-            filled
-            v-model="user.password"
-            label="Password"
-            lazy-rules
-            :rules="[(val) => (val && val.length > 0) || 'Digita la tua password']"
-          />
-          <div>
-            <q-btn label="Login" type="submit" color="primary" />
-          </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </q-page>
+  <div class="page-background q-pt-xl q-pb-xl flex flex-center">
+    <UsersComponent
+      @form="getForm"
+      :buttonProp="$t('login')"
+      pathToProp="/signin"
+      :userQuestionProp="$t('hasAccount')"
+      :pageNameProp="$t('registration')"
+    />
+    <RegistrationPopupComponent v-if="emailConfirmMessage" :propTitle="$t('confirm')" :propMessage="emailConfirmMessage" :key="myKey" />
+  </div>
 </template>
 
 <script>
-import { login } from "@/models/auth/Auth";
+import UsersComponent from "@/components/users/UsersComponent.vue";
+import { signup } from "@/models/auth/Auth";
+import RegistrationPopupComponent from "@/components/registration/RegistrationPopupComponent.vue";
 export default {
+  name: "signUpPage",
+  components: {
+    UsersComponent,
+    RegistrationPopupComponent,
+  },
   data() {
     return {
-      user: {
-        fullname: "Pratik",
-        password: "12345",
-      },
+      emailConfirmMessage:null,
+      myKey: 50,
     };
   },
   methods: {
+    async getForm(form) {
+      // foward the form to the page;
+      this.emailConfirmMessage = await signup(form);
+      this.myKey++;
+    },
     onSubmit() {
       login(this.user);
     },
@@ -57,8 +40,8 @@ export default {
 };
 </script>
 
-<style>
-.bg-image {
-  background-image: linear-gradient(135deg, #007db7 0%, #e140b9 100%);
+<style scoped lang="scss">
+.page-background {
+  background-image: url("/users/ImageBgLoginRegister.png");
 }
 </style>
