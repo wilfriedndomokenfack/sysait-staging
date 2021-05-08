@@ -22,25 +22,11 @@ export const wilfriedTranslations = {
 
 
   takeCourse: "Cliquez ici pour suivre ce cours",
+  emailConfirmation: "Confirmation de l'émail",
+  somethingWentWrong: "Quelque chose s\'est mal passé",
+  confirmationEmailProgress: "Confirmation de l\'e-mail en cours ...",
 
 
 
 
-  failed: "Action échoué",
-  success: "L'action a réussi",
-
-  appName: "System Afrik Information and Technoloy",
-
-  langChange: "Changer la langue",
-  dateLabel: "Aujourdhui c'est le",
-
-  sendLoginForm: "se connecter",
-  CanotEnter: "Impossible de se connecter",
-
-  logOut: "Deconnection",
-
-
-
-  notifyAuthLoginMesg: "l'authentification a réussi",
-  notifyAuthLogoutMesg: "tu n'es pas authentifié"
 }
