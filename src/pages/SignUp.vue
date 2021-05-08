@@ -7,8 +7,6 @@
       :userQuestionProp="$t('hasAccount')"
       :pageNameProp="$t('registration')"
     />
-  confirm:"Messaggio di conferma"
-  confirm:"Messaggio di conferma"
     <RegistrationPopupComponent v-if="emailConfirmMessage" :propTitle="$t('confirm')" :propMessage="emailConfirmMessage" :key="myKey" />
   </div>
 </template>
@@ -32,7 +30,7 @@ export default {
   methods: {
     async getForm(form) {
       // foward the form to the page;
-      this.emailConfirmMessage = await signup(form); 
+      this.emailConfirmMessage = await signup(form);
       this.myKey++;
     },
     onSubmit() {

@@ -23,7 +23,7 @@ export default {
   name: "RegistrationPopupComponent",
   props:{
     propTitle:String,
-    propMessage:String 
+    propMessage:String
   },
 
   watch:{
@@ -34,7 +34,7 @@ export default {
             this.$router.push({
             path:"/signin"
           })
-        } 
+        }
       }
     }
   },

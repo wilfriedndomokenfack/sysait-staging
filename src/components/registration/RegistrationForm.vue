@@ -245,7 +245,7 @@ export default {
           check = false;
         }
 
-        lsRememberMe();
+        //lsRememberMe();
       }
 
       if (check) {
