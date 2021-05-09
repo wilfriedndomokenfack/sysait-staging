@@ -42,7 +42,7 @@
           filled
           v-model="contact.email"
           lazy-rules
-          :rules="[val => !!val || $t('contact_email_control'), isValidEmail]"
+          :rules="[(val && val.length > 0) || $t('contact_email_control')]"
         />
       </div>
       <div class="">
@@ -55,8 +55,7 @@
           v-model="contact.phone_number"
           lazy-rules
           :rules="[
-            val => !!val || $t('contact_phone_number_control'),
-            isValidTel
+            val => (val && val.length > 0) || $t('contact_phone_number_control')
           ]"
         />
       </div>
@@ -133,6 +132,10 @@
 </template>
 
 <script>
+import {
+  validateEmail,
+  validatePhone
+} from "src/models/utils/validations.js";
 export default {
   name: "ContactFormComponent",
   data() {
@@ -152,16 +155,6 @@ export default {
     };
   },
   methods: {
-    isValidTel(val) {
-     
-      const telPattern = /^\+(?:[0-9] ?){6,14}[0-9]$/;
-      return telPattern.test(val);
-    },
-
-    isValidEmail(val) {
-      const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
-      return emailPattern.test(val);
-    },
     onSubmit() {
       //control all input before call submit
       if (
@@ -170,18 +163,20 @@ export default {
         this.contact.phone_number?.length < 1 ||
         this.contact.city?.length < 1 ||
         this.contact.country?.length < 1 ||
-        //isValidEmail(this.contact.email) == false ||
         this.contact.email?.length < 1 ||
         this.contact.address?.length < 1 ||
         this.contact.cap?.length < 1 ||
-        this.contact.message?.length < 1
-      ) {
-        this.$q.notify({
+        this.contact.message?.length < 1 ||
+        validateEmail(this.contact.email) == false ||
+        validatePhone(this.contact.phone_number) == false
+      ) 
+      {
+          this.$q.notify({
           message: "Check errors in the form!",
           color: "red-4",
           textColor: "white",
           icon: "cloud_done"
-        });
+          });
       } else {
         //console.log(this.contact)
         this.$emit("formcontact", this.contact);

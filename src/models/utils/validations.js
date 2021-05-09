@@ -1,6 +1,6 @@
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const namePattern = /^[a-zA-Z ]{2,30}$/;
-const phonePattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+const phonePattern = /^\+(?:[0-9] ?){6,14}[0-9]$/;
 /**
  * @help: https://regexr.com/3c53v
  *(?=.*\d)  should contain at least one digit
