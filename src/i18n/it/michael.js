@@ -26,7 +26,6 @@ export const michaelTranslations = {
   email:"Indirizzo Mail",
   validAddress:"Digitare un indirizzo email valido",
   required:"Campo obligatorio",
-  password:"Passoword",
   passwordRepeated:"Confirma Password",
   enterName:"Compilare il campo cognome",
   enterLastName:"Compilare il campo nome",

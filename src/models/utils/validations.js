@@ -24,6 +24,6 @@ export const validateName = (val) =>
 export const validatePassword = (val) =>
   passwordPattern.test(val)
 
-  export const validatePhone = (val) =>
+export const validatePhone = (val) =>
   phonePattern.test(val)
 

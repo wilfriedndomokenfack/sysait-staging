@@ -26,7 +26,6 @@ export const michaelTranslations = {
   email:"Email Address",
   validAddress:"Please enter a valid email address",
   required:"Field is required",
-  password:"Passoword",
   passwordRepeated:"Confirm Password",
   enterName:"Please type name",
   enterLastName:"Please type lastname",

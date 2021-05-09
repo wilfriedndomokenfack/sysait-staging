@@ -1,6 +1,9 @@
 <template>
-  <div class="page-background q-pt-xl q-pb-xl flex flex-center">
-    <UsersComponent
+  <div
+    class="page-background flex flex-center"
+    :class="{'q-pt-xl q-pb-xl': !this.$q.screen.lt.md, 'q-pt-sm q-pb-sm': this.$q.screen.lt.md, }"
+  >
+    <AuthenticationComponent
       @form="getForm"
       :buttonProp="$t('login')"
       pathToProp="/signin"
@@ -12,13 +15,13 @@
 </template>
 
 <script>
-import UsersComponent from "@/components/users/UsersComponent.vue";
+import AuthenticationComponent from "@/components/authentication/AuthenticationComponent.vue";
 import { signup } from "@/models/auth/Auth";
-import RegistrationPopupComponent from "@/components/registration/RegistrationPopupComponent.vue";
+import RegistrationPopupComponent from "@/components/authentication/RegistrationPopupComponent.vue";
 export default {
   name: "signUpPage",
   components: {
-    UsersComponent,
+    AuthenticationComponent,
     RegistrationPopupComponent,
   },
   data() {

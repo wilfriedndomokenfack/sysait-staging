@@ -1,29 +1,34 @@
 <template>
-  <div class="content_1 row">
-    <RegistrationImage
+  <div class="row" :class="{globalComp: !this.$q.screen.lt.md}">
+    <AuthenticationImage
+      v-if="!this.$q.screen.lt.md"
       class="bg-ecranRegistration col-md-6 col-sm-12 col-xs-12"
       :buttonProp="buttonProp"
       :pathToProp="pathToProp"
       :userQuestionProp="userQuestionProp"
     />
-    <RegistrationForm
+    <AuthenticationForm
       @form="getForm"
       class="col-md-6 col-sm-12 col-xs-12"
       :pageNameProp="pageNameProp"
+      :userQuestionProp="userQuestionProp"
+      :buttonProp="buttonProp"
+      :pathToProp="pathToProp"
+
     />
   </div>
 </template>
 
 <script>
-import RegistrationImage from "@/components/registration/RegistrationImage.vue";
-import RegistrationForm from "@/components/registration/RegistrationForm.vue";
+import AuthenticationImage from "@/components/authentication/AuthenticationImage.vue";
+import AuthenticationForm from "@/components/authentication/AuthenticationForm.vue";
 import { mapGetters } from "vuex";
 export default {
-  name: "UsersComponent",
+  name: "AuthenticationComponent",
   props: ["buttonProp", "pathToProp", "userQuestionProp", "pageNameProp"],
   components: {
-    RegistrationImage,
-    RegistrationForm,
+    AuthenticationImage,
+    AuthenticationForm,
   },
   data() {
     return {};
@@ -40,9 +45,10 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.content_1 {
+.globalComp {
+  background-color: #fafaf9;
   border-radius: 26px;
-  border: 4px solid;
+  border: 1px solid;
   @media (min-width: 1400px) {
     width: 100%;
   }

@@ -44,7 +44,7 @@ export default {
       title:this.propTitle,
       message:this.propMessage,
       model:true
-      };
+    };
   },
 };
 </script>

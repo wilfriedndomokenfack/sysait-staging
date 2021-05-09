@@ -1,14 +1,13 @@
 <template>
-  <div class="column component-2">
-    <div class="title-registration col-1 text-white bg-black flex flex-center">
+  <div class="column justify-between ">
+    <div class="title-registration col-1 text-white bg-black flex flex-center text-h5 text-bold">
       {{ pageNameProp }}
     </div>
-    <div class="form-page col-11 q-pb-xl flex flex-center">
+    <div class="form-page col-11 q-pb-xl text-center flex flex-center">
       <q-form
         @submit="checkForm"
-        method="post"
-        @reset="onReset"
-        class="q-pa-md q-gutter-md"
+        class="q-pa-md q-gutter-md "
+        style="width: 100%"
       >
         <q-input
           v-if="currentRoute == 'signup'"
@@ -57,7 +56,7 @@
           bg-color="white"
           v-model="form.password"
           type="password"
-          :label="$t('password')"
+          label="Password"
         >
           <template v-slot:prepend>
             <q-icon class="color_sysait_cerulean" name="lock" />
@@ -91,7 +90,11 @@
         </p>
 
         <div v-if="currentRoute == 'signin'" class="forgotPassword text-center">
-          <a href="#" style="text-decoration: none">{{ $t("forgotPass") }}</a>
+          <q-btn
+            no-caps flat dense
+            :label="$t('forgotPass')"
+            @click="changePorgotPassword"/>
+          <!-- <a href="#" style="text-decoration: none">{{ $t("forgotPass") }}</a> -->
         </div>
 
         <q-checkbox
@@ -104,26 +107,37 @@
         <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
         </div>
+
       </q-form>
+      <div v-show="this.$q.screen.lt.md" class="q-pb-xl q-pa-md text-center">
+          <div class="text-h5 q-pb-md"> {{ userQuestionProp }}</div>
+          <q-btn :to="pathToProp" :label="buttonProp" color="primary" size="md" rounded />
+        </div>
     </div>
+    <ForgotPasswordComponent v-if="forgotPassword" @close="changePorgotPassword"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { netWorkError } from "@/models/utils/netWorkError";
+import ForgotPasswordComponent from "@/components/authentication/ForgotPasswordComponent.vue";
 import {
   validateEmail,
   validateName,
   validatePassword,
 } from "src/models/utils/validations.js";
-import TermsOfAgreementComponent from "@/components/registration/TermsOfAgreementComponent.vue";
+import TermsOfAgreementComponent from "@/components/authentication/TermsOfAgreementComponent.vue";
 export default {
-  name: "RegistrationForm",
-  components: { TermsOfAgreementComponent },
-  props: ["pageNameProp"],
+  name: "AuthenticationForm",
+  components: {
+    TermsOfAgreementComponent,
+    ForgotPasswordComponent
+  },
+  props: ["pageNameProp", "userQuestionProp", "buttonProp", "pathToProp"],
   data() {
     return {
+      forgotPassword: false,
       storage: window.localStorage,
       form: {
         first_name: null,
@@ -144,6 +158,9 @@ export default {
     this.currentRoute = this.$store.getters.currentRoute; //Get the current root
   },
   methods: {
+    changePorgotPassword(){
+      this.forgotPassword = !this.forgotPassword
+    },
     toggleComponent() {
       this.termsKey++;
       this.show = true;
@@ -261,14 +278,14 @@ export default {
       }
     },
 
-    onReset() {
-      this.form.first_name = null;
-      this.form.last_name = null;
-      this.form.email = null;
-      this.form.password = null;
-      this.form.accept = false;
-      this.repeatedPassword = null;
-    },
+    // onReset() {
+    //   this.form.first_name = null;
+    //   this.form.last_name = null;
+    //   this.form.email = null;
+    //   this.form.password = null;
+    //   this.form.accept = false;
+    //   this.repeatedPassword = null;
+    // },
   },
 
   computed: {
@@ -280,9 +297,11 @@ export default {
 .form-page {
   background-color: #e0ecf2;
   border-bottom-right-radius: 26px;
-  @media (max-width: 736px) {
+  @media (max-width: 770px) {
     border-bottom-left-radius: 26px;
   }
+
+
 }
 
 .title-registration {
