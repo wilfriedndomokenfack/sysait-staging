@@ -132,10 +132,7 @@
 </template>
 
 <script>
-import {
-  validateEmail,
-  validatePhone
-} from "src/models/utils/validations.js";
+import { validateEmail, validatePhone } from "src/models/utils/validations.js";
 export default {
   name: "ContactFormComponent",
   data() {
@@ -155,6 +152,7 @@ export default {
     };
   },
   methods: {
+    
     onSubmit() {
       //control all input before call submit
       if (
@@ -169,14 +167,13 @@ export default {
         this.contact.message?.length < 1 ||
         validateEmail(this.contact.email) == false ||
         validatePhone(this.contact.phone_number) == false
-      ) 
-      {
-          this.$q.notify({
+      ) {
+        this.$q.notify({
           message: "Check errors in the form!",
           color: "red-4",
           textColor: "white",
           icon: "cloud_done"
-          });
+        });
       } else {
         //console.log(this.contact)
         this.$emit("formcontact", this.contact);
