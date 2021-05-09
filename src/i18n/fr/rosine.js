@@ -25,7 +25,7 @@ export const rosineTranslations = {
   acquire:"COMMENT ACQUÉRIR UN PRODUIT",
   use:"ILS UTILISENT LE PRODUIT",
 
-  contact: "Contactez nous",
+  contact: "Nous Contactez ",
   welcome_msg_contact:"Si vous avez des questions ou des commentaires, veuillez remplir le formulaire ci-dessous et nous vous répondrons dès que possible",
   contact_firstname:"Nom *",
   contact_lastname:"Prenom *",
