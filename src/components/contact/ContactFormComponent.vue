@@ -1,48 +1,48 @@
 <template>
-
   <div class="">
-    <br><p  class="color_sysait_cerulean text-bold text-center"> {{$t('contact_send_email')}} </p>
+    <br />
+    <p class="color_sysait_cerulean text-bold text-center">
+      {{ $t("contact_send_email") }}
+    </p>
     <q-form @submit="onSubmit">
       <div class="row  no-wrap justify-between">
-          <!-- <div class=""> -->
-            <q-input
-              class="col-xs-6 col-sm-6 col-md-6 q-pr-md"
-              :label="$t('contact_firstname')"
-              dense
-              filled
-              v-model="contact.first_name"
-              lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || $t('contact_firstname_control')
-              ]"
-            />
-          <!-- </div> 
+        <!-- <div class=""> -->
+        <q-input
+          class="col-xs-6 col-sm-6 col-md-6 q-pr-md"
+          :label="$t('contact_firstname')"
+          dense
+          filled
+          v-model="contact.first_name"
+          lazy-rules
+          :rules="[
+            val => (val && val.length > 0) || $t('contact_firstname_control')
+          ]"
+        />
+        <!-- </div> 
           <div class="">-->
-            <q-input
-              class="col-xs-6 col-sm-6  col-md-6"
-              :label="$t('contact_lastname')"
-              dense
-              filled
-              v-model="contact.last_name"
-              lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || $t('contact_lastname_control')
-              ]"
-            />
-          <!-- </div> -->
-        
+        <q-input
+          class="col-xs-6 col-sm-6  col-md-6"
+          :label="$t('contact_lastname')"
+          dense
+          filled
+          v-model="contact.last_name"
+          lazy-rules
+          :rules="[
+            val => (val && val.length > 0) || $t('contact_lastname_control')
+          ]"
+        />
+        <!-- </div> -->
       </div>
       <div class="">
         <q-input
           class="col-12"
           :label="$t('contact_email')"
-          
           placeholder="yvanfotso3@gmail.com"
           dense
           filled
           v-model="contact.email"
           lazy-rules
-          :rules="[val => (val && val.length > 0) || $t('contact_email_control')]"
+          :rules="[val => !!val || $t('contact_email_control'), isValidEmail]"
         />
       </div>
       <div class="">
@@ -54,33 +54,36 @@
           filled
           v-model="contact.phone_number"
           lazy-rules
-          :rules="[val => (val && val.length > 0) ||  $t('contact_phone_number_control')]"
+          :rules="[
+            val => !!val || $t('contact_phone_number_control'),
+            isValidTel
+          ]"
         />
       </div>
-      
+
       <div class="row no-wrap justify-between">
-          <div class="col-xs-6 col-sm-6 col-md-6 q-pr-md">
-            <q-input
-              dense
-              :label="$t('contact_address')"
-              filled
-              v-model="contact.address"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) ||  $t('contact_address_control')]"
+        <div class="col-xs-6 col-sm-6 col-md-6 q-pr-md">
+          <q-input
+            dense
+            :label="$t('contact_address')"
+            filled
+            v-model="contact.address"
+            lazy-rules
+            :rules="[
+              val => (val && val.length > 0) || $t('contact_address_control')
+            ]"
           />
-              
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <q-input
-              dense
-              :label="$t('contact_pobox')"
-              filled
-              v-model="contact.cap"
-              lazy-rules
-              :rules="[val => (val && val.length > 0)]"
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <q-input
+            dense
+            :label="$t('contact_pobox')"
+            filled
+            v-model="contact.cap"
+            lazy-rules
+            :rules="[val => val && val.length > 0]"
           />
-          </div>
-        
+        </div>
       </div>
       <div class="row no-wrap justify-between">
         <div class="col-xs-6 col-sm-6 col-md-6 q-pr-md">
@@ -90,22 +93,23 @@
             filled
             v-model="contact.city"
             lazy-rules
-            :rules="[val => (val && val.length > 0) || $t('contact_city_control')]"
+            :rules="[
+              val => (val && val.length > 0) || $t('contact_city_control')
+            ]"
           />
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
           <q-input
-          
-          dense
-          :label="$t('contact_country')"
-          filled
-          v-model="contact.country"
-          lazy-rules
-          :rules="[val => (val && val.length > 0) || $t('contact_country_control')]"
-        />
-          
+            dense
+            :label="$t('contact_country')"
+            filled
+            v-model="contact.country"
+            lazy-rules
+            :rules="[
+              val => (val && val.length > 0) || $t('contact_country_control')
+            ]"
+          />
         </div>
-        
       </div>
       <div class=" q-pb-md">
         <q-editor
@@ -116,11 +120,16 @@
         />
       </div>
       <div class="text-right">
-        <q-btn :label="$t('send_form_contact')" type="submit" color="primary" /><br />
+        <q-btn
+          :label="$t('send_form_contact')"
+          dense
+          no-caps
+          type="submit"
+          color="primary"
+        /><br />
       </div>
     </q-form>
   </div>
-
 </template>
 
 <script>
@@ -143,6 +152,16 @@ export default {
     };
   },
   methods: {
+    isValidTel(val) {
+     
+      const telPattern = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+      return telPattern.test(val);
+    },
+
+    isValidEmail(val) {
+      const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
+      return emailPattern.test(val);
+    },
     onSubmit() {
       //control all input before call submit
       if (
@@ -151,6 +170,7 @@ export default {
         this.contact.phone_number?.length < 1 ||
         this.contact.city?.length < 1 ||
         this.contact.country?.length < 1 ||
+        //isValidEmail(this.contact.email) == false ||
         this.contact.email?.length < 1 ||
         this.contact.address?.length < 1 ||
         this.contact.cap?.length < 1 ||
@@ -171,8 +191,7 @@ export default {
 };
 </script>
 <style scoped>
-.title_msg_form{
-  color: #4CAF50;
-
+.title_msg_form {
+  color: #4caf50;
 }
 </style>
