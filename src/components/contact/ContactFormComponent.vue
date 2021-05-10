@@ -15,7 +15,7 @@
           v-model="contact.first_name"
           lazy-rules
           :rules="[
-            val => (val && val.length > 0) || $t('contact_firstname_control')
+            val => (val && validateName(val)) || $t('contact_firstname_control')
           ]"
         />
         <!-- </div> 
@@ -28,7 +28,7 @@
           v-model="contact.last_name"
           lazy-rules
           :rules="[
-            val => (val && val.length > 0) || $t('contact_lastname_control')
+            val => (val && validateName(val)) || $t('contact_lastname_control')
           ]"
         />
         <!-- </div> -->
@@ -42,7 +42,9 @@
           filled
           v-model="contact.email"
           lazy-rules
-          :rules="[(val && val.length > 0) || $t('contact_email_control')]"
+          :rules="[
+            val => (val && validateEmail(val)) || $t('contact_email_control')
+          ]"
         />
       </div>
       <div class="">
@@ -55,7 +57,8 @@
           v-model="contact.phone_number"
           lazy-rules
           :rules="[
-            val => (val && val.length > 0) || $t('contact_phone_number_control')
+            val =>
+              (val && validatePhone(val)) || $t('contact_phone_number_control')
           ]"
         />
       </div>
@@ -69,7 +72,8 @@
             v-model="contact.address"
             lazy-rules
             :rules="[
-              val => (val && val.length > 0) || $t('contact_address_control')
+              val =>
+                (val && validatetextarea(val)) || $t('contact_address_control')
             ]"
           />
         </div>
@@ -110,13 +114,24 @@
           />
         </div>
       </div>
-      <div class=" q-pb-md">
-        <q-editor
+      <div class=" q-pb-xs">
+        <q-input
+          v-model="contact.message"
+          type="textarea"
+          min-height="10rem"
+          :placeholder="$t('contact_message')"
+          :rules="[
+            val =>
+              (val && validatetextarea(val)) || $t('contact_message_control')
+          ]"
+        />
+        <!-- <q-input
+          type:"textarea"
           class="col-12 text-left"
           v-model="contact.message"
           min-height="10rem"
           :placeholder="$t('contact_message')"
-        />
+        /> -->
       </div>
       <div class="text-right">
         <q-btn
@@ -132,7 +147,12 @@
 </template>
 
 <script>
-import { validateEmail, validatePhone } from "src/models/utils/validations.js";
+import {
+  validateEmail,
+  validatePhone,
+  validateName,
+  validatetextarea
+} from "src/models/utils/validations.js";
 export default {
   name: "ContactFormComponent",
   data() {
@@ -152,19 +172,20 @@ export default {
     };
   },
   methods: {
-    
+    validateEmail,
+    validatePhone,
+    validateName,
+    validatetextarea,
+
     onSubmit() {
       //control all input before call submit
       if (
-        this.contact.first_name?.length < 1 ||
-        this.contact.last_name?.length < 1 ||
-        this.contact.phone_number?.length < 1 ||
-        this.contact.city?.length < 1 ||
-        this.contact.country?.length < 1 ||
-        this.contact.email?.length < 1 ||
-        this.contact.address?.length < 1 ||
-        this.contact.cap?.length < 1 ||
-        this.contact.message?.length < 1 ||
+        validateName(this.contact.first_name) == false ||
+        validateName(this.contact.last_name) == false ||
+        validateName(this.contact.city) == false ||
+        validateName(this.contact.country) == false ||
+        validatetextarea(this.contact.address) == false ||
+        validatetextarea(this.contact.message) == false ||
         validateEmail(this.contact.email) == false ||
         validatePhone(this.contact.phone_number) == false
       ) {
@@ -175,7 +196,6 @@ export default {
           icon: "cloud_done"
         });
       } else {
-        //console.log(this.contact)
         this.$emit("formcontact", this.contact);
       }
     }

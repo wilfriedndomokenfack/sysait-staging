@@ -1,6 +1,8 @@
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const namePattern = /^[a-zA-Z ]{2,30}$/;
-const phonePattern = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+const textareaPattern =/^[- .+-@_a-zA-Z0-9]+$/;
+const phonePattern = /^\+|00(?:[0-9] ?){6,14}[0-9]$/;
+const capPattern = /^\d{5}$/;
 /**
  * @help: https://regexr.com/3c53v
  *(?=.*\d)  should contain at least one digit
@@ -24,6 +26,11 @@ export const validateName = (val) =>
 export const validatePassword = (val) =>
   passwordPattern.test(val)
 
-  export const validatePhone = (val) =>
+export const validatePhone = (val) =>
   phonePattern.test(val)
+export const validateCap = (val) =>
+  capPattern.test(val)
+export const validatetextarea = (val) =>
+  textareaPattern.test(val)
+
 
