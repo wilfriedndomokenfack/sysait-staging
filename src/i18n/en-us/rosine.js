@@ -52,6 +52,8 @@ export const rosineTranslations = {
   contact_info: "CONTACT INFO",
   send_form_contact:"Send",
 
+  check:"Accept terms of privacy",
+
 
   
 

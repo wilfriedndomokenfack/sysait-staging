@@ -81,7 +81,6 @@
             :label="$t('contact_pobox')"
             filled
             v-model="contact.cap"
-            
           />
         </div>
       </div>
@@ -111,7 +110,7 @@
           />
         </div>
       </div>
-      <div class=" q-pb-xs">
+      <div class="">
         <q-input
           filled
           v-model="contact.message"
@@ -124,6 +123,20 @@
           ]"
         />
       </div>
+      <p class="text-left">
+        <q-checkbox required v-model="contact.accept" />
+        {{ $t("readTerms") }}
+        <q-btn
+          no-caps
+          flat
+          dense
+          @click="toggleComponent()"
+          class="text-primary text-bold"
+          >{{ $t("read") }}</q-btn
+        >
+        <TermsOfAgreementComponent :key="termsKey" v-if="show" />
+      </p>
+
       <div class="text-right">
         <q-btn
           :label="$t('send_form_contact')"
@@ -144,8 +157,10 @@ import {
   validateName,
   validatetextarea
 } from "src/models/utils/validations.js";
+import TermsOfAgreementComponent from "@/components/registration/TermsOfAgreementComponent.vue";
 export default {
   name: "ContactFormComponent",
+  components: { TermsOfAgreementComponent },
   data() {
     return {
       contact: {
@@ -158,8 +173,11 @@ export default {
         cap: null,
         address: null,
         message: "",
-        category: "From contact form"
-      }
+        category: "From contact form",
+        accept: false
+      },
+      show: false,
+      termsKey: 1
     };
   },
   methods: {
@@ -167,12 +185,24 @@ export default {
     validatePhone,
     validateName,
     validatetextarea,
+    toggleComponent() {
+      this.termsKey++;
+      this.show = true;
+    },
     onSubmit() {
-
-      this.$emit("formcontact", this.contact);
-      
+      //control all input before call submit
+      if (this.contact.accept == false) {
+        this.$q.notify({
+          message: this.$t("check"),
+          color: "red-4",
+          textColor: "white",
+          icon: "cloud_done"
+        });
+      } else {
+        this.contact.accept == true;
+        this.$emit("formcontact", this.contact);
+      }
     }
   }
 };
 </script>
-
