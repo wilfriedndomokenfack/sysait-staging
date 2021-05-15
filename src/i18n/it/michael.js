@@ -18,9 +18,9 @@ export const michaelTranslations = {
   clickMeProducts: "Clicca per vedere il prodtto",
   hasAccount:"Ha già un account?",
   noAccount:"Non ha un account?",
-  login:"Entrare",
+  login:"Login",
   submit:"Inviare",
-  registration:"Registrazione",
+  registration:"Iscrizione",
   firstName:"Cognome",
   lastName:"Nome",
   email:"Indirizzo Mail",
@@ -43,6 +43,7 @@ export const michaelTranslations = {
   emptyPassword:"Valorizzare campo password. ",
   acceptTerms:"Accetta i termini e le condizioni! ",
   passwordMatch:"Le password inserite non sono uguali. ",
-  confirm:"Messaggio di conferma"
+  confirm:"Messaggio di conferma",
+  loginError: "Errore",
 
 }

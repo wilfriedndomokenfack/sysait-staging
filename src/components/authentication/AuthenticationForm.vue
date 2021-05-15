@@ -119,6 +119,7 @@
 </template>
 
 <script>
+import { deepCopy } from '@/models/utils/common.js'
 import { mapGetters } from "vuex";
 import { netWorkError } from "@/models/utils/netWorkError";
 import ForgotPasswordComponent from "@/components/authentication/ForgotPasswordComponent.vue";
@@ -134,7 +135,13 @@ export default {
     TermsOfAgreementComponent,
     ForgotPasswordComponent
   },
-  props: ["pageNameProp", "userQuestionProp", "buttonProp", "pathToProp"],
+  props: [
+    "pageNameProp",
+    "userQuestionProp",
+    "buttonProp",
+    "pathToProp",
+    
+  ],
   data() {
     return {
       forgotPassword: false,
@@ -148,14 +155,18 @@ export default {
       },
       rememberMe: false,
       repeatedPassword: null,
-      currentRoute: null,
       show: false,
       termsKey: 1,
     };
   },
 
-  mounted() {
-    this.currentRoute = this.$store.getters.currentRoute; //Get the current root
+  created() {
+    if(this.userCredentials){
+      this.form = deepCopy(this.userCredentials)
+    }
+  },
+  computed: {
+    ...mapGetters(["userCredentials", "currentRoute"])
   },
   methods: {
     changePorgotPassword(){
@@ -262,19 +273,34 @@ export default {
           check = false;
         }
 
-        //lsRememberMe();
+        if (this.form.email != "" && validateEmail(this.form.email) == false) {
+          this.errors.push(this.$t("correctEmail"));
+          check = false;
+        }
+
+        if (this.form.password != "" && validatePassword(this.form.password) == false) {
+          this.errors.push(this.$t("correctPassword"));
+          check = false;
+        }
+
       }
 
       if (check) {
-        this.$emit("form", this.form);
+        let response = null
+
+        if (this.currentRoute == "signin"){
+          response = {
+            form: this.form,
+            rememberMe: this.rememberMe
+          }
+          this.$store.dispatch("setUserCredential", this.form)
+        }else{
+          response = this.form
+        }
+        this.$emit("form", response);
+
       } else {
         netWorkError(this.errors);
-        /* this.$q.notify({
-          message: this.errors,
-          color: "red-4",
-          textColor: "white",
-          icon: "cloud_done",
-        }); */
       }
     },
 
@@ -286,10 +312,6 @@ export default {
     //   this.form.accept = false;
     //   this.repeatedPassword = null;
     // },
-  },
-
-  computed: {
-    ...mapGetters(["company", "langChanged"]),
   },
 };
 </script>

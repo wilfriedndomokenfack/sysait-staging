@@ -8,9 +8,7 @@ import { deleteCookie } from "@/models/utils/setupCookies.js";
 export const login = async (user) => {
   try {
     const response = await getToken(user)
-    const token = response.data
-    store.dispatch("setCurrentUser", token);
-
+    return response.data
   } catch (error) {
     console.log("error - " + error)
   }
@@ -19,7 +17,7 @@ export const login = async (user) => {
 export const signup = async (user) => {
   try {
     const response = await postRegistration(user)
-    return response.data?.message
+    return response.data
   } catch (error) {
     return  "error - " + error;
   }

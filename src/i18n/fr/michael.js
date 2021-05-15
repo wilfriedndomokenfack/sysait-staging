@@ -18,7 +18,7 @@ export const michaelTranslations = {
   clickMeProducts: "Cliquez pour voir le produit",
   hasAccount:"Vous disposez d'un compte?",
   noAccount:"Vous ne possédez pas de compte?",
-  login:"Entrer",
+  login:"Login",
   submit:"Envoyer",
   registration:"Inscription",
   firstName:"Nom",
@@ -43,6 +43,7 @@ export const michaelTranslations = {
   emptyPassword:" Remplissez le champ password. ",
   acceptTerms:" Veuillez accepter les termes et conditions! ",
   passwordMatch:" Les mots de pass entrés ne sont pas egales. ",
-  confirm:"Message de confirmation"
+  confirm:"Message de confirmation",
+  loginError: "Erreur",
 
 }

@@ -19,9 +19,8 @@ export const getToken = (userData) => {
   return Api().post("/users/sign_in", userData )
 }
 
-export const postRegistration = (userData) => {
-  return Api().post("/users", userData )
-}
+export const postRegistration = (userData) =>
+  Api().post("/users", userData )
 
 export const getUserCourses = async (id) => {
   try{

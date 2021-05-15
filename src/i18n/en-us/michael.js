@@ -43,6 +43,7 @@ export const michaelTranslations = {
   emptyPassword:"Fill in the password field. ",
   acceptTerms:"Please accept the terms and conditions! ",
   passwordMatch:"Passwords entered are not equal. ",
-  confirm:"Confirmation message"
+  confirm:"Confirmation message",
+  loginError: "Error",
 
 }

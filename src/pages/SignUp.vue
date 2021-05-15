@@ -10,7 +10,14 @@
       :userQuestionProp="$t('hasAccount')"
       :pageNameProp="$t('registration')"
     />
-    <RegistrationPopupComponent v-if="emailConfirmMessage" :propTitle="$t('confirm')" :propMessage="emailConfirmMessage" :key="myKey" />
+    <RegistrationPopupComponent
+      v-if="emailConfirmMessage"
+      :propTitle="$t('confirm')"
+      :propMessage="emailConfirmMessage"
+      :key="myKey"
+      @close="pupopChanged"
+      :flag="flag"
+    />
   </div>
 </template>
 
@@ -26,14 +33,25 @@ export default {
   },
   data() {
     return {
-      emailConfirmMessage:null,
+      emailConfirmMessage: null,
       myKey: 50,
+      flag: null,
     };
   },
   methods: {
+    pupopChanged(){
+      this.emailConfirmMessage = null
+
+
+      
+    },
+
     async getForm(form) {
       // foward the form to the page;
-      this.emailConfirmMessage = await signup(form);
+      const response = await signup(form);
+      this.emailConfirmMessage = response.message
+      this.flag = response.flag
+
       this.myKey++;
     },
     onSubmit() {
