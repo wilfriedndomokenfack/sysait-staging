@@ -33,7 +33,7 @@ export const rosineTranslations = {
   contact_email:"Email *",
   contact_phone_number:"Numero di telefono *",
   contact_address:"Indirizzo *",
-  contact_pobox:"CAP ",
+  contact_pobox:"Cap ",
   contact_city:"Città *  ",
   contact_country:"Paese *",
   contact_message:"Messaggio",
@@ -46,7 +46,7 @@ export const rosineTranslations = {
   contact_address_control:"Digitare il tuo indirizzo *",
   contact_city_control:"Digitare la tua città senza caratteri speciali  ",
   contact_country_control:"Digitare il tuo paese senza caratteri speciali",
-  contact_message_control:"Digitare il tuo messagio senza caratteri speciali",
+  contact_message_control:"Digitare il tuo messagio senza caratteri speciali, carateri max:500",
   contact_info: "INFORMAZIONI DI CONTATTO",
   send_form_contact:"Inviare",
 

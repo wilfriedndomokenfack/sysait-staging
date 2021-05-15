@@ -1,6 +1,6 @@
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const namePattern = /^[a-zA-Z ]{2,30}$/;
-const textareaPattern =/^[- .+-@_a-zA-Z0-9]+$/;
+const textareaPattern =/^[-èé() .+-@_a-zA-Z0-9]{3,500}$/;
 const phonePattern = /^\+|00(?:[0-9] ?){6,14}[0-9]$/;
 const capPattern = /^\d{5}$/;
 /**

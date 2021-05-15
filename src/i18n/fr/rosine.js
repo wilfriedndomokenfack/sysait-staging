@@ -45,7 +45,7 @@ export const rosineTranslations = {
   contact_address_control:"Saisisser votre addresse *",
   contact_city_control:"Saisisser le nom de votre cité sans caractères spéciaux",
   contact_country_control:"Saisisser le nom  de votre pays sans caractères spéciaux",
-  contact_message_control:"Saisisser votre message sans caractères spéciaux",
+  contact_message_control:"Saisisser votre message sans caractères spéciaux, caractères max:500",
 
 
   contact_info: "INFORMATIONS DE CONTACT",

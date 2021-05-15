@@ -18,8 +18,7 @@
             val => (val && validateName(val)) || $t('contact_firstname_control')
           ]"
         />
-        <!-- </div> 
-          <div class="">-->
+
         <q-input
           class="col-xs-6 col-sm-6  col-md-6"
           :label="$t('contact_lastname')"
@@ -31,7 +30,6 @@
             val => (val && validateName(val)) || $t('contact_lastname_control')
           ]"
         />
-        <!-- </div> -->
       </div>
       <div class="">
         <q-input
@@ -83,8 +81,7 @@
             :label="$t('contact_pobox')"
             filled
             v-model="contact.cap"
-            lazy-rules
-            :rules="[val => val && val.length > 0]"
+            
           />
         </div>
       </div>
@@ -116,6 +113,7 @@
       </div>
       <div class=" q-pb-xs">
         <q-input
+          filled
           v-model="contact.message"
           type="textarea"
           min-height="10rem"
@@ -125,13 +123,6 @@
               (val && validatetextarea(val)) || $t('contact_message_control')
           ]"
         />
-        <!-- <q-input
-          type:"textarea"
-          class="col-12 text-left"
-          v-model="contact.message"
-          min-height="10rem"
-          :placeholder="$t('contact_message')"
-        /> -->
       </div>
       <div class="text-right">
         <q-btn
@@ -176,34 +167,12 @@ export default {
     validatePhone,
     validateName,
     validatetextarea,
-
     onSubmit() {
-      //control all input before call submit
-      if (
-        validateName(this.contact.first_name) == false ||
-        validateName(this.contact.last_name) == false ||
-        validateName(this.contact.city) == false ||
-        validateName(this.contact.country) == false ||
-        validatetextarea(this.contact.address) == false ||
-        validatetextarea(this.contact.message) == false ||
-        validateEmail(this.contact.email) == false ||
-        validatePhone(this.contact.phone_number) == false
-      ) {
-        this.$q.notify({
-          message: "Check errors in the form!",
-          color: "red-4",
-          textColor: "white",
-          icon: "cloud_done"
-        });
-      } else {
-        this.$emit("formcontact", this.contact);
-      }
+
+      this.$emit("formcontact", this.contact);
+      
     }
   }
 };
 </script>
-<style scoped>
-.title_msg_form {
-  color: #4caf50;
-}
-</style>
+
