@@ -1,38 +1,22 @@
 <template>
   <div>
-    <div rounded class="text-grey-10 text-bold text-h6 bg-grey-4 title-rich">{{localLabel}}</div>
+    <div rounded class="text-grey-10 text-h7 q-pl-sm bg-grey-4 title-rich">{{localLabel}}</div>
     <q-editor
+      ref="editor"
+
       toolbar-bg="grey-4"
       toolbar-text-color="grey-10"
 
-
       v-model="localModel"
-      min-height="10rem"
+      min-height="20rem"
       :placeholder="localLabel"
-      :dense="$q.screen.lt.md"
       :toolbar="[
          ['undo', 'redo'],
 
         ['bold', 'italic', 'strike', 'underline', 'subscript', 'superscript'],
-        ['token', 'hr', 'link', 'custom_btn'],
+        ['hr', 'link', 'custom_btn'],
 
         [
-          {
-            label: $q.lang.editor.formatting,
-            icon: $q.iconSet.editor.formatting,
-            fixedLabel: false,
-            list: 'no-icons',
-            options: [
-              'p',
-              'h1',
-              'h2',
-              'h3',
-              'h4',
-              'h5',
-              'h6',
-              'code'
-            ]
-          },
           {
             label: $q.lang.editor.fontSize,
             icon: $q.iconSet.editor.fontSize,
@@ -72,10 +56,10 @@
             fixedLabel: false,
             options: ['left', 'center', 'right', 'justify']
           },
+          'token',
           'removeFormat'
         ],
         ['quote', 'unordered', 'ordered'],
-
 
         ['viewsource','fullscreen']
       ]"
@@ -89,7 +73,18 @@
         times_new_roman: 'Times New Roman',
         verdana: 'Verdana'
       }"
-    />
+
+    >
+      <template v-slot:token>
+        <q-btn-dropdown dense no-caps ref="token" class="bg-grey-4" no-wrap unelevated color="white" text-color="black" icon="format_color_fill" size="sm">
+          <q-color v-model="highlight" default-view="palette" no-header no-footer class="my-picker" />
+        </q-btn-dropdown>
+
+        <q-btn-dropdown dense no-caps ref="token" class="bg-grey-4" no-wrap unelevated color="white" text-color="black" icon="format_color_text" size="sm">
+          <q-color v-model="foreColor" default-view="palette" no-header no-footer class="my-picker" />
+        </q-btn-dropdown>
+      </template>
+    </q-editor>
   </div>
 </template>
 
@@ -102,18 +97,60 @@ export default {
       localLabel: this.label || "Default lavel",
       localModel: this.propModel || "",
       toolbar: null,
+      mycolor: null,
+      colorSet: {
+        foreColor: '#000000',
+        highlight: '#ffff00aa',
+      },
+
+
+      foreColor: '#000000',
+      highlight: '#ffff00aa',
+      editor: 'Select some text,' +
+        ' then select a highlight or text color!'
+
     }
   },
   watch: {
     localModel: {
       immediate: true,
       handler() {
-        const modelData = {
-         model: this.localModel,
-         modelKey: this.propModelName
-        }
-        this.$emit('modelData', modelData)
+        this.localModelChanged()
       }
+    },
+    highlight: {
+      immediate: true,
+      handler() {
+        this.color('backColor', this.highlight)
+      }
+    },
+    foreColor: {
+      immediate: true,
+      handler() {
+        this.color('foreColor', this.foreColor)
+      }
+    }
+  },
+  mounted(){
+    this.colorSet = []
+  },
+  methods: {
+    color (cmd, name) {
+      const edit = this.$refs.editor
+      this.$refs.token?.hide()
+      edit?.caret.restore()
+      edit?.runCmd(cmd, name)
+      edit?.focus()
+    },
+    saveWork(){
+      this.$emit("save")
+    },
+    localModelChanged(){
+      const modelData = {
+        model: this.localModel,
+        modelKey: this.propModelName
+      }
+      this.$emit('modelData', modelData)
     }
   }
 }
