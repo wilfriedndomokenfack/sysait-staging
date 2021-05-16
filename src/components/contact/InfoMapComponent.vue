@@ -3,7 +3,12 @@
     <ContactInfoComponent class="col-md-5 col-sm-12 col-xs-12 bg-grey-3" />
     <ContactFormComponent
       @formcontact="emitcontactform"
-      class="col-md-6 col-sm-12 col-xs-12 q-pl-lg "
+      :class="{'q-pl-lg': $q.screen.gt.xs}"
+      
+      class="col-md-6 col-sm-12 col-xs-12"
+      
+
+      
     />
   </div>
 </template>
@@ -22,7 +27,6 @@ export default {
   },
   methods: {
     emitcontactform(contact) {
-      //console.log("ifomap:",contact)
        this.$emit('formcontact',contact)
     }
   }

@@ -1,6 +1,5 @@
 <template>
-  <div class="">
-    <br />
+  <div class="q-pt-md">
     <p class="color_sysait_cerulean text-bold text-center">
       {{ $t("contact_send_email") }}
     </p>
