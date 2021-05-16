@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p :class="{ w_products: !this.$q.screen.lt.md }" class="q-pa-md">
+    <!-- <p :class="{ w_products: !this.$q.screen.lt.md }" class="q-pa-md">
       {{ descriptionProp }}
     </p>
-    <q-separator />
+    <q-separator /> -->
     <div class="q-pa-md">
       <div
         class="products q-pa-md q-col-gutter-md row justfy-between items-center"
