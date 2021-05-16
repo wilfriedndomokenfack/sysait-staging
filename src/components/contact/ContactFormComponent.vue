@@ -15,7 +15,7 @@
           v-model="contact.first_name"
           lazy-rules
           :rules="[
-            val => (val && validateName(val)) || $t('contact_firstname_control')
+            val => (val && valFirstName(val)) || $t('contact_firstname_control')
           ]"
         />
 
@@ -27,11 +27,11 @@
           v-model="contact.last_name"
           lazy-rules
           :rules="[
-            val => (val && validateName(val)) || $t('contact_lastname_control')
+            val => (val && valLastName(val)) || $t('contact_lastname_control')
           ]"
         />
       </div>
-      <div class="">
+      <div :class="{ 'q-pt-md': !isErrorFirstName || !isErrorLastName }">
         <q-input
           class="col-12"
           :label="$t('contact_email')"
@@ -93,7 +93,7 @@
             v-model="contact.city"
             lazy-rules
             :rules="[
-              val => (val && val.length > 0) || $t('contact_city_control')
+              val => (val && valCity(val)) || $t('contact_city_control')
             ]"
           />
         </div>
@@ -105,12 +105,12 @@
             v-model="contact.country"
             lazy-rules
             :rules="[
-              val => (val && val.length > 0) || $t('contact_country_control')
+              val => (val && valCountry(val)) || $t('contact_country_control')
             ]"
           />
         </div>
       </div>
-      <div class="">
+      <div :class="{ 'q-pt-md': !isErrorCity || !isErrorCountry }">
         <q-input
           filled
           v-model="contact.message"
@@ -118,33 +118,39 @@
           min-height="10rem"
           :placeholder="$t('contact_message')"
           :rules="[
-            val =>
-              (val && validatetextarea(val)) || $t('contact_message_control')
+            val => (val && valTextarea(val)) || $t('contact_message_control')
           ]"
         />
       </div>
-      <p class="text-left">
-        <q-checkbox required v-model="contact.accept" />
-        {{ $t("readTerms") }}
-        <q-btn
-          no-caps
-          flat
-          dense
-          @click="toggleComponent()"
-          class="text-primary text-bold"
-          >{{ $t("read") }}</q-btn
-        >
-        <TermsOfAgreementComponent :key="termsKey" v-if="show" />
-      </p>
+      <div
+        class="column"
+        :class="{ 'q-pt-md': !isErrorTextarea }"
+        style="position: relative; top: -10px;"
+      >
+        <div class="col">
+          <q-checkbox v-model="contact.accept" />
+          {{ $t("readTerms") }}
+          <q-btn
+            no-caps
+            flat
+            dense
+            @click="toggleComponent()"
+            class="text-primary text-bold"
+            >{{ $t("read") }}
+          </q-btn>
 
-      <div class="text-right">
-        <q-btn
-          :label="$t('send_form_contact')"
-          dense
-          no-caps
-          type="submit"
-          color="primary"
-        /><br />
+          <TermsOfAgreementComponent :key="termsKey" v-if="show" />
+        </div>
+        <div class="col">
+          <q-btn
+            :label="$t('send_form_contact')"
+            dense
+            rounded
+            style="width:100px"
+            type="submit"
+            color="primary"
+          />
+        </div>
       </div>
     </q-form>
   </div>
@@ -173,11 +179,16 @@ export default {
         cap: null,
         address: null,
         message: "",
-        category: "From contact form",
+        category: "Contacts",
         accept: false
       },
       show: false,
-      termsKey: 1
+      termsKey: 1,
+      isErrorTextarea: true,
+      isErrorFirstName: true,
+      isErrorLastName: true,
+      isErrorCity: true,
+      isErrorCountry: true
     };
   },
   methods: {
@@ -185,6 +196,26 @@ export default {
     validatePhone,
     validateName,
     validatetextarea,
+    valTextarea(val) {
+      this.isErrorTextarea = validatetextarea(val);
+      return this.isErrorTextarea;
+    },
+    valFirstName(val) {
+      this.isErrorFirstName = validateName(val);
+      return this.isErrorFirstName;
+    },
+    valLastName(val) {
+      this.isErrorLastName = validateName(val);
+      return this.isErrorLastName;
+    },
+    valCity(val) {
+      this.isErrorCity = validateName(val);
+      return this.isErrorCity;
+    },
+    valCountry(val) {
+      this.isErrorCountry = validateName(val);
+      return this.isErrorCountry;
+    },
     toggleComponent() {
       this.termsKey++;
       this.show = true;
