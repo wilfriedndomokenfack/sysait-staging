@@ -25,7 +25,7 @@ export const rosineTranslations = {
   acquire:"COMMENT ACQUÉRIR UN PRODUIT",
   use:"ILS UTILISENT LE PRODUIT",
 
-  contact: "Contactez nous",
+  contact: "Nous Contacter ",
   welcome_msg_contact:"Si vous avez des questions ou des commentaires, veuillez remplir le formulaire ci-dessous et nous vous répondrons dès que possible",
   contact_firstname:"Nom *",
   contact_lastname:"Prenom *",
@@ -38,15 +38,18 @@ export const rosineTranslations = {
   contact_message:"Message",
   contact_send_email:"ENVOYEZ-NOUS UN EMAIL",
 
-  contact_firstname_control:"Entrer votre nom *",
-  contact_lastname_control:"Entrer votre prenom *",
-  contact_email_control:"Entrer votre Email *",
-  contact_phone_number_control:"Entrer votre numero de téléphone *",
-  contact_address_control:"Entrer votre addresse *",
-  contact_city_control:"Entrer le nom de votre cité *",
-  contact_country_control:"Entrer le nom  de votre pays *",
+  contact_firstname_control:"Saisisser votre nom  sans caractères spéciaux",
+  contact_lastname_control:"Saisisser votre prenom sans caractères spéciaux",
+  contact_email_control:"Email non valide *",
+  contact_phone_number_control:"Le numéro de téléphone ne contient pas de lettres",
+  contact_address_control:"Saisisser votre addresse *",
+  contact_city_control:"Saisisser le nom de votre cité sans caractères spéciaux",
+  contact_country_control:"Saisisser le nom  de votre pays sans caractères spéciaux",
+  contact_message_control:"Saisisser votre message sans caractères spéciaux, caractères max:500",
+
 
   contact_info: "INFORMATIONS DE CONTACT",
   send_form_contact:"Envoyer",
+   check:"Acceptez les conditions de confidentialité",
 
 }

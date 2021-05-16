@@ -4,7 +4,7 @@
       <div class="q-pb-sm text-primary">
         {{ $t("contact_info") }}
       </div>
-      <div class="row text-left text-weight-regular infoContact q-pl-md">
+      <div class="row text-left text-weight-regular infoContact q-pb-sm q-pt-sm">
         <div class="col-12">
           <span class="text-bold">Email: </span> {{ company.email }}
         </div>

@@ -34,22 +34,25 @@ export const rosineTranslations = {
   contact_email:"Email *",
   contact_phone_number:"Phone number *",
   contact_address:"Address *",
-  contact_pobox:"Cap ",
+  contact_pobox:"PO Box",
   contact_city:"City *  ",
   contact_country:"Country *",
   contact_message:"Message",
   contact_send_email:"SEND US EMAIL",
 
-  contact_firstname_control:"Enter your First name *",
-  contact_lastname_control:"Enter your Last name *",
-  contact_email_control:"Enter your Email *",
-  contact_phone_number_control:"Enter your Phone number *",
+  contact_firstname_control:"Enter your First name without specials caracters",
+  contact_lastname_control:"Enter your Last name without specials caracters",
+  contact_email_control:"Invalid email *",
+  contact_phone_number_control:"Phone number don't content letters",
   contact_address_control:"Enter your Address *",
-  contact_city_control:"Enter your City *  ",
-  contact_country_control:"Enter your Country *",
+  contact_city_control:"Enter your City without specials caracters ",
+  contact_country_control:"Enter your Country without specials caracters",
+  contact_message_control:"Enter message without specials caracters, max caracters:500",
 
   contact_info: "CONTACT INFO",
   send_form_contact:"Send",
+
+  check:"Accept terms of privacy",
 
 
   
