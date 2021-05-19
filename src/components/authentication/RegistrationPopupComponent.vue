@@ -2,7 +2,7 @@
   <div>
     <q-dialog v-model="model">
       <q-card style="width: 300px">
-        <q-card-section class="bg-primary text-white">
+        <q-card-section class="text-white" :class="{'bg-green': flag == 1, 'bg-red': flag != 1}">
           <div class="text-h6">{{ title }}</div>
         </q-card-section>
 
@@ -22,19 +22,16 @@
 export default {
   name: "RegistrationPopupComponent",
   props:{
-    propTitle:String,
-    propMessage:String
+    propTitle: String,
+    propMessage: String,
+    flag: Number
   },
 
   watch:{
     model: {
       immediate: true,
       handler(){
-        if(!this.model){
-            this.$router.push({
-            path:"/signin"
-          })
-        }
+        this.modelChanged()
       }
     }
   },
@@ -44,7 +41,19 @@ export default {
       title:this.propTitle,
       message:this.propMessage,
       model:true
-      };
+    };
   },
+  methods: {
+    modelChanged(){
+      if(!this.model){
+        if(this.flag == 1){
+          this.$router.push({
+            path: "/signin"
+          })
+        }
+        this.$emit("closed")
+      }
+    }
+  }
 };
 </script>

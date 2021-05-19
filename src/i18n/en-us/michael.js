@@ -26,7 +26,6 @@ export const michaelTranslations = {
   email:"Email Address",
   validAddress:"Please enter a valid email address",
   required:"Field is required",
-  password:"Passoword",
   passwordRepeated:"Confirm Password",
   enterName:"Please type name",
   enterLastName:"Please type lastname",
@@ -44,6 +43,7 @@ export const michaelTranslations = {
   emptyPassword:"Fill in the password field. ",
   acceptTerms:"Please accept the terms and conditions! ",
   passwordMatch:"Passwords entered are not equal. ",
-  confirm:"Confirmation message"
+  confirm:"Confirmation message",
+  loginError: "Error",
 
 }

@@ -1,9 +1,8 @@
 
-import { loadSession  } from "@/models/utils/sessionHandler.js"
-import { resetUser } from "@/models/user.js"
 import { userKicker } from "@/models/auth/userKicker";
-import { saveJwtToken } from "@/models/utils/sessionHandler.js"
+import {loadSession, saveJwtToken, userCredentialsLocalStore } from "@/models/utils/sessionHandler.js"
 import jwt_decode from "jwt-decode";
+
 
 import { router } from "@/router";
 import { notify } from "@/models/utils/notifyUser"
@@ -19,6 +18,7 @@ import michael from './michael/index'
 
 const initialState = () => {
   const startState = {
+    userCredentials: null,
     currentUser: null,
     token: null,
     lang: null,
@@ -54,12 +54,17 @@ export default new Store({
       state.currentUser = {...state.currentUser, coursesIds: payload}
     },
 
-    setCurrentUser (state, token) {
+    setCurrentUser (state, payload) {
+      const token = payload?.token
+      const rememberMe = payload?.rememberMe
+
       if(token){
         const user = jwt_decode(token);
         state.currentUser = user
         userKicker(user.exp);
         saveJwtToken(token)
+
+        if(rememberMe) userCredentialsLocalStore(state.userCredentials)
 
         const goTo = state.route.from.name == "signup" ? "home" : state.route.from.name
 
@@ -70,6 +75,9 @@ export default new Store({
         state.token = null
       }
     },
+    setUserCredential(state, payload){
+      state.userCredentials = payload
+    }
   },
   getters: {
     company: state => state.wilfried.company,
@@ -78,6 +86,7 @@ export default new Store({
 
     currentUser: state => state.currentUser,
     token: state => state.token,
+    userCredentials: state => state.userCredentials,
 
     langChanged: state => state.lang,
     currentRoute: state => (state.route ? state.route.name : null),
@@ -92,6 +101,9 @@ export default new Store({
     },
     setUserCourses ({ commit}, payload) {
       commit('setUserCourses', payload)
+    },
+    setUserCredential({ commit }, payload){
+      commit('setUserCredential', payload)
     }
   }
 })

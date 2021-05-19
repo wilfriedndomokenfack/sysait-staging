@@ -70,11 +70,10 @@
 </template>
 
 <script>
-import { isSuperUser } from '@/models/user.js'
 import { mapGetters } from "vuex";
 import { Constants } from '@/models/utils/common.js'
 import { deleteDBTraining } from "@/models/training.js"
-import { isEnrollToTraining } from "@/models/user.js"
+import { isEnrollToTraining, isSuperUser } from "@/models/user.js"
 import axios from "axios";
 export default {
   name: 'Training',
