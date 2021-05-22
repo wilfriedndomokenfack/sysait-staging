@@ -162,7 +162,7 @@ import {
   validateName,
   validatetextarea
 } from "src/models/utils/validations.js";
-import TermsOfAgreementComponent from "@/components/registration/TermsOfAgreementComponent.vue";
+import TermsOfAgreementComponent from "@/components/authentication/TermsOfAgreementComponent.vue";
 export default {
   name: "ContactFormComponent",
   components: { TermsOfAgreementComponent },
