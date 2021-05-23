@@ -113,8 +113,8 @@
             <div class="col-2">
               <q-btn flat @click="updateCaptcha()" icon="autorenew"/>
             </div>
-            <div class="col-6 bg-grey-5 text-bold text-h5">
-              {{captcha}}
+            <div class="col-6 bg-grey-5 text-bold text-h5 captcha text-strike" >
+              {{ captcha }}
             </div>
           </div>
 
@@ -159,13 +159,15 @@
             :label="$t('forgotPass')"
             @click="changePorgotPassword"/>
         </div>
-
-        <q-checkbox
+        <div v-if="currentRoute == 'signin'" class="forgotPassword text-center col">
+          <q-checkbox
+          class="col row jystify-center"
           id="rememberMe"
           v-if="currentRoute == 'signin'"
           :label="$t('remember')"
           v-model="rememberMe"
         />
+        </div>
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
