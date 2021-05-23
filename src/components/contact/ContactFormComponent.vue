@@ -5,7 +5,6 @@
     </p>
     <q-form @submit="onSubmit">
       <div class="row  no-wrap justify-between">
-        <!-- <div class=""> -->
         <q-input
           class="col-xs-6 col-sm-6 col-md-6 q-pr-md"
           :label="$t('contact_firstname')"
@@ -122,11 +121,11 @@
         />
       </div>
       <div
-        class="column"
+        class="column "
         :class="{ 'q-pt-md': !isErrorTextarea }"
         style="position: relative; top: -10px;"
       >
-        <div class="col">
+        <div class="row items-center justify-center col">
           <q-checkbox v-model="contact.accept" />
           {{ $t("readTerms") }}
           <q-btn
@@ -140,7 +139,7 @@
 
           <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         </div>
-        <div class="col">
+        <div class="col row justify-center">
           <q-btn
             :label="$t('send_form_contact')"
             dense
@@ -162,10 +161,13 @@ import {
   validateName,
   validatetextarea
 } from "src/models/utils/validations.js";
-import TermsOfAgreementComponent from "@/components/registration/TermsOfAgreementComponent.vue";
+import TermsOfAgreementComponent from "@/components/authentication/TermsOfAgreementComponent.vue";
 export default {
   name: "ContactFormComponent",
   components: { TermsOfAgreementComponent },
+  props: {
+    originForm: String
+  },
   data() {
     return {
       contact: {
@@ -178,7 +180,7 @@ export default {
         cap: null,
         address: null,
         message: "",
-        category: "Contacts",
+        category: this.originForm,
         accept: false
       },
       show: false,

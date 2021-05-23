@@ -6,7 +6,7 @@ export const sendcontactform = async (contact) => {
  
     let response = await Api().post(`/contacts`, contact ); // CREATE
     returnData = response?.data
-    
+        
     return returnData.message
 
 }
