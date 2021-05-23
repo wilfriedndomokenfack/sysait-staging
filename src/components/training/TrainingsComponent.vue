@@ -1,7 +1,7 @@
 <template>
   <div v-if="renderContent">
     <div v-if="localTrainings.length > 0" class="q-pa-md row items-start q-gutter-md justify-between">
-      <div v-for="training in localTrainings" >
+      <div v-for="(training, index) in localTrainings" :key="index">
         <TrainingComponent :trainingProp="training" />
       </div>
     </div>
