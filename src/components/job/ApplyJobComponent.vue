@@ -1,17 +1,19 @@
 <template>
-  <div class="">
+  <div >
     <q-dialog v-model="model"  full-width >
-      <q-card class="">
-        <q-bar class="bg-primary text-bold text-white">
-          <div class="text-center"> {{ $t("apply") }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>Close</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <div class="">
+      <q-card >
+        <div class="bg-primary text-bold text-white row justify-end items-center">
+          <div class="col-12 text-center"> <span class="applyTitle" :class="{'text-h4': $q.screen.gt.xs, 'text-h5': !$q.screen.gt.xs}">{{ $t("apply") }}</span></div>
           
-        <q-card-section class="">
+          <div class="col-1 text-right">
+              <q-btn class="closeBtn" :class="{'text-h5': $q.screen.gt.xs, 'text-h5': !$q.screen.gt.xs}" dense flat icon="close" v-close-popup>
+                  <q-tooltip >{{ $t("close") }}</q-tooltip>
+              </q-btn>
+          </div>
+          
+        </div>
+        <div >
+        <q-card-section >
           <ContactFormComponent
             :isPopup="true"
             originForm="Job"
@@ -23,29 +25,6 @@
 
       </q-card>
     </q-dialog>
-    <!-- <q-dialog v-model="model" full-width>
-      <q-card>
-        <q-card-section class="bg-primary text-white">
-          <div class="row"> 
-            <div class="col-11 text-center">
-              {{ $t("apply") }}
-            </div>
-            <div class="col-1 text-left">
-              <q-btn flat v-close-popup round dense icon="close" />
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section style="" class="">
-          <ContactFormComponent
-            :isPopup="true"
-            originForm="Job"
-            @formcontact="emitcontactform"
-          />
-        </q-card-section>
-
-      </q-card>
-    </q-dialog> -->
    
   </div>
 </template>
@@ -80,5 +59,25 @@ export default {
 .diagPassword {
   border: 4px solid $primary;
   width: 100%;
+}
+.applyTitle{
+  position: relative;
+  @media (min-width: 400px){
+    top: 15px;
+  }
+  @media (max-width: 400px){
+    top: 25px;
+  }
+}
+.closeBtn{
+  position: relative;
+  @media (min-width: 400px){
+    top: -25px;
+    left: -10px
+  }
+  @media (max-width: 400px){
+    top: -20px;
+    left: -30px;
+  }
 }
 </style>
