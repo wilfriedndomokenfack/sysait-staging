@@ -49,6 +49,9 @@ export const rosineTranslations = {
   contact_message_control:"Digitare il tuo messagio senza caratteri speciali, carateri max:500",
   contact_info: "INFORMAZIONI DI CONTATTO",
   send_form_contact:"Inviare",
-  check:"Accettare i termini della privacy",
+  check: "Accettare i termini della privacy",
+  apply: "Candidati a questo lavoro",
+  close: "Chiudere",
+  
 
 }

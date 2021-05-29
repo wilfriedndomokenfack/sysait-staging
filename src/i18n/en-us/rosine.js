@@ -54,6 +54,9 @@ export const rosineTranslations = {
 
   check:"Accept terms of privacy",
 
+  apply: "Apply to this job",
+  close: "Close",
+
 
   
 

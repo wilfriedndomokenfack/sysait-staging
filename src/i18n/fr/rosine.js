@@ -50,6 +50,9 @@ export const rosineTranslations = {
 
   contact_info: "INFORMATIONS DE CONTACT",
   send_form_contact:"Envoyer",
-   check:"Acceptez les conditions de confidentialité",
+  check:"Acceptez les conditions de confidentialité",
+
+   apply: "Postuler pour cet emploi",
+   close: "Fermer",
 
 }

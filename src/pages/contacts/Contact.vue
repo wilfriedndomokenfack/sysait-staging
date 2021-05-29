@@ -21,9 +21,6 @@
       :propMessage="confirmMessage"
       :key="myKey"
     />
-
-    <!--<MessageContactComponent/>
-       <ContactFormComponent></ContactFormComponent> -->
   </q-page>
 </template>
 
