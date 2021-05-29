@@ -8,7 +8,7 @@
       <q-form
         @submit="onSubmit"
         class="q-pa-md q-gutter-md column"
-        style="width: 100%"
+        style="width: 80%"
       >
         <!-- LISTA ERRORI-->
           <div class="col column bg-grey-3 " v-if="endCheck && errors.length > 0">
@@ -109,24 +109,24 @@
 
       <!-- CAPTCHA -->
         <div class="col column" v-if="currentRoute == 'signup'">
-          <div class="col row items-center justify-center">
-            <div class="col-2">
+          <div class="col row items-center justify-center q-gutter-sm">
+            <div class="col-3">
               <q-btn flat @click="updateCaptcha()" icon="autorenew"/>
             </div>
-            <div class="col-6 bg-grey-5 text-bold text-h5 captcha text-strike" >
+            <div class="col-6 bg-grey-4 text-bold text-h5 captcha text-strike" >
               {{ captcha }}
             </div>
           </div>
 
-          <div class="col row items-center justify-center">
-            <div class="col-2 text-bold">
+          <div class="col row items-center justify-center q-gutter-sm">
+            <div class="col-3 text-bold text-center">
               CAPTCHA
             </div>
 
             <div class="col-6">
               <q-input
                 dense
-                class="col"
+               
                 outlined
                 bg-color="white"
                 v-model="reCaptcha"
