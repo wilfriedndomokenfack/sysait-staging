@@ -1,26 +1,52 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-dialog v-model="model" persistent>
-      <q-layout view="Lhh lpR fff" container class="bg-white ">
-        <q-header class="bg-primary">
-          <q-toolbar>
-            <q-toolbar-title class="text-center">
-              {{ $t("apply") }}</q-toolbar-title
-            >
-            <q-btn flat v-close-popup round dense icon="close" />
-          </q-toolbar>
-        </q-header>
+  <div class="">
+    <q-dialog v-model="model"  full-width >
+      <q-card class="">
+        <q-bar class="bg-primary text-bold text-white">
+          <div class="text-center"> {{ $t("apply") }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>Close</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <div class="">
+          
+        <q-card-section class="">
+          <ContactFormComponent
+            :isPopup="true"
+            originForm="Job"
+            @formcontact="emitcontactform"
+          />
+          
+        </q-card-section>
+        </div>
 
-        <q-page-container>
-          <q-page padding>
-            <ContactFormComponent
-              originForm="Job"
-              @formcontact="emitcontactform"
-            />
-          </q-page>
-        </q-page-container>
-      </q-layout>
+      </q-card>
     </q-dialog>
+    <!-- <q-dialog v-model="model" full-width>
+      <q-card>
+        <q-card-section class="bg-primary text-white">
+          <div class="row"> 
+            <div class="col-11 text-center">
+              {{ $t("apply") }}
+            </div>
+            <div class="col-1 text-left">
+              <q-btn flat v-close-popup round dense icon="close" />
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-card-section style="" class="">
+          <ContactFormComponent
+            :isPopup="true"
+            originForm="Job"
+            @formcontact="emitcontactform"
+          />
+        </q-card-section>
+
+      </q-card>
+    </q-dialog> -->
+   
   </div>
 </template>
 
