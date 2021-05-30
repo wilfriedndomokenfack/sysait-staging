@@ -40,10 +40,7 @@ export default {
   },
   methods: {
     pupopChanged(){
-      this.emailConfirmMessage = null
-
-
-      
+      this.emailConfirmMessage = null 
     },
 
     async getForm(form) {

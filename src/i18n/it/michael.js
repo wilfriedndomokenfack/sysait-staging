@@ -45,5 +45,6 @@ export const michaelTranslations = {
   passwordMatch:"Le password inserite non sono uguali. ",
   confirm:"Messaggio di conferma",
   loginError: "Errore",
+  captchaError: "CAPTCHA non corretto",
 
 }

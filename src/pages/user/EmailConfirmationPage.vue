@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { redirect } from "@/models/utils/common.js"
 import Api from "@/models/Api";
 export default {
   name: 'EmailConfirmationPage',
@@ -35,19 +37,31 @@ export default {
   },
   data() {
     return {
+      openPupop: true,
       muKey: 3,
       model: true,
       fullPath: this.$route.fullPath,
       message: this.$t('somethingWentWrong'),
     };
   },
+   computed: {
+    ...mapGetters(["previousRoute"])
+  },
   async mounted(){
+    if(this.previousRoute == "signin"){
+      this.openPupop = false
+      this.muKey++
+      redirect("home")
+    }
     this.$q.loading.show({message: this.$t('confirmationEmailProgress')});
     const confirmation_token = this.fullPath.split("=")[1];
     try {
-      const response = await Api().post("users/confirmation", { params: { confirmation_token: confirmation_token } });
+      if(confirmation_token){
+         const response = await Api().post("users/confirmation", { params: { confirmation_token: confirmation_token } });
       if(response?.data.message ) this.message = response?.data.message
       this.muKey++
+      }
+     
     } catch (error) {
       this.message = error + " - " + this.message
     }finally{
@@ -56,7 +70,7 @@ export default {
   },
   methods: {
     goHome(){
-      this.$router.push({ path: "/signin"})
+      redirect("signin")
     }
   }
 }

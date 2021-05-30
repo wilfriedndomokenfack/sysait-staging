@@ -11,11 +11,7 @@
 
         <q-page-container class="diagPassword">
           <q-page padding>
-            <p v-for="n in 15" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit
-            voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at
-            omnis vel numquam exercitationem aut, natus minima, porro labore.
-          </p>
+            <div v-if="company.terms" v-html="company.terms"></div>
           </q-page>
         </q-page-container>
       </q-layout>
@@ -24,10 +20,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "TermsOfAgreementComponent",
   data() {
     return { model: true };
+  },
+   computed: {
+    ...mapGetters(
+      [
+        'company'
+      ]),
   },
 };
 </script>

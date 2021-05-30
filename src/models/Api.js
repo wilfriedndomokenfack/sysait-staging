@@ -6,15 +6,16 @@ import Settings from "@/config/Settings";
 const headers = {
     'Accept': 'application/json',
   };
-const Api = function() {
+const Api = function(queryLang) {
 
   if (!Settings['apiHost']) {
     throw "Could not find api host";
   }
 
   const local = i18n.locale
-  const lang = local.substring(0, 2)
-  const url = `${Settings['apiHost']}${lang}/api/v1`
+  const localLang = queryLang ?  queryLang : local.substring(0, 2)
+
+  const url = `${Settings['apiHost']}${localLang}/api/v1`
 
 
   const api = axios.create({

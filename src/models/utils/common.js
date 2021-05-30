@@ -1,3 +1,6 @@
+import store from "@/store";
+import { router } from "@/router";
+
 export const COMMON_isVisibile = elm => {
 
   if (!elm) return false;
@@ -35,4 +38,9 @@ export const uniqCode = (n) => {
   // after the decimal.
   return '' + Math.random().toString(36).substr(2, n);
 
+}
+
+export const redirect = (goTo, params) => {
+  if(store.getters.currentRoute != goTo)
+    router.push({ name: goTo, params: params})
 }

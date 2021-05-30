@@ -4,12 +4,34 @@
       {{ pageNameProp }}
     </div>
     <div class="form-page col-11 q-pb-xl text-center flex flex-center">
+
       <q-form
-        @submit="checkForm"
-        class="q-pa-md q-gutter-md "
-        style="width: 100%"
+        @submit="onSubmit"
+        class="q-pa-md q-gutter-md column"
+        style="width: 80%"
       >
+        <!-- LISTA ERRORI-->
+          <div class="col column bg-grey-3 " v-if="endCheck && errors.length > 0">
+            <div class="col row justify-end items-center">
+              <q-btn
+                @click="errors = []"
+                color="red"
+                dense
+                flat
+                icon="highlight_off"
+                class="q-pr-xs"
+              />
+            </div>
+            <ul class="col">
+              <li class="text-red text-bold text-left" v-for="(error, index) in errors" :key="index">
+                {{ error }}
+              </li>
+            </ul>
+          </div>
+
         <q-input
+          dense
+          class="col"
           v-if="currentRoute == 'signup'"
           id="input-long"
           rounded
@@ -25,6 +47,8 @@
         </q-input>
 
         <q-input
+          dense
+          class="col"
           v-if="currentRoute == 'signup'"
           rounded
           outlined
@@ -38,6 +62,8 @@
           </template>
         </q-input>
         <q-input
+          dense
+          class="col"
           rounded
           outlined
           bg-color="white"
@@ -51,6 +77,8 @@
         </q-input>
 
         <q-input
+          dense
+          class="col"
           rounded
           outlined
           bg-color="white"
@@ -59,11 +87,13 @@
           label="Password"
         >
           <template v-slot:prepend>
-            <q-icon class="color_sysait_cerulean" name="lock" />
+            <q-icon  class="color_sysait_cerulean" name="lock" />
           </template>
         </q-input>
 
         <q-input
+          dense
+          class="col"
           v-if="currentRoute == 'signup'"
           rounded
           outlined
@@ -73,10 +103,44 @@
           :label="$t('passwordRepeated')"
         >
           <template v-slot:prepend>
-            <q-icon class="color_sysait_cerulean" name="lock" />
+            <q-icon :class="{'text-primary': !form.password, 'text-red-5': form.password && form.password != repeatedPassword, 'text-green-5': form.password && form.password == repeatedPassword} " name="lock" />
           </template>
         </q-input>
-        <p v-if="currentRoute == 'signup'" class="text-center">
+
+      <!-- CAPTCHA -->
+        <div class="col column" v-if="currentRoute == 'signup'">
+          <div class="col row items-center justify-center q-gutter-sm">
+            <div class="col-3">
+              <q-btn flat @click="updateCaptcha()" icon="autorenew"/>
+            </div>
+            <div class="col-6 bg-grey-4 text-bold text-h5 captcha text-strike" >
+              {{ captcha }}
+            </div>
+          </div>
+
+          <div class="col row items-center justify-center q-gutter-sm">
+            <div class="col-3 text-bold text-center">
+              CAPTCHA
+            </div>
+
+            <div class="col-6">
+              <q-input
+                dense
+               
+                outlined
+                bg-color="white"
+                v-model="reCaptcha"
+              >
+                <template v-slot:append>
+                  <q-icon :class="{'text-red-5': reCaptcha !=  captcha, 'text-green-5': reCaptcha ==  captcha }"  class="text-red text-bold" name="check" />
+                </template>
+              </q-input>
+            </div>
+          </div>
+        </div>
+        <!-- END CAPTCHA -->
+
+        <p v-if="currentRoute == 'signup'" class="text-center col">
           <q-checkbox v-model="form.accept" />
           {{ $t("readTerms") }}
           <q-btn
@@ -89,29 +153,32 @@
           >
         </p>
 
-        <div v-if="currentRoute == 'signin'" class="forgotPassword text-center">
+        <div v-if="currentRoute == 'signin'" class="forgotPassword text-center col">
           <q-btn
             no-caps flat dense
             :label="$t('forgotPass')"
             @click="changePorgotPassword"/>
-          <!-- <a href="#" style="text-decoration: none">{{ $t("forgotPass") }}</a> -->
         </div>
-
-        <q-checkbox
+        <!--
+        <div v-if="currentRoute == 'signin'" class="forgotPassword text-center col">
+          <q-checkbox
+          class="col row jystify-center"
           id="rememberMe"
           v-if="currentRoute == 'signin'"
           :label="$t('remember')"
           v-model="rememberMe"
         />
+        </div>
+        -->
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
         </div>
 
       </q-form>
-      <div v-show="this.$q.screen.lt.md" class="q-pb-xl q-pa-md text-center">
-          <div class="text-h5 q-pb-md"> {{ userQuestionProp }}</div>
-          <q-btn :to="pathToProp" :label="buttonProp" color="primary" size="md" rounded />
+      <div v-show="this.$q.screen.lt.md" class="q-pb-xl q-pa-md text-center  column">
+          <div class="q-pb-md"> {{ userQuestionProp }}</div>
+          <q-btn :to="pathToProp" :label="buttonProp" color="primary" size="xs" rounded />
         </div>
     </div>
     <ForgotPasswordComponent v-if="forgotPassword" @close="changePorgotPassword"/>
@@ -119,9 +186,8 @@
 </template>
 
 <script>
-import { deepCopy } from '@/models/utils/common.js'
+import { deepCopy, uniqCode } from '@/models/utils/common.js'
 import { mapGetters } from "vuex";
-import { netWorkError } from "@/models/utils/netWorkError";
 import ForgotPasswordComponent from "@/components/authentication/ForgotPasswordComponent.vue";
 import {
   validateEmail,
@@ -140,12 +206,15 @@ export default {
     "userQuestionProp",
     "buttonProp",
     "pathToProp",
-    
+
   ],
   data() {
     return {
+      errors: [],
+      endCheck: false,
+      captcha: uniqCode(6),
+      reCaptcha: null,
       forgotPassword: false,
-      storage: window.localStorage,
       form: {
         first_name: null,
         last_name: null,
@@ -161,14 +230,26 @@ export default {
   },
 
   created() {
-    if(this.userCredentials){
-      this.form = deepCopy(this.userCredentials)
+
+  },
+  mounted(){
+    if (this.currentRoute == "signin"){
+      if(this.userCredentials){
+        this.form = deepCopy(this.userCredentials)
+      }
+      delete this.form.first_name
+      delete this.form.last_name
+      delete this.form.accept
     }
   },
+
   computed: {
     ...mapGetters(["userCredentials", "currentRoute"])
   },
   methods: {
+    updateCaptcha(){
+      this.captcha = uniqCode(6)
+    },
     changePorgotPassword(){
       this.forgotPassword = !this.forgotPassword
     },
@@ -184,108 +265,58 @@ export default {
     required(val) {
       return required(val);
     },
-
-    lsRememberMe() {
-      const emailInput = this.form.email;
-      const rmCheck = this.rememberMe;
-
-      if (localStorage.checkbox && localStorage.checkbox !== "") {
-        rmCheck.setAttribute("checked", "checked");
-        emailInput.value = localStorage.username;
-      } else {
-        rmCheck.removeAttribute("checked");
-        emailInput.value = "";
-      }
-
-      if (rmCheck.checked && emailInput.value !== "") {
-        localStorage.username = emailInput.value;
-        localStorage.checkbox = rmCheck.value;
-      } else {
-        localStorage.username = "";
-        localStorage.checkbox = "";
-      }
-    },
-
-    checkForm() {
-      let check = true;
+    onSubmit() {
       this.errors = [];
+      this.endCheck = false
+
+      if (!this.form.email) {
+        this.errors.push(this.$t("emptyEmail"));
+      }
+      if (this.form.email != "" && validateEmail(this.form.email) == false) {
+          this.errors.push(this.$t("correctEmail"));
+      }
+
+      if (this.form.password != "" && validatePassword(this.form.password) == false) {
+        this.errors.push(this.$t("correctPassword"));
+      }
+      if (!this.form.password) {
+        this.errors.push(this.$t("emptyPassword"));
+      }
 
       if (this.currentRoute == "signup") {
         if (this.form.first_name != "" && validateName(this.form.first_name) == false) {
           this.errors.push(this.$t("correctFirstName"));
-          check = false;
         }
 
         if (!this.form.first_name) {
           this.errors.push(this.$t("emptyName"));
-          check = false;
         }
 
         if (this.form.last_name != "" && validateName(this.form.last_name) == false) {
           this.errors.push(this.$t("correctLastName"));
-          check = false;
         }
 
         if (!this.form.last_name) {
           this.errors.push(this.$t("emptyLastName"));
-          check = false;
-        }
-
-        if (this.form.email != "" && validateEmail(this.form.email) == false) {
-          this.errors.push(this.$t("correctEmail"));
-          check = false;
-        }
-
-        if (!this.form.email) {
-          this.errors.push(this.$t("emptyEmail"));
-          check = false;
-        }
-
-        if (this.form.password != "" && validatePassword(this.form.password) == false) {
-          this.errors.push(this.$t("correctPassword"));
-          check = false;
-        }
-
-        if (!this.form.password) {
-          this.errors.push(this.$t("emptyPassword"));
-          check = false;
         }
 
         if (this.form.accept == false) {
           this.errors.push(this.$t("acceptTerms"));
-          check = false;
         }
 
         if (this.form.password != this.repeatedPassword) {
           this.errors.push(this.$t("passwordMatch"));
-          check = false;
+        }
+
+        if (this.captcha != this.reCaptcha) {
+          this.errors.push(this.$t("captchaError"))
         }
       }
 
-      if (this.currentRoute == "signin") {
-        if (!this.form.email) {
-          this.errors.push(this.$t("emptyEmail"));
-          check = false;
-        }
-
-        if (!this.form.password) {
-          this.errors.push(this.$t("emptyPassword"));
-          check = false;
-        }
-
-        if (this.form.email != "" && validateEmail(this.form.email) == false) {
-          this.errors.push(this.$t("correctEmail"));
-          check = false;
-        }
-
-        if (this.form.password != "" && validatePassword(this.form.password) == false) {
-          this.errors.push(this.$t("correctPassword"));
-          check = false;
-        }
-
-      }
-
-      if (check) {
+      this.endCheck = true
+      if(this.errors.length > 0){
+        return
+      }else{
         let response = null
 
         if (this.currentRoute == "signin"){
@@ -298,20 +329,8 @@ export default {
           response = this.form
         }
         this.$emit("form", response);
-
-      } else {
-        netWorkError(this.errors);
       }
     },
-
-    // onReset() {
-    //   this.form.first_name = null;
-    //   this.form.last_name = null;
-    //   this.form.email = null;
-    //   this.form.password = null;
-    //   this.form.accept = false;
-    //   this.repeatedPassword = null;
-    // },
   },
 };
 </script>
@@ -319,7 +338,7 @@ export default {
 .form-page {
   background-color: #e0ecf2;
   border-bottom-right-radius: 26px;
-  @media (max-width: 770px) {
+  @media (max-width: $breakpoint-sm-max) {
     border-bottom-left-radius: 26px;
   }
 
@@ -327,8 +346,11 @@ export default {
 }
 
 .title-registration {
-  @media (min-width: $breakpoint-md-min) {
-    border-top-right-radius: 26px;
+
+  border-top-right-radius: 26px;
+
+  @media (max-width: $breakpoint-sm-max) {
+    border-top-left-radius: 26px;
   }
 }
 

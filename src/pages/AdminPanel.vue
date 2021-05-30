@@ -12,7 +12,7 @@
             class="text-dark"
           >
             <q-tab name="users" label="Users" />
-            <q-tab name="other1" label="other1" />
+            <q-tab name="terms" label="Terms" />
             <q-tab name="other2" label="other2" />
           </q-tabs>
         </template>
@@ -30,10 +30,8 @@
               <UsersManagement/>
             </q-tab-panel>
 
-            <q-tab-panel name="other1" >
-              <div class="text-h4 q-mb-md">other1</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+            <q-tab-panel name="terms" >
+              <TermsManagement :companiesProp="companies" @saveCompanies="saveCompanies"/>
             </q-tab-panel>
 
             <q-tab-panel name="other2">
@@ -53,21 +51,42 @@
 <script>
 import { isSuperUser } from '@/models/user.js'
 
-import UsersManagement from "@/components/users/UsersManagement.vue"
+import UsersManagement from "@/components/admin/UsersManagement.vue"
+import TermsManagement from "@/components/admin/TermsManagement.vue"
+
+import { getCompany, sendToCompanies } from "@/models/company";
+
 export default {
   name: 'AdminPanel',
   components: {
-    UsersManagement
+    UsersManagement,
+    TermsManagement
   },
   data () {
     return {
       splitterModel: 20,
-      tab: 'users'
+      tab: 'users',
+      companies: {},
+      formsKeys: ["en", "fr", "it"],
     }
   },
-  async mounted() {
+  async created() {
     let val = await isSuperUser()
     if(!val) this.$router.push({ name: "home" });
+    await this.setupCompanies()
+  },
+  methods: {
+    async setupCompanies(){
+      this.formsKeys.map(async v => {
+        this.companies[v] = await getCompany(v)
+      })
+    },
+
+    saveCompanies(companies){
+      for(let key in companies){
+        sendToCompanies(companies[key], key)
+      }
+    }
   }
 }
 </script>
