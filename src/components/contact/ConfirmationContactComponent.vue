@@ -26,19 +26,6 @@ export default {
     propMessage:String
   },
 
-  /*watch:{
-    model: {
-      immediate: true,
-      handler(){
-        if(!this.model){
-            this.$router.push({
-            path:"/contact"
-          })
-        }
-      }
-    }
-  },*/
-
   data() {
     return {
       title:this.propTitle,

@@ -68,22 +68,24 @@
         color="primary"
         icon="fa fa-paper-plane"
       />
-       <ApplyJobComponent :key="termsKey" v-if="show"  @formcontact="emitcontactform"/>
+      <PopupContactFormComponent
+        originFormParent="Job"
+        :key="termsKey"
+        v-if="show"
+        @formcontact="emitcontactform"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
-import ApplyJobComponent from "@/components/job/ApplyJobComponent.vue";
-/*import ContactFormComponent from "@/components/contact/ContactFormComponent.vue"; */
+import PopupContactFormComponent from "@/components/job/PopupContactFormComponent.vue";
 
 export default {
   name: "JobPresentation",
   components: {
-    /* TermsOfAgreementComponent,
-    ContactFormComponent */
-    ApplyJobComponent
+    PopupContactFormComponent
   },
   props: ["jobProp"],
   data() {
@@ -104,8 +106,8 @@ export default {
       this.termsKey++;
       this.show = true;
     },
-     emitcontactform(contact) {
-       this.$emit('formcontact',contact)
+    emitcontactform(contact) {
+      this.$emit("formcontact", contact);
     }
   }
 };

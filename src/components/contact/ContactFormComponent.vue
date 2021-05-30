@@ -242,7 +242,7 @@ export default {
         category: this.originForm,
         accept: false
       },
-      computed: {},
+      
       show: false,
       termsKey: 1,
       isErrorTextarea: true,
