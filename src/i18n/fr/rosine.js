@@ -52,7 +52,8 @@ export const rosineTranslations = {
   send_form_contact:"Envoyer",
   check:"Acceptez les conditions de confidentialité",
 
-   apply: "Postuler pour cet emploi",
-   close: "Fermer",
+  apply: "Postuler pour cet emploi",
+  apply_training: "Postuler à la formation",
+  close: "Fermer",
 
 }

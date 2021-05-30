@@ -14,7 +14,7 @@
       </q-btn>
       <PopupContactFormComponent
         originFormParent="Training"
-        titlePopup="trainningCourse"
+        titlePopup="apply_training"
         :key="termsKey"
         v-if="show"
         @formcontact="emitcontactform"
