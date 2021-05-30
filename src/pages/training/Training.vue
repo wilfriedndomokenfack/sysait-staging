@@ -7,19 +7,32 @@
       class="q-mb-md"
     />
     <div class="constrain">
-      <PageDescription :descriptionProp="pageDescription" @description="updatePageDescription" :key="descriptionKey" category="trainings"/>
+      <PageDescription
+        :descriptionProp="pageDescription"
+        @description="updatePageDescription"
+        :key="descriptionKey"
+        category="trainings"
+      />
       <div class="col-12">
-        <SendUserFromTrainingsToContacts/>
+        <SendUserFromTrainingsToContacts 
+         :key="myKeyTraining"
+         @formcontact="emitcontactform" />
       </div>
       <div>
-        <AddElementBtn link="newTraining" @statusFilter="filterTrainings"/>
+        <AddElementBtn link="newTraining" @statusFilter="filterTrainings" />
       </div>
       <div v-if="renderComponent">
-        <TrainingsComponent  :propTrainings="filteredTrainings"  :key="myKey"/>
+        <TrainingsComponent :propTrainings="filteredTrainings" :key="myKey" />
       </div>
       <div class="col-12">
-        <SendUserFromTrainingsToContacts/>
+        <SendUserFromTrainingsToContacts :key="myKeyTraining" @formcontact="emitcontactform" />
       </div>
+      <ConfirmationContactComponent
+          v-if="confirmMessage"
+          :propTitle="$t('confirm')"
+          :propMessage="confirmMessage"
+          :key="myKeyTraining"
+     />
     </div>
   </q-page>
 </template>
@@ -28,25 +41,34 @@
 import BannerPages from "@/components/utils/BannerPages.vue";
 import EmptyComponent from "@/components/utils/EmptyComponent.vue";
 import TrainingsComponent from "@/components/training/TrainingsComponent.vue";
-import PageDescription from "@/components/utils/PageDescription.vue"
-import AddElementBtn from "@/components/utils/AddElementBtn.vue"
-import SendUserFromTrainingsToContacts from "@/components/training/SendUserFromTrainingsToContacts.vue"
-
+import PageDescription from "@/components/utils/PageDescription.vue";
+import AddElementBtn from "@/components/utils/AddElementBtn.vue";
+import SendUserFromTrainingsToContacts from "@/components/training/SendUserFromTrainingsToContacts.vue";
+import ContactFormComponent from "@/components/contact/ContactFormComponent.vue";
+import PopupContactFormComponent from "@/components/job/PopupContactFormComponent.vue";
+import { sendcontactform } from "@/models/contact/FormContact.js";
+import ConfirmationContactComponent from "@/components/contact/ConfirmationContactComponent.vue";
 import { mapGetters } from "vuex";
-import { table_description, sendToTableDescriptions } from "@/models/table_description.js"
-import { trainings } from "@/models/training.js"
+import {
+  table_description,
+  sendToTableDescriptions
+} from "@/models/table_description.js";
+import { trainings } from "@/models/training.js";
 import { netWorkError } from "@/models/utils/netWorkError";
-import { getUserCourses } from "@/models/user.js"
+import { getUserCourses } from "@/models/user.js";
 
 export default {
-  name: 'TrainingsPage',
+  name: "TrainingsPage",
   components: {
     BannerPages,
     EmptyComponent,
     TrainingsComponent,
     PageDescription,
     AddElementBtn,
-    SendUserFromTrainingsToContacts
+    SendUserFromTrainingsToContacts,
+    ContactFormComponent,
+    PopupContactFormComponent,
+    ConfirmationContactComponent
   },
   watch: {
     currentUser: {
@@ -58,9 +80,9 @@ export default {
     trainings: {
       immediate: true,
       handler() {
-        this.trainingsChanged()
+        this.trainingsChanged();
       }
-    },
+    }
   },
   data() {
     return {
@@ -71,49 +93,56 @@ export default {
       myKey: 0,
       editDescription: false,
       filteredTrainings: [],
-      model: null
-
+      model: null,
+      confirmMessage: null,
+      myKeyTraining: 0,
     };
   },
   computed: {
-    ...mapGetters(["company", "wilfried/trainings", "wilfried/trainingPageDescription", "currentUser"])
+    ...mapGetters([
+      "company",
+      "wilfried/trainings",
+      "wilfried/trainingPageDescription",
+      "currentUser"
+    ])
   },
 
   async mounted() {
-
-    if(this.currentUser && !this.currentUser?.coursesIds){
-      await getUserCourses(this.currentUser.id)
+    if (this.currentUser && !this.currentUser?.coursesIds) {
+      await getUserCourses(this.currentUser.id);
     }
 
-    if(!this["wilfried/training"]){
-      await this.getTrainings()
+    if (!this["wilfried/training"]) {
+      await this.getTrainings();
     }
 
-    if(!this["wilfried/trainingPageDescription"]){
-      await this.getPageDescription()
+    if (!this["wilfried/trainingPageDescription"]) {
+      await this.getPageDescription();
     }
 
-    this.pageDescription = this["wilfried/trainingPageDescription"]
+    this.pageDescription = this["wilfried/trainingPageDescription"];
     this.trainings = this["wilfried/trainings"];
-    this.filterTrainings([])
-    this.renderComponent = true
-
+    this.filterTrainings([]);
+    this.renderComponent = true;
   },
   methods: {
-    trainingsChanged(){
-      this.trainings = this["wilfried/trainings"];
-      this.filterTrainings(this.model)
+    async emitcontactform(contact) {
+      this.confirmMessage = await sendcontactform(contact);
+      this.myKeyTraining++;
     },
-    async updatePageDescription(description){
-      const response = await sendToTableDescriptions(description)
-      if(response){
-        this.pageDescription = response
-        this.descriptionKey ++
+    trainingsChanged() {
+      this.trainings = this["wilfried/trainings"];
+      this.filterTrainings(this.model);
+    },
+    async updatePageDescription(description) {
+      const response = await sendToTableDescriptions(description);
+      if (response) {
+        this.pageDescription = response;
+        this.descriptionKey++;
       }
     },
 
-
-    async getTrainings(){
+    async getTrainings() {
       this.$q.loading.show();
       try {
         const response = await trainings();
@@ -128,39 +157,38 @@ export default {
       }
     },
 
-
-    async getPageDescription(){
+    async getPageDescription() {
       this.$q.loading.show();
-      try{
+      try {
         const response = await table_description("trainings");
-        this.pageDescription = response?.data
-        this.$store.dispatch("wilfried/setTrainingPageDescription", { ...response?.data } );
-      }catch(e){
-        this.pageDescription = null
-      }finally {
+        this.pageDescription = response?.data;
+        this.$store.dispatch("wilfried/setTrainingPageDescription", {
+          ...response?.data
+        });
+      } catch (e) {
+        this.pageDescription = null;
+      } finally {
         this.$q.loading.hide();
       }
     },
 
-    redirect(link, params){
-       this.$router.push({ name: link, params: params })
+    redirect(link, params) {
+      this.$router.push({ name: link, params: params });
     },
 
-    filterTrainings(model = []){
-      this.model = model
-      if(model?.length > 0){
+    filterTrainings(model = []) {
+      this.model = model;
+      if (model?.length > 0) {
         this.filteredTrainings = this.trainings?.filter(
           v => model.indexOf(parseInt(v.status)) > -1
-        )
-      }else{
-        this.filteredTrainings = this.trainings
+        );
+      } else {
+        this.filteredTrainings = this.trainings;
       }
       this.myKey = !this.myKey;
     }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

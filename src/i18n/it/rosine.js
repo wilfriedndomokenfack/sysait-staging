@@ -51,6 +51,7 @@ export const rosineTranslations = {
   send_form_contact:"Inviare",
   check: "Accettare i termini della privacy",
   apply: "Candidati a questo lavoro",
+  apply_training: "Iscriviti al corso di formazione",
   close: "Chiudere",
   
 

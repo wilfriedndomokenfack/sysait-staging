@@ -28,7 +28,7 @@ import { mapGetters } from "vuex";
 import BannerPages from "@/components/utils/BannerPages.vue";
 import JobPresentation from "@/components/job/JobPresentation.vue";
 import ContactFormComponent from "@/components/contact/ContactFormComponent.vue";
-import ApplyJobComponent from "@/components/job/ApplyJobComponent.vue";
+import PopupContactFormComponent from "@/components/job/PopupContactFormComponent.vue";
 import { sendcontactform } from "@/models/contact/FormContact.js";
 import ConfirmationContactComponent from "@/components/contact/ConfirmationContactComponent.vue";
 export default {
@@ -37,7 +37,7 @@ export default {
     BannerPages,
     JobPresentation,
     ContactFormComponent,
-    ApplyJobComponent,
+    PopupContactFormComponent,
     ConfirmationContactComponent
   },
   data() {
