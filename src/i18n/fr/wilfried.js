@@ -25,8 +25,6 @@ export const wilfriedTranslations = {
   emailConfirmation: "Confirmation de l'émail",
   somethingWentWrong: "Quelque chose s\'est mal passé",
   confirmationEmailProgress: "Confirmation de l\'e-mail en cours ...",
-
-
-
+  passwordReserdescription: "Entrez votre email pour récupérer votre mot de passe."
 
 }
