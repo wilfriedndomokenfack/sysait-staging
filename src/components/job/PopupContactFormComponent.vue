@@ -21,7 +21,7 @@
               class="closeBtn"
               :class="{
                 'text-h5': $q.screen.gt.xs,
-                'text-h5': !$q.screen.gt.xs
+                'text-h6': !$q.screen.gt.xs
               }"
               dense
               flat
@@ -99,8 +99,8 @@ export default {
     left: -10px;
   }
   @media (max-width: 400px) {
-    top: -20px;
-    left: -30px;
+    top: -40px;
+    left: -20px;
   }
 }
 </style>
