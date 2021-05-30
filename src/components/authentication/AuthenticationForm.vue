@@ -159,6 +159,7 @@
             :label="$t('forgotPass')"
             @click="changePorgotPassword"/>
         </div>
+        <!--
         <div v-if="currentRoute == 'signin'" class="forgotPassword text-center col">
           <q-checkbox
           class="col row jystify-center"
@@ -168,6 +169,7 @@
           v-model="rememberMe"
         />
         </div>
+        -->
         <TermsOfAgreementComponent :key="termsKey" v-if="show" />
         <div class="col flex flex-center">
           <q-btn :label="$t('submit')" type="submit" color="primary" size="md" rounded />
