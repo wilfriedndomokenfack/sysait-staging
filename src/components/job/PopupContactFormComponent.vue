@@ -12,7 +12,7 @@
                 'text-h4': $q.screen.gt.xs,
                 'text-h5': !$q.screen.gt.xs
               }"
-              >{{ $t("apply") }}</span
+              >{{ $t(titlePopup) }}</span
             >
           </div>
 
@@ -56,7 +56,8 @@ export default {
   },
 
   props: {
-    originFormParent: String
+    originFormParent: String,
+    titlePopup: String
   },
 
   data() {
@@ -65,9 +66,7 @@ export default {
       originFormContact: this.originFormParent
     };
   },
-  /* async mounted() {
-    this.originForm = "Job";
-  }, */
+
   methods: {
     emitcontactform(contact) {
       this.$emit("formcontact", contact);
