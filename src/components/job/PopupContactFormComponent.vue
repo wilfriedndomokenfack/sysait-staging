@@ -37,6 +37,7 @@
             <ContactFormComponent
               :isPopup="true"
               :originForm="originFormContact"
+              :key="termsKey"
               @formcontact="emitcontactform"
             />
           </q-card-section>
@@ -63,7 +64,9 @@ export default {
   data() {
     return {
       model: true,
-      originFormContact: this.originFormParent
+      originFormContact: this.originFormParent,
+      termsKey: 1,
+      show: false,
     };
   },
 

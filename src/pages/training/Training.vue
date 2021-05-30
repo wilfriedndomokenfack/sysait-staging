@@ -14,7 +14,9 @@
         category="trainings"
       />
       <div class="col-12">
-        <SendUserFromTrainingsToContacts  @formcontact="emitcontactform" />
+        <SendUserFromTrainingsToContacts 
+         :key="myKeyTraining"
+         @formcontact="emitcontactform" />
       </div>
       <div>
         <AddElementBtn link="newTraining" @statusFilter="filterTrainings" />
@@ -23,7 +25,7 @@
         <TrainingsComponent :propTrainings="filteredTrainings" :key="myKey" />
       </div>
       <div class="col-12">
-        <SendUserFromTrainingsToContacts  @formcontact="emitcontactform" />
+        <SendUserFromTrainingsToContacts :key="myKeyTraining" @formcontact="emitcontactform" />
       </div>
       <ConfirmationContactComponent
           v-if="confirmMessage"
@@ -126,7 +128,6 @@ export default {
   methods: {
     async emitcontactform(contact) {
       this.confirmMessage = await sendcontactform(contact);
-      console.log(this.confirmMessage);
       this.myKeyTraining++;
     },
     trainingsChanged() {
