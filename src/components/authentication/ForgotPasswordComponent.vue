@@ -76,10 +76,10 @@
 import { validateEmail } from "@/models/utils/validations.js";
 import RegistrationPopupComponent from "@/components/authentication/RegistrationPopupComponent.vue"
 import Api from "@/models/Api";
-
+import { redirect } from "@/models/utils/common.js"
 export default {
   name: 'ForgotPasswordComponent',
-   components: {
+  components: {
     RegistrationPopupComponent
   },
   watch:{
