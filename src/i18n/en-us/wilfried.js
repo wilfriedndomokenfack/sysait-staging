@@ -24,6 +24,10 @@ export const wilfriedTranslations = {
   emailConfirmation: "Email confirmation",
   somethingWentWrong: "something went wrong",
   confirmationEmailProgress: "Confirmation of the e-mail in progress ...",
+  passwordReserdescription: "Enter your email to recover your password.",
+
+  resetPass: "Password reset",
+  resetPassDescrip: "Enter the new password"
 
 
 }

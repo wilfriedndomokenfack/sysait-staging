@@ -83,11 +83,18 @@
           outlined
           bg-color="white"
           v-model="form.password"
-          type="password"
+          :type="isPwd ? 'password' : 'text'"
           label="Password"
         >
           <template v-slot:prepend>
             <q-icon  class="color_sysait_cerulean" name="lock" />
+          </template>
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
           </template>
         </q-input>
 
@@ -99,11 +106,18 @@
           outlined
           bg-color="white"
           v-model="repeatedPassword"
-          type="password"
           :label="$t('passwordRepeated')"
+          :type="isPwd ? 'password' : 'text'"
         >
           <template v-slot:prepend>
             <q-icon :class="{'text-primary': !form.password, 'text-red-5': form.password && form.password != repeatedPassword, 'text-green-5': form.password && form.password == repeatedPassword} " name="lock" />
+          </template>
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
           </template>
         </q-input>
 
@@ -126,7 +140,7 @@
             <div class="col-6">
               <q-input
                 dense
-               
+
                 outlined
                 bg-color="white"
                 v-model="reCaptcha"
@@ -210,6 +224,7 @@ export default {
   ],
   data() {
     return {
+      isPwd: true,
       errors: [],
       endCheck: false,
       captcha: uniqCode(6),

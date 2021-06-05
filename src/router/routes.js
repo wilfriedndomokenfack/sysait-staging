@@ -200,6 +200,11 @@ const routes = [
         path: "/api/v1/users/:tokenDatas",
         name: 'confirmation',
         component: () => import('pages/user/EmailConfirmationPage.vue'),
+      },
+      {
+        path: "/api/v1/users/password/:tokenDatas",
+        name: 'resetPassword',
+        component: () => import('pages/user/PasswordResetPage.vue'),
       }
 
     ]
