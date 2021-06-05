@@ -64,7 +64,7 @@
     </q-dialog>
     <RegistrationPopupComponent
       v-if="message"
-      :propTitle="$t('forgotPass')"
+      :propTitle="$t('confirm')"
       :propMessage="message"
       @closed="pupopChanged"
       :flag="flag"
@@ -99,7 +99,7 @@ export default {
       endCheck: false,
       email: null,
       message: null,
-      model: true 
+      model: true
     }
   },
   methods: {

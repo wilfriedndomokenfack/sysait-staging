@@ -73,13 +73,13 @@
               :label="$t('passwordRepeated')"
             >
               <template v-slot:prepend>
-                <q-icon 
+                <q-icon
                   :class="{
-                    'text-primary': !password, 
-                    'text-red-5': password && password != repeatedPassword, 
+                    'text-primary': !password,
+                    'text-red-5': password && password != repeatedPassword,
                     'text-green-5': password && password == repeatedPassword
-                  }" 
-                  name="lock" 
+                  }"
+                  name="lock"
                 />
               </template>
               <template v-slot:append>
@@ -152,7 +152,7 @@ export default {
       this.muKey++
       redirect("home")
     }
-    
+
   },
   methods: {
     pupopChanged(){
@@ -185,10 +185,10 @@ export default {
             }
             const response = await Api().patch("password_reset", form);
             if(response?.data.message ) this.message = response?.data.message
-             this.flag = response.data.flag
+            this.flag = response.data.flag
             this.muKey++
           }
-        
+
         } catch (error) {
           this.message = error + " - " + this.message
         }finally{
@@ -196,10 +196,6 @@ export default {
         }
       }
     },
-
-
-
-
 
     goHome(){
       redirect("signin")

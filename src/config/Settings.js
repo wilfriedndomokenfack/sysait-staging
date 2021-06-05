@@ -12,6 +12,7 @@ const EnvironmentSettings = {
   },
   development: {
     apiHost: `http://localhost:3001/`
+    //apiHost: "https://sysait-backend-test.herokuapp.com/"
   }
 
 }[env()];

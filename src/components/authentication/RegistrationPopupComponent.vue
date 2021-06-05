@@ -2,9 +2,9 @@
   <div>
     <q-dialog v-model="model">
       <q-card style="width: 300px">
-        <q-card-section class="text-white" :class="{'bg-green': flag == 1, 'bg-red': flag != 1}">
-          <div class="text-h6">{{ title }}</div>
-        </q-card-section>
+        <div class="text-white text-center q-pa-sm" :class="{'bg-green': flag == 1, 'bg-red': flag != 1}">
+          <div class="text-h7">{{ title }}</div>
+        </div>
 
         <q-card-section class="flex flex-center">
           {{ message }}
