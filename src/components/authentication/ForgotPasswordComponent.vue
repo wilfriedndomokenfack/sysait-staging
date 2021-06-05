@@ -137,7 +137,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .diagPassword {
   border: 4px solid $primary;
   width: 100%;

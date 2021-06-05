@@ -9,10 +9,10 @@
             <q-tooltip>{{ $t('close') }}</q-tooltip>
           </q-btn>
         </q-bar>
-        <div class="diagPassword">
-          <q-card-section >
+        <div class="diagPassword column ">
+          <q-card-section class="column col justify-end q-pb-none" >
             <!-- LISTA ERRORI-->
-            <div class="col column bg-grey-3 q-mb-md " v-if="endCheck && errors.length > 0">
+            <div class="col column bg-grey-3 q-mb-md" v-if="endCheck && errors.length > 0" style="width: 300px;">
               <div class="col row justify-end items-center">
                 <q-btn
                   @click="errors = []"
@@ -23,19 +23,20 @@
                   class="q-pr-xs"
                 />
               </div>
-              <ul class="col">
+              <ul class="col ">
                 <li class="text-red text-bold text-left" v-for="(error, index) in errors" :key="index">
                   {{ error }}
                 </li>
               </ul>
             </div>
-            <div>
-              <p class=" text-center">
+            <!--END LISTA ERRORI-->
+            <div class="col text-center">
+
                 {{ $t('resetPassDescrip') }}
-              </p>
+
             </div>
         </q-card-section>
-        <q-card-section class="flex flex-center ">
+        <q-card-section class=" col flex flex-center ">
           <q-form
             @submit="onSubmit"
             class=" q-gutter-md q-pb-xl column"
