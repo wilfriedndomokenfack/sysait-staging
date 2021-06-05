@@ -1,18 +1,12 @@
 <template>
   <q-page padding class="constrain">
     <div>
-      <q-splitter
-        v-model="splitterModel"
-        style="height: 600px; width:1000px"
-      >
+      <q-splitter v-model="splitterModel" style="height: 600px; width:1000px">
         <template v-slot:before>
-          <q-tabs
-            v-model="tab"
-            vertical
-            class="text-dark"
-          >
+          <q-tabs v-model="tab" vertical class="text-dark">
             <q-tab name="users" label="Users" />
             <q-tab name="terms" label="Terms" />
+            <q-tab name="messages" label="Messages" />
             <q-tab name="other2" label="other2" />
           </q-tabs>
         </template>
@@ -27,66 +21,78 @@
             transition-next="jump-up"
           >
             <q-tab-panel name="users">
-              <UsersManagement/>
+              <UsersManagement />
             </q-tab-panel>
 
-            <q-tab-panel name="terms" >
-              <TermsManagement :companiesProp="companies" @saveCompanies="saveCompanies"/>
+            <q-tab-panel name="terms">
+              <TermsManagement
+                :companiesProp="companies"
+                @saveCompanies="saveCompanies"
+              />
+            </q-tab-panel>
+
+            <q-tab-panel name="messages">
+              <MessageManagement />
             </q-tab-panel>
 
             <q-tab-panel name="other2">
               <div class="text-h4 q-mb-md">other2</div>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              
             </q-tab-panel>
           </q-tab-panels>
         </template>
-
       </q-splitter>
     </div>
   </q-page>
 </template>
 
 <script>
-import { isSuperUser } from '@/models/user.js'
+import { isSuperUser } from "@/models/user.js";
 
-import UsersManagement from "@/components/admin/UsersManagement.vue"
-import TermsManagement from "@/components/admin/TermsManagement.vue"
+import UsersManagement from "@/components/admin/UsersManagement.vue";
+import TermsManagement from "@/components/admin/TermsManagement.vue";
+import MessageManagement from "@/components/admin/MessageManagement.vue";
 
 import { getCompany, sendToCompanies } from "@/models/company";
 
 export default {
-  name: 'AdminPanel',
+  name: "AdminPanel",
   components: {
     UsersManagement,
-    TermsManagement
+    TermsManagement,
+    MessageManagement
   },
-  data () {
+  data() {
     return {
       splitterModel: 20,
-      tab: 'users',
+      tab: "users",
       companies: {},
-      formsKeys: ["en", "fr", "it"],
-    }
+      formsKeys: ["en", "fr", "it"]
+    };
   },
   async created() {
-    let val = await isSuperUser()
-    if(!val) this.$router.push({ name: "home" });
-    await this.setupCompanies()
+    let val = await isSuperUser();
+    if (!val) this.$router.push({ name: "home" });
+    await this.setupCompanies();
   },
   methods: {
-    async setupCompanies(){
+    async setupCompanies() {
       this.formsKeys.map(async v => {
-        this.companies[v] = await getCompany(v)
-      })
+        this.companies[v] = await getCompany(v);
+      });
     },
 
-    saveCompanies(companies){
-      for(let key in companies){
-        sendToCompanies(companies[key], key)
+    saveCompanies(companies) {
+      for (let key in companies) {
+        sendToCompanies(companies[key], key);
       }
     }
   }
-}
+};
 </script>

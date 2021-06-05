@@ -8,9 +8,11 @@ export default {
   actions,
   state: {
     humanComponents: null,
+    messages: [],
   },
 
   getters: {
     humanComponents: state => state.humanComponents,
+    messages: state => state.messages,
   },
 };
