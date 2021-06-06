@@ -41,6 +41,6 @@ function quasar_build() {
       ;;
   esac
 
-  SYSAIT_API_HOST=${SYSAIT_API_HOS} \
+  SYSAIT_API_HOST=${SYSAIT_API_HOST} \
   quasar build
 }
