@@ -40,6 +40,7 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
+          - ls
           - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
         artifacts:
           - sysait.tar.gz
