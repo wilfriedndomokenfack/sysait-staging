@@ -27,7 +27,6 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - cd dist/**
           - git archive --format=tar.gz master -o sysait-staging.tar.gz
         artifacts:
           - sysait-staging.tar.gz
@@ -41,7 +40,6 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - cd dist/**
           - git archive --format=tar.gz master -o sysait.tar.gz
         artifacts:
           - sysait.tar.gz
