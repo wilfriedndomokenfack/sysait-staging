@@ -6,11 +6,7 @@
   "author": "Sysait <sysaitechnology@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0",
-    "build": "quasar build",
-    "start": "node server.js",
-    "heroku-postbuild": "yarn && yarn build"
+    "start": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
