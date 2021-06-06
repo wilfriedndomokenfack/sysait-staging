@@ -56,8 +56,8 @@ definitions:
           - pipe: atlassian/heroku-deploy:0.1.1
             variables:
               HEROKU_API_KEY: $HEROKU_API_KEY
-              HEROKU_APP_NAME: $HEROKU_APP_NAME
-              ZIP_FILE: sample-python-app/sample-app.tar.gz
+              HEROKU_APP_NAME: $HEROKU_APP_STAGING_NAME
+              ZIP_FILE: sysait.tar.gz
 
 pipelines:
   default:
