@@ -27,7 +27,7 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - git archive --format=tar.gz master -o sysait-staging.tar.gz
+          - git archive --format=tar.gz -o sysait-staging.tar.gz
         artifacts:
           - sysait-staging.tar.gz
     - step: &build-app-assets-prod
