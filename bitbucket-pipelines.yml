@@ -27,9 +27,10 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
+          - cd quasar_sysait
           - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
         artifacts:
-          - sysait.tar.gz
+          - quasar_sysait/sysait.tar.gz
     - step: &build-app-assets-prod
         name: Build App Assets Prod
         caches:
@@ -40,10 +41,10 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - ls
+          - cd quasar_sysait
           - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
         artifacts:
-          - sysait.tar.gz
+          - quasar_sysait/sysait.tar.gz
     - step: &herokudeployment
         name: "Deploy to Test Env"
         deployment: Test
@@ -58,7 +59,7 @@ definitions:
             variables:
               HEROKU_API_KEY: $HEROKU_API_KEY
               HEROKU_APP_NAME: $HEROKU_APP_STAGING_NAME
-              ZIP_FILE: sysait.tar.gz
+              ZIP_FILE: quasar_sysait/sysait.tar.gz
 
 pipelines:
   default:
