@@ -7,5 +7,10 @@ const
 const app = express()
 
 app.use(history())
-app.use(serveStatic(__dirname + '/dist/spa'))
+
+//app.use(serveStatic(__dirname + '/dist/spa'))
+app.get('/', function(req, res){
+  res.render('/dist/spa/index.html');
+});
+
 app.listen(port)

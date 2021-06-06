@@ -40,7 +40,7 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - git archive --format=tar.gz master -o sysait.tar.gz
+          - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
         artifacts:
           - sysait.tar.gz
     - step: &herokudeployment
