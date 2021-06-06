@@ -27,9 +27,9 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - git archive --format=tar.gz -o sysait-staging.tar.gz
+          - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
         artifacts:
-          - sysait-staging.tar.gz
+          - sysait.tar.gz
     - step: &build-app-assets-prod
         name: Build App Assets Prod
         caches:
