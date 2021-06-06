@@ -30,10 +30,10 @@ function quasar_build() {
 
   case ${DEPLOY_ENV} in
     "staging")
-      export SYSAIT_API_HOST=${HEROKU_APP_STAGING_NAME}
+      export SYSAIT_API_HOST=${SYSAIT_API_HOST_STAGING}
       ;;
     "production")
-      export SYSAIT_API_HOST=${HEROKU_APP_PROD_NAME}
+      export SYSAIT_API_HOST=${SYSAIT_API_HOST_PROD}
       ;;
     *)
       echo "ERROR - deploy env ${DEPLOY_ENV} not defined elsewhere"

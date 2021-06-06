@@ -70,17 +70,17 @@ pipelines:
         script:
           - echo "ERROR - unit tests not implemented yet"
 
-  branches:
-    master: # after merge from develop to master: a prod release
-      - step: *build-app-assets-staging
-      - step:
-          <<: *herokudeployment
-          name: "Deploy to Staging Env"
-          deployment: Staging
+  #branches:
+    #master: # after merge from develop to master: a prod release
+    - step: *build-app-assets-staging
+    - step:
+        <<: *herokudeployment
+        name: "Deploy to Staging Env"
+        deployment: Staging
 
-      - step: *build-app-assets-prod
-      - step:
-          <<: *herokudeployment
-          name: "Deploy to Prod Env"
-          trigger: manual
-          deployment: Production
+    - step: *build-app-assets-prod
+    - step:
+        <<: *herokudeployment
+        name: "Deploy to Prod Env"
+        trigger: manual
+        deployment: Production
