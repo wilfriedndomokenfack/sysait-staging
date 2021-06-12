@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js"
+    "heroku-postbuild": "yarn && SYSAIT_API_HOST=$SYSAIT_API_HOST yarn build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
