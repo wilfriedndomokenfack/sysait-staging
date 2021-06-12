@@ -1,63 +1,85 @@
-#  Template NodeJS Web Application for Azure Web App service
+image: node:12.14.1
 
-#  This template allows you to deploy your NodeJS web application to Azure Web App Service.
-#  The workflow allows running tests, code linting and security scans on feature branches (as well as master).
-#  The NodeJS application will be validated after the code is merged to master and deployment can be triggered manually.
+definitions:
+  steps:
+    - step: &skip
+        name: "Skip PR"
+        script:
+          - echo "No Step needed"
+    - step: &releasenotice
+        name: "Releasing to staging environment"
+        script:
+          - |
+            echo "PR develop --> master"
+    - step: &unittest
+        name: "Unit Test not implemented yet"
+        caches:
+          - node
+        script:
+          - echo "ERROR - unit tests not implemented yet"
+    - step: &build-app-assets-staging
+        name: Build App Assets Staging
+        caches:
+          - node
+        script:
+          - source .bitbucket-pipelines/pipelines-functions.sh
+          - export DEPLOY_ENV="staging"
+          - install_quasar_dependencies
+          - quasar_build
+          - debug_listing_dist_dir
+          - cd quasar_sysait
+          - git archive --format=tar.gz master -o sysait.tar.gz
+        artifacts:
+          - quasar_sysait/sysait.tar.gz
+    - step: &build-app-assets-prod
+        name: Build App Assets Prod
+        caches:
+          - node
+        script:
+          - source .bitbucket-pipelines/pipelines-functions.sh
+          - export DEPLOY_ENV="production"
+          - install_quasar_dependencies
+          - quasar_build
+          - debug_listing_dist_dir
+          - git archive --format=tar.gz master -o sysait.tar.gz
+        artifacts:
+          - quasar_sysait/sysait.tar.gz
+    - step: &herokudeployment
+        name: "Deploy to Test Env"
+        deployment: Test
+        script:
+          - |
+            source .bitbucket-pipelines/pipelines-functions.sh
+            echo "INFO - environment preparation"
+            check_variable ${HEROKU_API_KEY}
+            check_variable ${HEROKU_APP_STAGING_NAME}
 
-# Prerequisites: $$AZURE_APP_ID, $AZURE_PASSWORD, $AZURE_TENANT_ID, $AZURE_RESOURCE_GROUP, $AZURE_APP_NAME setup in the Deployment variables.
-# For advanced cases, please, follow examples from the pipe's README https://bitbucket.org/microsoft/azure-web-apps-deploy/src/1.0.3/README.md
-
-
-image: node:10.15.3
+          - pipe: atlassian/heroku-deploy:0.1.1
+            variables:
+              HEROKU_API_KEY: $HEROKU_API_KEY
+              HEROKU_APP_NAME: $HEROKU_APP_STAGING_NAME
+              ZIP_FILE: quasar_sysait/sysait.tar.gz
 
 pipelines:
   default:
-    - parallel:
-      - step:
-          name: Build and Test
-          caches:
-            - node
-          script:
-            - npm install
-            - npm test
-      - step:
-          name: Code linting
-          script:
-            - npm install eslint
-            - npx eslint .
-          caches:
-            - node
+    - step:
+        name: Build and Test
+        caches:
+          - node
+        script:
+          - echo "ERROR - unit tests not implemented yet"
+
   branches:
-    master:
-      - parallel:
-        - step:
-            name: Build and Test
-            caches:
-              - node
-            script:
-              - npm install
-              - npm test
-              - apt update && apt install zip
-              # Exclude files to be ignored
-              - zip -r app-$BITBUCKET_BUILD_NUMBER.zip . -x *.git* bitbucket-pipelines.yml
-            artifacts:
-              - "*.zip"
-        - step:
-            name: Security Scan
-            script:
-              # Run a security scan for sensitive data.
-              # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
-              - pipe: atlassian/git-secrets-scan:0.4.3
+    master: # after merge from develop to master: a prod release
+      - step: *build-app-assets-staging
       - step:
-          name: Deploy to Production Alternative
+          <<: *herokudeployment
+          name: "Deploy to Staging Env"
+          deployment: Staging
+
+      - step: *build-app-assets-prod
+      - step:
+          <<: *herokudeployment
+          name: "Deploy to Prod Env"
           trigger: manual
           deployment: Production
-          script:
-            - pipe: microsoft/azure-web-apps-deploy:1.0.3
-              variables:
-                AZURE_APP_ID: $AZURE_APP_ID
-                AZURE_PASSWORD: $AZURE_PASSWORD
-                AZURE_TENANT_ID: $AZURE_TENANT_ID
-                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
-                AZURE_APP_NAME: $AZURE_APP_NAME
-                ZIP_FILE: app-$BITBUCKET_BUILD_NUMBER.zip
