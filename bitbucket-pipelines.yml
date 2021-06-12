@@ -1,0 +1,85 @@
+image: node:12.14.1
+
+definitions:
+  steps:
+    - step: &skip
+        name: "Skip PR"
+        script:
+          - echo "No Step needed"
+    - step: &releasenotice
+        name: "Releasing to staging environment"
+        script:
+          - |
+            echo "PR develop --> master"
+    - step: &unittest
+        name: "Unit Test not implemented yet"
+        caches:
+          - node
+        script:
+          - echo "ERROR - unit tests not implemented yet"
+    - step: &build-app-assets-staging
+        name: Build App Assets Staging
+        caches:
+          - node
+        script:
+          - source .bitbucket-pipelines/pipelines-functions.sh
+          - export DEPLOY_ENV="staging"
+          - install_quasar_dependencies
+          - quasar_build
+          - debug_listing_dist_dir
+          - cd quasar_sysait
+          - git archive --format=tar.gz master -o sysait.tar.gz
+        artifacts:
+          - quasar_sysait/sysait.tar.gz
+    - step: &build-app-assets-prod
+        name: Build App Assets Prod
+        caches:
+          - node
+        script:
+          - source .bitbucket-pipelines/pipelines-functions.sh
+          - export DEPLOY_ENV="production"
+          - install_quasar_dependencies
+          - quasar_build
+          - debug_listing_dist_dir
+          - git archive --format=tar.gz master -o sysait.tar.gz
+        artifacts:
+          - quasar_sysait/sysait.tar.gz
+    - step: &herokudeployment
+        name: "Deploy to Test Env"
+        deployment: Test
+        script:
+          - |
+            source .bitbucket-pipelines/pipelines-functions.sh
+            echo "INFO - environment preparation"
+            check_variable ${HEROKU_API_KEY}
+            check_variable ${HEROKU_APP_STAGING_NAME}
+
+          - pipe: atlassian/heroku-deploy:0.1.1
+            variables:
+              HEROKU_API_KEY: $HEROKU_API_KEY
+              HEROKU_APP_NAME: $HEROKU_APP_STAGING_NAME
+              ZIP_FILE: quasar_sysait/sysait.tar.gz
+
+pipelines:
+  default:
+    - step:
+        name: Build and Test
+        caches:
+          - node
+        script:
+          - echo "ERROR - unit tests not implemented yet"
+
+  branches:
+    master: # after merge from develop to master: a prod release
+      - step: *build-app-assets-staging
+      - step:
+          <<: *herokudeployment
+          name: "Deploy to Staging Env"
+          deployment: Staging
+
+      - step: *build-app-assets-prod
+      - step:
+          <<: *herokudeployment
+          name: "Deploy to Prod Env"
+          trigger: manual
+          deployment: Production

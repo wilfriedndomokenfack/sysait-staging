@@ -1,15 +1,16 @@
 <template>
-  <q-layout class="bg-grey-1">
-    <Header v-on:lang="updateLang" />
+  <div class="font_arial">
+    <q-layout view="hHh LpR lfr" v-if="renderComponents" >
+       <Header  />
 
-    <!-- class="fit row wrap justify-center items-start content-start" -->
-    <q-page-container class="">
-      <router-view class="fit row wrap items-start content-start" />
-      <!-- <Breadcrumbs class="breadcrumbs" floating /> -->
+    <q-page-container >
+      <transition appear name="allPages">
+      <router-view class="fit row items-start content-start" />
+      </transition>
     </q-page-container>
-
     <Footer />
-  </q-layout>
+    </q-layout>
+  </div>
 </template>
 
 <script>
@@ -18,7 +19,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import { company } from "@/models/company";
 import { mapGetters } from "vuex";
-import { notify } from "@/models/utils/notifyUser";
+//import { notify } from "@/models/utils/notifyUser";
 import store from "@/store";
 
 export default {
@@ -26,40 +27,52 @@ export default {
   components: {
     Header,
     Footer,
-    Breadcrumbs
+    Breadcrumbs,
   },
   data() {
-    return {};
+    return {
+      renderComponents: false,
+    };
   },
-  mounted() {
-    /* if(!this.company){
-      this.getCompany()
-    }*/
-    this.propCompany = { ...this.company };
+  async mounted() {
+    if (!this.company) {
+      await this.getCompany();
+    }
+    this.renderComponents = true;
+    //this.propCompany = { ...this.company };
   },
   computed: {
-    ...mapGetters(["company"])
+    ...mapGetters(["company"]),
   },
   methods: {
     async getCompany() {
-      let temp = null;
-      alert("dentro");
+      this.$q.loading.show();
+      this.$q.loadingBar.start();
       try {
-        alert("prima");
         const response = await company();
-        alert("dopo");
-        if (response?.data?.length > 0) temp = { ...response.data[0] };
+        //response.data = [];
+        if (response?.data.length === 0) this.$router.push({ name: "notAvailable" });
+        this.$store.dispatch("wilfried/setCompany", response?.data[0]);
       } catch (err) {
-        notify("red", "get company error! " + err);
+        this.$router.push({ name: "notAvailable" });
+      } finally {
+        this.$q.loading.hide();
+        this.$q.loadingBar.stop();
       }
-
-      store.dispatch("setCompany", { ...temp });
     },
     updateLang() {
       store.dispatch("setLang");
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="scss" scoped>
+.allPages-enter-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.allPages-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
+</style>

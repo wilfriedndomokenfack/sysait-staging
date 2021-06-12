@@ -1,123 +1,98 @@
 <template>
-
-  <q-page-container >
-    <q-page class="text-center">  <!-- flex flex-center-->
-      <!-- page content -->
-       
-      <div class="text-pink text-center text-italic text-subtitle1  col-md q-ma-md">Let's create a new Word with Technology!</div>
-      <div class="  col-md q-ma-md">Ready to start a new project with us? That's great! Give us a call or send us an email and we will contact you as soon as possible!</div>
-      
-        <!--div class="">
-                
-            <div class="q-pa-md">
-                <q-carousel
-                v-model="slide"
-                transition-prev="slide-right"
-                transition-next="slide-left"
-                swipeable
-                animated
-                control-color="primary"
-                navigation
-                padding
-                arrows
-                height="300px"
-                class="bg-grey-1  rounded-borders"
+  <q-page class="text-center padding_header">  <!-- flex flex-center-->
+    <!-- page content -->
+    <div v-if="partners">
+      <div class="text-h5 text-bold q-mt-md partners flex flex-center" id="partList" ref="partList">
+      {{ this.$t('ourPartners') }}
+    </div>
+    <!-- <div class="row q-my-lg items-center justify-center"> -->
+      <transition-group tag="div" class="row q-my-lg items-center justify-center constrain" name="partLists" enter-active-class="animated flipInY delay-5s">
+        <div class="col-md-3 col-sm-6 col-xs-12 q-pb-lg " v-for="partner in partners" :key="partner.id">
+            <div class="text-info " style="font-size: 2em">
+             <q-img clickable @click="partnerlLink(partner.link)"  class="partner rounded-borders col-6 full-height" :src="`partners/${partner.image_path}`" style="">
+                <q-tooltip
+                  :offset="[10, 10]"
+                  transition-show="rotate"
+                  transition-hide="rotate"
+                  content-class="tooltip"
                 >
-                
-                <q-carousel-slide :name="1" class="column no-wrap">
-                    <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-                    
-                    <q-img class="responsive rounded-borders col-3 full-height"  src="~assets/logo-sysait-BON.jpg"  />
-                    <q-img class="responsive rounded-borders col-3 full-height" src="~assets/logo-sysait-BON.jpg" />
-                    <q-img class="rounded-borders col-3 full-height" src="https://image.winudf.com/v2/image/Y29tLmtpbmdzaGlwLmxvZ29tYWtlcnByb2ZyZWVfc2NyZWVuXzEwXzE1MzI3MDg1MTVfMDI4/screen-10.jpg?fakeurl=1&type=.jpg" />
-                    <q-img class="rounded-borders col-3 full-height" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/free-logo-design-template-0e8ff2db52da3cd367b04572e8662852_screen.jpg?ts=1567181348" />
-                    </div>
-                </q-carousel-slide>
-                <q-carousel-slide :name="2" class="column no-wrap">
-                    <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-                    <q-img class="rounded-borders col-3 full-height" src="https://image.winudf.com/v2/image/Y29tLmtpbmdzaGlwLmxvZ29tYWtlcnByb2ZyZWVfc2NyZWVuXzEwXzE1MzI3MDg1MTVfMDI4/screen-10.jpg?fakeurl=1&type=.jpg" />
-                    <q-img class="rounded-borders col-3 full-height" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/free-logo-design-template-0e8ff2db52da3cd367b04572e8662852_screen.jpg?ts=1567181348" />
-                    <q-img class="rounded-borders col-3 full-height" src="https://image.winudf.com/v2/image/Y29tLmtpbmdzaGlwLmxvZ29tYWtlcnByb2ZyZWVfc2NyZWVuXzEwXzE1MzI3MDg1MTVfMDI4/screen-10.jpg?fakeurl=1&type=.jpg" />
-                    <q-img class="rounded-borders col-3 full-height" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/free-logo-design-template-0e8ff2db52da3cd367b04572e8662852_screen.jpg?ts=1567181348" />
-                    </div>
-                </q-carousel-slide>
-                
-                
-                </q-carousel >
-
-            
-
+                  <strong>{{ partner.denomination }}</strong>
+                </q-tooltip>
+             </q-img>
             </div>
+        </div>
+       </transition-group>
+    </div>
 
-        </div>  
-
-        <div class="q-pa-md">
-                <q-carousel
-                    v-model="slide"
-                    v-for="item in logoImg"
-                    transition-prev="slide-right"
-                    transition-next="slide-left"
-                    swipeable
-                    animated
-                    control-color="primary"
-                    navigation
-                    padding
-                    arrows
-                    height="300px"
-                    class="bg-grey-1  rounded-borders"
-                    >
-                
-                    <q-carousel-slide :name="1" class="column no-wrap">
-                        <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap" v-for="logo in logoImg">
-                        
-                        <q-img class="responsive rounded-borders  full-height"  :src="'{{ logoImg.src}}'"  />
-                    
-                        </div>
-                    </q-carousel-slide>
-                           
-                </q-carousel >
-           
-
-        </div--> 
-
-    
-    </q-page>
-  </q-page-container>
-
+    <!-- </div> -->
+    <div class=" q-mb-lg">
+      <div class="text-primary text-center text-subtitle1  col-md q-ma-md font_Brush_Script_MT" color="primary">
+        Let's create a new Word with Technology!
+      </div>
+      <div class="col-md q-ma-md">
+        Ready to start a new project with us? That's great! Give us a call or send us an email and we will contact you as soon as possible!
+      </div>
+    </div>
+   </q-page>
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex'
-
+import { COMMON_isVisibile } from '@/models/utils/common.js'
 export default {
-  name: 'Tecnologies',
-
+  name: 'Planing',
+  props: ['propPartners'],
   data () {
     return {
-      slide: 1,
-      logoImg:[
-        {
-            id:1,
-            src:"~assets/logo-sysait-BON.jpg"
-        },
-        {
-            id:2,
-            src: '~assets/logo_sysait_gris.png'
-         },
-      ]
+      partners: [],
+      ourPartners: "",
+      showPart: false,
     }
   },
-  getImage: function (imageData) {
-        return `assets/faces/${imageData.id}.jpg`
+  async mounted(){
+    window.addEventListener("scroll", () => this.renderSection());
+    this.renderSection()
   },
-    computed: {
-    ...mapGetters(
-      [
-        'company',
-
-      ]),
-  },
-
+  methods: {
+    partnerlLink(link){
+      window.open(link, '_blank');
+    },
+    renderSection(){
+      if (!this.showPart && COMMON_isVisibile(this.$refs.partList)) {
+        this.partners = this.propPartners?.length > 0 ? this.partners = [...this.propPartners] : null
+        this.showPart = true
+      }
+    }
+  }
 }
 </script>
+
+<style lang="scss">
+
+.partners::before {
+  min-width: 250px;
+  content:'\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0';
+  display: block;
+  position: absolute;
+  text-decoration: underline;
+  width:70px;
+  overflow:hidden;
+  padding-top: 15px;
+}
+
+.partner:hover {
+  cursor: pointer;
+}
+.partner {
+  width: 30%;
+}
+
+.tooltip{
+  background-color: $primary;
+}
+
+.animated.flipInY {
+  --animate-duration: 13s;
+}
+
+</style>

@@ -1,7 +1,7 @@
-import { Notify } from 'quasar'
+import { Notify as noti } from 'quasar'
 
 export const notify = (color, message) =>
-  Notify.create({
+  noti.create({
     message: message,
     color: `${color}-4`,
     textColor: 'white',

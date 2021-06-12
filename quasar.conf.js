@@ -46,8 +46,12 @@ module.exports = function ( ctx ) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
-
+      vueRouterMode: 'history', // available values: 'hash', 'history'
+      env: {
+        SYSAIT_API_HOST: process.env.SYSAIT_API_HOST,
+        DEPLOY_ENV: process.env.DEPLOY_ENV,
+        SYSAIT_HOST: process.env.SYSAIT_HOST,
+      },
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -95,7 +99,7 @@ module.exports = function ( ctx ) {
           'QCarouselSlide',
           'QCarouselControl'
         ],
-      
+
 
 
       // Possible values for "importStrategy":
@@ -111,7 +115,7 @@ module.exports = function ( ctx ) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["Notify", "Cookies", "Loading", 'LoadingBar'],
+      plugins: ["Notify", "Cookies", "Loading", 'LoadingBar', 'Dialog'],
 
       config: {
         notify: {
