@@ -22,7 +22,7 @@ function install_quasar_dependencies() {
 function debug_listing_dist_dir() {
   echo "DEBUG - listing dist"
   ls -l ./
-  ls -l dist/src/
+  ls -l ./src/
   ls -l dist/
   ls -l dist/spa/
 }
