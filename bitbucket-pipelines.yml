@@ -28,7 +28,7 @@ definitions:
           - quasar_build
           - debug_listing_dist_dir
           - cd quasar_sysait
-          - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
+          - git archive --format=tar.gz master -o sysait.tar.gz
         artifacts:
           - quasar_sysait/sysait.tar.gz
     - step: &build-app-assets-prod
@@ -41,8 +41,7 @@ definitions:
           - install_quasar_dependencies
           - quasar_build
           - debug_listing_dist_dir
-          - cd quasar_sysait
-          - git archive --format=tar.gz ${BITBUCKET_BRANCH} -o sysait.tar.gz
+          - git archive --format=tar.gz master -o sysait.tar.gz
         artifacts:
           - quasar_sysait/sysait.tar.gz
     - step: &herokudeployment
@@ -70,17 +69,17 @@ pipelines:
         script:
           - echo "ERROR - unit tests not implemented yet"
 
-  #branches:
-    #master: # after merge from develop to master: a prod release
-    - step: *build-app-assets-staging
-    - step:
-        <<: *herokudeployment
-        name: "Deploy to Staging Env"
-        deployment: Staging
+  branches:
+    master: # after merge from develop to master: a prod release
+      - step: *build-app-assets-staging
+      - step:
+          <<: *herokudeployment
+          name: "Deploy to Staging Env"
+          deployment: Staging
 
-    - step: *build-app-assets-prod
-    - step:
-        <<: *herokudeployment
-        name: "Deploy to Prod Env"
-        trigger: manual
-        deployment: Production
+      - step: *build-app-assets-prod
+      - step:
+          <<: *herokudeployment
+          name: "Deploy to Prod Env"
+          trigger: manual
+          deployment: Production

@@ -23,6 +23,7 @@ function debug_listing_dist_dir() {
   echo "DEBUG - listing dist"
   ls -l ./
   ls -l dist/
+  ls -l dist/spa/
 }
 
 function quasar_build() {
