@@ -29,7 +29,7 @@ definitions:
           - debug_listing_dist_dir
           - git archive --format=tar.gz master -o sysait.tar.gz
         artifacts:
-          - quasar_sysait/sysait.tar.gz
+          - sysait.tar.gz
     - step: &build-app-assets-prod
         name: Build App Assets Prod
         caches:
@@ -42,7 +42,7 @@ definitions:
           - debug_listing_dist_dir
           - git archive --format=tar.gz master -o sysait.tar.gz
         artifacts:
-          - quasar_sysait/sysait.tar.gz
+          - sysait.tar.gz
     - step: &herokudeployment
         name: "Deploy to Test Env"
         deployment: Test
@@ -57,7 +57,7 @@ definitions:
             variables:
               HEROKU_API_KEY: $HEROKU_API_KEY
               HEROKU_APP_NAME: $HEROKU_APP_STAGING_NAME
-              ZIP_FILE: quasar_sysait/sysait.tar.gz
+              ZIP_FILE: sysait.tar.gz
 
 pipelines:
   default:
