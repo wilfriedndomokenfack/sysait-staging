@@ -7,9 +7,15 @@ const setHumanComponents = ({ commit }, payload) => {
 const setMessages = ({ commit }, payload) => {
   commit('setMessages', payload)
 }
+
+const deleteMessage = ({ commit }, payload) => {
+  commit('deleteMessage', payload)
+}
 export default {
   setHumanComponents,
   setMessages,
+
+  deleteMessage,
 };
 
 

@@ -9,12 +9,15 @@ export const getMessages = async () => {
   try {
     let response = await Api().get("/contacts" )
     store.dispatch("rosine/setMessages", response.data);
-    console.log(response.data)
   } catch (error) {
     console.log("error: " + error)
   }
 
 }
+
+export const deleteMessage = (id) =>
+  
+  Api().delete("/contacts/"+id); // DELETE MESSAGE
 
 
 
