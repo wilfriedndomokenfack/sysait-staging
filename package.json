@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "yarn && SYSAIT_API_HOST=https://sysait-backend-test.herokuapp.com/ quasar build"
+    "heroku-postbuild": "yarn global add @quasar/cli && yarn && SYSAIT_API_HOST=https://sysait-backend-test.herokuapp.com/ quasar build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
